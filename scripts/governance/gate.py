@@ -80,6 +80,7 @@ def verify_acceptance(task, record, api, plan):
     approved = False
     for user, review in latest.items():
         if (user.lower() != pr['user']['login'].lower() and
+            user.lower() not in {task['owner'].lower(), task['support'].lower()} and
             user in plan['team'] and review['state'] == 'APPROVED' and
             review.get('commit_id') == pr['head']['sha']):
             permission = api.call('/collaborators/' + user + '/permission')['permission']

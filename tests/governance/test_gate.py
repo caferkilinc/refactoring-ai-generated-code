@@ -46,6 +46,12 @@ class GateTests(unittest.TestCase):
  def test_untrusted_check_fails(self):
   self.a.checks[0]['app']['slug']='other'
   with self.assertRaises(Rejected):self.accept()
+ def test_supporting_developer_approval_is_not_independent(self):
+  self.a.reviews[0]['user']['login']='cakarburkayy'
+  with self.assertRaises(Rejected):self.accept()
+ def test_primary_approval_on_support_authored_pr_is_not_independent(self):
+  self.a.pr['user']['login']='cakarburkayy';self.a.reviews[0]['user']['login']='caferkilinc'
+  with self.assertRaises(Rejected):self.accept()
  def test_missing_check_fails(self):
   self.a.checks=[]
   with self.assertRaises(Rejected):self.accept()

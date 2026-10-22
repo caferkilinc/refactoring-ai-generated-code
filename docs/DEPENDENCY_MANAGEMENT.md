@@ -9,7 +9,7 @@ Every mandatory prerequisite needs a record in trusted main `.github/acceptance.
 1. Issue closed as completed, not merely closed as not-planned.
 2. Linked PR merged to this repository's main; accepted SHA equals its head.
 3. PR branch/body match the prerequisite task and changed paths are allowed.
-4. An independent teammate with current Write/Admin approval on that exact revision; stale/self/dismissed or superseded approvals do not qualify.
+4. A teammate other than the primary/supporting developer or PR author, with current Write/Admin approval on that exact revision; stale/self/dismissed or superseded approvals do not qualify.
 5. Required GitHub Actions checks completed successfully; missing, skipped or failing checks cannot qualify.
 6. HTTPS evidence links reviewed by the maintainer against task-specific acceptance criteria.
 
@@ -31,4 +31,4 @@ The setup PR cannot use a base policy absent from main. Its governance engine ha
 
 The proposed [protection JSON](../.github/branch-protection.proposed.json) requires an independent code-owner approval, stale approval dismissal, conversation resolution, current branch checks, no force push/deletion and admin enforcement. It is **not active**. Activate only after explicit owner approval and live checks; never lock the repository against a check that has not run.
 
-The 25 unit scenarios verify engine behavior with isolated API fixtures. They do not prove that GitHub currently blocks merge. Live CI/review merge prevention remains an activation/verification step until the proposed protections are approved.
+The 27 unit scenarios verify engine behavior with isolated API fixtures. They do not prove that GitHub currently blocks merge. Live CI/review merge prevention remains an activation/verification step until the proposed protections are approved.

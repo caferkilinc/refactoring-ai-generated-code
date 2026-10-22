@@ -8,6 +8,11 @@ def main():
     plan = json.loads(Path('.github/task-plan.json').read_text())
     validate_plan(plan)
     api = GitHub()
+    for name, color, description in [
+        ('type:bug', 'd73a4a', 'Reproducible defect in an implemented capability'),
+        ('type:feature', 'a2eeef', 'Proposed capability requiring scope and plan review')]:
+        if api.call('/labels/' + name, missing_ok=True) is None:
+            api.call('/labels', 'POST', {'name': name, 'color': color, 'description': description})
     numbers = {t['issue_number'] for t in plan['tasks']} | {e['number'] for e in plan['epics']}
     issues = {n: api.call(f'/issues/{n}') for n in numbers}
     for task in plan['tasks']:
