@@ -1,0 +1,18 @@
+name: Research or decision
+description: Protocol, architectural decision or academic evidence
+title: "[Research] "
+labels: ["type:research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question, sources and proposed method
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Deliverable, acceptance evidence and independent reviewer
+      description: Do not claim unmeasured results. Code requires separate implementation evidence.
+    validations:
+      required: true

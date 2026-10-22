@@ -1,0 +1,22 @@
+name: Bug report
+description: Reproducible defect in an implemented capability
+title: "[Bug] "
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and expected behavior
+      description: Include version, steps, observed behavior and safe evidence; never secrets.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: Related Plan ID and issue
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and regression cases
+    validations:
+      required: true
