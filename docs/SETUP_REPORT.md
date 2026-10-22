@@ -7,7 +7,7 @@ Audit date: 2026-10-22. Base main has 10 historical commits / 8 Markdown files, 
 | 6 work-package trackers + 31 technical tasks | COMPLETED AND VERIFIED | Existing issues #1–#37; owners assigned, acceptance and prerequisite links in bodies |
 | Repository history | COMPLETED AND VERIFIED | New commit descends from audited main; original files/history preserved |
 | Governance files and workflow definitions | PREPARED | Configuration PR; main unchanged until approved merge |
-| Unit gate scenarios | COMPLETED AND VERIFIED locally | 22 positive/negative tests; see CI for hosted execution |
+| Unit gate scenarios | COMPLETED AND VERIFIED locally | 25 positive/negative tests; see CI for hosted execution |
 | Backend/frontend application checks | NOT STARTED | No app packages/lockfiles/test commands in audited base; #10 owns this |
 | Trusted base dependency-gate | PREPARED | Becomes available after reviewed merge, then validate with real canary PR |
 | Main branch protection | REQUIRES USER ACTION | Proposed JSON only; explicit owner approval and live checks needed |
@@ -22,3 +22,12 @@ Audit date: 2026-10-22. Base main has 10 historical commits / 8 Markdown files, 
 5. Enable real app checks only when #10 provides reproducible packages and commands; add their proven check names to required checks through review.
 
 No sensitive DOCX, API key, private upload, paid API call, direct main write, force push or automatic merge is part of this setup.
+
+## Verified hosted evidence (bootstrap revision)
+
+- Configuration PR: https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38 ; independent review requested from @cakarburkayy. PR remains open/unmerged.
+- Hosted governance CI: https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/39774599017 — governance-tests, documentation-checks, security-checks succeeded on the first bootstrap revision.
+- Native graph sync: https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/39774558427 — succeeded; all 31 parent links and every declared dependency were subsequently checked through GitHub API. No task was closed.
+- Project: https://github.com/users/caferkilinc/projects/1 ; reuses the existing project, no duplicate board.
+
+The next revision adds a read-only live gate preview for PR #38 and pins checkout v6 to its verified immutable commit. This preview does not activate trusted-main merge enforcement.

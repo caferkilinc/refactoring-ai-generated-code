@@ -26,6 +26,7 @@ def validate_plan(plan):
             return
         visiting.add(key)
         for dep in ids[key]['dependencies']:
+            require(dep in ids, 'Unknown prerequisite ' + dep)
             require(not (ids[key]['priority'] == 'P0' and ids[dep]['priority'] == 'P1'),
                     'P1 must not block P0')
             visit(dep)
@@ -95,7 +96,9 @@ def evaluate(pr, plan, accepted, api):
     task = linked_task(pr, plan)
     issue = api.call(f"/issues/{task['issue_number']}")
     require('pull_request' not in issue, 'Task is a PR rather than issue')
-    require(issue.get('state') == 'open', 'Implementation task must be open')
+    maintenance = (task['plan_id'] == 'F01-GOV' and issue.get('state') == 'closed'
+                   and issue.get('state_reason') == 'completed')
+    require(issue.get('state') == 'open' or maintenance, 'Implementation task must be open')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"))
     # Live native dependencies supplement the base registry; missing native edges fail closed.
     native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")

@@ -89,6 +89,19 @@ class GateTests(unittest.TestCase):
  def test_p1_cannot_block_p0(self):
   self.p['tasks'][0]['dependencies']=['F07B-PILOT']
   with self.assertRaises(Rejected):validate_plan(self.p)
+ def test_closed_governance_accepts_policy_maintenance(self):
+  self.a.issue={'state':'closed','state_reason':'completed'}
+  self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
+  self.a.files=[{'filename':'.github/acceptance.json'}]
+  self.assertIn('all 0',evaluate(self.a.pr,self.p,{},self.a))
+ def test_closed_governance_cannot_change_app(self):
+  self.a.issue={'state':'closed','state_reason':'completed'}
+  self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
+  self.a.files=[{'filename':'backend/app.py'}]
+  with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
+ def test_unknown_prerequisite_fails_closed(self):
+  self.p['tasks'][0]['dependencies']=['UNKNOWN']
+  with self.assertRaises(Rejected):validate_plan(self.p)
  def test_real_plan_p0_independent_of_local_ai(self):
   ids=validate_plan(self.p)
   def deps(t):

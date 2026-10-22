@@ -19,7 +19,7 @@ Example schema (illustrative values, **not** an existing acceptance):
 {"schema_version":1,"accepted":{"8":{"pr":101,"head_sha":"actual-merged-pr-head-sha","evidence":["https://github.com/OWNER/REPO/pull/101"]}}}
 ```
 
-The real registry starts empty; no product work is accepted. The evidence URLs are attestations reviewed by people, not automated semantic proof that arbitrary linked artefacts satisfy the scientific protocol. New accepted records require an independently reviewed governance PR; this trust boundary must be protected by branch rules. Historical required checks are recorded in the registry and may evolve through reviewed policy changes.
+The real registry starts empty; no product work is accepted. The evidence URLs are attestations reviewed by people, not automated semantic proof that arbitrary linked artefacts satisfy the scientific protocol. New accepted records require an independently reviewed governance PR; ongoing policy/acceptance maintenance uses `chore/1-...`, `Task: #1`, `Plan: F01-GOV` and its restricted governance paths even after #1 is closed as completed (no application paths are permitted); this trust boundary must be protected by branch rules. Historical required checks are recorded in the registry and may evolve through reviewed policy changes.
 
 A blocked merge does not prevent topic-branch development using approved contract fixtures. Scope extensions and cross-cutting tasks require prior reviewed registry updates. F07B is P1 and is not a transitive prerequisite of P0.
 
@@ -31,4 +31,4 @@ The setup PR cannot use a base policy absent from main. Its governance engine ha
 
 The proposed [protection JSON](../.github/branch-protection.proposed.json) requires an independent code-owner approval, stale approval dismissal, conversation resolution, current branch checks, no force push/deletion and admin enforcement. It is **not active**. Activate only after explicit owner approval and live checks; never lock the repository against a check that has not run.
 
-The 22 unit scenarios verify engine behavior with isolated API fixtures. They do not prove that GitHub currently blocks merge. Live CI/review merge prevention remains an activation/verification step until the proposed protections are approved.
+The 25 unit scenarios verify engine behavior with isolated API fixtures. They do not prove that GitHub currently blocks merge. Live CI/review merge prevention remains an activation/verification step until the proposed protections are approved.
