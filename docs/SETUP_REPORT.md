@@ -1,12 +1,12 @@
 # GitHub ekip altyapısı teslim ve doğrulama raporu / Setup verification
 
-22 Ekim 2026 / 22 October 2026. Repository: [caferkilinc/refactoring-ai-generated-code](https://github.com/caferkilinc/refactoring-ai-generated-code). [Project](https://github.com/users/caferkilinc/projects/1). [Configuration PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38).
+Updated 23 Ekim 2026 / 23 October 2026; original audit 22 October. Repository: [caferkilinc/refactoring-ai-generated-code](https://github.com/caferkilinc/refactoring-ai-generated-code). [Project](https://github.com/users/caferkilinc/projects/1). [Configuration PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38).
 
 Kurulum dosyaları inceleme branch’inde hazırlanmıştır; PR açık ve merge edilmemiştir. Yönetim altyapısı testleri çalışan bir ürün veya tamamlanmış araştırma deneyi anlamına gelmez. (Configuration is prepared on the review branch; the PR remains open and unmerged. Governance tests do not establish product or research success.)
 
 ## 1. Repository audit
 
-`main` audit baseline: `7e068040c3a4fb1a2f32783a4c592dc974324f36`, ten September commits and eight Markdown files. Existing history is preserved. No executable application packages/tests or measured refactoring experiments exist in that base. Live repository visibility remains public and auto-merge is disabled. No direct main write, force push, history rewrite, paid service, private DOCX publication or permission change was performed in this completion pass.
+`main` audit baseline: `7e068040c3a4fb1a2f32783a4c592dc974324f36`, ten September commits and eight Markdown files. Existing history is preserved. No executable application packages/tests or measured refactoring experiments exist in that base. Live repository visibility remains public and auto-merge is disabled. No direct main write, force push, history rewrite, paid service or private DOCX publication was performed. On 23 October the owner explicitly approved four Project Write grants, conditional merge after Burkay’s independent approval, and main protection after successful live validation.
 
 | Operation | Status | Verified result / limitation |
 |---|---|---|
@@ -16,12 +16,12 @@ Kurulum dosyaları inceleme branch’inde hazırlanmıştır; PR açık ve merge
 | Native issue hierarchy and prerequisites | COMPLETED AND VERIFIED | Earlier hosted sync and API verification established 31 parent links / 53 edges; registry preserved in this pass |
 | Five Project views and schedule | COMPLETED AND VERIFIED | Table, Board, Roadmap, Bug Tracking, Iteration / Sprint; saved shared defaults |
 | Board acceptance automation | COMPLETED AND VERIFIED | Closure and merge → Testing; Auto-close issue is Off; Done requires reviewed acceptance |
-| Private Project team access | REQUIRES USER ACTION | Only caferkilinc has Project Admin; four Project Write invitations require explicit owner approval |
+| Private Project team access | COMPLETED AND VERIFIED | caferkilinc Admin; ismail-cevik, cakarburkayy, tahaugurtoyran and Yaman-A-E Write; all five listed after reload on 23 October |
 | Governance tests and hosted CI | COMPLETED AND VERIFIED | 27 unit tests; documentation and hygiene checks pass; actual hosted evidence below |
-| Configuration files | PREPARED | 32 changed files in PR #38; main unchanged pending independent review and explicit merge approval |
+| Configuration files | PREPARED | 32 changed files in PR #38; owner merge authorization received, independent review still pending |
 | Independent PR approval | REQUIRES USER ACTION | Burkay requested; zero submitted reviews when checked |
 | Trusted-main dependency gate | PREPARED | Read-only live preview passed; real base-triggered enforcement awaits bootstrap merge and canary checks |
-| Main branch protection / rulesets | REQUIRES USER ACTION | No classic branch protection or ruleset currently exists; explicit owner approval and live gate checks required |
+| Main branch protection / rulesets | BLOCKED | Owner authorization received; independent review, bootstrap merge and successful live canary checks must precede activation |
 | Application backend/frontend checks | NOT STARTED | Task #10 must supply real packages, lockfiles and commands first |
 | Product implementation / scientific experiments | NOT STARTED | No implementation or numerical research success is claimed |
 
@@ -41,7 +41,7 @@ Estimated Effort is a Number; Start Date and Target Date are Date fields. All 31
 
 Final verification corrected two inherited Done shortcuts: Item closed and Pull request merged now set Testing. Auto-close issue from Done is disabled. The built-in automations route work; they do not semantically verify acceptance. A maintainer must review the acceptance record and live evidence before setting Done. Six Project workflows remain enabled. Project description/README links the plan, workload, guide, PR and final deadline.
 
-Project is private and currently lists only caferkilinc (Admin). Repository Write does not grant Project access. After explicit owner approval, invite `ismail-cevik`, `cakarburkayy`, `tahaugurtoyran`, `Yaman-A-E` with Project Write via Project → Settings → Manage access. No invitation or visibility change has been made.
+Project remains private. Following explicit owner approval on 23 October, `ismail-cevik`, `cakarburkayy`, `tahaugurtoyran`, and `Yaman-A-E` were each added with Project Write. Manage access was reloaded and showed all five accounts: caferkilinc Admin and four Write members, with no pending marker. Repository Write and Project Write are separate grants; both now cover the complete team. Visibility was not changed.
 
 ## 3. Research work packages
 
@@ -127,7 +127,7 @@ First actionable assignments: Cafer completes scope/resource decisions in #8 and
 
 On 22 October the GitHub Branches page listed no classic protection and Rulesets explicitly said none exists. Therefore **GitHub is not currently enforcing the proposed merge restrictions**. The contribution guide is currently procedural. The [proposed protection JSON](../.github/branch-protection.proposed.json) specifies a PR, one code-owner approval, stale approval dismissal, successful current checks, resolved conversations, admin enforcement and no force-push/deletion. It is a proposal, not an active policy.
 
-PR #38: primary @caferkilinc, support @ismail-cevik, independent reviewer @cakarburkayy. Zero submitted reviews were found. Neither author nor primary/support may supply independent acceptance. CODEOWNERS includes valid Write/Admin accounts and independent alternatives; it awaits merge to the default branch. Review/merge approval must precede bootstrap activation; this report does not approve or merge its own PR.
+PR #38: primary @caferkilinc, support @ismail-cevik, independent reviewer @cakarburkayy. Zero submitted reviews were found. Neither author nor primary/support may supply independent acceptance. CODEOWNERS includes valid Write/Admin accounts and independent alternatives; it awaits merge to the default branch. The owner approved merge on 23 October, conditional on Burkay’s independent approval, and approved protection after live validation. Zero submitted reviews were returned when checked; this condition is not yet satisfied, so PR #38 remains unmerged. No second owner approval will be requested for the same unchanged scope.
 
 ## 8. GitHub Actions and actual validation
 
@@ -183,14 +183,14 @@ tests/governance/test_gate.py
 
 ## 10. Remaining owner actions in dependency order
 
-1. Explicitly approve Project Write invitations for the four exact collaborators above. This is separate from already-verified repository Write.
-2. Burkay independently reviews the final PR #38 revision. The owner then explicitly approves merge; no automatic merge is configured.
+1. COMPLETED: owner authorization received and four Project Write grants verified on 23 October.
+2. BLOCKED ON REVIEW: Burkay independently approves the final PR #38 revision. Owner merge authorization is already recorded; after the independent current-revision approval and successful CI, perform the authorized manual merge. No automatic merge is configured.
 3. After approved bootstrap merge, run real canary checks on legitimate existing tasks. Verify trusted-base gate pass/fail, missing dependency/CI/review rejection and re-evaluation without faking accepted prerequisites.
-4. After those live checks and explicit owner approval, activate main protection with only proven check names. Proposed command from an authorized owner session: `gh api --method PUT repos/caferkilinc/refactoring-ai-generated-code/branches/main/protection --input .github/branch-protection.proposed.json`. It has not been executed.
+4. After those live checks, activate main protection with only proven check names under the owner authorization already received on 23 October. Proposed command from an authorized owner session: `gh api --method PUT repos/caferkilinc/refactoring-ai-generated-code/branches/main/protection --input .github/branch-protection.proposed.json`. It has not been executed.
 5. Independently review trusted acceptance entries through a restricted governance PR. Re-run failed Dependency gate jobs or push a normal new commit after prerequisite acceptance; closing an issue alone does not reevaluate the gate.
 6. Confirm weekly capacity, GPU/runtime and provider/data-transfer/budget decisions. #19 and #25 remain resource-blocked; no purchase or API consumption is authorized by this report.
 
-Original user instruction preserves these approval boundaries: “PR’leri otomatik merge etme”, “Kullanıcı erişimlerini onayım olmadan değiştirme” and “Yalnızca ... kritik koruma ayarı ... veya merge gibi yüksek etkili işlemlerde açık onay iste.” The general request to finish the work does not erase those explicit boundaries. No skill-specific extra approval requirement is being inferred.
+Original user instruction preserves these approval boundaries: “PR’leri otomatik merge etme”, “Kullanıcı erişimlerini onayım olmadan değiştirme” and “Yalnızca ... kritik koruma ayarı ... veya merge gibi yüksek etkili işlemlerde açık onay iste.” The owner’s subsequent explicit approval on 23 October satisfies the access, conditional merge and conditional protection authorization requirements. It does not replace the independent reviewer or the live validation prerequisites.
 
 ## 11. Academic document continuity
 
@@ -198,4 +198,8 @@ The previously delivered five-person DOCX and role-swapped planning document rem
 
 ## 12. Completion boundary
 
-Issues, assignment consistency, saved views, date/effort data, acceptance-safe routing and governance tests are established. Configuration files are prepared in the open PR. Private Project team access, independent review, merge and live main protection activation remain owner/reviewer actions; the platform itself remains development work. (Görev sistemi ve test edilmiş kurulum hazırlanmıştır; erişim/onay/aktivasyon adımları açıkça beklemede tutulur.)
+Issues, assignment consistency, saved views, date/effort data, acceptance-safe routing and governance tests are established. Configuration files are prepared in the open PR. Private Project access is complete and verified. Owner authorization for conditional merge and protection is recorded. Burkay’s independent review, then merge and live main protection validation/activation remain sequential pending steps; the platform itself remains development work. (Görev sistemi ve test edilmiş kurulum hazırlanmıştır; erişim/onay/aktivasyon adımları açıkça beklemede tutulur.)
+
+## 13. Owner authorization and execution update — 23 October 2026
+
+The owner explicitly replied “onaylıyorum” to the concrete request for four Project Write grants, merge after Burkay’s independent approval, and main protection after live validation. Four Write members were added and verified after reload. PR #38 at `4e16940da6bb58a0dec92b47804a815570f72d59` had successful hosted CI ([run 39853424496](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/39853424496)); the reviews API returned an empty list. Therefore no merge or main protection activation was attempted. This report-only update must also pass CI and be independently reviewed on its final revision. No extra owner approval is needed for the already authorized unchanged actions.
