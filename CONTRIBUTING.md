@@ -5,7 +5,7 @@
 3. Develop and run relevant real checks. Contract fixtures permit parallel development before integrated dependencies are complete.
 4. Make a descriptive Conventional Commit (`feat:`, `fix:`, `docs:`, `test:`, `chore:`); push the topic branch.
 5. Open a PR with exactly one `Task: #N` and `Plan: Fxx-ID` line, matching the branch and trusted registry.
-6. Resolve review comments and checks. At least one independent reviewer must approve the current revision.
+6. Resolve review comments and checks. At least one independent reviewer outside primary/support must approve the current revision. After review/CI completion, re-run the trusted Dependency gate workflow so both dependency-gate and merge-readiness pass.
 7. Merge only after maintainer approval and acceptance. Do not directly push `main`, force push, or erase history.
 8. Record evidence and accepted merged PR in the reviewed main acceptance registry; update the task/project only after acceptance.
 

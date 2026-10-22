@@ -51,3 +51,11 @@ All five currently have sufficient access for direct topic branches. If access i
 Use [workload estimates](TEAM_WORKLOAD.md). Declare available capacity, remaining estimate and blockers weekly; adjust support and dates in the canonical plan. Planning hours are not time sheets or compulsory equal schedules. Escalate #25 provider access before patch week and #19 GPU access before Local AI promises. Delay P1 first when P0 slips.
 
 Application development environment, service health checks, pinned Python/Node and lockfiles are #10. Use native Apple Silicon toolchains for M3; actual CUDA/model runtime runs only on a separately verified server. No nonexistent application commands are claimed here.
+
+## Readiness and recovery
+
+Bağımsız inceleme ve CI bittikten sonra Dependency gate workflow’unu yeniden çalıştırın; `dependency-gate` ve `merge-readiness` birlikte geçmelidir. (Rerun both gates after review and CI complete.) Yeniden çalıştırma güncel güvenilir main politikasını okur; kaynak kodu veya kabul kaydı değiştiyse güncel main’i branch’inize alın. (Reruns refresh trusted main; update your branch after policy or acceptance changes.)
+
+Java pilotu #9 `pilot-checks`, erken sözleşmeler #11 `contract-checks`, ortam #10 gerçek backend/frontend kontrollerini üretir. Eksik kontrolü başarılı göstermeyin. (Each task supplies real executable checks; missing checks cannot be reported as passed.)
+
+Proje panosundaki Done yalnız planlama durumudur; kabul kaydı ve gerçek kanıt ayrıca gerekir. Haftalık Live plan audit ile issue/bağımlılık tutarlılığını, pano tarih/efor hücrelerini de ayrıca kontrol edin. (Audit live issue drift and separately compare the personal Project fields.)

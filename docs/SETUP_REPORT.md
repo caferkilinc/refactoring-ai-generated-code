@@ -1,5 +1,7 @@
 # GitHub ekip altyapısı teslim ve doğrulama raporu / Setup verification
 
+> **23 October operational audit update:** [Operational audit and corrective actions](OPERATIONAL_AUDIT.md) supersedes earlier bootstrap descriptions of gate behavior/check coverage. 81 local governance/security regression tests pass; application checks remain future deliverables. A single explicit UI/environment prerequisite extends the live graph from 53 to 54 edges without adding tasks. The configuration remains unmerged pending Burkay’s independent approval.
+
 Updated 23 Ekim 2026 / 23 October 2026; original audit 22 October. Repository: [caferkilinc/refactoring-ai-generated-code](https://github.com/caferkilinc/refactoring-ai-generated-code). [Project](https://github.com/users/caferkilinc/projects/1). [Configuration PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38).
 
 Kurulum dosyaları inceleme branch’inde hazırlanmıştır; PR açık ve merge edilmemiştir. Yönetim altyapısı testleri çalışan bir ürün veya tamamlanmış araştırma deneyi anlamına gelmez. (Configuration is prepared on the review branch; the PR remains open and unmerged. Governance tests do not establish product or research success.)
@@ -18,7 +20,7 @@ Kurulum dosyaları inceleme branch’inde hazırlanmıştır; PR açık ve merge
 | Board acceptance automation | COMPLETED AND VERIFIED | Closure and merge → Testing; Auto-close issue is Off; Done requires reviewed acceptance |
 | Private Project team access | COMPLETED AND VERIFIED | caferkilinc Admin; ismail-cevik, cakarburkayy, tahaugurtoyran and Yaman-A-E Write; all five listed after reload on 23 October |
 | Governance tests and hosted CI | COMPLETED AND VERIFIED | 27 unit tests; documentation and hygiene checks pass; actual hosted evidence below |
-| Configuration files | PREPARED | 32 changed files in PR #38; owner merge authorization received, independent review still pending |
+| Configuration files | PREPARED | 36 changed files in PR #38; owner merge authorization received, independent review still pending |
 | Independent PR approval | REQUIRES USER ACTION | Burkay requested; zero submitted reviews when checked |
 | Trusted-main dependency gate | PREPARED | Read-only live preview passed; real base-triggered enforcement awaits bootstrap merge and canary checks |
 | Main branch protection / rulesets | BLOCKED | Owner authorization received; independent review, bootstrap merge and successful live canary checks must precede activation |
@@ -154,7 +156,7 @@ The privileged-event gate checks out only trusted base SHA and runs with read-on
 
 ## 9. Changed files and team guide
 
-PR #38 contains 32 changed paths:
+The initial bootstrap contained the following 32 changed paths. The audit adds `docs/OPERATIONAL_AUDIT.md`, `scripts/governance/audit_plan.py`, `tests/governance/test_audit_regressions.py`, and `.github/workflows/live-plan-audit.yml` (36 total):
 
 ```text
 .github/CODEOWNERS
@@ -186,7 +188,7 @@ tests/governance/test_gate.py
 1. COMPLETED: owner authorization received and four Project Write grants verified on 23 October.
 2. BLOCKED ON REVIEW: Burkay independently approves the final PR #38 revision. Owner merge authorization is already recorded; after the independent current-revision approval and successful CI, perform the authorized manual merge. No automatic merge is configured.
 3. After approved bootstrap merge, run real canary checks on legitimate existing tasks. Verify trusted-base gate pass/fail, missing dependency/CI/review rejection and re-evaluation without faking accepted prerequisites.
-4. After those live checks, activate main protection with only proven check names under the owner authorization already received on 23 October. Proposed command from an authorized owner session: `gh api --method PUT repos/caferkilinc/refactoring-ai-generated-code/branches/main/protection --input .github/branch-protection.proposed.json`. It has not been executed.
+4. After those live checks, activate main protection with only the five proven check names (including merge-readiness) under the owner authorization already received on 23 October. Proposed command from an authorized owner session: `gh api --method PUT repos/caferkilinc/refactoring-ai-generated-code/branches/main/protection --input .github/branch-protection.proposed.json`. It has not been executed.
 5. Independently review trusted acceptance entries through a restricted governance PR. Re-run failed Dependency gate jobs or push a normal new commit after prerequisite acceptance; closing an issue alone does not reevaluate the gate.
 6. Confirm weekly capacity, GPU/runtime and provider/data-transfer/budget decisions. #19 and #25 remain resource-blocked; no purchase or API consumption is authorized by this report.
 
@@ -203,3 +205,14 @@ Issues, assignment consistency, saved views, date/effort data, acceptance-safe r
 ## 13. Owner authorization and execution update — 23 October 2026
 
 The owner explicitly replied “onaylıyorum” to the concrete request for four Project Write grants, merge after Burkay’s independent approval, and main protection after live validation. Four Write members were added and verified after reload. PR #38 at `4e16940da6bb58a0dec92b47804a815570f72d59` had successful hosted CI ([run 39853424496](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/39853424496)); the reviews API returned an empty list. Therefore no merge or main protection activation was attempted. This report-only update must also pass CI and be independently reviewed on its final revision. No extra owner approval is needed for the already authorized unchanged actions.
+
+
+## 14. Operational audit correction — 23 October 2026
+
+See [18 findings and their remedies](OPERATIONAL_AUDIT.md). Fixes include separate current-PR merge-readiness, fresh trusted-main reruns, current revision checks, author/committer independence, protected governance paths, complete changed-file scope, strict task graph/acceptance types, nested artefact/symlink hygiene, two-stage sync preflight, and read-only issue drift audit. All 81 tests pass locally; four workflow files parse correctly; documentation and hygiene checks pass. Live CI on the final revision is still the hosted authority, not the old 27-test SHA.
+
+Existing task owners and dates stay unchanged. Required CI and scope notes were updated on #9/#10/#11/#21/#22/#30/#31/#34/#35. #21 now explicitly requires #10 for integration; contract/mock coding may still start in parallel. The canonical graph has 31 tasks, six work packages and 54 prerequisite edges. Estimated midpoint effort remains 493 hours excluding independent review; a separate review sensitivity table is now reproducible.
+
+The audit does not activate untested protection, fabricate app checks, accept implementation tasks, merge its own PR, change team permissions, publish academic DOCX, or start paid services. Owner merge/protection authorization remains recorded; Burkay must approve the final reviewed revision before any merge.
+
+Native graph update verified: [sync run 39870483114](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/39870483114) succeeded, and #21 blocked_by was read as #11 and #10. No task was closed.

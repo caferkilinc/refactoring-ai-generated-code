@@ -15,6 +15,23 @@
 | 2026-12-14 – 2026-12-20 | 15.4 | 0.0 | 13.2 | 5.6 | 17.8 |
 | 2026-12-21 – 2026-12-27 | 3.9 | 0.0 | 0.0 | 9.1 | 0.0 |
 
+## Review workload sensitivity
+
+Review effort is not included in the 493-hour task midpoint total. The following shows assignments by target week. An illustrative 1–2 hours per review is a sensitivity assumption, not an availability commitment; multiple PRs or revisions increase it. Confirm actual reviewer capacity before assigning an alternate qualified reviewer outside primary/support.
+
+| Week | caferkilinc | ismail-cevik | Yaman-A-E | tahaugurtoyran | cakarburkayy |
+|---|---:|---:|---:|---:|---:|
+| 2026-10-21 – 2026-10-25 | 0 reviews / 0–0 h | 2 reviews / 2–4 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 1 reviews / 1–2 h |
+| 2026-10-26 – 2026-11-01 | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 4 reviews / 4–8 h |
+| 2026-11-02 – 2026-11-08 | 0 reviews / 0–0 h | 1 reviews / 1–2 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 2 reviews / 2–4 h |
+| 2026-11-09 – 2026-11-15 | 1 reviews / 1–2 h | 1 reviews / 1–2 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 2 reviews / 2–4 h |
+| 2026-11-16 – 2026-11-22 | 1 reviews / 1–2 h | 2 reviews / 2–4 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h |
+| 2026-11-23 – 2026-11-29 | 0 reviews / 0–0 h | 1 reviews / 1–2 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 1 reviews / 1–2 h |
+| 2026-11-30 – 2026-12-06 | 2 reviews / 2–4 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 2 reviews / 2–4 h |
+| 2026-12-07 – 2026-12-13 | 2 reviews / 2–4 h | 2 reviews / 2–4 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h |
+| 2026-12-14 – 2026-12-20 | 0 reviews / 0–0 h | 3 reviews / 3–6 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h |
+| 2026-12-21 – 2026-12-27 | 0 reviews / 0–0 h | 1 reviews / 1–2 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h | 0 reviews / 0–0 h |
+
 ## Weekly capacity review
 
 Each member declares available effort for the coming week. Compare with these estimates including support/review; track remaining work, blockers and actual progress. Replan dependent dates when a P0 gate slips. A total above 18 estimated person-hours is a review signal, not a mandatory capacity or overtime requirement. P1 work is the first candidate for deferral.

@@ -20,6 +20,10 @@ def report(plan):
     active[i,user].add(task['issue_number'])
  lines=['# Haftalık tahmini iş yükü / Weekly estimated effort','','70% primary / 30% support planning split. Calendar-day allocation is a distribution model, not actual hours or availability. Epic trackers add zero effort. Reviewer time is additional and must be agreed weekly. No fixed equal weekly capacity is imposed.','', '| Week | '+' | '.join(plan['team'])+' |','|---|'+'---:|'*len(plan['team'])]
  for i,(a,b) in enumerate(weeks):lines.append(f'| {a} – {b} | '+' | '.join(f'{loads[i,u]:.1f}' for u in plan['team'])+' |')
+ lines+=['','## Review workload sensitivity','',f"Review effort is not included in the {sum(t['estimated_effort'] for t in plan['tasks'])}-hour task midpoint total. The following shows assignments by target week. An illustrative 1–2 hours per review is a sensitivity assumption, not an availability commitment; multiple PRs or revisions increase it. Confirm actual reviewer capacity before assigning an alternate qualified reviewer outside primary/support.",'', '| Week | '+' | '.join(plan['team'])+' |','|---|'+'---:|'*len(plan['team'])]
+ for a,b in weeks:
+  counts={u:sum(t['reviewer']==u and a<=date.fromisoformat(t['target'])<=b for t in plan['tasks']) for u in plan['team']}
+  lines.append(f'| {a} – {b} | '+' | '.join(f'{counts[u]} reviews / {counts[u]}–{2*counts[u]} h' for u in plan['team'])+' |')
  lines+=['','## Weekly capacity review','','Each member declares available effort for the coming week. Compare with these estimates including support/review; track remaining work, blockers and actual progress. Replan dependent dates when a P0 gate slips. A total above 18 estimated person-hours is a review signal, not a mandatory capacity or overtime requirement. P1 work is the first candidate for deferral.','']
  for i,(a,b) in enumerate(weeks):
   for u in plan['team']:
@@ -27,6 +31,6 @@ def report(plan):
  lines+=['','December 14–20: Alperen supports the experiment protocol/data handling (#36); Burkay concentrates on JS/TS (#33). İsmail remains the independent reviewer. Taha supports P0 E2E, then academic packaging. Do not pull P1 tasks into an unresolved P0 integration week.','', 'Run `python3 scripts/governance/workload.py` after changing the canonical plan.']
  return '\n'.join(lines)+'\n'
 if __name__=='__main__':
- ap=argparse.ArgumentParser();ap.add_argument('--output');args=ap.parse_args();s=report(json.loads((ROOT/'.github/task-plan.json').read_text()))
+ ap=argparse.ArgumentParser();ap.add_argument('--output');args=ap.parse_args();s=report(json.loads((ROOT/'.github/task-plan.json').read_text(encoding="utf-8")))
  if args.output:Path(args.output).write_text(s)
  else:print(s)

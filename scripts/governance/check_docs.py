@@ -10,7 +10,7 @@ for name in ['README.md','CONTRIBUTING.md','SECURITY.md','docs/ARCHITECTURE.md',
     if not (ROOT/name).is_file(): errors.append('Missing '+name)
 for file in ROOT.rglob('*.md'):
     if '.git' in file.parts: continue
-    for target in re.findall(r'\[[^\]]*\]\(([^ )]+)(?:[^)]*)\)', file.read_text()):
+    for target in re.findall(r'\[[^\]]*\]\(([^ )]+)(?:[^)]*)\)', file.read_text(encoding="utf-8")):
         if ':' in target or target.startswith('#'): continue
         path=target.split('#')[0]
         if path and not (file.parent/path).exists(): errors.append(f'{file.relative_to(ROOT)}: broken {target}')

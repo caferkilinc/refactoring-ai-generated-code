@@ -7,15 +7,18 @@ class API:
  def __init__(self):
   self.issue={'state':'closed','state_reason':'completed'}
   self.pr={'number':101,'body':'Task: #8\nPlan: F00-PLAN','head':{'ref':'docs/8-scope','sha':'abc'},'base':{'ref':'main','repo':{'full_name':PLAN['repository']}},'merged_at':'2026-10-25T12:00:00Z','user':{'login':'caferkilinc'}}
+  self.pr.update(changed_files=1,state='open',draft=False)
+  self.pr['base']['sha']='base'
   self.reviews=[{'user':{'login':'ismail-cevik'},'state':'APPROVED','commit_id':'abc'}]
   self.checks=[{'name':c,'status':'completed','conclusion':'success','app':{'slug':'github-actions'}} for c in PLAN['tasks'][0]['required_checks']]
   self.dependencies=[];self.files=[{'filename':'docs/DECISIONS/scope.md'}]
+  self.commits=[{'author':{'login':'caferkilinc'},'committer':{'login':'caferkilinc'}}]
  def call(self,path,**kw):
   if '/collaborators/' in path:return {'permission':'write'}
   if '/pulls/' in path:return self.pr
   return self.issue
  def pages(self,path,key=None):
-  for suffix,rows in [('/files',self.files),('/reviews',self.reviews),('/check-runs',self.checks),('/dependencies/',self.dependencies)]:
+  for suffix,rows in [('/files',self.files),('/reviews',self.reviews),('/check-runs',self.checks),('/dependencies/',self.dependencies),('/commits',self.commits)]:
    if suffix in path:return rows
   raise RuntimeError('Unexpected request')
 class GateTests(unittest.TestCase):

@@ -32,6 +32,7 @@ Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLO
 - [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
 - [Weekly effort model](docs/TEAM_WORKLOAD.md)
 - [Setup verification and remaining activation](docs/SETUP_REPORT.md)
+- [Operational risks, fixes and remaining controls](docs/OPERATIONAL_AUDIT.md)
 
 Governance verification (Python standard library, no dependencies):
 

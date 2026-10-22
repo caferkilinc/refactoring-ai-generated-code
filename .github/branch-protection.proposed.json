@@ -5,7 +5,8 @@
       "governance-tests",
       "documentation-checks",
       "security-checks",
-      "dependency-gate"
+      "dependency-gate",
+      "merge-readiness"
     ]
   },
   "enforce_admins": true,
