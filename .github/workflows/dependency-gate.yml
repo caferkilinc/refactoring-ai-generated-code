@@ -1,0 +1,24 @@
+name: Dependency gate
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  checks: read
+jobs:
+  dependency-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      # Trusted BASE revision only. Never checkout or execute PR head code here.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - name: Check trusted task scope and accepted prerequisites
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: python3 scripts/governance/gate.py --pr "$PR_NUMBER"

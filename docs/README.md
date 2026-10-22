@@ -1,4 +1,12 @@
-# Project Documentation
+# Documentation
 
-This directory contains project documentation, research materials,
-methodology notes, and other documents related to the Engineering Design II project.
+- [Architecture](ARCHITECTURE.md)
+- [Actual status](PROJECT_STATUS.md)
+- [Roadmap and task graph](DEVELOPMENT_ROADMAP.md)
+- [Team guide](TEAM_WORKFLOW.md)
+- [Weekly workload](TEAM_WORKLOAD.md)
+- [Dependency acceptance](DEPENDENCY_MANAGEMENT.md)
+- [Setup report and activation](SETUP_REPORT.md)
+- [Decisions](DECISIONS/0001-scope-and-governance.md)
+
+The public documentation describes the approved technical plan without publishing the private academic DOCX or sensitive source material.

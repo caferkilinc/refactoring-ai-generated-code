@@ -1,0 +1,1533 @@
+{
+  "team": {
+    "caferkilinc": [
+      "Cafer Tayyar Kılınç",
+      "Team Leader / Backend",
+      "admin"
+    ],
+    "ismail-cevik": [
+      "İsmail Çevik",
+      "Validation / QA",
+      "write"
+    ],
+    "Yaman-A-E": [
+      "Alperen Enes Yaman",
+      "Local AI / Parallel Refactoring",
+      "write"
+    ],
+    "tahaugurtoyran": [
+      "Taha Uğur Toyran",
+      "Frontend / Reporting",
+      "write"
+    ],
+    "cakarburkayy": [
+      "Burkay Çakar",
+      "Language Adapters / Analysis",
+      "write"
+    ]
+  },
+  "tasks": [
+    {
+      "plan_id": "F00-PLAN",
+      "work_package": 1,
+      "phase": "F00",
+      "title": "Freeze scope, evidence protocol and resource decisions",
+      "owner": "caferkilinc",
+      "support": "cakarburkayy",
+      "reviewer": "ismail-cevik",
+      "start": "2026-10-21",
+      "target": "2026-10-25",
+      "effort_min": 6,
+      "effort_max": 10,
+      "estimated_effort": 8,
+      "dependencies": [],
+      "module": "research",
+      "objective": "Map existing September work without claiming code that is absent. Freeze inclusion criteria, source privacy, pilot requirements and P0/P1.",
+      "deliverable": "docs/DECISIONS/, experiments protocol; record GPU/API access decisions without purchasing services.",
+      "acceptance": [
+        "Preserve audited historical commits",
+        "Record 12-task quality experiment target and failure-inclusive denominators",
+        "Confirm resource owners and outstanding GPU/API gates",
+        "Course scope approval recorded separately"
+      ],
+      "kind": "research",
+      "priority": "P0",
+      "actual_status": "IN PROGRESS",
+      "issue_number": 8,
+      "allowed_paths": [
+        "docs/DECISIONS/",
+        "docs/contracts/",
+        "experiments/README.md"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F00-V0",
+      "work_package": 1,
+      "phase": "F00",
+      "title": "Prepare working Java pilot and immutable experiment baseline",
+      "owner": "caferkilinc",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-10-26",
+      "target": "2026-11-01",
+      "effort_min": 12,
+      "effort_max": 18,
+      "estimated_effort": 15,
+      "dependencies": [
+        "F00-PLAN"
+      ],
+      "module": "experiments",
+      "objective": "Prepare the inventory/order pilot with saved generation prompt and working behavior.",
+      "deliverable": "experiments/original-ai-code/ safe approved fixtures; V0 hash; external fixed test artefact.",
+      "acceptance": [
+        "Java 21/Maven pilot builds",
+        "Prompt, model and generation attempts recorded",
+        "V0 and test-suite hashes stable",
+        "No planted smells or selective omission"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 9,
+      "allowed_paths": [
+        "experiments/",
+        "tests/fixtures/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        8
+      ],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F01-GOV",
+      "work_package": 1,
+      "phase": "F01",
+      "title": "Establish team workflow, dependency gate and project controls",
+      "owner": "caferkilinc",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-10-21",
+      "target": "2026-10-25",
+      "effort_min": 8,
+      "effort_max": 12,
+      "estimated_effort": 10,
+      "dependencies": [],
+      "module": "governance",
+      "objective": "Implement reviewed GitHub management infrastructure without changing main directly.",
+      "deliverable": "scripts/governance/, .github/, docs/, task manifest and configuration PR.",
+      "acceptance": [
+        "All existing history and 8 files preserved",
+        "Governance gate has real positive and negative tests",
+        "Projects and actual access limitations documented",
+        "Independent review requested and user approval before merge"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "IN PROGRESS",
+      "issue_number": 1,
+      "allowed_paths": [
+        ".github/",
+        "scripts/governance/",
+        "tests/governance/",
+        "docs/",
+        "README.md",
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        ".gitignore"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F01-ENV",
+      "work_package": 1,
+      "phase": "F01",
+      "title": "Create reproducible development services and real application checks",
+      "owner": "ismail-cevik",
+      "support": "caferkilinc",
+      "reviewer": "cakarburkayy",
+      "start": "2026-10-26",
+      "target": "2026-11-01",
+      "effort_min": 12,
+      "effort_max": 18,
+      "estimated_effort": 15,
+      "dependencies": [
+        "F01-GOV"
+      ],
+      "module": "infrastructure",
+      "objective": "Choose pinned Python/Node toolchains and scaffold only the agreed application packages.",
+      "deliverable": "backend/pyproject.toml, frontend/package.json and lockfiles; infrastructure/dev scripts.",
+      "acceptance": [
+        "Clean checkout instructions work on M3/macOS and Windows",
+        "FastAPI/Redis/storage services have health checks",
+        "Backend and frontend commands exist before app CI is enabled",
+        "No untrusted code executes on host or self-hosted runner"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 10,
+      "allowed_paths": [
+        "backend/",
+        "frontend/",
+        "infrastructure/",
+        ".github/workflows/",
+        "docs/",
+        ".gitignore"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        1
+      ],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F02-CONTRACT",
+      "work_package": 1,
+      "phase": "F02",
+      "title": "Approve CIR, LanguageAdapter and API contracts for parallel development",
+      "owner": "caferkilinc",
+      "support": "cakarburkayy",
+      "reviewer": "ismail-cevik",
+      "start": "2026-10-21",
+      "target": "2026-10-25",
+      "effort_min": 10,
+      "effort_max": 16,
+      "estimated_effort": 13,
+      "dependencies": [
+        "F00-PLAN"
+      ],
+      "module": "contracts",
+      "objective": "Provide Contract Ready interfaces before full engine integration. Burkay co-designs the adapter contract; UI and context modules can use versioned fixtures.",
+      "deliverable": "backend/core/schemas, docs/contracts/ and OpenAPI/sample JSON.",
+      "acceptance": [
+        "Finding, Evidence, SourceLocation, capability and test contracts versioned",
+        "behavior_status and quality_outcome separate",
+        "Issue selection, ContextPackage and PatchCandidate fields specified",
+        "Taha, Burkay and Alperen consumer expectations documented"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 11,
+      "allowed_paths": [
+        "backend/core/schemas/",
+        "docs/contracts/",
+        "tests/contracts/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [
+        8
+      ],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F02-STATE",
+      "work_package": 1,
+      "phase": "F02",
+      "title": "Implement metadata, state machine, queue and idempotency",
+      "owner": "caferkilinc",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-10-26",
+      "target": "2026-11-01",
+      "effort_min": 12,
+      "effort_max": 18,
+      "estimated_effort": 15,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F01-ENV"
+      ],
+      "module": "backend",
+      "objective": "Persist run/version/approval/attempt identifiers and legal job transitions.",
+      "deliverable": "backend/core/, backend/storage/, backend/workers/",
+      "acceptance": [
+        "Migration on empty and existing DB works",
+        "Illegal transitions and duplicate POST are rejected",
+        "Jobs survive worker restart without duplicate execution",
+        "Every run references V0 and actor/time"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 12,
+      "allowed_paths": [
+        "backend/core/",
+        "backend/storage/",
+        "backend/workers/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        10
+      ],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F03-INPUT",
+      "work_package": 1,
+      "phase": "F03",
+      "title": "Implement safe upload, consent and immutable artefacts",
+      "owner": "caferkilinc",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-02",
+      "target": "2026-11-08",
+      "effort_min": 14,
+      "effort_max": 22,
+      "estimated_effort": 18,
+      "dependencies": [
+        "F02-STATE"
+      ],
+      "module": "storage",
+      "objective": "Accept ZIP/folder/snippet safely; preserve original V0 and create isolated copies.",
+      "deliverable": "backend/storage/, backend/api/ uploads and permission records.",
+      "acceptance": [
+        "Traversal, symlink, bomb, Unicode and limits tested",
+        "SHA-256 unchanged after candidate and final flows",
+        "Cloud/dynamic execution consents separate",
+        "Owner checks and safe download scope enforced"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 13,
+      "allowed_paths": [
+        "backend/storage/",
+        "backend/api/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        12
+      ],
+      "parent_issue": 2
+    },
+    {
+      "plan_id": "F04-JAVA",
+      "work_package": 2,
+      "phase": "F04",
+      "title": "Implement Language Router and Java symbol adapter",
+      "owner": "cakarburkayy",
+      "support": "Yaman-A-E",
+      "reviewer": "ismail-cevik",
+      "start": "2026-11-02",
+      "target": "2026-11-08",
+      "effort_min": 16,
+      "effort_max": 24,
+      "estimated_effort": 20,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F03-INPUT"
+      ],
+      "module": "adapters",
+      "objective": "Route per file/component and parse Java references with explicit uncertainty.",
+      "deliverable": "backend/language_adapters/java/, router and capability manifest.",
+      "acceptance": [
+        "Overloads map to correct symbols and Monaco source positions",
+        "Unknown and mixed-language files not silently parsed as Java",
+        "Ambiguous references retain uncertainty",
+        "Capabilities distinguish analysis from safe_patch"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 14,
+      "allowed_paths": [
+        "backend/language_adapters/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        13
+      ],
+      "parent_issue": 3
+    },
+    {
+      "plan_id": "F05-QUALITY",
+      "work_package": 2,
+      "phase": "F05",
+      "title": "Normalize real quality findings and comparable metrics",
+      "owner": "cakarburkayy",
+      "support": "caferkilinc",
+      "reviewer": "ismail-cevik",
+      "start": "2026-11-09",
+      "target": "2026-11-15",
+      "effort_min": 16,
+      "effort_max": 24,
+      "estimated_effort": 20,
+      "dependencies": [
+        "F04-JAVA"
+      ],
+      "module": "analysis",
+      "objective": "Run pinned PMD/CPD and retain raw evidence and comparable metric scope.",
+      "deliverable": "backend/analyzers/quality/, CIR normalizer and metric schema.",
+      "acceptance": [
+        "At least four real quality categories located in source",
+        "Tool/rule/scope/unit recorded",
+        "Token and line duplication remain different metrics",
+        "Changed tool/rules/scope yields NOT_COMPARABLE; optional Sonar service not a blocker"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 15,
+      "allowed_paths": [
+        "backend/analyzers/",
+        "backend/language_adapters/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        14
+      ],
+      "parent_issue": 3
+    },
+    {
+      "plan_id": "F06-SANDBOX",
+      "work_package": 2,
+      "phase": "F06",
+      "title": "Build isolated worker execution with resource limits",
+      "owner": "ismail-cevik",
+      "support": "caferkilinc",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-02",
+      "target": "2026-11-08",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F01-ENV",
+        "F03-INPUT"
+      ],
+      "module": "validation",
+      "objective": "Run user build/test outside API with non-root, no host secrets and restricted network/resources.",
+      "deliverable": "backend/validation/sandbox/, infrastructure/sandbox/",
+      "acceptance": [
+        "Infinite loop stopped by time/CPU limits",
+        "Network and host file access denied in controlled tests",
+        "No host Docker socket or secret mounts",
+        "Unsafe environment disables dynamic execution rather than giving green status"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 16,
+      "allowed_paths": [
+        "backend/validation/",
+        "backend/workers/",
+        "infrastructure/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        10,
+        13
+      ],
+      "parent_issue": 3
+    },
+    {
+      "plan_id": "F06-TESTS",
+      "work_package": 2,
+      "phase": "F06",
+      "title": "Freeze baseline tests and parse build/test/coverage evidence",
+      "owner": "ismail-cevik",
+      "support": "caferkilinc",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-09",
+      "target": "2026-11-15",
+      "effort_min": 12,
+      "effort_max": 18,
+      "estimated_effort": 15,
+      "dependencies": [
+        "F00-V0",
+        "F04-JAVA",
+        "F06-SANDBOX"
+      ],
+      "module": "validation",
+      "objective": "Discover JUnit and JaCoCo, distinguish broken baseline from missing environment and absent tests.",
+      "deliverable": "backend/validation/test_adapters/, approved characterization tests.",
+      "acceptance": [
+        "Baseline cases mapped with stable identifiers",
+        "Characterization tests first pass on V0 then hash locked",
+        "Missing trustworthy tests produces UNVERIFIED",
+        "Business logic line coverage target >=80% is reported without equivalence claim"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 17,
+      "allowed_paths": [
+        "backend/validation/",
+        "backend/language_adapters/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        9,
+        14,
+        16
+      ],
+      "parent_issue": 3
+    },
+    {
+      "plan_id": "F07A-SCAN",
+      "work_package": 3,
+      "phase": "F07A",
+      "title": "Integrate deterministic security scans and redaction",
+      "owner": "cakarburkayy",
+      "support": "ismail-cevik",
+      "reviewer": "caferkilinc",
+      "start": "2026-11-16",
+      "target": "2026-11-22",
+      "effort_min": 14,
+      "effort_max": 22,
+      "estimated_effort": 18,
+      "dependencies": [
+        "F05-QUALITY",
+        "F03-INPUT"
+      ],
+      "module": "security",
+      "objective": "Normalize Gitleaks, Semgrep and OSV-Scanner; retain unavailable-scan status.",
+      "deliverable": "backend/analyzers/security/, redaction and scanner fixtures.",
+      "acceptance": [
+        "Benign fake secret masked in UI/prompt/log/report",
+        "Rule/advisory references retained",
+        "Unavailable advisory data is INCOMPLETE, not clean",
+        "Security findings cannot start quality refactoring automatically"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 18,
+      "allowed_paths": [
+        "backend/analyzers/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        15,
+        13
+      ],
+      "parent_issue": 4
+    },
+    {
+      "plan_id": "F07B-PILOT",
+      "work_package": 3,
+      "phase": "F07B",
+      "title": "Verify GPU access, model variant and runtime compatibility",
+      "owner": "Yaman-A-E",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-10-26",
+      "target": "2026-11-01",
+      "effort_min": 6,
+      "effort_max": 10,
+      "estimated_effort": 8,
+      "dependencies": [
+        "F00-PLAN"
+      ],
+      "module": "local-ai",
+      "objective": "Measure actual Falcon-Mamba variant/runtime/quantization compatibility before committing to service deployment.",
+      "deliverable": "docs/DECISIONS/ local-model record, loading evidence, VRAM/latency table.",
+      "acceptance": [
+        "Exact model and runtime revisions recorded",
+        "GPU device and access confirmed; M3 is not CUDA",
+        "Measure memory and timeout; no 16GB guarantee",
+        "No paid purchase without approval"
+      ],
+      "kind": "research",
+      "priority": "P1",
+      "actual_status": "BLOCKED",
+      "issue_number": 19,
+      "allowed_paths": [
+        "docs/DECISIONS/",
+        "experiments/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [
+        8
+      ],
+      "parent_issue": 4
+    },
+    {
+      "plan_id": "F07B-LOCAL",
+      "work_package": 3,
+      "phase": "F07B",
+      "title": "Serve Local AI review and evaluate labelled security examples",
+      "owner": "Yaman-A-E",
+      "support": "cakarburkayy",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-07",
+      "target": "2026-12-13",
+      "effort_min": 14,
+      "effort_max": 20,
+      "estimated_effort": 17,
+      "dependencies": [
+        "F07B-PILOT",
+        "F07A-SCAN"
+      ],
+      "module": "local-ai",
+      "objective": "Add optional local review service with unconfirmed evidence and graceful fallback.",
+      "deliverable": "backend/analyzers/local_llm/, model server and evaluation records.",
+      "acceptance": [
+        "Local response references real file/line and valid schema",
+        "Model crash leaves deterministic results intact",
+        "30 benign labelled examples target, Burkay/Ismail independent labels",
+        "Precision/recall and FP/FN include denominators; no standalone security guarantee"
+      ],
+      "kind": "code",
+      "priority": "P1",
+      "actual_status": "NOT STARTED",
+      "issue_number": 20,
+      "allowed_paths": [
+        "backend/analyzers/local_llm/",
+        "infrastructure/",
+        "tests/",
+        "docs/",
+        "metrics/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        19,
+        18
+      ],
+      "parent_issue": 4
+    },
+    {
+      "plan_id": "F08-UI",
+      "work_package": 4,
+      "phase": "F08",
+      "title": "Build first approval UI against approved API fixtures",
+      "owner": "tahaugurtoyran",
+      "support": "caferkilinc",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-02",
+      "target": "2026-11-15",
+      "effort_min": 16,
+      "effort_max": 24,
+      "estimated_effort": 20,
+      "dependencies": [
+        "F02-CONTRACT"
+      ],
+      "module": "frontend",
+      "objective": "Build independent UI before analyzers finish, explicitly using fixtures until integration.",
+      "deliverable": "frontend/ Issue Explorer, Monaco locations and selection components.",
+      "acceptance": [
+        "Correct file/range highlighting including duplicate locations",
+        "Only eligible QUALITY_REFACTOR selected",
+        "Mock mode clearly labelled and not claimed as backend capability",
+        "Normal and disabled/error UI tests"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 21,
+      "allowed_paths": [
+        "frontend/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        11
+      ],
+      "parent_issue": 5
+    },
+    {
+      "plan_id": "F08-INTEGRATE",
+      "work_package": 4,
+      "phase": "F08",
+      "title": "Integrate real issue selection and approval snapshot",
+      "owner": "tahaugurtoyran",
+      "support": "caferkilinc",
+      "reviewer": "ismail-cevik",
+      "start": "2026-11-16",
+      "target": "2026-11-22",
+      "effort_min": 8,
+      "effort_max": 12,
+      "estimated_effort": 10,
+      "dependencies": [
+        "F08-UI",
+        "F05-QUALITY",
+        "F06-TESTS",
+        "F07A-SCAN"
+      ],
+      "module": "frontend",
+      "objective": "Connect real findings and enforce approval policy on backend as well as UI.",
+      "deliverable": "frontend/ API integration and backend selection endpoint.",
+      "acceptance": [
+        "Real analysis ID and immutable selection snapshot saved",
+        "Security or broken-baseline bypass request rejected server-side",
+        "Repeated selection is idempotent",
+        "Real upload-to-selection integration evidence"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 22,
+      "allowed_paths": [
+        "frontend/",
+        "backend/api/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        21,
+        15,
+        17,
+        18
+      ],
+      "parent_issue": 5
+    },
+    {
+      "plan_id": "F09-CONTEXT",
+      "work_package": 4,
+      "phase": "F09",
+      "title": "Build dependency-aware context and symbol/test references",
+      "owner": "Yaman-A-E",
+      "support": "cakarburkayy",
+      "reviewer": "caferkilinc",
+      "start": "2026-11-09",
+      "target": "2026-11-15",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F04-JAVA"
+      ],
+      "module": "refactoring",
+      "objective": "Package target, callers/callees, contracts, effects and tests with bounded masked context.",
+      "deliverable": "backend/refactoring/context/, SymbolIndex/DependencyGraph consumers.",
+      "acceptance": [
+        "Read/write scope tied to versioned baseline",
+        "Budget overflow requests context or stops safely",
+        "Unknown external/dynamic contracts retained",
+        "Contract-based unit tests independent of UI completion"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 23,
+      "allowed_paths": [
+        "backend/refactoring/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        14
+      ],
+      "parent_issue": 5
+    },
+    {
+      "plan_id": "F09-SCHED",
+      "work_package": 4,
+      "phase": "F09",
+      "title": "Implement conflict DAG and bounded parallel scheduling",
+      "owner": "Yaman-A-E",
+      "support": "cakarburkayy",
+      "reviewer": "ismail-cevik",
+      "start": "2026-11-16",
+      "target": "2026-11-22",
+      "effort_min": 10,
+      "effort_max": 16,
+      "estimated_effort": 13,
+      "dependencies": [
+        "F09-CONTEXT"
+      ],
+      "module": "refactoring",
+      "objective": "Conservatively schedule independent work without hidden shared-contract conflicts.",
+      "deliverable": "backend/refactoring/conflicts/, scheduler and task DAG.",
+      "acceptance": [
+        "Three independent tasks can run with max_parallel=3",
+        "Two conflicting pairs and unknown dependency serialize",
+        "Cycle detection and cancellation tested",
+        "Each job has unique input hash/workspace"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 24,
+      "allowed_paths": [
+        "backend/refactoring/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        23
+      ],
+      "parent_issue": 5
+    },
+    {
+      "plan_id": "F10-PATCH",
+      "work_package": 4,
+      "phase": "F10",
+      "title": "Implement real provider patch generation and scope guard",
+      "owner": "Yaman-A-E",
+      "support": "caferkilinc",
+      "reviewer": "ismail-cevik",
+      "start": "2026-11-23",
+      "target": "2026-11-29",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F03-INPUT",
+        "F08-INTEGRATE",
+        "F09-SCHED"
+      ],
+      "module": "refactoring",
+      "objective": "Generate bounded unified diff using one approved real provider; provider registry supports later additions.",
+      "deliverable": "backend/refactoring/providers/, PatchManager and worker requests.",
+      "acceptance": [
+        "Real provider evidence separate from mocks",
+        "Schema, path allowlist and maximum scope enforced",
+        "Tests/rules cannot be edited by patch",
+        "Timeout/rate-limit separate from patch retry; no unapproved paid calls"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "BLOCKED",
+      "issue_number": 25,
+      "allowed_paths": [
+        "backend/refactoring/",
+        "backend/workers/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        13,
+        22,
+        24
+      ],
+      "parent_issue": 5
+    },
+    {
+      "plan_id": "F11-VALIDATE",
+      "work_package": 5,
+      "phase": "F11",
+      "title": "Implement candidate validation and dual result states",
+      "owner": "ismail-cevik",
+      "support": "cakarburkayy",
+      "reviewer": "caferkilinc",
+      "start": "2026-11-30",
+      "target": "2026-12-06",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F06-TESTS",
+        "F10-PATCH",
+        "F07A-SCAN"
+      ],
+      "module": "validation",
+      "objective": "Run isolated build, frozen regression, quality and security analysis for each candidate.",
+      "deliverable": "backend/validation/candidates/, ValidationResult and evidence.",
+      "acceptance": [
+        "PASSED/FAILED/UNVERIFIED independent of quality outcome",
+        "Passing build alone cannot imply verified behavior",
+        "Target finding re-measured using same rule set",
+        "New risks and coverage loss reported and gated"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 26,
+      "allowed_paths": [
+        "backend/validation/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        17,
+        25,
+        18
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F11-RETRY",
+      "work_package": 5,
+      "phase": "F11",
+      "title": "Implement bounded retry with recorded feedback",
+      "owner": "Yaman-A-E",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-30",
+      "target": "2026-12-06",
+      "effort_min": 6,
+      "effort_max": 10,
+      "estimated_effort": 8,
+      "dependencies": [
+        "F11-VALIDATE"
+      ],
+      "module": "refactoring",
+      "objective": "Allow initial patch plus at most two correction attempts in isolated workspaces.",
+      "deliverable": "backend/refactoring/retry/, attempt and failure logs.",
+      "acceptance": [
+        "Attempt limit enforced even after restart",
+        "Failure evidence returned with same refactoring goal",
+        "Provider transport retry not confused with correction budget",
+        "Exhausted failure cannot enter normal final approval"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 27,
+      "allowed_paths": [
+        "backend/refactoring/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        26
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F12-REVIEW",
+      "work_package": 5,
+      "phase": "F12",
+      "title": "Implement diff review and second approval UI",
+      "owner": "tahaugurtoyran",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-11-16",
+      "target": "2026-11-29",
+      "effort_min": 12,
+      "effort_max": 18,
+      "estimated_effort": 15,
+      "dependencies": [
+        "F08-UI",
+        "F02-CONTRACT"
+      ],
+      "module": "frontend",
+      "objective": "Provide Monaco diff and patch metadata with explicit verified/unverified states.",
+      "deliverable": "frontend/ PatchReview and ApprovalSnapshot consumers.",
+      "acceptance": [
+        "Selected patch IDs and model/attempt/test evidence visible",
+        "Failed/unverified cannot receive normal final approval",
+        "Draft export clearly separated",
+        "UI state tests against contract fixtures; final integration in F12-FINAL"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 28,
+      "allowed_paths": [
+        "frontend/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        21,
+        11
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F12-FINAL",
+      "work_package": 5,
+      "phase": "F12",
+      "title": "Combine approved patches, revalidate and export final ZIP",
+      "owner": "caferkilinc",
+      "support": "ismail-cevik",
+      "reviewer": "cakarburkayy",
+      "start": "2026-12-01",
+      "target": "2026-12-06",
+      "effort_min": 14,
+      "effort_max": 22,
+      "estimated_effort": 18,
+      "dependencies": [
+        "F11-VALIDATE",
+        "F11-RETRY",
+        "F12-REVIEW"
+      ],
+      "module": "backend",
+      "objective": "Create fresh V0 copy, apply exactly approved patch set and run mandatory full validation.",
+      "deliverable": "backend/validation/finalize/, artifact download and second approval endpoint.",
+      "acceptance": [
+        "Individually passing but jointly failing patches rejected",
+        "All regression/build/static/security checks rerun",
+        "V0/test hashes unchanged",
+        "Final ZIP contains only selected validated patches and can be redownloaded"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 29,
+      "allowed_paths": [
+        "backend/validation/",
+        "backend/api/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        26,
+        27,
+        28
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F13-BASIC",
+      "work_package": 5,
+      "phase": "F13",
+      "title": "Report real before/after values and basic history",
+      "owner": "tahaugurtoyran",
+      "support": "cakarburkayy",
+      "reviewer": "caferkilinc",
+      "start": "2026-11-30",
+      "target": "2026-12-06",
+      "effort_min": 10,
+      "effort_max": 16,
+      "estimated_effort": 13,
+      "dependencies": [
+        "F12-FINAL",
+        "F05-QUALITY"
+      ],
+      "module": "reporting",
+      "objective": "Present minimal P0 comparison and evidence-linked HTML/history without invented values.",
+      "deliverable": "frontend/ dashboard; backend/reporting/ comparator and history endpoint.",
+      "acceptance": [
+        "Same tool/rule/logical scope required",
+        "Zero denominator N/A; percentage points separate",
+        "Failed attempts and new findings retained",
+        "Numeric tables derived from persisted evidence; secrets redacted"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 30,
+      "allowed_paths": [
+        "frontend/",
+        "backend/reporting/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        29,
+        15
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F13-ADV",
+      "work_package": 5,
+      "phase": "F13",
+      "title": "Add PDF and extended report/history presentation",
+      "owner": "tahaugurtoyran",
+      "support": "caferkilinc",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-07",
+      "target": "2026-12-13",
+      "effort_min": 10,
+      "effort_max": 16,
+      "estimated_effort": 13,
+      "dependencies": [
+        "F13-BASIC"
+      ],
+      "module": "reporting",
+      "objective": "Extend verified numeric reporting with PDF, optional evidence-only AI narrative and durable session views.",
+      "deliverable": "backend/reporting/, frontend/ History and downloads.",
+      "acceptance": [
+        "HTML/PDF numbers identical",
+        "AI narration cannot invent evidence IDs or measurements",
+        "PDF retry preserves completed final ZIP",
+        "Retention and access checks tested"
+      ],
+      "kind": "code",
+      "priority": "P1",
+      "actual_status": "NOT STARTED",
+      "issue_number": 31,
+      "allowed_paths": [
+        "frontend/",
+        "backend/reporting/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        30
+      ],
+      "parent_issue": 6
+    },
+    {
+      "plan_id": "F14-PY",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Implement Python adapter without Java-specific assumptions",
+      "owner": "cakarburkayy",
+      "support": "ismail-cevik",
+      "reviewer": "caferkilinc",
+      "start": "2026-12-07",
+      "target": "2026-12-13",
+      "effort_min": 14,
+      "effort_max": 22,
+      "estimated_effort": 18,
+      "dependencies": [
+        "F13-BASIC",
+        "F04-JAVA"
+      ],
+      "module": "adapters",
+      "objective": "Implement Python AST/LibCST, quality, test and coverage capabilities on stable core contracts.",
+      "deliverable": "backend/language_adapters/python/",
+      "acceptance": [
+        "Python fixture parsed and analyzed with real tool output",
+        "pytest/coverage.py sandbox evidence",
+        "Dynamic references uncertain, unsupported safe_patch not advertised",
+        "Java E2E remains green"
+      ],
+      "kind": "code",
+      "priority": "P1",
+      "actual_status": "NOT STARTED",
+      "issue_number": 32,
+      "allowed_paths": [
+        "backend/language_adapters/python/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        30,
+        14
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F14-JSTS",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Implement JavaScript and TypeScript adapters",
+      "owner": "cakarburkayy",
+      "support": "Yaman-A-E",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-14",
+      "target": "2026-12-20",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F13-BASIC",
+        "F04-JAVA"
+      ],
+      "module": "adapters",
+      "objective": "Implement TypeScript API/ts-morph, ESLint, Vitest/Jest and coverage with component boundaries.",
+      "deliverable": "backend/language_adapters/javascript/ and typescript/",
+      "acceptance": [
+        "One JavaScript and one TypeScript fixture each",
+        "Real parser, test and coverage capabilities separated",
+        "Lockfile/workspace boundaries respected",
+        "No whole-repo behavior guarantee across unresolved services"
+      ],
+      "kind": "code",
+      "priority": "P1",
+      "actual_status": "NOT STARTED",
+      "issue_number": 33,
+      "allowed_paths": [
+        "backend/language_adapters/javascript/",
+        "backend/language_adapters/typescript/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        30,
+        14
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F14-MIX",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Validate mixed-language capability integration",
+      "owner": "tahaugurtoyran",
+      "support": "cakarburkayy",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-18",
+      "target": "2026-12-20",
+      "effort_min": 6,
+      "effort_max": 10,
+      "estimated_effort": 8,
+      "dependencies": [
+        "F14-PY",
+        "F14-JSTS"
+      ],
+      "module": "frontend",
+      "objective": "Expose per-component capabilities and exercise mixed React/TS plus Python project.",
+      "deliverable": "frontend/ component results and tests/e2e/ fixture.",
+      "acceptance": [
+        "Each component routed to correct adapter",
+        "Coverage remains per language/component",
+        "Unresolved cross-service contracts visibly uncertain",
+        "P1 cutoff respected; incomplete adapters declared honestly"
+      ],
+      "kind": "code",
+      "priority": "P1",
+      "actual_status": "NOT STARTED",
+      "issue_number": 34,
+      "allowed_paths": [
+        "frontend/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "frontend-checks"
+      ],
+      "dependency_issues": [
+        32,
+        33
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F15-P0",
+      "work_package": 6,
+      "phase": "F15",
+      "title": "Run P0 end-to-end acceptance and regression matrix",
+      "owner": "ismail-cevik",
+      "support": "tahaugurtoyran",
+      "reviewer": "caferkilinc",
+      "start": "2026-12-07",
+      "target": "2026-12-13",
+      "effort_min": 16,
+      "effort_max": 24,
+      "estimated_effort": 20,
+      "dependencies": [
+        "F13-BASIC"
+      ],
+      "module": "qa",
+      "objective": "Validate real Java flow, failures and combined final behavior before feature freeze.",
+      "deliverable": "tests/e2e/, versioned run evidence and release-candidate record.",
+      "acceptance": [
+        "Real upload-to-ZIP with two product approvals",
+        "Broken baseline/no tests/provider failure/conflict scenarios",
+        "New regressions prevent validated output",
+        "No model mock counted as real patch; all required checks evidenced"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 35,
+      "allowed_paths": [
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        30
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F15-EXPERIMENT",
+      "work_package": 6,
+      "phase": "F15",
+      "title": "Evaluate refactoring tasks and sequential versus parallel execution",
+      "owner": "caferkilinc",
+      "support": "Yaman-A-E",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-14",
+      "target": "2026-12-20",
+      "effort_min": 18,
+      "effort_max": 26,
+      "estimated_effort": 22,
+      "dependencies": [
+        "F15-P0",
+        "F00-PLAN"
+      ],
+      "module": "research",
+      "objective": "Evaluate planned >=12 tasks, all attempts and three repeats per sequential/parallel condition within approved resources.",
+      "deliverable": "metrics/ and results/ approved anonymized experiment records.",
+      "acceptance": [
+        "Frozen task set and inclusion rules",
+        "Failure denominators retained; >=50% target not claimed as achieved without data",
+        "Same context/tests/tool settings; runtime/cost limitations explicit",
+        "P1 model/language results reported separately without blocking Java evidence"
+      ],
+      "kind": "research",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 36,
+      "allowed_paths": [
+        "metrics/",
+        "results/",
+        "experiments/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [
+        35,
+        8
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F15-HANDIN",
+      "work_package": 6,
+      "phase": "F15",
+      "title": "Package reproducible release and academic delivery",
+      "owner": "tahaugurtoyran",
+      "support": "caferkilinc",
+      "reviewer": "ismail-cevik",
+      "start": "2026-12-21",
+      "target": "2026-12-27",
+      "effort_min": 10,
+      "effort_max": 16,
+      "estimated_effort": 13,
+      "dependencies": [
+        "F15-P0",
+        "F15-EXPERIMENT"
+      ],
+      "module": "delivery",
+      "objective": "Prepare tested reproducibility bundle, demo and academic hand-in before reserve period.",
+      "deliverable": "docs/ release/demo notes and approved source/test/metric artefacts; private academic submission separately.",
+      "acceptance": [
+        "Version/commit and instructions reproduce evidence",
+        "Implemented versus planned P1 explicit",
+        "No academic DOCX or sensitive uploads publicly committed without approval",
+        "Reserve 2026-12-28 through 2026-12-31; final due 2027-01-01 with no assumed time"
+      ],
+      "kind": "documentation",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 37,
+      "allowed_paths": [
+        "docs/",
+        "README.md"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks"
+      ],
+      "dependency_issues": [
+        35,
+        36
+      ],
+      "parent_issue": 7
+    }
+  ],
+  "epics": [
+    {
+      "id": 1,
+      "title": "Deney temeli ve platform sözleşmeleri",
+      "owner": "caferkilinc",
+      "number": 2
+    },
+    {
+      "id": 2,
+      "title": "Dil çekirdeği ve başlangıç kalite/davranış ölçümü",
+      "owner": "cakarburkayy",
+      "number": 3
+    },
+    {
+      "id": 3,
+      "title": "Güvenlik inceleme hattı ve Local AI",
+      "owner": "Yaman-A-E",
+      "number": 4
+    },
+    {
+      "id": 4,
+      "title": "İlk onay ve bağımlılığa duyarlı paralel refactoring",
+      "owner": "Yaman-A-E",
+      "number": 5
+    },
+    {
+      "id": 5,
+      "title": "Kanıta dayalı doğrulama ve nihai sürüm",
+      "owner": "ismail-cevik",
+      "number": 6
+    },
+    {
+      "id": 6,
+      "title": "Çok dilli genişleme ve deneysel değerlendirme",
+      "owner": "tahaugurtoyran",
+      "number": 7
+    }
+  ],
+  "deadline": "2027-01-01",
+  "deadline_time": null,
+  "audit_commit": "7e068040c3a4fb1a2f32783a4c592dc974324f36",
+  "project_url": "https://github.com/users/caferkilinc/projects/1",
+  "access_verified_date": "2026-10-22",
+  "schema_version": 1,
+  "repository": "caferkilinc/refactoring-ai-generated-code",
+  "milestones": {
+    "p0": "2026-12-13",
+    "p1_cutoff": "2026-12-20",
+    "package": "2026-12-27",
+    "reserve_start": "2026-12-28",
+    "deadline": "2027-01-01"
+  }
+}

@@ -1,50 +1,44 @@
-# Refactoring AI-Generated Code
+# Secure Refactoring of AI-Generated Code
 
-## Engineering Design II
+Engineering Design II — Ankara Bilim University. A planned multilingual platform for improving AI-generated code with controlled patches, reproducible analysis, isolated validation and two explicit product approvals.
 
-### Project Topic
-**Refactoring AI-Generated Code**
+**Current state (2026-10-22):** September planning/scaffolding history is preserved. Application modules, backend/frontend executable tests and experimental results are not implemented on `main`. Governance configuration is proposed in a review branch. See [actual status](docs/PROJECT_STATUS.md).
 
-### Main Theme
-**Sustainable Engineering & Technical Debt Reduction**
+**Final course deadline: 2027-01-01; time unspecified.** P0 target December 13, P1 cutoff December 20, package December 27, reserve December 28–31. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
 
-### Team
-**Group B**
+| Member | GitHub | Primary responsibility |
+|---|---|---|
+| Cafer Tayyar Kılınç | @caferkilinc | Team Leader, FastAPI orchestrator, contracts, storage, integration |
+| İsmail Çevik | @ismail-cevik | Sandbox, baseline tests, candidate/combined validation, QA |
+| Alperen Enes Yaman | @Yaman-A-E | Local AI, context/conflict DAG, parallel refactoring, providers/retry |
+| Burkay Çakar | @cakarburkayy | Language adapters, quality and deterministic security analysis |
+| Taha Uğur Toyran | @tahaugurtoyran | Frontend, approval/diff screens, reporting/history, delivery demo |
 
-### Team Members
-- Cafer Tayyar Kılınç - Team Leader
-- Burkay Çakar
-- Taha Uğur Toyran
-- İsmail Çevik
+All five repository accounts were verified on October 22: Cafer Admin, four collaborators Write.
 
-## Project Description
+## Scope
 
-This project focuses on analyzing and refactoring AI-generated code
-to improve software quality, maintainability, and sustainability.
+P0: Java pilot → safe input/V0 → language and quality/security analysis → approval 1 → bounded dependency-aware parallel patches → candidate tests → approval 2 → combined validation → final ZIP/basic measured report. P1: real Local AI, Python/JavaScript/TypeScript, mixed projects and advanced reporting. Local AI does not block Java P0.
 
-The project investigates potential technical debt and code quality
-issues in AI-generated software. Systematic refactoring techniques
-will be applied to selected code samples, and the quality of the code
-before and after refactoring will be evaluated using software quality
-metrics and analysis tools.
+FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components. No completed platform or measured improvement rate is claimed here. M3/macOS is a development environment; CUDA inference needs a separately verified GPU runtime.
 
-## Main Research Question
+## Working together
 
-How can AI-generated code be systematically refactored to reduce
-technical debt and improve software maintainability and sustainability?
+Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Choose an existing issue and numbered topic branch; submit a PR, obtain independent review and evidence-backed acceptance. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
-## Project Goals
+- [Project board](https://github.com/users/caferkilinc/projects/1)
+- [Architecture](docs/ARCHITECTURE.md) and [decisions](docs/DECISIONS/0001-scope-and-governance.md)
+- [Roadmap and all 31 tasks](docs/DEVELOPMENT_ROADMAP.md)
+- [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
+- [Weekly effort model](docs/TEAM_WORKLOAD.md)
+- [Setup verification and remaining activation](docs/SETUP_REPORT.md)
 
-- Analyze AI-generated source code.
-- Identify code smells and potential technical debt.
-- Evaluate software quality and maintainability.
-- Apply systematic refactoring techniques.
-- Compare code quality before and after refactoring.
-- Evaluate the impact of refactoring on technical debt.
+Governance verification (Python standard library, no dependencies):
 
-## Course Information
+```sh
+python3 -m unittest discover -s tests/governance -v
+python3 scripts/governance/check_docs.py
+python3 scripts/governance/security_check.py
+```
 
-**Course:** Engineering Design II  
-**University:** Ankara Bilim University  
-**Project:** Project 02  
-**Group:** Group B
+These checks validate development infrastructure. They do not demonstrate product validation or research experiment success.
