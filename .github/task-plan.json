@@ -99,13 +99,14 @@
       "allowed_paths": [
         "experiments/",
         "tests/fixtures/",
-        "docs/"
+        "docs/",
+        ".github/workflows/pilot-checks.yml"
       ],
       "required_checks": [
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "backend-checks"
+        "pilot-checks"
       ],
       "dependency_issues": [
         8
@@ -190,15 +191,18 @@
         "backend/",
         "frontend/",
         "infrastructure/",
-        ".github/workflows/",
         "docs/",
-        ".gitignore"
+        ".gitignore",
+        ".github/workflows/application-ci.yml",
+        ".github/workflows/backend-checks.yml",
+        ".github/workflows/frontend-checks.yml"
       ],
       "required_checks": [
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "backend-checks"
+        "backend-checks",
+        "frontend-checks"
       ],
       "dependency_issues": [
         1
@@ -237,12 +241,14 @@
       "allowed_paths": [
         "backend/core/schemas/",
         "docs/contracts/",
-        "tests/contracts/"
+        "tests/contracts/",
+        ".github/workflows/contract-checks.yml"
       ],
       "required_checks": [
         "governance-tests",
         "documentation-checks",
-        "security-checks"
+        "security-checks",
+        "contract-checks"
       ],
       "dependency_issues": [
         8
@@ -689,7 +695,8 @@
       "effort_max": 24,
       "estimated_effort": 20,
       "dependencies": [
-        "F02-CONTRACT"
+        "F02-CONTRACT",
+        "F01-ENV"
       ],
       "module": "frontend",
       "objective": "Build independent UI before analyzers finish, explicitly using fixtures until integration.",
@@ -716,7 +723,8 @@
         "frontend-checks"
       ],
       "dependency_issues": [
-        11
+        11,
+        10
       ],
       "parent_issue": 5
     },
@@ -762,7 +770,8 @@
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "frontend-checks"
+        "frontend-checks",
+        "backend-checks"
       ],
       "dependency_issues": [
         21,
@@ -1145,7 +1154,8 @@
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "frontend-checks"
+        "frontend-checks",
+        "backend-checks"
       ],
       "dependency_issues": [
         29,
@@ -1192,7 +1202,8 @@
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "frontend-checks"
+        "frontend-checks",
+        "backend-checks"
       ],
       "dependency_issues": [
         30
@@ -1333,7 +1344,8 @@
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "frontend-checks"
+        "frontend-checks",
+        "backend-checks"
       ],
       "dependency_issues": [
         32,
@@ -1378,7 +1390,8 @@
         "governance-tests",
         "documentation-checks",
         "security-checks",
-        "backend-checks"
+        "backend-checks",
+        "frontend-checks"
       ],
       "dependency_issues": [
         30
