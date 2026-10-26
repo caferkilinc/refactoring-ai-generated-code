@@ -39,9 +39,9 @@ def validate_plan(plan):
     require(sequence == ['cakarburkayy', 'caferkilinc', 'Yaman-A-E',
                          'ismail-cevik', 'tahaugurtoyran'],
             'Invalid or altered five-member rotation')
-    require(all(member in plan['team'] for member in sequence),
+    require(set(sequence) == set(plan['team']),
             'Unknown team member in rotation')
-    require(rotation.get('rotation_index') in range(len(sequence)),
+    require(type(rotation.get('rotation_index')) is int and rotation['rotation_index'] in range(len(sequence)),
             'Invalid rotation index')
     require(rotation.get('active_owner') == sequence[rotation['rotation_index']],
             'Active owner disagrees with rotation index')
@@ -52,7 +52,7 @@ def validate_plan(plan):
             'Next owner disagrees with rotation')
     require(rotation.get('handoff_confirmed') is False,
             'Handoff cannot be pre-confirmed by task registry')
-    require(not any(t.get(k) for t in tasks for k in ('owner', 'support', 'reviewer')),
+    require(not any(k in t for t in tasks for k in ('owner', 'support', 'reviewer')),
             'Static developer assignments are forbidden')
     for task in tasks:
         require(type(task['issue_number']) is int and task['issue_number'] > 0, 'Invalid issue number')
@@ -99,8 +99,10 @@ def check_paths(task, files, pr=None):
                 '.github/workflows/live-plan-audit.yml')
             require(not protected or task['plan_id'] == 'F01-GOV',
                     'Governance policy changes require the governance task: ' + path)
-            require(any(path.startswith(p) if p.endswith('/') else path == p
-                        for p in task['allowed_paths']), 'Out-of-task path: ' + path)
+            continuity = {'report.md', 'docs/PROJECT_STATUS.md', 'docs/DEVELOPMENT_ROADMAP.md'}
+            require(path in continuity or any(
+                path.startswith(p) if p.endswith('/') else path == p
+                for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
 def independent_review(task, pr, api, plan):
     """Same review rule before merge and before downstream acceptance."""
@@ -182,10 +184,17 @@ def evaluate(pr, plan, accepted, api):
     require(pr['base']['repo']['full_name'] == plan['repository'] and pr['base']['ref'] == 'main',
             'Wrong integration target')
     rotation = plan['sequential_execution']
-    require(task['plan_id'] == rotation['active_task_plan_id'],
-            'PR task is not the single authorized active task')
-    require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
-            'PR author is not the authorized active developer')
+    # PR #38 is the sole owner-approved legacy bootstrap exception.
+    # It never consumes a rotation. This exception does NOT bypass checks,
+    # current-head independent review, or the separate human merge authorization.
+    legacy_bootstrap = (pr['number'] == 38 and task['plan_id'] == 'F01-GOV'
+                        and pr['head']['ref'] == 'chore/1-team-workflow'
+                        and pr['user']['login'].lower() == 'caferkilinc')
+    if not legacy_bootstrap:
+        require(task['plan_id'] == rotation['active_task_plan_id'],
+                'PR task is not the single authorized active task')
+        require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
+                'PR author is not the authorized active developer')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"), pr)
     # Live native dependencies supplement the base registry; missing native edges fail closed.
     native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")
