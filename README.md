@@ -43,3 +43,10 @@ python3 scripts/governance/security_check.py
 ```
 
 These checks validate development infrastructure. They do not demonstrate product validation or research experiment success.
+
+
+## Current approved architecture and development state (2026-10-26)
+
+The owner-approved target is the v2.0 modular secure-refactoring pipeline, including immutable V0, per-language analysis, deterministic security + local Falcon-Mamba 7B, two user approval gates, bounded context/LLM patching, individual and combined validation, Python/JS/TS, and measured ZIP/HTML/PDF/history. **This repository has not yet proven these product capabilities are implemented.** See [TR SRS](docs/SRS.md), [EN SRS](docs/SRS_EN.md), [architecture](docs/ARCHITECTURE.md), and [roadmap](docs/DEVELOPMENT_ROADMAP.md).
+
+Implementation ownership rotates one at a time: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat**, after evidence-based handoff acceptance. PR #38 predates this policy and cannot be counted as a rotation. `main` is the accepted integration branch; topic PR review remains mandatory. Current open PR #38 needs a separate owner merge authorization. The first delivery scope includes Falcon-Mamba, Python/JS/TS and full reporting; model hardware/provider capability is not yet verified.
