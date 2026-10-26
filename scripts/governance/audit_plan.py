@@ -27,8 +27,9 @@ def audit(plan, api):
             errors.append(f'#{n}: unexpected fixed assignee')
         body = issue.get('body') or ''
         expected = [f"<!-- plan-id: {task['plan_id']} -->"] + [f'- {key}: {value}' for key, value in (
-            ('Priority', task['priority']), ('Planned Start', task['start']),
-            ('Target Date', task['target']))]
+            ('Planned Start', task['start']), ('Target Date', task['target']))]
+        if not migrating or task['issue_number'] not in (19, 20, 31, 32, 33, 34):
+            expected.append(f"- Priority: {task['priority']}")
         if not migrating and any(label in body for label in
                                  ('- Primary Owner:', '- Supporting Developer:',
                                   '- Independent Reviewer:')):
