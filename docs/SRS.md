@@ -4,10 +4,10 @@
 **Kimlik:** RAGC-SRS-001  
 **Sürüm:** 0.3.0  
 **Tarih:** 2026-10-26  
-**Durum:** İNCELEME TASLAĞI — proje sahibinin bütün mimari bileşenleri ilk teslimde zorunlu tutan 2026-10-26 kararı işlenmiştir; iki dildeki SRS'nin nihai onayı bekleniyor.  
+**Durum:** İNCELEME TASLAĞI — 2026-10-26 kapsam/yönetişim kararları işlenmiştir; Türkçe+İngilizce metinlerin nihai onayı henüz verilmemiştir.  
 **Sistem:** AI-Generated Code Refactoring and Quality Evaluation / Engineering Design II  
 **Hedef teslim:** 2027-01-01; kesin saat henüz doğrulanmadı.  
-**Teknik otorite:** 01_Master_Sistem_Mimarisi.pdf (v2.0) → 02_Adim_Adim_Gelistirme_Rehberi.pdf (v2.0) → 04_Modular_Architecture_Visual_Presentation.pdf ve PPTX ile 2026-10-20 mimari görseli.  
+**Teknik otorite:** 01_Master_Sistem_Mimarisi.pdf (v2.0) → 02_Adim_Adim_Gelistirme_Rehberi.pdf (v2.0) → 04_Modular_Architecture_Visual_Presentation.pdf ve PPTX ile 2026-10-20 mimari görseli. Bunlar proje sahibi tarafından gönderilen dış kaynaklardır; depo içinde bulunmadıklarında Codex doğrudan okumuş varsaymayacaktır.  
 **Eski ve ikincil kaynaklar:** 01_System_Operation_and_Architecture.pdf (v1.0) ve 03_Technical_System_Presentation_Revised.pdf; yalnızca güncel v2.0 ile çelişmeyen ayrıntılarda kullanılabilir.  
 **Uygulama takibi:** GitHub F00–F15 planı, 31 mevcut teknik görev ve onların bağımlılıkları.  
 **Yürütme otoritesi:** Project Genesis v2.0; ürün gereksinimleri yerine geçirilmez.
@@ -44,7 +44,7 @@ Geliştirici, kendisinin işleme yetkisi bulunan AI-generated veya diğer kaynak
 | Sandbox Validation | Izole container/VM worker; dil bazlı build/tests/scans | Güvenilmeyen kod ana FastAPI sürecinde/hostta çalışmaz |
 | Reporting | Before/After engine, HTML/PDF, audit, history, ZIP | Sayısal veriler ölçümden; AI anlatımı kanıta bağlı |
 
-**P0 / P1 yorumu:** P0, ders için gerçek Java yüklemeden son ZIP+HTML/PDF'ye uzanan, deterministik güvenlik ve kabul zinciridir. P0, ilk teslimde Java, Python, JS/TS, karma bileşen desteği, yerel Falcon-Mamba 7B entegrasyonu ve HTML/PDF dahil tüm güncel mimari yetenekleri kapsar. C#/Go/C++ ileri hedeflerdir. Her zorunlu bileşen gerçek doğrulama olmadan nihai teslim tamamlanmış sayılamaz. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
+**2026-10-26 PROJE SAHİBİ KAPSAM KARARI:** İlk teslimde Java, Python, JavaScript, TypeScript adapterlarının çalışır doğrulanmış yetenekleri, izole gerçek refactoring zinciri, yerel Falcon-Mamba 7B servis entegrasyonu ve güvenlik değerlendirmesi, minimum ve gelişmiş HTML/PDF, history ve ZIP zorunludur (P0). C#, Go ve C++ ileriki aşama adapter kapsamıdır. Bir alt sistemin fallback/Unavailable durumunu doğru göstermek çalışma anı güvenliği için gerekir; fakat zorunlu bir entegrasyonun hiç kurulmamış olması nihai teslimin READY_FOR_RELEASE sayılmasına engeldir. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
 
 ## 3. Zorunlu uçtan uca ürün iş akışı
 
@@ -195,7 +195,7 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | F14-PY #32, F14-JSTS #33, F14-MIX #34 | FR-051–053 |
 | F15-P0 #35, F15-EXPERIMENT #36, F15-HANDIN #37 | FR-045–050 |
 
-**Düzeltme notu:** PDF/HTML çıktı v2.0 mimaride ürün hedefidir; P0 minimum HTML/PDF erişimi ve parity için izlenen #30/#31 görev tanımları, değişiklik gerekirse ayrı change request ile yeniden düzenlenmelidir. Mevcut P1 öncelik kaydı sessizce değiştirilmez. İlk refactoring araştırması için Java P0'ı öncelerken P1 adapter hedefleri silinmez.
+**2026-10-26 kapsam yükseltme kararı:** PDF/HTML raporlar, Local AI/Falcon-Mamba ve Python/JS/TS adapterları ilk teslim P0 kapsamıdır. Eski GitHub kayıtlarında P1 olarak görünen #19, #20, #31, #32, #33, #34 açık Owner kararıyla P0'a yükseltilecektir; eski kayıtlar geçiş tamamlanana kadar historik çelişki olarak korunur. Java önce geliştirilebilir ancak tüm zorunlu hedefler test edilmeden yayın kabul edilmez. C#/Go/C++ ve opsiyonel görüntü/ses anlatımı ayrıca onaylanmadıkça ilk teslim dışındadır.
 
 ## 9. Project Genesis ekip yönetişimi (ürün onaylarından ayrıdır)
 
@@ -216,9 +216,9 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | DEC-002 | Akademik 12 haftalık öneri ve GitHub son tarih | 2027-01-01 owner/GitHub deadline; kesin saat ve platform UNKNOWN. |
 | DEC-003 | Görevlerin sabit primary/support/reviewer ataması | Project Genesis sıralı sahiplik esastır; CI gate ve 31 issue uyumlu migrasyon onaylanmadan assignee'ler birden kaldırılamaz. |
 | DEC-004 | PR #38 eski dört/çok geliştiricili iş modeli için hazırlık | PR #38 inceleme/CI/merge korunur; henüz Genesis handoff kabulü değil. |
-| DEC-005 | Java önceliği vs ilk teslim kapsamı | Java ilk uygulanabilir çekirdek; Python/JS/TS ve karma projeler P0 zorunlu. C#/Go/C++ ileri kapsam. |
-| DEC-006 | Yerel Falcon-Mamba ilk teslim | Falcon-Mamba 7B entegrasyonu P0 zorunlu; kesin model/runtime/VRAM/hız çalışır testle doğrulanmalı. Kaynak eksikliği release için BLOCKED. |
-| DEC-007 | PDF / HTML kapsamı | Gelişmiş rapor da dahil HTML/PDF P0 zorunlu; #31 görevi owner kararıyla P0'a yükseltilmiştir. |
+| DEC-005 | Java öncelik vs zorunlu çok dil | Java ilk yürütme zinciri; Python/JS/TS aynı ilk teslimin P0 geçerli adapter ve test/coverage destekleri. C#/Go/C++ gelecek. |
+| DEC-006 | Yerel Falcon-Mamba ilk teslim | Deterministik SAST ve yerel Falcon-Mamba 7B servis entegrasyonu P0; model/runtime/VRAM uyumluluğu gerçek testle doğrulanmalı; erişim yoksa release BLOCKED, SAST fail-safe sürer. |
+| DEC-007 | PDF raporu eski task-plan'da P1 | Yeni proje sahibi kararı gereği #31 ve PDF/HTML sayısal bütünlüğü ilk teslim P0; önceki P1 iş kaydı migrasyonda yükseltilecek. |
 | DEC-008 | Gerçek LLM patch sağlayıcısı ve kaynak aktarımı | Endpoint, model, kota, ücret ve kod aktarım izni doğrulanmalı; hiçbiri varsayılan veya fiilen kullanılabilir sayılmaz. |
 | DEC-009 | Deployment, öğrenci demo ve halka açık hizmet | Yerel demo ile public servis ayrı security gereksinimlerine sahip; deployment kararı doğrulanmalı. |
 
@@ -226,10 +226,14 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 
 Bu sürüm **derleme taslağıdır**. Project owner'ın 2026-10-26 tarihinde yetkilendirdiği mimari/GitHub kaynak kararları uygulanmıştır; bu dosyanın nihai tekil SRS onayı henüz ayrı belirtilmemiştir. Ana SRS, API şeması, backend state ve mevcut task graph arasında uygulama esnasında bulunan bir çelişki bir change-request/ADR ile çözülür. Uygulama ilerleme yüzdeleri kanıtsız verilmez. Rehberin örnek API JSON'ları, sayısal değerleri ve test komutları gerçek sonuç olarak sunulamaz. Sürüm değişikliği SRS gereksinim kimliklerini yeniden kullanmaz.
 
-## 12. 26 Ekim 2026 proje sahibi kapsam/yönetim kararı
+## 12. 2026-10-26 kararı — zorunlu kapsam ve geçiş kabul kapısı
 
-Tüm güncel mimari bileşenleri **ilk teslimin zorunlu kapsamındadır**. Eski P1 statüsündeki GitHub #19, #20, #31, #32, #33, #34 görevleri P0'a yükseltilir. Java önce uygulanabilir, fakat Python/JS/TS, karma bileşen desteği, gerçek Falcon-Mamba güvenlik incelemesi, iki onay, izole patch doğrulaması, HTML/PDF ve geçmiş/ZIP eksikse nihai release NOT_READY olur. Donanım, model revision, gerekli API erişimi, deney verisi ve maliyet gerçekte doğrulanmadan başarı iddiası yapılamaz.
+**Owner decision GOV-DEC-2026-10-26:** Beşli sabit sıra Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran; PR #38 bu döngüden önceki bootstrap çalışmasıdır, rotasyon turu sayılmaz. Tam 31 teknik issue ve 54 dependent edge silinmez; sabit atanmış issue/registry owner-support-reviewer bilgileri kontrollü gate/CI migrasyonunda kaldırılır. `main` kabul edilmiş entegrasyon dalıdır; numaralı topic PR'ları inceleme için kalabilir. PR #38 ancak gerçek bağımsız onay, geçerli CI ve **ayrı proje sahibi merge izni** sonrasında birleştirilebilir.
 
-Beş kişilik sabit uygulama rotasyonu: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay**. `main` kabul edilmiş entegrasyon dalıdır, numaralı PR dalları inceleme için korunur. PR #38 geçiş öncesi bootstrap olup bir Genesis geliştirici turu sayılmaz. Mevcut 31 teknik issue ve 54 bağımlılık korunurken kalıcı kişi atamaları, kapı/CI ve issue metadata ile **aşamalı ve denetimli** olarak kaldırılacaktır. PR #38, bağımsız current-head incelemesi, kontroller ve ayrıca **son proje sahibi merge izni** olmadan birleştirilemez.
+**Mandatory first-delivery promotion:** #19 F07B-PILOT, #20 F07B-LOCAL, #31 F13-ADV, #32 F14-PY, #33 F14-JSTS, #34 F14-MIX P0'dır. Geçerli mimari kaynaklarında P1 olarak yazılmış önceki bölümler bu açık owner kararı karşısında tarihsel bilgi sayılır. İlgili kıyaslamalar aynı son teslim tarihi 2027-01-01 için gereklidir; teknik kaynak eksikliği gizlenemez.
 
-Türkçe SRS burada, aynı gereksinim numaralarını içeren İngilizce eşdeğer [SRS_EN.md](SRS_EN.md) dosyasındadır. İki SRS henüz **REVIEW DRAFT** statüsündedir; nihai onay yalnız ayrı proje sahibi kabulüyle verilir.
+**Kaynak erişimi / maliyet blokajı:** Falcon-Mamba 7B'nin tam model kimliği, gerçek inference runtime ve en az bir yetkili çalışma ortamı; gerçek patch provider'ın izinli API/ücret/kota erişimi; dört dilin seçilen orijinal örneği ve uyumlu toolchain'ler uygulama esnasında doğrulanmalıdır. Bu bilgiler şu an UNKNOWN'dur, otomatik sağlayıcı satın alımı veya sözde inference testi yapılamaz.
+
+**Zorunlu ilk teslim acceptance:** (1) Java E2E ve yeniden doğrulama; (2) Python adapter parse/quality/test/coverage ve güvenli patch E2E; (3) JS/TS adapter parse/quality/test/coverage ve component-specific E2E; (4) karma React + Python testi; (5) Falcon-Mamba gerçek masked evidence incelemesi ve bağımsız etiketli değerlendirme; (6) tüm zorunlu secure scanning; (7) iki onay kapısı; (8) güvenli HTML/PDF, ZIP ve History; (9) reproducible deney. Capabilities gerekçeyle eksik gösterilebilir ancak kabul edilmemiş ilk teslim tamamlanmış sayılmaz.
+
+**Belge uyumu:** `docs/SRS.md` Türkçe kanonik SRS'dir; `docs/SRS_EN.md` aynı FR/NFR kimliklerine sahip İngilizce teknik eşdeğeridir. Terminoloji farklılığı davranış değiştirmemelidir. Anlaşmazlık varsa owner kararı ile eşdeğer sürümlerde birlikte düzeltme yapılır. Ayrı SRS kabulü kaydı beklenmektedir.
