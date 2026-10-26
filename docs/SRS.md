@@ -2,9 +2,9 @@
 # Yapay Zekâ Tarafından Üretilen Kodun Güvenli Refactoring ile İyileştirilmesi
 
 **Kimlik:** RAGC-SRS-001  
-**Sürüm:** 0.2.0  
+**Sürüm:** 0.3.0  
 **Tarih:** 2026-10-26  
-**Durum:** İNCELEME TASLAĞI — proje sahibinin kapsam onayı mevcuttur; bu derlemenin ayrı son kabulü henüz kaydedilmemiştir.  
+**Durum:** İNCELEME TASLAĞI — proje sahibinin bütün mimari bileşenleri ilk teslimde zorunlu tutan 2026-10-26 kararı işlenmiştir; iki dildeki SRS'nin nihai onayı bekleniyor.  
 **Sistem:** AI-Generated Code Refactoring and Quality Evaluation / Engineering Design II  
 **Hedef teslim:** 2027-01-01; kesin saat henüz doğrulanmadı.  
 **Teknik otorite:** 01_Master_Sistem_Mimarisi.pdf (v2.0) → 02_Adim_Adim_Gelistirme_Rehberi.pdf (v2.0) → 04_Modular_Architecture_Visual_Presentation.pdf ve PPTX ile 2026-10-20 mimari görseli.  
@@ -44,7 +44,7 @@ Geliştirici, kendisinin işleme yetkisi bulunan AI-generated veya diğer kaynak
 | Sandbox Validation | Izole container/VM worker; dil bazlı build/tests/scans | Güvenilmeyen kod ana FastAPI sürecinde/hostta çalışmaz |
 | Reporting | Before/After engine, HTML/PDF, audit, history, ZIP | Sayısal veriler ölçümden; AI anlatımı kanıta bağlı |
 
-**P0 / P1 yorumu:** P0, ders için gerçek Java yüklemeden son ZIP+HTML/PDF'ye uzanan, deterministik güvenlik ve kabul zinciridir. P1, diğer dillerin olgun safe-patch desteği, yerel Falcon-Mamba ve ilave rapor zenginliğidir; v2.0 hedef mimariden çıkarılmaz, ancak doğrulanmadan zorunlu çekirdeği bloke etmez. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
+**P0 / P1 yorumu:** P0, ders için gerçek Java yüklemeden son ZIP+HTML/PDF'ye uzanan, deterministik güvenlik ve kabul zinciridir. P0, ilk teslimde Java, Python, JS/TS, karma bileşen desteği, yerel Falcon-Mamba 7B entegrasyonu ve HTML/PDF dahil tüm güncel mimari yetenekleri kapsar. C#/Go/C++ ileri hedeflerdir. Her zorunlu bileşen gerçek doğrulama olmadan nihai teslim tamamlanmış sayılamaz. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
 
 ## 3. Zorunlu uçtan uca ürün iş akışı
 
@@ -126,13 +126,13 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | FR-048 | P0 | Sequential/parallel koşullarını aynı context/test/rule ayarlarında üçer tekrar karşılaştır; süre/tokencost gerçek ölçülsün. | #36 |
 | FR-049 | P0 | En az %50 finding azaltma hedef olarak ölçülsün, başarı ya da eşdeğerlik önceden iddia edilmesin. | #36 |
 | FR-050 | P0 | Final reproducibility bundle V0/V1 hash, generation prompt, gerçek testler, uyumlu build/demo, sınırlamalar içersin. | #37 |
-| FR-051 | P1 | Python ast/LibCST, Ruff/Pylint, pytest/coverage ile gerçek adapter capability sağlar; Java regression korunur. | #32 |
-| FR-052 | P1 | JS/TS TS Compiler API, ESLint, tsc, Jest/Vitest ve coverage ile gerçek adapter capability sağlar. | #33 |
-| FR-053 | P1 | Karma projede component bazlı ölçüm, cross-service belirsizliği ve language-specific test semantiğini koru. | #34 |
-| FR-054 | P1 | Falcon-Mamba 7B'nin tam repo/variant/quantization/GPU/runtime/VRAM/latency uygunluğunu pilotla; disabled fallback sun. | #19 |
-| FR-055 | P1 | Yerel AI yalnız maskelenmiş, evidence-referenced, UNCONFIRMED inceleme döndürür; arızası deterministik SAST'ı bozmaz. | #20 |
-| FR-056 | P1 | Falcon-Mamba için bağımsız etiketli örneklerle precision/recall, FP/FN paydalarını raporla. | #20 |
-| FR-057 | P1 | Opsiyonel ayrıntılı AI anlatımı ve gelişmiş PDF raporlarında backend sayıları ve HTML parity korunur. | #31 |
+| FR-051 | P0 | Python ast/LibCST, Ruff/Pylint, pytest/coverage ile gerçek adapter capability sağlar; Java regression korunur. | #32 |
+| FR-052 | P0 | JS/TS TS Compiler API, ESLint, tsc, Jest/Vitest ve coverage ile gerçek adapter capability sağlar. | #33 |
+| FR-053 | P0 | Karma projede component bazlı ölçüm, cross-service belirsizliği ve language-specific test semantiğini koru. | #34 |
+| FR-054 | P0 | Falcon-Mamba 7B'nin tam repo/variant/quantization/GPU/runtime/VRAM/latency uygunluğunu pilotla; disabled fallback sun. | #19 |
+| FR-055 | P0 | Yerel AI yalnız maskelenmiş, evidence-referenced, UNCONFIRMED inceleme döndürür; arızası deterministik SAST'ı bozmaz. | #20 |
+| FR-056 | P0 | Falcon-Mamba için bağımsız etiketli örneklerle precision/recall, FP/FN paydalarını raporla. | #20 |
+| FR-057 | P0 | Opsiyonel ayrıntılı AI anlatımı ve gelişmiş PDF raporlarında backend sayıları ve HTML parity korunur. | #31 |
 
 ## 6. Fonksiyonel olmayan gereksinimler
 
@@ -151,7 +151,7 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | NFR-11 | P0 | API anahtarları browser'a veya depoya giremez; source comments prompt talimatı olarak yetki yükseltemez. | #18,#25 |
 | NFR-12 | P0 | Run/attempt/approval/final ve UTC audit/History kalıcılığı; logda ham kullanıcı kodu ve secrets bulunmaz. | #12,#30 |
 | NFR-13 | P0 | Model, donanım, benchmark ve teslim success iddiaları gerçek ölçüm ve koşullarla sınırlandırılır. | #19,#36 |
-| NFR-14 | P1 | Dil adapter'ları capability flag, support güveni ve per-language coverage ile P0 Java'yı bozmaz. | #32–#34 |
+| NFR-14 | P0 | Dil adapter'ları capability flag, support güveni ve per-language coverage ile P0 Java'yı bozmaz. | #32–#34 |
 | NFR-15 | P0 | Internet-facing deployment, ayrıca doğrulanmış threat model, izolasyon ve konfigürasyon/release kararına bağlıdır. | mimari v2 §16; rehber faz15 |
 
 ## 7. Kabul senaryoları ve çıkış kapıları
@@ -216,12 +216,20 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | DEC-002 | Akademik 12 haftalık öneri ve GitHub son tarih | 2027-01-01 owner/GitHub deadline; kesin saat ve platform UNKNOWN. |
 | DEC-003 | Görevlerin sabit primary/support/reviewer ataması | Project Genesis sıralı sahiplik esastır; CI gate ve 31 issue uyumlu migrasyon onaylanmadan assignee'ler birden kaldırılamaz. |
 | DEC-004 | PR #38 eski dört/çok geliştiricili iş modeli için hazırlık | PR #38 inceleme/CI/merge korunur; henüz Genesis handoff kabulü değil. |
-| DEC-005 | P0 Java vs mimari çok dil görüntüsü | Çok dilli mimari hedef; önce Java doğrulama zinciri. Python/JS/TS için P1 gerçek capability, C#/Go/C++ gelecek. |
-| DEC-006 | Local Falcon-Mamba çekirdek görselleştirmesi | Deterministik SAST P0, yerel Falcon-Mamba 7B opsiyonel değerlendirme/servis; gerçek 16 GB GPU uyumluluğu ispatlanmadı. |
-| DEC-007 | PDF raporu eski task-plan'da P1 ayrıntılı iş | Yeni Master+Rehber PDF/HTML'yi nihai kullanıcı çıktısı olarak bekliyor; minimum PDF için kapsam/öncelik revizyonu gözden geçirilmeli. |
+| DEC-005 | Java önceliği vs ilk teslim kapsamı | Java ilk uygulanabilir çekirdek; Python/JS/TS ve karma projeler P0 zorunlu. C#/Go/C++ ileri kapsam. |
+| DEC-006 | Yerel Falcon-Mamba ilk teslim | Falcon-Mamba 7B entegrasyonu P0 zorunlu; kesin model/runtime/VRAM/hız çalışır testle doğrulanmalı. Kaynak eksikliği release için BLOCKED. |
+| DEC-007 | PDF / HTML kapsamı | Gelişmiş rapor da dahil HTML/PDF P0 zorunlu; #31 görevi owner kararıyla P0'a yükseltilmiştir. |
 | DEC-008 | Gerçek LLM patch sağlayıcısı ve kaynak aktarımı | Endpoint, model, kota, ücret ve kod aktarım izni doğrulanmalı; hiçbiri varsayılan veya fiilen kullanılabilir sayılmaz. |
 | DEC-009 | Deployment, öğrenci demo ve halka açık hizmet | Yerel demo ile public servis ayrı security gereksinimlerine sahip; deployment kararı doğrulanmalı. |
 
 ## 11. Değişiklik ve kabul politikası
 
 Bu sürüm **derleme taslağıdır**. Project owner'ın 2026-10-26 tarihinde yetkilendirdiği mimari/GitHub kaynak kararları uygulanmıştır; bu dosyanın nihai tekil SRS onayı henüz ayrı belirtilmemiştir. Ana SRS, API şeması, backend state ve mevcut task graph arasında uygulama esnasında bulunan bir çelişki bir change-request/ADR ile çözülür. Uygulama ilerleme yüzdeleri kanıtsız verilmez. Rehberin örnek API JSON'ları, sayısal değerleri ve test komutları gerçek sonuç olarak sunulamaz. Sürüm değişikliği SRS gereksinim kimliklerini yeniden kullanmaz.
+
+## 12. 26 Ekim 2026 proje sahibi kapsam/yönetim kararı
+
+Tüm güncel mimari bileşenleri **ilk teslimin zorunlu kapsamındadır**. Eski P1 statüsündeki GitHub #19, #20, #31, #32, #33, #34 görevleri P0'a yükseltilir. Java önce uygulanabilir, fakat Python/JS/TS, karma bileşen desteği, gerçek Falcon-Mamba güvenlik incelemesi, iki onay, izole patch doğrulaması, HTML/PDF ve geçmiş/ZIP eksikse nihai release NOT_READY olur. Donanım, model revision, gerekli API erişimi, deney verisi ve maliyet gerçekte doğrulanmadan başarı iddiası yapılamaz.
+
+Beş kişilik sabit uygulama rotasyonu: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay**. `main` kabul edilmiş entegrasyon dalıdır, numaralı PR dalları inceleme için korunur. PR #38 geçiş öncesi bootstrap olup bir Genesis geliştirici turu sayılmaz. Mevcut 31 teknik issue ve 54 bağımlılık korunurken kalıcı kişi atamaları, kapı/CI ve issue metadata ile **aşamalı ve denetimli** olarak kaldırılacaktır. PR #38, bağımsız current-head incelemesi, kontroller ve ayrıca **son proje sahibi merge izni** olmadan birleştirilemez.
+
+Türkçe SRS burada, aynı gereksinim numaralarını içeren İngilizce eşdeğer [SRS_EN.md](SRS_EN.md) dosyasındadır. İki SRS henüz **REVIEW DRAFT** statüsündedir; nihai onay yalnız ayrı proje sahibi kabulüyle verilir.
