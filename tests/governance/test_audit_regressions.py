@@ -30,8 +30,8 @@ class AuditGateTests(unittest.TestCase):
     def test_current_pr_independent_review_and_real_checks_pass(self):
         self.assertIn('applicable CI verified', self.ready())
 
-    def test_support_approval_cannot_unlock_current_pr(self):
-        self.api.reviews[0]['user']['login'] = self.task['support']
+    def test_pr_author_cannot_unlock_current_pr(self):
+        self.api.reviews[0]['user']['login'] = 'cakarburkayy'
         with self.assertRaisesRegex(Rejected, 'No current independent'):
             self.ready()
 
@@ -71,12 +71,13 @@ class AuditGateTests(unittest.TestCase):
 
     def test_outsider_cannot_claim_registered_task(self):
         self.api.pr['user']['login'] = 'unregistered-person'
-        with self.assertRaisesRegex(Rejected, 'registered primary'):
+        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
             evaluate(self.api.pr, self.plan, {}, self.api)
 
-    def test_support_author_can_submit_task(self):
-        self.api.pr['user']['login'] = self.task['support']
-        self.assertIn('applicable CI verified', self.ready())
+    def test_other_team_member_cannot_steal_current_task(self):
+        self.api.pr['user']['login'] = 'caferkilinc'
+        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
+            self.ready()
 
     def test_wrong_base_rejected(self):
         self.api.pr['base']['ref'] = 'other'
@@ -99,8 +100,8 @@ class AuditGateTests(unittest.TestCase):
             validate_plan(self.plan)
 
     def test_unknown_team_member_rejected(self):
-        self.task['support'] = 'unknown'
-        with self.assertRaisesRegex(Rejected, 'Unknown team'):
+        self.plan['sequential_execution']['team_sequence'][2] = 'unknown'
+        with self.assertRaisesRegex(Rejected, 'rotation'):
             validate_plan(self.plan)
 
     def test_invalid_calendar_date_rejected(self):
@@ -265,11 +266,10 @@ class LivePlanAuditTests(unittest.TestCase):
             self.dependencies={}
             for t in PLAN['tasks']:
                 body='\n'.join([f"<!-- plan-id: {t['plan_id']} -->"]+[f'- {key}: {value}' for key,value in (
-                    ('Primary Owner','@'+t['owner']),('Supporting Developer','@'+t['support']),
-                    ('Independent Reviewer','@'+t['reviewer']),('Priority',t['priority']),
-                    ('Planned Start',t['start']),('Target Date',t['target']))]+[
+                    ('Priority',t['priority']),('Planned Start',t['start']),
+                    ('Target Date',t['target']))]+[
                     f"- Estimated Effort: {t['effort_min']}–{t['effort_max']} person-hours; midpoint {t['estimated_effort']}."])
-                self.issues[t['issue_number']]={'number':t['issue_number'],'assignees':[{'login':t['owner']}],'body':body}
+                self.issues[t['issue_number']]={'number':t['issue_number'],'assignees':[],'body':body}
                 self.dependencies[t['issue_number']]=[{'number':n} for n in t['dependency_issues']]
         def pages(self,path,**kw):
             n=int(path.split('/')[2])
@@ -279,10 +279,11 @@ class LivePlanAuditTests(unittest.TestCase):
     def test_consistent_plan_has_no_errors(self):
         from audit_plan import audit
         self.assertEqual([],audit(PLAN,self.Fake()))
-    def test_metadata_drift_is_reported(self):
+    def test_completed_migration_rejects_static_assignees(self):
         from audit_plan import audit
-        a=self.Fake();a.issues[8]['assignees']=[]
-        self.assertIn('#8: assignee drift',audit(PLAN,a))
+        p=copy.deepcopy(PLAN);p['assignment_migration']['status']='COMPLETE'
+        a=self.Fake();a.issues[8]['assignees']=[{'login':'caferkilinc'}]
+        self.assertIn('#8: unexpected fixed assignee',audit(p,a))
     def test_dependency_drift_is_reported(self):
         from audit_plan import audit
         a=self.Fake();a.dependencies[9]=[]
