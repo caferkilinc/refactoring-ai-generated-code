@@ -19,14 +19,20 @@ def audit(plan, api):
         if not issue or parents[n] != task['parent_issue']:
             errors.append(f'#{n}: missing or wrong native parent')
             continue
-        owners = {u['login'].lower() for u in issue['assignees']}
-        if owners != {task['owner'].lower()}:
-            errors.append(f'#{n}: assignee drift')
+        assignees = {u['login'].lower() for u in issue.get('assignees', [])}
+        # Transition is phased: old live issue assignees are not cleared until the
+        # new gate and independent review are accepted; never pretend migration done.
+        migrating = plan.get('assignment_migration', {}).get('status') != 'COMPLETE'
+        if not migrating and assignees:
+            errors.append(f'#{n}: unexpected fixed assignee')
         body = issue.get('body') or ''
         expected = [f"<!-- plan-id: {task['plan_id']} -->"] + [f'- {key}: {value}' for key, value in (
-            ('Primary Owner', '@'+task['owner']), ('Supporting Developer', '@'+task['support']),
-            ('Independent Reviewer', '@'+task['reviewer']), ('Priority', task['priority']),
-            ('Planned Start', task['start']), ('Target Date', task['target']))]
+            ('Priority', task['priority']), ('Planned Start', task['start']),
+            ('Target Date', task['target']))]
+        if not migrating and any(label in body for label in
+                                 ('- Primary Owner:', '- Supporting Developer:',
+                                  '- Independent Reviewer:')):
+            errors.append(f'#{n}: stale fixed owner in issue body')
         expected.append(f"- Estimated Effort: {task['effort_min']}–{task['effort_max']} person-hours; midpoint {task['estimated_effort']}.")
         if any(text not in body for text in expected):
             errors.append(f'#{n}: issue body no longer matches plan')
@@ -40,7 +46,7 @@ def main():
     errors = audit(plan, GitHub())
     if errors:
         raise SystemExit('\n'.join(errors))
-    print(f"Verified {len(plan['tasks'])} task owners/bodies, parent links and native prerequisite sets. "
+    print(f"Checked {len(plan['tasks'])} task bodies, parent links and native prerequisite sets (assignment transition pending if set). "
           'Personal Project cells require a separate board audit.')
 
 if __name__ == '__main__':
