@@ -1,0 +1,51 @@
+"""Check reviewed bilingual SRS identity/priority parity without asserting final approval."""
+import json
+import re
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+REQUIREMENT = re.compile(r"^\|\s*((?:FR-\d{3})|(?:NFR-\d{2}))\s*\|\s*(P[01])\s*\|", re.MULTILINE)
+
+
+class BilingualRequirementsTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.turkish = (ROOT / "docs/SRS.md").read_text(encoding="utf-8")
+        cls.english = (ROOT / "docs/SRS_EN.md").read_text(encoding="utf-8")
+        cls.plan = json.loads((ROOT / ".github/task-plan.json").read_text(encoding="utf-8"))
+
+    def test_bilingual_requirement_identity_and_priority(self):
+        tr, en = [dict(REQUIREMENT.findall(s)) for s in (self.turkish, self.english)]
+        self.assertEqual(len(tr), 72)
+        self.assertEqual(len(en), 72)
+        self.assertEqual(tr, en)
+        self.assertEqual(set(tr), {
+            *(f"FR-{i:03d}" for i in range(1, 58)),
+            *(f"NFR-{i:02d}" for i in range(1, 16)),
+        })
+        self.assertTrue(all(priority == "P0" for priority in tr.values()))
+
+    def test_owner_promoted_mandatory_milestones(self):
+        tasks = self.plan["tasks"]
+        self.assertEqual(31, len(tasks))
+        self.assertEqual(54, sum(len(t["dependencies"]) for t in tasks))
+        for issue in (19, 20, 31, 32, 33, 34):
+            task = next(t for t in tasks if t["issue_number"] == issue)
+            self.assertEqual("P0", task["priority"], issue)
+
+    def test_no_immutable_person_assignments_in_technical_registry(self):
+        for task in self.plan["tasks"]:
+            self.assertFalse({"owner", "support", "reviewer"} & set(task),
+                             task["plan_id"])
+        state = self.plan["sequential_execution"]
+        self.assertEqual(
+            ["cakarburkayy", "caferkilinc", "Yaman-A-E", "ismail-cevik", "tahaugurtoyran"],
+            state["team_sequence"],
+        )
+        self.assertEqual("cakarburkayy", state["active_owner"])
+        self.assertFalse(state["handoff_confirmed"])
+
+
+if __name__ == "__main__":
+    unittest.main()
