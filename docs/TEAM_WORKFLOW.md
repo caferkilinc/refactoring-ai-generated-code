@@ -1,61 +1,45 @@
-# Team guide / Ekip çalışma rehberi
+# Project Genesis v2.0 — Developer Team Operating Guide
 
-Bir görev seçin; owner/support/reviewer, scope ve bağımlılıkları okuyun. (Select a task and review ownership, scope and prerequisites.) Sözleşme hazırsa mock/fixture ile bağımsız geliştirme başlayabilir; entegrasyon için kabul edilmiş bağımlılık gerekir. (Approved contracts permit independent development; integration requires accepted prerequisites.)
+**Owner-approved:** 2026-10-26. Five authorized developers in the fixed order:
+**Burkay (@cakarburkayy) → Cafer (@caferkilinc) → Alperen Enes Yaman (@Yaman-A-E) → İsmail (@ismail-cevik) → Taha Uğur Toyran (@tahaugurtoyran) → repeat.**
 
-## MacBook M3 / macOS
+## 1. What remains authoritative
+- Product behavior: owner-provided Master Architecture v2.0 + Step-by-Step Development Guide v2.0; compiled [TR SRS](SRS.md) and [EN SRS](SRS_EN.md) await final sign-off.
+- Existing implementation planning: [roadmap](DEVELOPMENT_ROADMAP.md), `.github/task-plan.json`, native GitHub prerequisites (31 technical issues and 54 edges).
+- Execution model: PROJECT GENESIS v2.0. Exactly **one** authorized implementation owner at any point. Old module expertise and historical issue assignees are not permission to implement.
+- Integration branch: `main`; issue-numbered topic branches and PRs remain for independent review, but do not permit several concurrent active writers.
 
-Git ve Python 3 kurulu olmalıdır. Bu kurulum yalnızca standard-library governance kontrollerini çalıştırır; henüz backend/frontend kurulum komutu yoktur. (Git and Python 3 are prerequisites; application setup belongs to #10.)
+## 2. Bootstrap migration safety
+Existing [PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38) was prepared before Genesis. It does **not** consume a Burkay/Cafer rotation turn and is not a completed handoff. The project owner authorized reconciling it to Genesis, but did **not** authorize merging it. The active reviewer must inspect the current revision and actual CI; the owner will be asked for a **separate explicit merge decision**. Never bypass existing governance checks to force the transition.
+
+The 31 native technical issues and their dependency graph are not deleted. Fixed assignees and legacy issue body primary/support/reviewer lines are cleared **only after** the new fail-closed gate, its regression tests and migration procedure have been accepted. The migration must preserve task IDs, issue links, Git history, budgets and known blockages.
+
+## 3. One task per rotation
+1. Orchestrator reconstructs last confirmed Git state, approved SRS, outstanding requirements and dependencies.
+2. Orchestrator selects one READY technical task and issues one Codex contract with TASK_ID, MILESTONE, OWNER, expected baseline/branch, IN_SCOPE, OUT_OF_SCOPE, acceptance, verification and stop conditions.
+3. Developer confirms local root, HEAD, worktree, upstream and expected accepted commit. Fetch and `git pull --ff-only` only after verifying safety.
+4. Codex loads targeted SRS, architecture and source files; implements only the task; runs appropriate real checks; self-reviews diff and updates a concise `report.md`. No Codex commit/push without separate authorization.
+5. Developer reviews, commits and pushes the numbered topic branch and opens PR linked to the assigned task. Independent current-commit reviewer (not author or committer) and genuine required CI checks remain mandatory; no auto-merge.
+6. After human approval and explicit required merge authorization, PR changes reach accepted `main`. Developer sends `report.md`, correct task/owner, pushed commit and publication evidence.
+7. Orchestrator evaluates G0–G8. It advances the rotation **once only** on ACCEPTED; otherwise retains owner and assigns scoped rework. Duplicate task+commit is idempotent.
+
+A draft, push alone, passed governance tests or a project card marked Done is not sufficient evidence of accepted implementation. Never claim model/runtime/test success without actual output.
+
+## 4. Repo safety and repeatable checks
+Do not use destructive reset, clean, force-push, arbitrary local change discard, unaudited secret commits or premature paid API access. Maintain immutable V0 and frozen tests, isolated validation and two separate product approval gates. Existing governance checks on an eligible checkout:
 
 ```sh
-git clone https://github.com/caferkilinc/refactoring-ai-generated-code.git
-cd refactoring-ai-generated-code
-git switch main
-git pull --ff-only origin main
-git switch -c feature/11-cir-contracts
 python3 -m unittest discover -s tests/governance -v
 python3 scripts/governance/check_docs.py
 python3 scripts/governance/security_check.py
-git add backend/core/schemas docs/contracts tests/contracts
-git commit -m "feat: define CIR and adapter contracts"
-git push -u origin feature/11-cir-contracts
 ```
 
-`git add` örneğindeki yolları geliştirdiğiniz gerçek dosyalara uyarlayın. (Use the actual paths you implemented.) GitHub arayüzünden PR açın; `Task: #11` ve `Plan: F02-CONTRACT` satırlarını ekleyin. (Open the PR and include the matching task/plan lines.) Kendi PR'nizi tek başınıza onaylamayın; primary/support dışında belirlenen reviewer incelemeli. (The independent reviewer must approve the current revision.)
+On Windows the equivalent interpreter entry point may be `py -3`. These commands test **governance only**; application build/test commands must be discovered from real manifests/CI after environment task #10.
 
-## Windows / PowerShell
+## 5. Report and artifact reuse
+Use `AGENTS.md` only for stable instructions and `.agents/skills/development-handoff/SKILL.md` when supported. Reuse `docs/PROJECT_STATUS.md` as the human-readable project-state snapshot and `docs/DEVELOPMENT_ROADMAP.md` as the canonical roadmap: do not create competing files. Detailed history stays in Git and material decisions in `docs/DECISIONS/`.
 
-```powershell
-git clone https://github.com/caferkilinc/refactoring-ai-generated-code.git
-Set-Location refactoring-ai-generated-code
-git switch main
-git pull --ff-only origin main
-git switch -c feature/11-cir-contracts
-py -3 -m unittest discover -s tests/governance -v
-py -3 scripts/governance/check_docs.py
-py -3 scripts/governance/security_check.py
-git add backend/core/schemas docs/contracts tests/contracts
-git commit -m "feat: define CIR and adapter contracts"
-git push -u origin feature/11-cir-contracts
-```
+Before publication, `report.md` contains base commit and `PENDING_PUSH_CONFIRMATION`, not the SHA of its own commit. The resulting SHA is provided after push and accepted in a later verified handoff. Each developer hands off with real checks and blocking issues, then stops.
 
-## Update and review
-
-`git fetch origin` then `git merge origin/main` on your topic branch preserves history without force push. Resolve conflicts, rerun checks and push normally. Every code PR needs reproducible normal/error/integration evidence, current CI, independent approval and resolved conversations. Changes invalidate old approvals when the proposed protection is activated.
-
-Cafer's governance PR goes to Burkay/İsmail for independent review. Each task names a reviewer distinct from primary/support; review is distributed rather than routed entirely through Cafer. CODEOWNERS provides alternative qualified owners, while the task's independent-review rule remains explicit.
-
-All five currently have sufficient access for direct topic branches. If access is temporarily missing, fork the repository and open a PR from the fork. Do not elevate permissions or run fork code with write tokens to work around it. Native project ownership/editor access is distinct from repository Write; project access changes require owner review.
-
-## Weekly planning
-
-Use [workload estimates](TEAM_WORKLOAD.md). Declare available capacity, remaining estimate and blockers weekly; adjust support and dates in the canonical plan. Planning hours are not time sheets or compulsory equal schedules. Escalate #25 provider access before patch week and #19 GPU access before Local AI promises. Delay P1 first when P0 slips.
-
-Application development environment, service health checks, pinned Python/Node and lockfiles are #10. Use native Apple Silicon toolchains for M3; actual CUDA/model runtime runs only on a separately verified server. No nonexistent application commands are claimed here.
-
-## Readiness and recovery
-
-Bağımsız inceleme ve CI bittikten sonra Dependency gate workflow’unu yeniden çalıştırın; `dependency-gate` ve `merge-readiness` birlikte geçmelidir. (Rerun both gates after review and CI complete.) Yeniden çalıştırma güncel güvenilir main politikasını okur; kaynak kodu veya kabul kaydı değiştiyse güncel main’i branch’inize alın. (Reruns refresh trusted main; update your branch after policy or acceptance changes.)
-
-Java pilotu #9 `pilot-checks`, erken sözleşmeler #11 `contract-checks`, ortam #10 gerçek backend/frontend kontrollerini üretir. Eksik kontrolü başarılı göstermeyin. (Each task supplies real executable checks; missing checks cannot be reported as passed.)
-
-Proje panosundaki Done yalnız planlama durumudur; kabul kaydı ve gerçek kanıt ayrıca gerekir. Haftalık Live plan audit ile issue/bağımlılık tutarlılığını, pano tarih/efor hücrelerini de ayrıca kontrol edin. (Audit live issue drift and separately compare the personal Project fields.)
+## 6. No artificial schedule certainty
+The due date is **2027-01-01** (time UNKNOWN). Falcon-Mamba 7B, Python and JS/TS capabilities, PDF/HTML and mixed-language tests are first-delivery **P0**; lack of GPU/runtime/provider access is a release blocker, not approval to silently downgrade scope. Replan from evidence and actual available capacity, never from a speculative workload split.
