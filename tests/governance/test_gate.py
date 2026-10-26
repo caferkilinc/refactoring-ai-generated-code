@@ -150,7 +150,7 @@ class GateTests(unittest.TestCase):
  def test_report_scope_is_allowed_without_bypassing_governance_policy(self):
   from gate import check_paths
   self.assertIsNone(check_paths(self.t,[{'filename':'report.md'}]))
-  def test_non_owner_cannot_submit(self):
+ def test_non_owner_cannot_submit(self):
   self.a.issue={'state':'open'}
   self.a.pr['user']['login']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'authorized active developer'):evaluate(self.a.pr,self.p,{},self.a)
