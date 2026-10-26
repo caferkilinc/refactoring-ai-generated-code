@@ -1,3 +1,7 @@
+# Genesis v2.0 transition and mandatory release scope
+
+Owner decision (2026-10-26): 31 existing technical issues and 54 original dependencies are preserved, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is a pre-Genesis bootstrap; merge requires independent review and an additional explicit project owner approval. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
+
 # Development Roadmap — PROJECT GENESIS v2.0
 
 **Status:** proposed staged migration; no Genesis handoff accepted yet. **Last update:** 2026-10-26. **Due:** 2027-01-01; exact time UNKNOWN.
@@ -14,12 +18,12 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 
 | Package | Focus | GitHub issue |
 |---|---|---|
-| İP1 | Deney temeli ve platform sözleşmeleri | #2 |
-| İP2 | Dil çekirdeği ve başlangıç kalite/davranış ölçümü | #3 |
-| İP3 | Güvenlik inceleme hattı ve Local AI | #4 |
-| İP4 | İlk onay ve bağımlılığa duyarlı paralel refactoring | #5 |
-| İP5 | Kanıta dayalı doğrulama ve nihai sürüm | #6 |
-| İP6 | Çok dilli genişleme ve deneysel değerlendirme | #7 |
+| İP1 | One owner via rotation | #2 |
+| İP2 | One owner via rotation | #3 |
+| İP3 | One owner via rotation | #4 |
+| İP4 | One owner via rotation | #5 |
+| İP5 | One owner via rotation | #6 |
+| İP6 | One owner via rotation | #7 |
 
 ## Retained technical tasks and dependencies
 
