@@ -11,6 +11,7 @@
 - `scripts/governance/gate.py`: uses selected active task/owner instead of old primary/support, excludes PR author and any commit authors/committers from independent review, protects governance changes, retains a *strict* PR #38 legacy bootstrap exception for independent review but never advances the new rotation.
 - `scripts/governance/audit_plan.py`: explicit phased live-assignment migration; must not silently treat old GitHub assignees as authoritative.
 - `scripts/governance/workload.py` and `docs/TEAM_WORKLOAD.md`: no fixed developer workloads; historic window/effort estimates only.
+- `scripts/governance/migrate_assignments.py` plus `tests/governance/test_assignment_migration.py`: dry-run-first full-graph live issue assignment cleaner, inert until the accepted policy reaches `main`, exact owner approval and a clean repository state. Never run from this draft PR.
 - `tests/governance/`: verify rotator constraints, invalid assignee/policy cases, current independent review, GitHub prerequisites and bilingual SRS parity.
 - `AGENTS.md` and `.agents/skills/development-handoff/SKILL.md`: concise persistent Codex instructions and bounded human-reviewed handoff workflow; availability in each developer's Codex IDE must still be verified.
 - `README.md`, `CONTRIBUTING.md`, `docs/ARCHITECTURE.md`, `docs/DEVELOPMENT_ROADMAP.md`, `docs/PROJECT_STATUS.md`, `docs/TEAM_WORKFLOW.md`, and existing dependency documentation: align mandatory delivery, nonexclusive module expertise and merge restrictions.
@@ -21,7 +22,7 @@
 2. Independent, contributor-free code review of migration and PR #38 on the actual current commits. Reviewer requests and old approvals do not equal accepted review.
 3. Confirm branch-protection/CI applicability and finish PR #38 compatibility migration without removing existing code, issue history or Git dependencies.
 4. **Request a separate, explicit project owner decision for final merging of PR #38. No approval from earlier chat text is a standing merge authorization.**
-5. Only after accepted governance policy reaches main, safely migrate live issue assignees and fixed primary/support/reviewer body fields in a reviewed, preflighted operation. Require a dry-run reconciliation and preserve issue titles, objective, acceptance, priority, timestamps, native subissues and dependency edges. If partial failure occurs, stop and report; do not guess restored state.
+5. Only after accepted governance policy reaches main, safely migrate live issue assignees and fixed primary/support/reviewer body fields using the reviewed script's default dry-run followed by separately authorized `--apply --owner-approved` on a clean `main` checkout. Require a dry-run reconciliation and preserve issue titles, objective, acceptance, priority, timestamps, native subissues and dependency edges. If partial failure occurs, stop and report; do not guess restored state.
 6. Run live audit and GitHub action canary on main (including out-of-turn user, missing acceptance, wrong branch, stale review, policy edits and duplicate handoff). Do not disable a failing gate to force acceptance.
 7. Confirm finalized bilingual SRS with owner, real runtime/GPU/provider access, reproducible test/demo plan and handoff readiness. Burkay starts first authorized executable task; Cafer remains conditional successor until accepted publication.
 
