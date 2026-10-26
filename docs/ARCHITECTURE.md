@@ -2,15 +2,15 @@
 
 This is the intended architecture, not a list of delivered capabilities. Sources: master system architecture, step-by-step development guide and approved five-person work-package plan. The course deadline and account confirmations supersede the older relative 12-week schedule. Private source PDFs/DOCX are not republished.
 
-| Component | Owner | Contract/output |
+| Component | Responsible runtime module | Contract/output |
 |---|---|---|
-| FastAPI orchestrator, state/queue, storage | Cafer | Runs, consent, immutable versions, idempotent jobs |
-| Language Router and adapters | Burkay | Per-component language capabilities, symbols, source locations, uncertainty |
-| Quality and deterministic security tools | Burkay | Normalized findings with real evidence and stable rule/tool versions |
-| Optional Local AI service | Alperen | Evidence-labelled review, bounded inference, explicit fallback |
-| Context builder, conflict DAG, providers | Alperen | Bounded masked context, isolated patch attempts, conservative scheduling |
-| Sandbox, candidate and final validation | İsmail | Frozen tests, regression/security results, independent behavior/quality outcomes |
-| React/TypeScript/Monaco and reporting | Taha | Two approvals, diff, evidence-linked measurements/history |
+| FastAPI orchestrator, state/queue, storage | Core API and workers | Runs, consent, immutable versions, idempotent jobs |
+| Language Router and adapters | Language adapters | Per-component language capabilities, symbols, source locations, uncertainty |
+| Quality and deterministic security tools | Quality/SAST workers | Normalized findings with real evidence and stable rule/tool versions |
+| Mandatory first-delivery Falcon-Mamba 7B local review | Isolated Local AI service | Evidence-labelled review, bounded inference, explicit fallback |
+| Context builder, conflict DAG, providers | Context/patch orchestration | Bounded masked context, isolated patch attempts, conservative scheduling |
+| Sandbox, candidate and final validation | Validation workers | Frozen tests, regression/security results, independent behavior/quality outcomes |
+| React/TypeScript/Monaco and reporting | User interface and reporting service | Two approvals, diff, evidence-linked measurements/history |
 
 ```mermaid
 flowchart TD
@@ -32,6 +32,10 @@ V0 and frozen test hashes must remain unchanged. Patches cannot edit tests or we
 
 `behavior_status` (PASSED/FAILED/UNVERIFIED) is independent from quality outcome. Build success alone does not establish behavior preservation. Individually passing patches still require a full combined build/regression/static/security validation. Failed attempts remain in denominators; zero denominators display N/A.
 
-P0 uses Java 21/Maven pilot, JavaParser/PMD/CPD plus deterministic security tooling selected and pinned in its task. Python AST/LibCST, pytest/coverage.py and TypeScript API/ts-morph, ESLint, Vitest/Jest are P1 adapter plans. Capabilities and coverage remain per language/component; unresolved cross-service contracts remain uncertain.
+P0 first delivery includes Java 21/Maven/JavaParser/PMD/CPD, Python AST/LibCST and pytest/coverage.py, TypeScript API/ts-morph with ESLint and Jest/Vitest, deterministic security plus real Falcon-Mamba 7B local review, HTML/PDF/history. Implementation is dependency ordered, with Java pilot first, but all are required for first delivery. Capabilities and coverage remain per language/component; unresolved cross-service contracts remain uncertain.
 
-Falcon-Mamba runtime/model revision, actual GPU access, memory, compatibility and latency must be measured in #19. A desktop RTX 4090 or M3 ownership is not proof of an accessible compatible deployment. M3 does not supply CUDA. Neither model feasibility nor paid API budget has been verified; these resource gates stay visible.
+Falcon-Mamba runtime/model revision, actual GPU access, memory, compatibility and latency must be measured in #19. A desktop RTX 4090 or M3 ownership is not proof of an accessible compatible deployment. M3 does not supply CUDA. Neither model feasibility nor paid API budget has been verified. Falcon-Mamba is mandatory for the first delivery by the 2026-10-26 owner decision; unavailability blocks release readiness, but deterministic security scans must fail safely and continue.
+
+## Development governance boundary (approved 2026-10-26)
+
+The component labels above are *technical runtime responsibilities*, never permanent human task assignments. PROJECT GENESIS v2.0 authorizes one active developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. No implementation handoff is accepted without human-reviewed Git publication and orchestrator acceptance. [TR SRS](SRS.md) / [EN SRS](SRS_EN.md) are review drafts pending final owner approval. PR #38 is legacy pre-Genesis preparation, not a completed rotation turn.
