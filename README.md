@@ -4,9 +4,9 @@ Engineering Design II — Ankara Bilim University. A planned multilingual platfo
 
 **Current state (2026-10-22):** September planning/scaffolding history is preserved. Application modules, backend/frontend executable tests and experimental results are not implemented on `main`. Governance configuration is proposed in a review branch. See [actual status](docs/PROJECT_STATUS.md).
 
-**Final course deadline: 2027-01-01; time unspecified.** P0 target December 13, P1 cutoff December 20, package December 27, reserve December 28–31. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
+**Final course deadline: 2027-01-01; time unspecified.** All owner-approved Python/JS/TS, Falcon-Mamba, HTML/PDF and core refactoring capabilities are mandatory first-delivery P0; historical P1 schedule must be replanned. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
 
-| Member | GitHub | Primary responsibility |
+| Member | GitHub | Domain expertise (not fixed implementation assignment) |
 |---|---|---|
 | Cafer Tayyar Kılınç | @caferkilinc | Team Leader, FastAPI orchestrator, contracts, storage, integration |
 | İsmail Çevik | @ismail-cevik | Sandbox, baseline tests, candidate/combined validation, QA |
@@ -18,15 +18,16 @@ All five repository accounts were verified on October 22: Cafer Admin, four coll
 
 ## Scope
 
-P0: Java pilot → safe input/V0 → language and quality/security analysis → approval 1 → bounded dependency-aware parallel patches → candidate tests → approval 2 → combined validation → final ZIP/basic measured report. P1: real Local AI, Python/JavaScript/TypeScript, mixed projects and advanced reporting. Local AI does not block Java P0.
+First-delivery P0: Java, Python, JavaScript and TypeScript (including mixed projects), real local Falcon-Mamba 7B, deterministic security, immutable V0, both user approvals, bounded real-provider refactoring, isolated candidate and combined verification, final ZIP, evidence-based HTML/PDF reports and history. C#/Go/C++ remain future scope. Lack of required GPU/provider access blocks release rather than becoming a fabricated PASS.
 
 FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components. No completed platform or measured improvement rate is claimed here. M3/macOS is a development environment; CUDA inference needs a separately verified GPU runtime.
 
 ## Working together
 
-Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Choose an existing issue and numbered topic branch; submit a PR, obtain independent review and evidence-backed acceptance. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
+Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Exactly one orchestrator-authorized developer may implement the dependency-ready task. Numbered topic PR branches remain for independent review, with `main` as accepted integration branch. PR #38 is a pre-Genesis bootstrap and requires separate owner merge approval. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
 - [Project board](https://github.com/users/caferkilinc/projects/1)
+- [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (review drafts)
 - [Architecture](docs/ARCHITECTURE.md) and [decisions](docs/DECISIONS/0001-scope-and-governance.md)
 - [Roadmap and all 31 tasks](docs/DEVELOPMENT_ROADMAP.md)
 - [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
