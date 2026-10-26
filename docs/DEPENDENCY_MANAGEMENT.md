@@ -1,10 +1,12 @@
+> **Genesis v2.0 transition, owner approved 2026-10-26:** This document describes the legacy issue-based CI evidence mechanism. Fixed developer assignments are superseded by a single active owner; preserved issue prerequisites and independent review remain mandatory. Current transition branch introduces `sequential_execution` in the registry and removes fixed primary/support/reviewer fields. Live issue assignments and metadata are intentionally left intact until the new gate and migration receive independent review. PR #38 may only merge after separate explicit owner approval. All P0 first delivery obligations include Falcon-Mamba, Python/JS/TS and complete PDF reporting.
+
 # Dependency and merge-readiness policy
 
-The reviewed `.github/task-plan.json` maps Plan ID → issue → work package → owner/support/reviewer → dates/effort → mandatory prerequisites → allowed paths → applicable checks. Issue text and Project cells are planning displays, not sources that can weaken trusted policy. Native issue edges mirror this registry; epics aggregate child work without duplicated effort.
+The reviewed `.github/task-plan.json` maps Plan ID → issue → work package → dynamic authorized owner via sequential_execution → dates/effort → mandatory prerequisites → allowed paths → applicable checks. Issue text and Project cells are planning displays, not sources that can weaken trusted policy. Native issue edges mirror this registry; epics aggregate child work without duplicated effort.
 
 ## Two different checks
 
-- `dependency-gate`: registered author, main target, branch/Task/Plan agreement, complete file scope, native edges and accepted prerequisites.
+- `dependency-gate`: currently authorized developer, main target, branch/Task/Plan agreement, complete file scope, native edges and accepted prerequisites.
 - `merge-readiness`: all of the above **plus the current PR's** independent Write/Admin approval and successful applicable CI. No review, stale review, a supporting developer's approval, unresolved independent changes requests, draft PR, missing/failed/skipped tests or unrelated check revision may pass.
 
 Both jobs are proposed required checks, not active protection. `merge-readiness` can initially fail while review/tests are pending; that is expected, not a reason to remove it. After review and CI finish, a maintainer re-runs the Dependency gate workflow. Review submission is deliberately **not** wired to an untrusted head-defined workflow or a new write token. A branch may be developed before integration prerequisites pass.
@@ -22,7 +24,7 @@ Every prerequisite needs a record in trusted main `.github/acceptance.json` and 
 1. Issue closed as completed, not not-planned.
 2. Matching PR merged to this repository's main; accepted head SHA equals its PR head.
 3. Registered Task/Plan/branch and complete changed-file list within allowed scope.
-4. Current-revision approval by a Write/Admin teammate outside primary, support, PR author and GitHub-linked commit authors/committers; unresolved independent changes requests block.
+4. Current-revision approval by a Write/Admin teammate outside the PR author and actual GitHub-linked commit authors/committers; unresolved independent changes requests block.
 5. All applicable GitHub Actions checks completed with **success**, not missing/skipped/neutral.
 6. A nonempty list of HTTPS evidence URLs without embedded credentials, independently assessed against the task acceptance criteria.
 
@@ -34,7 +36,7 @@ Illustrative schema, not a real acceptance:
 
 Optional `ci_sha` may identify that PR's head or its actual merged commit when check placement requires it; arbitrary commits cannot supply CI proof. On the audited bootstrap PR the hosted checks were confirmed on its head SHA. Evidence URLs are reviewed attestations, not automated semantic proof of a research result.
 
-Governance maintenance, including acceptance records, uses `chore/1-...`, `Task: #1`, `Plan: F01-GOV`, even after #1 closes. Ordinary application tasks cannot change governance scripts/tests, policy registries, CODEOWNERS or protected workflows through a broad `tests/` path. #10 may define only application CI workflow paths; governance workflow changes require #1. Policy changes require independent review and activated main protection.
+Governance maintenance must be an explicitly authorized sequential task; historically it used `chore/1-...`, `Task: #1`, `Plan: F01-GOV`, even after #1 closes. Ordinary application tasks cannot change governance scripts/tests, policy registries, CODEOWNERS or protected workflows through a broad `tests/` path. #10 may define only application CI workflow paths; governance workflow changes require #1. Policy changes require independent review and activated main protection.
 
 ## Real checks for each deliverable
 
@@ -53,7 +55,7 @@ No application, pilot or contract workflow is claimed implemented by this setup.
 
 Issue graph sync performs a complete read preflight before the first write; unexpected parents/edges stop the run. It only adds expected missing links. GitHub writes are not a transaction: an API/network failure during the write stage can still leave a partial result. Re-run the idempotent sync after fixing the cause, then audit; do not erase history or delete unrelated edges.
 
-`python3 scripts/governance/audit_plan.py` audits all registered live task owners, metadata bodies, six parent lists and native prerequisites with read-only API requests. After merge, the owner may run Actions → Live plan audit on main. This is a diagnostic, not a required merge check: dispatch-only workflow jobs are not eligible required PR checks. Personal Project date/effort cells still need a separate board comparison; `GITHUB_TOKEN` access to a repository does not grant access to a private personal Project.
+`python3 scripts/governance/audit_plan.py` audits all registered task metadata bodies, six parent lists and native prerequisites with read-only API requests. After merge, the owner may run Actions → Live plan audit on main. This is a diagnostic, not a required merge check: dispatch-only workflow jobs are not eligible required PR checks. Personal Project date/effort cells still need a separate board comparison; `GITHUB_TOKEN` access to a repository does not grant access to a private personal Project.
 
 ## Activation
 
