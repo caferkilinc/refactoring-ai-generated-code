@@ -34,12 +34,27 @@ def validate_plan(plan):
             visit(dep)
         visiting.remove(key)
         done.add(key)
+    rotation = plan.get('sequential_execution', {})
+    sequence = rotation.get('team_sequence', [])
+    require(sequence == ['cakarburkayy', 'caferkilinc', 'Yaman-A-E',
+                         'ismail-cevik', 'tahaugurtoyran'],
+            'Invalid or altered five-member rotation')
+    require(all(member in plan['team'] for member in sequence),
+            'Unknown team member in rotation')
+    require(rotation.get('rotation_index') in range(len(sequence)),
+            'Invalid rotation index')
+    require(rotation.get('active_owner') == sequence[rotation['rotation_index']],
+            'Active owner disagrees with rotation index')
+    require(rotation.get('active_task_plan_id') in ids,
+            'Active task is not in trusted registry')
+    require(rotation.get('next_owner_if_accepted') ==
+            sequence[(rotation['rotation_index'] + 1) % len(sequence)],
+            'Next owner disagrees with rotation')
+    require(rotation.get('handoff_confirmed') is False,
+            'Handoff cannot be pre-confirmed by task registry')
+    require(not any(t.get(k) for t in tasks for k in ('owner', 'support', 'reviewer')),
+            'Static developer assignments are forbidden')
     for task in tasks:
-        require(all(u in plan['team'] for u in (task['owner'], task['support'], task['reviewer'])),
-                'Unknown team member')
-        require(task['owner'].lower() != task['reviewer'].lower(), 'Reviewer must be independent')
-        require(task['reviewer'].lower() != task['support'].lower(), 'Reviewer cannot be supporting developer')
-        require(task['owner'].lower() != task['support'].lower(), 'Owner and support must differ')
         require(type(task['issue_number']) is int and task['issue_number'] > 0, 'Invalid issue number')
         require(task['priority'] in ('P0', 'P1'), 'Unknown priority')
         require(task['kind'] in ('code', 'research', 'documentation'), 'Unknown task kind')
@@ -78,6 +93,7 @@ def check_paths(task, files, pr=None):
         for path in [item['filename']] + ([item['previous_filename']] if item.get('previous_filename') else []):
             protected = path.startswith(('scripts/governance/', 'tests/governance/')) or path in (
                 '.github/CODEOWNERS', '.github/task-plan.json', '.github/acceptance.json',
+                'AGENTS.md', '.agents/skills/development-handoff/SKILL.md',
                 '.github/branch-protection.proposed.json', '.github/workflows/governance-ci.yml',
                 '.github/workflows/dependency-gate.yml', '.github/workflows/issue-graph-sync.yml',
                 '.github/workflows/live-plan-audit.yml')
@@ -94,7 +110,8 @@ def independent_review(task, pr, api, plan):
         if review['state'] in ('APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'):
             latest[review['user']['login'].lower()] = review
     team = {user.lower() for user in plan['team']}
-    excluded = {task['owner'].lower(), task['support'].lower(), pr['user']['login'].lower()}
+    # Review independence is based on actual PR author/committers, not historical task owners.
+    excluded = {pr['user']['login'].lower()}
     for commit in api.pages(f"/pulls/{pr['number']}/commits"):
         for field in ('author', 'committer'):
             user = commit.get(field) or {}
@@ -164,8 +181,11 @@ def evaluate(pr, plan, accepted, api):
     require(issue.get('state') == 'open' or maintenance, 'Implementation task must be open')
     require(pr['base']['repo']['full_name'] == plan['repository'] and pr['base']['ref'] == 'main',
             'Wrong integration target')
-    require(pr['user']['login'].lower() in {task['owner'].lower(), task['support'].lower()},
-            'PR author is not the registered primary or supporting developer')
+    rotation = plan['sequential_execution']
+    require(task['plan_id'] == rotation['active_task_plan_id'],
+            'PR task is not the single authorized active task')
+    require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
+            'PR author is not the authorized active developer')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"), pr)
     # Live native dependencies supplement the base registry; missing native edges fail closed.
     native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")
