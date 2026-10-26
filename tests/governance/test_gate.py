@@ -38,7 +38,7 @@ class GateTests(unittest.TestCase):
   self.a.reviews[0]['commit_id']='old'
   with self.assertRaises(Rejected):self.accept()
  def test_self_review_fails(self):
-  self.a.reviews[0]['user']['login']='caferkilinc'
+  self.a.reviews[0]['user']['login']='cakarburkayy'
   with self.assertRaises(Rejected):self.accept()
  def test_later_changes_request_fails(self):
   self.a.reviews.append({'user':{'login':'ismail-cevik'},'state':'CHANGES_REQUESTED','commit_id':'abc'})
@@ -122,7 +122,35 @@ class GateTests(unittest.TestCase):
  def test_rotation_mismatch_fails_closed(self):
   self.p['sequential_execution']['active_owner']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'rotation index'):validate_plan(self.p)
- def test_non_owner_cannot_submit(self):
+ def test_legacy_bootstrap_pr38_can_be_audited_without_advancing_rotation(self):
+  self.a.issue={'state':'open'}
+  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
+   head={'ref':'chore/1-team-workflow','sha':'legacy-head'},
+   user={'login':'caferkilinc'})
+  self.a.files=[{'filename':'.github/task-plan.json'}]
+  self.assertIn('F01-GOV: all 0',evaluate(self.a.pr,self.p,{},self.a))
+  self.assertEqual('cakarburkayy',self.p['sequential_execution']['active_owner'])
+ def test_legacy_bootstrap_wrong_author_is_denied(self):
+  self.a.issue={'state':'open'}
+  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
+   head={'ref':'chore/1-team-workflow','sha':'legacy-head'})
+  self.a.files=[{'filename':'.github/task-plan.json'}]
+  with self.assertRaisesRegex(Rejected,'single authorized active task'):
+   evaluate(self.a.pr,self.p,{},self.a)
+ def test_bootstrap_does_not_skip_independent_review(self):
+  self.a.issue={'state':'open'}
+  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
+   head={'ref':'chore/1-team-workflow','sha':'legacy-head'},
+   user={'login':'caferkilinc'})
+  self.a.files=[{'filename':'.github/task-plan.json'}]
+  self.a.reviews=[]
+  from gate import readiness
+  with self.assertRaisesRegex(Rejected,'No current independent'):
+   readiness(self.a.pr,self.p,{},self.a)
+ def test_report_scope_is_allowed_without_bypassing_governance_policy(self):
+  from gate import check_paths
+  self.assertIsNone(check_paths(self.t,[{'filename':'report.md'}]))
+  def test_non_owner_cannot_submit(self):
   self.a.issue={'state':'open'}
   self.a.pr['user']['login']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'authorized active developer'):evaluate(self.a.pr,self.p,{},self.a)
