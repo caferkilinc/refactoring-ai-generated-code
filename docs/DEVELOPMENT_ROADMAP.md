@@ -18,12 +18,12 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 
 | Package | Focus | GitHub issue |
 |---|---|---|
-| İP1 | One owner via rotation | #2 |
-| İP2 | One owner via rotation | #3 |
-| İP3 | One owner via rotation | #4 |
-| İP4 | One owner via rotation | #5 |
-| İP5 | One owner via rotation | #6 |
-| İP6 | One owner via rotation | #7 |
+| İP1 | Experiment baseline and platform contracts | #2 |
+| İP2 | Language adapters, initial quality and behavior measurement | #3 |
+| İP3 | Deterministic security and mandatory Falcon-Mamba | #4 |
+| İP4 | Approval 1, dependency-aware context and controlled patching | #5 |
+| İP5 | Evidence-based validation, final version and reporting | #6 |
+| İP6 | Mandatory multilingual expansion and empirical evaluation | #7 |
 
 ## Retained technical tasks and dependencies
 
