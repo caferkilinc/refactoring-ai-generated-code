@@ -1,25 +1,23 @@
-Task: #<!-- number; must match branch -->
-Plan: <!-- exact Plan ID from .github/task-plan.json -->
+Task: #<!-- registered issue; must match numbered topic branch -->
+Plan: <!-- exact existing plan ID -->
 
-## Behavior and reason
-Describe the concrete trigger, previous behavior, resulting behavior and scope.
+## Task authorization
+Authorized active developer: @
+Approved baseline SHA:
+Orchestrator task contract / link:
+In scope:
+Out of scope:
 
-## Ownership
-Primary developer: @
-Supporting developer: @
-Independent reviewer: @
+## Implementation and evidence
+Changed behavior, files, acceptance criteria, actual test commands/results, scope deviations, blockers, and a concise report.md snapshot:
 
-## Dependency evidence
-Link prerequisite issues and acceptance records. Development may proceed with fixtures;
-mandatory prerequisites must be accepted before integration. PR text is not gate authority.
+- [ ] Current task/owner and relevant approved SRS FR/NFR references match the contract
+- [ ] Mandatory technical predecessors are accepted on main
+- [ ] Applicable real checks and negative cases executed or honestly marked NOT_RUN
+- [ ] Source/V0/frozen tests and secrets/allowed paths preserved
+- [ ] No unapproved new dependency, deployment or architecture change
+- [ ] Independent reviewer (not PR/commit author) requested for current HEAD
+- [ ] Human commit/push evidence supplied; handoff remains pending until orchestrator accepts
 
-## Validation
-Commands actually executed, results, evidence URLs and remaining limitations:
-
-- [ ] Task acceptance criteria addressed with evidence
-- [ ] Applicable normal/error/integration checks passed
-- [ ] Documentation and contracts updated
-- [ ] No secrets, private uploads or academic DOCX included
-- [ ] Independent review requested
-
-Product approval gates, GitHub reviews and research experiment counts are separate.
+**Review ≠ product approval 1/2 ≠ successful handoff.**
+**Do not assume PR #38 may merge without separate owner authorization.**
