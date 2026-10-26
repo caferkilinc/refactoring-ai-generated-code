@@ -66,9 +66,11 @@ class GateTests(unittest.TestCase):
   self.a.issue={'state':'open'}
   self.assertIn('all 0',evaluate(self.a.pr,self.p,{},self.a))
  def test_mandatory_dependency_blocks(self):
+  self.p['sequential_execution']['active_task_plan_id']='F00-V0'
   self.a.issue={'state':'open'};self.a.pr.update(body='Task: #9\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'});self.a.files=[{'filename':'experiments/pilot/Main.java'}];self.a.dependencies=[{'number':8}]
   with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
  def test_completed_dependency_reopens_gate(self):
+  self.p['sequential_execution']['active_task_plan_id']='F00-V0'
   pr=copy.deepcopy(self.a.pr);pr.update(body='Task: #9\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'},number=102)
   original=self.a
   class Complete(API):
