@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, 'chore/1-team-workflow', 'chore/project-genesis-v2-migration']
   pull_request:
-    branches: [main, 'chore/1-team-workflow']
+    branches: [main, 'chore/1-team-workflow', 'chore/project-genesis-v2-migration']
 permissions:
   contents: read
 concurrency:
