@@ -1,36 +1,52 @@
-"""Reproducible weekly planning estimates; never measured working time."""
-import argparse,json
-from collections import defaultdict
-from datetime import date,timedelta
+"""Compute unassigned weekly roadmap estimates; allocation follows accepted rotation, not fixed roles."""
+import argparse
+import json
+from datetime import date, timedelta
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2]
+
+ROOT = Path(__file__).resolve().parents[2]
+
 def report(plan):
- start=date(2026,10,21);weeks=[]
- while start<=date(2026,12,27):
-  end=min(start+timedelta(days=6-start.weekday()),date(2026,12,27));weeks.append((start,end));start=end+timedelta(days=1)
- loads=defaultdict(float);active=defaultdict(set)
- for task in plan['tasks']:
-  first,last=date.fromisoformat(task['start']),date.fromisoformat(task['target'])
-  span=(last-first).days+1
-  for i,(a,b) in enumerate(weeks):
-   overlap=max(0,(min(b,last)-max(a,first)).days+1)
-   if not overlap:continue
-   for user,share in [(task['owner'],.7),(task['support'],.3)]:
-    loads[i,user]+=task['estimated_effort']*share*overlap/span
-    active[i,user].add(task['issue_number'])
- lines=['# Haftalık tahmini iş yükü / Weekly estimated effort','','70% primary / 30% support planning split. Calendar-day allocation is a distribution model, not actual hours or availability. Epic trackers add zero effort. Reviewer time is additional and must be agreed weekly. No fixed equal weekly capacity is imposed.','', '| Week | '+' | '.join(plan['team'])+' |','|---|'+'---:|'*len(plan['team'])]
- for i,(a,b) in enumerate(weeks):lines.append(f'| {a} – {b} | '+' | '.join(f'{loads[i,u]:.1f}' for u in plan['team'])+' |')
- lines+=['','## Review workload sensitivity','',f"Review effort is not included in the {sum(t['estimated_effort'] for t in plan['tasks'])}-hour task midpoint total. The following shows assignments by target week. An illustrative 1–2 hours per review is a sensitivity assumption, not an availability commitment; multiple PRs or revisions increase it. Confirm actual reviewer capacity before assigning an alternate qualified reviewer outside primary/support.",'', '| Week | '+' | '.join(plan['team'])+' |','|---|'+'---:|'*len(plan['team'])]
- for a,b in weeks:
-  counts={u:sum(t['reviewer']==u and a<=date.fromisoformat(t['target'])<=b for t in plan['tasks']) for u in plan['team']}
-  lines.append(f'| {a} – {b} | '+' | '.join(f'{counts[u]} reviews / {counts[u]}–{2*counts[u]} h' for u in plan['team'])+' |')
- lines+=['','## Weekly capacity review','','Each member declares available effort for the coming week. Compare with these estimates including support/review; track remaining work, blockers and actual progress. Replan dependent dates when a P0 gate slips. A total above 18 estimated person-hours is a review signal, not a mandatory capacity or overtime requirement. P1 work is the first candidate for deferral.','']
- for i,(a,b) in enumerate(weeks):
-  for u in plan['team']:
-   if loads[i,u]>18:lines.append(f'- {a}: @{u}: {loads[i,u]:.1f} estimated hours, tasks '+', '.join('#'+str(n) for n in sorted(active[i,u]))+'. Confirm capacity; share support or defer independent work.')
- lines+=['','December 14–20: Alperen supports the experiment protocol/data handling (#36); Burkay concentrates on JS/TS (#33). İsmail remains the independent reviewer. Taha supports P0 E2E, then academic packaging. Do not pull P1 tasks into an unresolved P0 integration week.','', 'Run `python3 scripts/governance/workload.py` after changing the canonical plan.']
- return '\n'.join(lines)+'\n'
-if __name__=='__main__':
- ap=argparse.ArgumentParser();ap.add_argument('--output');args=ap.parse_args();s=report(json.loads((ROOT/'.github/task-plan.json').read_text(encoding="utf-8")))
- if args.output:Path(args.output).write_text(s)
- else:print(s)
+    """Task scheduling totals are NOT personal assignments or actual hours."""
+    start = date(2026, 10, 21)
+    cutoff = min(date(2026, 12, 27), date.fromisoformat(plan["deadline"]) - timedelta(days=1))
+    lines = ["# Weekly unassigned roadmap effort / Haftalık atanmamış iş yükü", "",
+             "Estimates below are task-window distributions, not commitments or permanent member allocation.",
+             "Only one implementation owner is authorized at a time in the Genesis rotation.",
+             "Actual effort, PR reviews and blocked dependencies must be reviewed at every handoff.", "",
+             "| Week | Estimated work-package effort (person-hours) | Open task IDs in window |",
+             "|---|---:|---|"]
+    while start <= cutoff:
+        end = min(start + timedelta(days=6 - start.weekday()), cutoff)
+        value = 0.0
+        active = []
+        for task in plan["tasks"]:
+            first, last = date.fromisoformat(task["start"]), date.fromisoformat(task["target"])
+            overlap = max(0, (min(end, last) - max(start, first)).days + 1)
+            if not overlap:
+                continue
+            days = (last - first).days + 1
+            value += task["estimated_effort"] * overlap / days
+            active.append(task["plan_id"])
+        lines.append(f"| {start} – {end} | {value:.1f} | {', '.join(active) or 'None'} |")
+        start = end + timedelta(days=1)
+    lines.extend(["", "## Decision and limitations", "",
+      "- The original 70/30 owner/support split and reviewer allocations are historical and not a workload forecast under sequential ownership.",
+      "- All 31 technical tasks and six work packages remain in the registry.",
+      "- Prerequisite completion, verification, handoff publication and available people constrain real scheduling.",
+      "- Owner-approved P0 now includes Falcon-Mamba and Python/JS/TS. Do not defer mandatory items silently.",
+      "- The 2027-01-01 due date is a target; this table does not imply that the work fits available capacity.",
+      "- Update task windows only after evidence-based replanning and owner acceptance where consequential.",
+      ""])
+    return "\n".join(lines)
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--output")
+    args = p.parse_args()
+    plan = json.loads((ROOT / ".github/task-plan.json").read_text(encoding="utf-8"))
+    result = report(plan)
+    if args.output:
+        Path(args.output).write_text(result, encoding="utf-8")
+    else:
+        print(result)
