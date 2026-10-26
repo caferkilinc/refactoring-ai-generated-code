@@ -34,8 +34,12 @@ V0 and frozen test hashes must remain unchanged. Patches cannot edit tests or we
 
 P0 first delivery includes Java 21/Maven/JavaParser/PMD/CPD, Python AST/LibCST and pytest/coverage.py, TypeScript API/ts-morph with ESLint and Jest/Vitest, deterministic security plus real Falcon-Mamba 7B local review, HTML/PDF/history. Implementation is dependency ordered, with Java pilot first, but all are required for first delivery. Capabilities and coverage remain per language/component; unresolved cross-service contracts remain uncertain.
 
-Falcon-Mamba runtime/model revision, actual GPU access, memory, compatibility and latency must be measured in #19. A desktop RTX 4090 or M3 ownership is not proof of an accessible compatible deployment. M3 does not supply CUDA. Neither model feasibility nor paid API budget has been verified. Falcon-Mamba is mandatory for the first delivery by the 2026-10-26 owner decision; unavailability blocks release readiness, but deterministic security scans must fail safely and continue.
+Real local Falcon-Mamba 7B is **mandatory P0**. Its exact model revision, runtime, GPU access, memory, compatibility and latency must be measured in #19. A desktop RTX 4090 or M3 ownership is not proof of an accessible compatible deployment. M3 does not supply CUDA. Neither model feasibility nor paid API budget has been verified. Falcon-Mamba is mandatory for the first delivery by the 2026-10-26 owner decision; unavailability blocks release readiness, but deterministic security scans must fail safely and continue.
 
 ## Development governance boundary (approved 2026-10-26)
 
 The component labels above are *technical runtime responsibilities*, never permanent human task assignments. PROJECT GENESIS v2.0 authorizes one active developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. No implementation handoff is accepted without human-reviewed Git publication and orchestrator acceptance. [TR SRS](SRS.md) / [EN SRS](SRS_EN.md) are review drafts pending final owner approval. PR #38 is legacy pre-Genesis preparation, not a completed rotation turn.
+
+## Developer rotation is distinct from module expertise
+
+2026-10-26 owner decision: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay. The expertise column does **not** preassign task ownership. The orchestrator selects one ready task and owner at a time. PR #38 predates the rotation and requires independent review plus separate owner merge authorization. Refer to [SRS Türkçe](SRS.md) and [SRS English](SRS_EN.md) review drafts.
