@@ -28,7 +28,8 @@ class FakeAPI:
                     f"- Priority: {old}\n"
                     "- Preserve legitimate acceptance and objective text.\n"
                 ),
-                "assignees": [{"login": "caferkilinc"}],
+                "assignees": ([{"login": "caferkilinc"}]
+                              if task["issue_number"] <= 37 else []),
             }
 
     def call(self, path, method="GET", data=None, **kwargs):
@@ -49,7 +50,7 @@ class IssueAssignmentMigrationTests(unittest.TestCase):
     def test_dry_run_preserves_all_issues_without_writes(self):
         result = run(PLAN, self.api)
         self.assertEqual("DRY_RUN", result["mode"])
-        self.assertEqual(31, len(result["planned"]))
+        self.assertEqual(34, len(result["planned"]))
         self.assertEqual([], self.api.writes)
 
     def test_patch_preserves_objective_and_updates_promoted_priority(self):
@@ -77,6 +78,11 @@ class IssueAssignmentMigrationTests(unittest.TestCase):
     def test_apply_needs_owner_approval_even_when_all_issues_valid(self):
         with self.assertRaisesRegex(ValueError, "owner-approved"):
             run(PLAN, self.api, apply=True, approved=False)
+        self.assertEqual([], self.api.writes)
+
+    def test_live_apply_requires_verified_new_native_graph(self):
+        with self.assertRaisesRegex(ValueError, "graph must be VERIFIED"):
+            run(PLAN, self.api, apply=True, approved=True)
         self.assertEqual([], self.api.writes)
 
     def test_repeated_dry_run_is_idempotent_after_exact_cleanup(self):
