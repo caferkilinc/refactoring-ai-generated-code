@@ -104,31 +104,20 @@ def check_paths(task, files, pr=None):
                 path.startswith(p) if p.endswith('/') else path == p
                 for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
-def independent_review(task, pr, api, plan):
-    """Same review rule before merge and before downstream acceptance."""
-    reviews = api.pages(f"/pulls/{pr['number']}/reviews")
-    latest = {}
-    for review in reviews:
-        if review['state'] in ('APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'):
-            latest[review['user']['login'].lower()] = review
-    team = {user.lower() for user in plan['team']}
-    # Review independence is based on actual PR author/committers, not historical task owners.
-    excluded = {pr['user']['login'].lower()}
-    for commit in api.pages(f"/pulls/{pr['number']}/commits"):
-        for field in ('author', 'committer'):
-            user = commit.get(field) or {}
-            if user.get('login'):
-                excluded.add(user['login'].lower())
-    approved = False
-    for user, review in latest.items():
-        if user not in team or user in excluded:
-            continue
-        permission = api.call('/collaborators/' + review['user']['login'] + '/permission')['permission']
-        if permission not in ('write', 'maintain', 'admin'):
-            continue
-        require(review['state'] != 'CHANGES_REQUESTED', 'Unresolved independent changes request')
-        approved |= review['state'] == 'APPROVED' and review.get('commit_id') == pr['head']['sha']
-    require(approved, 'No current independent Write approval for this revision')
+def owner_approval(task, pr, api, plan):
+    """Only the project owner may approve the exact current PR revision.
+
+    An authenticated GitHub issue comment binds the approval to the head SHA.
+    Other developers' approvals are not required and cannot substitute for it.
+    """
+    marker = 'GENESIS-OWNER-APPROVED: ' + pr['head']['sha']
+    comments = api.pages(f"/issues/{pr['number']}/comments")
+    require(any(
+        c.get('user', {}).get('login', '').lower() == 'cakarburkayy'
+        and (c.get('body') or '').strip() == marker
+        for c in comments
+    ), 'Missing current Burkay owner approval for this PR revision')
+
 
 def required_checks(task, files):
     """Do not let a frontend-labelled task hide backend changes, or vice versa."""
@@ -170,7 +159,7 @@ def verify_acceptance(task, record, api, plan):
     require(linked_task(pr, plan)['plan_id'] == task['plan_id'], 'Accepted PR belongs to another task')
     files = api.pages(f"/pulls/{record['pr']}/files")
     check_paths(task, files, pr)
-    independent_review(task, pr, api, plan)
+    owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api, record.get('ci_sha'))
 
 def evaluate(pr, plan, accepted, api):
@@ -185,8 +174,7 @@ def evaluate(pr, plan, accepted, api):
             'Wrong integration target')
     rotation = plan['sequential_execution']
     # PR #38 is the sole owner-approved legacy bootstrap exception.
-    # It never consumes a rotation. This exception does NOT bypass checks,
-    # current-head independent review, or the separate human merge authorization.
+    # It never consumes a rotation. It does not bypass checks or owner authorization.
     legacy_bootstrap = (pr['number'] == 38 and task['plan_id'] == 'F01-GOV'
                         and pr['head']['ref'] == 'chore/1-team-workflow'
                         and pr['user']['login'].lower() == 'caferkilinc')
@@ -211,9 +199,9 @@ def readiness(pr, plan, accepted, api):
     require(pr.get('state') == 'open' and not pr.get('draft'), 'PR must be open and ready for review')
     task = linked_task(pr, plan)
     files = api.pages(f"/pulls/{pr['number']}/files")
-    independent_review(task, pr, api, plan)
+    owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api)
-    return result + '; current independent review and applicable CI verified'
+    return result + '; current owner approval and applicable CI verified'
 
 def same_revision(pr, expected_head=None, policy_sha=None):
     if expected_head:
