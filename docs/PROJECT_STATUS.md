@@ -37,7 +37,7 @@ Research protocol targets (not measured results): at least 12 frozen refactoring
 | Active initial candidate | `F00-PLAN` / issue #8 | Requires existing PR #38 bootstrap and SRS approval reconciliation before implementation |
 | Confirmed Genesis handoff | UNKNOWN / NONE | Do not infer handoff from PR #38 |
 | PR #38 | OPEN / REVIEW_REQUIRED | Independent reviewer and explicit owner merge permission needed |
-| SRS | TR v0.3 / EN v0.3 — REVIEW DRAFT | Awaiting distinct final acceptance for both |
+| SRS | TR v0.4 / EN v0.4 — OWNER APPROVED (2026-10-27) | 62 FR and 17 NFR per language; product implementation pending |
 | Current Genesis governance | MIGRATION IN PROGRESS | Fixed legacy issue assignees not yet safely removed |
 | Mandatory first delivery | ALL original tasks P0, including #19 #20 #31 #32 #33 #34 | Explicit scope promotion |
 | Local AI and paid provider | BLOCKED (resource access UNKNOWN) | GPU/model/runtime and API policy evidence outstanding |
@@ -69,3 +69,9 @@ SRS v0.4 TR/EN review drafts have 62 FR + 17 NFR each; no final owner sign-off y
 **PR review evidence:** GitHub PR reviews list for both PR #38 and PR #39 returned zero formal reviews at audit time. The owner reported the reviews/requirements approved in chat on 2026-10-27; external inspection evidence was not attached. Requests were placed to @ismail-cevik for PR #38 and @tahaugurtoyran for PR #39. A request is not an APPROVED review. PR #38 head `5dbb46bb13a2fbff52a6ef5579165596a09a6a84` had passing governance/documentation/security jobs, with dependency-gate-preview SKIPPED; a separate explicit owner *merge command* is still needed.
 
 **Next safe action:** Obtain GitHub-recorded independent current-head reviews, resolve any findings, and request the distinct owner merge authorization for PR #38; after safe governance integration, reconcile the stacked PR #39 with `main`, complete required checks and review, then run the native issue sync with a post-write read-only audit. The first Genesis owner Burkay does not execute production implementation before the required governance gates.
+
+## Final planning authorization — 2026-10-27 (supersedes older draft references)
+
+**Owner:** Burkay Çakar, sole final approver. **Both SRS v0.4 translations and the 34-task/69-edge dependency-aware roadmap were approved**, and PR #38 was merged into `main` at `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`. PR #39 was independently prepared and retargeted to `main`; this status snapshot is from before its merge. Other team members' formal approval is NOT required. Valid future PR owner approvals must refer to the actual head commit, and CI/security and verified native dependencies are still mandatory.
+
+**Graph:** 54 original prerequisite links independently match live GitHub; 15 additional native edges and 3 parent links are absent until after guarded sync. Planned graph static validation: 34 tasks, 69 edges, no dependency cycles or unknown dependencies. The serialized planning estimate totals 436–666 person-hours (not yet actual or feasible by deadline). F00-PLAN (#8) is the active future first developer turn for Burkay; no Genesis handoff occurred. **Release: NOT_READY**, no application backend/frontend code or real seven-language Falcon-Mamba E2E on accepted main.
