@@ -9,7 +9,7 @@ class API:
   self.pr={'number':101,'body':'Task: #8\nPlan: F00-PLAN','head':{'ref':'docs/8-scope','sha':'abc'},'base':{'ref':'main','repo':{'full_name':PLAN['repository']}},'merged_at':'2026-10-25T12:00:00Z','user':{'login':'cakarburkayy'}}
   self.pr.update(changed_files=1,state='open',draft=False)
   self.pr['base']['sha']='base'
-  self.reviews=[{'user':{'login':'ismail-cevik'},'state':'APPROVED','commit_id':'abc'}]
+  self.comments=[{'user':{'login':'cakarburkayy'},'body':'GENESIS-OWNER-APPROVED: abc'}]
   self.checks=[{'name':c,'status':'completed','conclusion':'success','app':{'slug':'github-actions'}} for c in PLAN['tasks'][0]['required_checks']]
   self.dependencies=[];self.files=[{'filename':'docs/DECISIONS/scope.md'}]
   self.commits=[{'author':{'login':'cakarburkayy'},'committer':{'login':'cakarburkayy'}}]
@@ -18,7 +18,7 @@ class API:
   if '/pulls/' in path:return self.pr
   return self.issue
  def pages(self,path,key=None):
-  for suffix,rows in [('/files',self.files),('/reviews',self.reviews),('/check-runs',self.checks),('/dependencies/',self.dependencies),('/commits',self.commits)]:
+  for suffix,rows in [('/files',self.files),('/comments',self.comments),('/check-runs',self.checks),('/dependencies/',self.dependencies),('/commits',self.commits)]:
    if suffix in path:return rows
   raise RuntimeError('Unexpected request')
 class GateTests(unittest.TestCase):
@@ -34,28 +34,27 @@ class GateTests(unittest.TestCase):
  def test_stale_sha_fails(self):
   self.r['head_sha']='old'
   with self.assertRaises(Rejected):self.accept()
- def test_stale_review_fails(self):
-  self.a.reviews[0]['commit_id']='old'
-  with self.assertRaises(Rejected):self.accept()
- def test_self_review_fails(self):
-  self.a.reviews[0]['user']['login']='cakarburkayy'
-  with self.assertRaises(Rejected):self.accept()
- def test_later_changes_request_fails(self):
-  self.a.reviews.append({'user':{'login':'ismail-cevik'},'state':'CHANGES_REQUESTED','commit_id':'abc'})
-  with self.assertRaises(Rejected):self.accept()
+ def test_stale_owner_approval_fails(self):
+  self.a.comments[0]['body']='GENESIS-OWNER-APPROVED: old'
+  with self.assertRaisesRegex(Rejected,'current Burkay'):self.accept()
+ def test_project_owner_may_authorize_own_work(self):
+  self.a.pr['user']['login']='cakarburkayy'
+  self.accept()
+ def test_peer_review_not_required(self):
+  self.a.comments=[{'user':{'login':'cakarburkayy'},'body':'GENESIS-OWNER-APPROVED: abc'}]
+  self.accept()
  def test_failed_ci_fails(self):
   self.a.checks[0]['conclusion']='failure'
   with self.assertRaises(Rejected):self.accept()
  def test_untrusted_check_fails(self):
   self.a.checks[0]['app']['slug']='other'
   with self.assertRaises(Rejected):self.accept()
- def test_pr_author_approval_is_not_independent(self):
-  self.a.reviews[0]['user']['login']='cakarburkayy'
-  with self.assertRaises(Rejected):self.accept()
- def test_commit_author_approval_is_not_independent(self):
-  self.a.commits.append({'author':{'login':'caferkilinc'}})
-  self.a.reviews[0]['user']['login']='caferkilinc'
-  with self.assertRaises(Rejected):self.accept()
+ def test_other_user_cannot_approve(self):
+  self.a.comments[0]['user']['login']='ismail-cevik'
+  with self.assertRaisesRegex(Rejected,'current Burkay'):self.accept()
+ def test_owner_is_not_excluded_when_commit_author(self):
+  self.a.commits.append({'author':{'login':'cakarburkayy'}})
+  self.accept()
  def test_missing_check_fails(self):
   self.a.checks=[]
   with self.assertRaises(Rejected):self.accept()
@@ -137,15 +136,15 @@ class GateTests(unittest.TestCase):
   self.a.files=[{'filename':'.github/task-plan.json'}]
   with self.assertRaisesRegex(Rejected,'single authorized active task'):
    evaluate(self.a.pr,self.p,{},self.a)
- def test_bootstrap_does_not_skip_independent_review(self):
+ def test_bootstrap_needs_owner_approval_not_independent_review(self):
   self.a.issue={'state':'open'}
   self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
    head={'ref':'chore/1-team-workflow','sha':'legacy-head'},
    user={'login':'caferkilinc'})
   self.a.files=[{'filename':'.github/task-plan.json'}]
-  self.a.reviews=[]
+  self.a.comments=[]
   from gate import readiness
-  with self.assertRaisesRegex(Rejected,'No current independent'):
+  with self.assertRaisesRegex(Rejected,'current Burkay'):
    readiness(self.a.pr,self.p,{},self.a)
  def test_report_scope_is_allowed_without_bypassing_governance_policy(self):
   from gate import check_paths
