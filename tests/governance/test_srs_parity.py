@@ -62,7 +62,7 @@ class BilingualRequirementsTests(unittest.TestCase):
         release_added = {"F13-ADV", "F07B-LOCAL", "F14-MIX"}
         self.assertTrue(release_added <= set(plan["F15-P0"]["dependencies"]))
         self.assertEqual(54, original_to_original - len(release_added))
-        self.assertEqual("PENDING_SAFE_SYNC", self.plan["scope_decision_2026_10_27"]["graph_sync_status"])
+        self.assertEqual("VERIFIED", self.plan["scope_decision_2026_10_27"]["graph_sync_status"])
 
     def test_no_immutable_person_assignments_in_technical_registry(self):
         for task in self.plan["tasks"]:
