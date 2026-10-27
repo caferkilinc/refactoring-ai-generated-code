@@ -54,10 +54,14 @@ class BilingualRequirementsTests(unittest.TestCase):
         old_tasks = [t for t in self.plan["tasks"] if t["issue_number"] <= 37]
         self.assertEqual(31, len(old_tasks))
         old_ids = {t["plan_id"] for t in old_tasks}
-        self.assertEqual(
-            54,
-            sum(sum(dep in old_ids for dep in t["dependencies"]) for t in old_tasks)
+        original_to_original = sum(
+            sum(dep in old_ids for dep in t["dependencies"]) for t in old_tasks
         )
+        # In addition to preserving the original 54 edges, F15-P0 acquires
+        # three new dependencies on existing tasks for complete first delivery.
+        release_added = {"F13-ADV", "F07B-LOCAL", "F14-MIX"}
+        self.assertTrue(release_added <= set(plan["F15-P0"]["dependencies"]))
+        self.assertEqual(54, original_to_original - len(release_added))
         self.assertEqual("PENDING_SAFE_SYNC", self.plan["scope_decision_2026_10_27"]["graph_sync_status"])
 
     def test_no_immutable_person_assignments_in_technical_registry(self):
