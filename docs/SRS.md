@@ -2,8 +2,8 @@
 # Yapay Zekâ Tarafından Üretilen Kodun Güvenli Refactoring ile İyileştirilmesi
 
 **Kimlik:** RAGC-SRS-001  
-**Sürüm:** 0.3.0  
-**Tarih:** 2026-10-26  
+**Sürüm:** 0.4.0  
+**Tarih:** 2026-10-27  
 **Durum:** İNCELEME TASLAĞI — 2026-10-26 kapsam/yönetişim kararları işlenmiştir; Türkçe+İngilizce metinlerin nihai onayı henüz verilmemiştir.  
 **Sistem:** AI-Generated Code Refactoring and Quality Evaluation / Engineering Design II  
 **Hedef teslim:** 2027-01-01; kesin saat henüz doğrulanmadı.  
@@ -19,7 +19,7 @@
 
 Geliştirici, kendisinin işleme yetkisi bulunan AI-generated veya diğer kaynak kodunu ZIP, klasör veya snippet olarak yükler. Sistem yapısal kod kalitesini ve deterministik güvenlik kanıtlarını tarar; başlangıç davranış testlerini izole ortamda saptar; kullanıcıya dosya/satır düzeyinde bulguları gösterir. Kullanıcı yalnızca seçtiği uygun kod kalitesi bulgularında refactoring başlatır (Onay 1); LLM değişiklikleri kontrollü patch olarak üretir; sistem ayrı çalışma kopyalarında test eder; kullanıcı gerçekten doğrulanmış patch'leri inceleyip seçer (Onay 2); sistem taze V0 üzerinden birleşimi tekrar doğrular ve final ZIP, HTML/PDF raporları, sayısal karşılaştırmalar ve geçmiş sunar.
 
-**Aktörler:** Kod sahibi/geliştirici; uygulama operatörü; akademik denetçi; deterministik analiz ve security işçileri; izole build/test worker; izin verilen bulut refactoring sağlayıcısı; isteğe bağlı yerel Falcon-Mamba inceleme servisi. Codex geliştirici asistanıdır, ürünün otonom onay otoritesi değildir.
+**Aktörler:** Kod sahibi/geliştirici; uygulama operatörü; akademik denetçi; deterministik analiz ve security işçileri; izole build/test worker; izin verilen bulut refactoring sağlayıcısı; zorunlu yerel Falcon-Mamba inceleme servisi. Codex geliştirici asistanıdır, ürünün otonom onay otoritesi değildir.
 
 **Dahil:** Gerçek dosya değişikliği, iki kullanıcı onayı, çok dilli yetenek bildirimi, kaynak kanıtı, güvenlik taraması, frozen testler, sınırlı paralellik, tekrar doğrulama, karşılaştırma/rapor/indirme ve akademik ölçüm.
 
@@ -35,16 +35,18 @@ Geliştirici, kendisinin işleme yetkisi bulunan AI-generated veya diğer kaynak
 | Metadata & artifact | SQLite, SQLAlchemy/Alembic; içerik adresli yerel storage, opsiyonel S3 | Değişmez V0, sürümler, bulgular, denemeler, testler, log/rapor/ZIP |
 | CIR / Core | Finding Normalizer, Evidence Registry, Correlator, Eligibility, Metric Normalizer | Kanıt ve belirsizlik korunur; quality, security ve baseline farklı sınıflar |
 | Java adapter | JavaParser Symbol Solver, Java 21/Maven, PMD, CPD, JUnit 5, JaCoCo | P0 çalışan pilot ve gerçek araç çıktısı; SonarQube ek servis opsiyonel |
-| Python adapter | Python ast/LibCST, Ruff/Pylint, pytest, coverage.py | P1; belirsiz dinamik referanslar açık gösterilir |
-| JS/TS adapter | TypeScript Compiler API/ts-morph, ESLint, tsc, Vitest/Jest, coverage | P1; modül ve lockfile sınırlarına riayet |
-| İleri adapter | C#, Go, C++: Roslyn, Go araçları, Clang | Gelecek kapsam; implement edilmiş gibi sunulmaz |
+| Python adapter | Python ast/LibCST, Ruff/Pylint, pytest, coverage.py | **P0 ilk teslim**, dinamik belirsizlik açık |
+| JS/TS adapter | TypeScript Compiler API/ts-morph, ESLint, tsc, Vitest/Jest, coverage | **P0 ilk teslim**, modül/lockfile sınırları korunur |
+| C# adapter | Roslyn/.NET SDK, xUnit/NUnit/MSTest ve coverage | **P0 ilk teslim**; semantik model, test, güvenli patch |
+| Go adapter | go/parser, go/types, go vet, go test/coverage, modül çözümlemesi | **P0 ilk teslim**; güvenli patch ve dil bağımlılıkları |
+| C++ adapter | Clang/clang-tidy, compile_commands.json, CMake/CTest veya eşdeğer | **P0 ilk teslim**; gerçek build/test/coverage ve güvenli patch |
 | Security | Gitleaks, Semgrep, OSV-Scanner | Gerçek tarama/evidence; unavailable temiz sayılmaz |
 | Yerel güvenlik AI | Falcon-Mamba 7B hedefi; runtime, varyant, Q8 ve GPU henüz doğrulanacak | Yardımcı güvenlik açıklaması; opsiyonel ve bozulmaya dayanıklı |
 | Refactoring | Bounded Context Builder, Conflict Detector, DeepSeek/GLM/Qwen provider adaptörleri | Gerçek, izinli unified diff; sağlayıcı ve maliyet onayına bağlı |
 | Sandbox Validation | Izole container/VM worker; dil bazlı build/tests/scans | Güvenilmeyen kod ana FastAPI sürecinde/hostta çalışmaz |
 | Reporting | Before/After engine, HTML/PDF, audit, history, ZIP | Sayısal veriler ölçümden; AI anlatımı kanıta bağlı |
 
-**2026-10-26 PROJE SAHİBİ KAPSAM KARARI:** İlk teslimde Java, Python, JavaScript, TypeScript adapterlarının çalışır doğrulanmış yetenekleri, izole gerçek refactoring zinciri, yerel Falcon-Mamba 7B servis entegrasyonu ve güvenlik değerlendirmesi, minimum ve gelişmiş HTML/PDF, history ve ZIP zorunludur (P0). C#, Go ve C++ ileriki aşama adapter kapsamıdır. Bir alt sistemin fallback/Unavailable durumunu doğru göstermek çalışma anı güvenliği için gerekir; fakat zorunlu bir entegrasyonun hiç kurulmamış olması nihai teslimin READY_FOR_RELEASE sayılmasına engeldir. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
+**2026-10-26 PROJE SAHİBİ KAPSAM KARARI:** İlk teslimde Java, Python, JavaScript, TypeScript adapterlarının çalışır doğrulanmış yetenekleri, izole gerçek refactoring zinciri, yerel Falcon-Mamba 7B servis entegrasyonu ve güvenlik değerlendirmesi, minimum ve gelişmiş HTML/PDF, history ve ZIP zorunludur (P0). **2026-10-27 son kapsam kararı:** C#, Go ve C++ adapterları da ilk teslimin zorunlu P0 bileşenleridir; yedi dilin gerçek doğrulaması tamamlanmadan READY_FOR_RELEASE denemez. Bir alt sistemin fallback/Unavailable durumunu doğru göstermek çalışma anı güvenliği için gerekir; fakat zorunlu bir entegrasyonun hiç kurulmamış olması nihai teslimin READY_FOR_RELEASE sayılmasına engeldir. Çalışmayan bileşenler açıkça Unsupported/Unavailable gösterilir.
 
 ## 3. Zorunlu uçtan uca ürün iş akışı
 
@@ -120,7 +122,7 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | FR-042 | P0 | Aynı ruleset/toolversion/scope ile önce-sonra finding/complexity/duplication/coverage hesapla; karşılaştırılamazı belirt. | #30 |
 | FR-043 | P0 | Zero denominator=N/A, percent ile yüzde puanı ayrı, failed/new findings saklı ve tüm numerikler kanıta bağlı. | #30 |
 | FR-044 | P0 | HTML ve PDF minimum kanıt raporlarında aynı run/ölçüm kimlikleri kullan; sırları maskeler; AI anlatımı ölçüm icat edemez. | #30,#31 |
-| FR-045 | P0 | Gerçek Java upload → analysis → onay1 → real patch → individual validation → onay2 → combined validation → ZIP E2E çalışsın. | #35 |
+| FR-045 | P0 | Yedi zorunlu dilde (Java, Python, JavaScript, TypeScript, C#, Go, C++) gerçek upload → analysis → onay1 → patch → individual validation → onay2 → combined validation → ZIP E2E kanıtı sağla; eksik dil varsa final BLOCKED. | #35,#40–#42 |
 | FR-046 | P0 | Bozuk baseline, testsiz kod, provider timeout, conflict, secret masking, combination regression E2E negatif durumlarını göster. | #35 |
 | FR-047 | P0 | Akademik deney en az 12 sabit refactoring görevi ve tüm başarısız denemeleri ölçüm paydasına dahil etsin. | #8,#36 |
 | FR-048 | P0 | Sequential/parallel koşullarını aynı context/test/rule ayarlarında üçer tekrar karşılaştır; süre/tokencost gerçek ölçülsün. | #36 |
@@ -128,11 +130,16 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | FR-050 | P0 | Final reproducibility bundle V0/V1 hash, generation prompt, gerçek testler, uyumlu build/demo, sınırlamalar içersin. | #37 |
 | FR-051 | P0 | Python ast/LibCST, Ruff/Pylint, pytest/coverage ile gerçek adapter capability sağlar; Java regression korunur. | #32 |
 | FR-052 | P0 | JS/TS TS Compiler API, ESLint, tsc, Jest/Vitest ve coverage ile gerçek adapter capability sağlar. | #33 |
-| FR-053 | P0 | Karma projede component bazlı ölçüm, cross-service belirsizliği ve language-specific test semantiğini koru. | #34 |
+| FR-053 | P0 | Yedi zorunlu dil içeren karma projelerde component bazlı ölçüm, cross-service belirsizliği ve dil özgü test semantiğini koru. | #34,#40–#42 |
 | FR-054 | P0 | Falcon-Mamba 7B'nin tam repo/variant/quantization/GPU/runtime/VRAM/latency uygunluğunu pilotla; disabled fallback sun. | #19 |
 | FR-055 | P0 | Yerel AI yalnız maskelenmiş, evidence-referenced, UNCONFIRMED inceleme döndürür; arızası deterministik SAST'ı bozmaz. | #20 |
 | FR-056 | P0 | Falcon-Mamba için bağımsız etiketli örneklerle precision/recall, FP/FN paydalarını raporla. | #20 |
-| FR-057 | P0 | Opsiyonel ayrıntılı AI anlatımı ve gelişmiş PDF raporlarında backend sayıları ve HTML parity korunur. | #31 |
+| FR-057 | P0 | Gelişmiş PDF/HTML ve AI anlatımında backend ölçümleri, HTML parity ve kanıta bağlı raporlama korunur. | #31 |
+| FR-058 | P0 | C# Roslyn ile sembol/source range ve bağımlılık analizi, gerçek .NET build, uygun xUnit/NUnit/MSTest test+coverage, static quality, izinli patch ve sandbox doğrulaması; eksik SDK durumunu açık bildirir. | #40 |
+| FR-059 | P0 | Go parser/types ve modül/workspace farkındalığı, go vet veya uygun quality tool, go test/coverage ve dependency-aware güvenli patch zinciri gerçek araç kanıtıyla çalışır. | #41 |
+| FR-060 | P0 | C++ Clang AST/source range, compile_commands/build context, clang-tidy ve gerçek CMake/CTest veya mevcut eşdeğer test+coverage ve sandbox patch doğrulaması; belirsiz build context UNVERIFIED olur. | #42 |
+| FR-061 | P0 | Yedi zorunlu dilde gerçek pozitif ve negatif adapter/doğrulama senaryoları, karma proje capability, değişmez V0, frozen test ve güvenilir rapor çıktıları kanıtlanır. | #34,#35,#40–#42 |
+| FR-062 | P0 | F15 ilk teslim/release kapısı bütün yedi dilin doğrulanmış adapter/patch yetenekleri, Falcon-Mamba, HTML/PDF/ZIP ve güvenlik kontrollerini birlikte şart koşar; eksik capability başarı kabul edilmez. | #35,#37,#40–#42 |
 
 ## 6. Fonksiyonel olmayan gereksinimler
 
@@ -151,8 +158,10 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | NFR-11 | P0 | API anahtarları browser'a veya depoya giremez; source comments prompt talimatı olarak yetki yükseltemez. | #18,#25 |
 | NFR-12 | P0 | Run/attempt/approval/final ve UTC audit/History kalıcılığı; logda ham kullanıcı kodu ve secrets bulunmaz. | #12,#30 |
 | NFR-13 | P0 | Model, donanım, benchmark ve teslim success iddiaları gerçek ölçüm ve koşullarla sınırlandırılır. | #19,#36 |
-| NFR-14 | P0 | Dil adapter'ları capability flag, support güveni ve per-language coverage ile P0 Java'yı bozmaz. | #32–#34 |
+| NFR-14 | P0 | Yedi zorunlu dilin her biri ayrı capability/confidence ve per-language coverage kanıtı sunar; diğer diller regresyona uğramaz. | #32–#34,#40–#42 |
 | NFR-15 | P0 | Internet-facing deployment, ayrıca doğrulanmış threat model, izolasyon ve konfigürasyon/release kararına bağlıdır. | mimari v2 §16; rehber faz15 |
+| NFR-16 | P0 | JDK, Python, Node/TypeScript, .NET SDK, Go, Clang/C++ ve Falcon-Mamba runtime/model/lisans/OS sürümleri kurulabilirlik ve tekrarlanabilir doğrulama kanıtıyla desteklenir. | #10,#19,#40–#42 |
+| NFR-17 | P0 | Native/.NET/Go build ve testleri yalnız kaynak limitli sandbox'ta çalışır; C++ ABI/compile context, Go module ve .NET restore dış-ağ kısıtları açıkça kayıt altına alınır. | #16,#35,#40–#42 |
 
 ## 7. Kabul senaryoları ve çıkış kapıları
 
@@ -192,8 +201,9 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | F10-PATCH #25, F11-VALIDATE #26, F11-RETRY #27 | FR-031–036 |
 | F12-REVIEW #28, F12-FINAL #29 | FR-037–040 |
 | F13-BASIC #30, F13-ADV #31 | FR-041–044, FR-057 |
-| F14-PY #32, F14-JSTS #33, F14-MIX #34 | FR-051–053 |
-| F15-P0 #35, F15-EXPERIMENT #36, F15-HANDIN #37 | FR-045–050 |
+| F14-PY #32, F14-JSTS #33, F14-MIX #34 | FR-051–053, FR-061 | 
+| F14-CS #40, F14-GO #41, F14-CPP #42 | FR-058–062, NFR-16–17 |
+| F15-P0 #35, F15-EXPERIMENT #36, F15-HANDIN #37 | FR-045–050, FR-061–062 |
 
 **2026-10-26 kapsam yükseltme kararı:** PDF/HTML raporlar, Local AI/Falcon-Mamba ve Python/JS/TS adapterları ilk teslim P0 kapsamıdır. Eski GitHub kayıtlarında P1 olarak görünen #19, #20, #31, #32, #33, #34 açık Owner kararıyla P0'a yükseltilecektir; eski kayıtlar geçiş tamamlanana kadar historik çelişki olarak korunur. Java önce geliştirilebilir ancak tüm zorunlu hedefler test edilmeden yayın kabul edilmez. C#/Go/C++ ve opsiyonel görüntü/ses anlatımı ayrıca onaylanmadıkça ilk teslim dışındadır.
 
@@ -216,7 +226,7 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 | DEC-002 | Akademik 12 haftalık öneri ve GitHub son tarih | 2027-01-01 owner/GitHub deadline; kesin saat ve platform UNKNOWN. |
 | DEC-003 | Görevlerin sabit primary/support/reviewer ataması | Project Genesis sıralı sahiplik esastır; CI gate ve 31 issue uyumlu migrasyon onaylanmadan assignee'ler birden kaldırılamaz. |
 | DEC-004 | PR #38 eski dört/çok geliştiricili iş modeli için hazırlık | PR #38 inceleme/CI/merge korunur; henüz Genesis handoff kabulü değil. |
-| DEC-005 | Java öncelik vs zorunlu çok dil | Java ilk yürütme zinciri; Python/JS/TS aynı ilk teslimin P0 geçerli adapter ve test/coverage destekleri. C#/Go/C++ gelecek. |
+| DEC-005 | Yedi dil zorunlu teslim | Java, Python, JavaScript, TypeScript, C#, Go ve C++ ilk teslim P0; gerçek build/test/coverage/patch kanıtı zorunlu. |
 | DEC-006 | Yerel Falcon-Mamba ilk teslim | Deterministik SAST ve yerel Falcon-Mamba 7B servis entegrasyonu P0; model/runtime/VRAM uyumluluğu gerçek testle doğrulanmalı; erişim yoksa release BLOCKED, SAST fail-safe sürer. |
 | DEC-007 | PDF raporu eski task-plan'da P1 | Yeni proje sahibi kararı gereği #31 ve PDF/HTML sayısal bütünlüğü ilk teslim P0; önceki P1 iş kaydı migrasyonda yükseltilecek. |
 | DEC-008 | Gerçek LLM patch sağlayıcısı ve kaynak aktarımı | Endpoint, model, kota, ücret ve kod aktarım izni doğrulanmalı; hiçbiri varsayılan veya fiilen kullanılabilir sayılmaz. |
@@ -226,14 +236,18 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 
 Bu sürüm **derleme taslağıdır**. Project owner'ın 2026-10-26 tarihinde yetkilendirdiği mimari/GitHub kaynak kararları uygulanmıştır; bu dosyanın nihai tekil SRS onayı henüz ayrı belirtilmemiştir. Ana SRS, API şeması, backend state ve mevcut task graph arasında uygulama esnasında bulunan bir çelişki bir change-request/ADR ile çözülür. Uygulama ilerleme yüzdeleri kanıtsız verilmez. Rehberin örnek API JSON'ları, sayısal değerleri ve test komutları gerçek sonuç olarak sunulamaz. Sürüm değişikliği SRS gereksinim kimliklerini yeniden kullanmaz.
 
-## 12. 2026-10-26 kararı — zorunlu kapsam ve geçiş kabul kapısı
+## 12. 2026-10-26–27 kararları — zorunlu kapsam ve geçiş kabul kapısı
 
 **Owner decision GOV-DEC-2026-10-26:** Beşli sabit sıra Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran; PR #38 bu döngüden önceki bootstrap çalışmasıdır, rotasyon turu sayılmaz. Tam 31 teknik issue ve 54 dependent edge silinmez; sabit atanmış issue/registry owner-support-reviewer bilgileri kontrollü gate/CI migrasyonunda kaldırılır. `main` kabul edilmiş entegrasyon dalıdır; numaralı topic PR'ları inceleme için kalabilir. PR #38 ancak gerçek bağımsız onay, geçerli CI ve **ayrı proje sahibi merge izni** sonrasında birleştirilebilir.
 
 **Mandatory first-delivery promotion:** #19 F07B-PILOT, #20 F07B-LOCAL, #31 F13-ADV, #32 F14-PY, #33 F14-JSTS, #34 F14-MIX P0'dır. Geçerli mimari kaynaklarında P1 olarak yazılmış önceki bölümler bu açık owner kararı karşısında tarihsel bilgi sayılır. İlgili kıyaslamalar aynı son teslim tarihi 2027-01-01 için gereklidir; teknik kaynak eksikliği gizlenemez.
 
-**Kaynak erişimi / maliyet blokajı:** Falcon-Mamba 7B'nin tam model kimliği, gerçek inference runtime ve en az bir yetkili çalışma ortamı; gerçek patch provider'ın izinli API/ücret/kota erişimi; dört dilin seçilen orijinal örneği ve uyumlu toolchain'ler uygulama esnasında doğrulanmalıdır. Bu bilgiler şu an UNKNOWN'dur, otomatik sağlayıcı satın alımı veya sözde inference testi yapılamaz.
+**Kaynak erişimi / maliyet blokajı:** Falcon-Mamba 7B'nin tam model kimliği, gerçek inference runtime ve en az bir yetkili çalışma ortamı; gerçek patch provider'ın izinli API/ücret/kota erişimi; yedi dilin seçilen orijinal örneği ve uyumlu toolchain'ler uygulama esnasında doğrulanmalıdır. Bu bilgiler şu an UNKNOWN'dur, otomatik sağlayıcı satın alımı veya sözde inference testi yapılamaz.
 
-**Zorunlu ilk teslim acceptance:** (1) Java E2E ve yeniden doğrulama; (2) Python adapter parse/quality/test/coverage ve güvenli patch E2E; (3) JS/TS adapter parse/quality/test/coverage ve component-specific E2E; (4) karma React + Python testi; (5) Falcon-Mamba gerçek masked evidence incelemesi ve bağımsız etiketli değerlendirme; (6) tüm zorunlu secure scanning; (7) iki onay kapısı; (8) güvenli HTML/PDF, ZIP ve History; (9) reproducible deney. Capabilities gerekçeyle eksik gösterilebilir ancak kabul edilmemiş ilk teslim tamamlanmış sayılmaz.
+**Zorunlu ilk teslim acceptance:** (1) Java E2E; (2) Python adapter E2E; (3) JavaScript ve TypeScript E2E; (4) C#/Roslyn, Go ve C++/Clang gerçek kaynak, build/test/coverage, uygun güvenli patch E2E; (5) yedi dil için karma bileşen testleri; (5) Falcon-Mamba gerçek masked evidence incelemesi ve bağımsız etiketli değerlendirme; (6) tüm zorunlu secure scanning; (7) iki onay kapısı; (8) güvenli HTML/PDF, ZIP ve History; (9) reproducible deney. Capabilities gerekçeyle eksik gösterilebilir ancak kabul edilmemiş ilk teslim tamamlanmış sayılmaz.
 
 **Belge uyumu:** `docs/SRS.md` Türkçe kanonik SRS'dir; `docs/SRS_EN.md` aynı FR/NFR kimliklerine sahip İngilizce teknik eşdeğeridir. Terminoloji farklılığı davranış değiştirmemelidir. Anlaşmazlık varsa owner kararı ile eşdeğer sürümlerde birlikte düzeltme yapılır. Ayrı SRS kabulü kaydı beklenmektedir.
+
+### DEC-010 — 2026-10-27: C#, Go, C++ ilk teslim P0
+
+**Onaylanmış kapsam değişikliği:** Yedi dil (Java, Python, JavaScript, TypeScript, C#, Go, C++) ve yerel Falcon-Mamba 7B aynı ilk teslimin zorunlu parçalarıdır. Yeni teknik görevler F14-CS (#40), F14-GO (#41), F14-CPP (#42); her birinin plan önkoşulları F02-CONTRACT, F06-SANDBOX, F11-VALIDATE'dir. F14-MIX (#34) bu üç yeni adapterın kabulünü de bekleyecek; F15-P0 (#35) F14-MIX + F07B-LOCAL (#20) + F13-ADV (#31) kabul edilmeden READY değildir. Üç yeni native issue açıldı, ancak GitHub native sub-issue ve dependency edges henüz inceleme/aktivasyon sonrası güvenli senkronizasyon gerektirir. Önceki 31 görev ve 54 native edge silinmedi. PR #38 için merge izni **verilmedi**; Burkay teknik lider ve denetim koordinatörü, ancak PR yazarı ile katkıda bulunan kod incelemecisi arasındaki bağımsızlık şartı korunur.
