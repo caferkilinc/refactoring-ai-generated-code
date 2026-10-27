@@ -35,7 +35,7 @@ jobs:
           repository: ${{ github.repository }}
           ref: main
           persist-credentials: false
-      - name: Require current independent review and all applicable tests
+      - name: Require current Burkay owner approval and all applicable tests
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
