@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engineering Design II · UML Studio (SRS v0.4)</title>
+<style>
+:root{font-family:Inter,system-ui,sans-serif;color:#e8f3ff;background:#09111f;--mint:#64ecd6;--line:#32506e}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(ellipse at 55% -20%,#204262,#08101b 60%)}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:17px 24px;background:#0c1828f5;border-bottom:1px solid var(--line)}
+h1{font-size:22px;letter-spacing:-.6px;margin:4px 0}small{font:700 11px ui-monospace,monospace;letter-spacing:2px;color:var(--mint)}
+.subtitle{font-size:12px;color:#92aeca}.controls,.tabs{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{background:#182a41;color:#e9f4ff;border:1px solid #33536e;border-radius:10px;padding:10px 13px;cursor:pointer}
+button.active,button:hover{background:#17423e;border-color:#59e6cb;color:#82ffe6}input{background:#112139;color:#e9f4ff;border:1px solid #33536e;border-radius:10px;padding:10px 12px;width:220px}
+.notice{display:flex;justify-content:space-between;gap:12px;background:#0d1a2d;border-bottom:1px solid #253d54;color:#abc3d8;font-size:12px;padding:10px 25px}
+main{display:flex;flex:1;min-height:0}#viewport{flex:1;position:relative;overflow:hidden;cursor:grab;touch-action:none;background-image:linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);background-size:35px 35px}#viewport.dragging{cursor:grabbing}
+#canvas{position:absolute;top:0;left:0;transform-origin:0 0}#canvas svg{display:block;transform-origin:0 0}
+aside{width:320px;flex:none;padding:25px;background:#0c1a2bf5;border-left:1px solid #28445f;overflow-y:auto}
+aside h2{font-size:20px;margin:14px 0 8px}aside p{font-size:13px;line-height:1.7;color:#b4c7df}.chip{display:inline-block;padding:5px 10px;border-radius:99px;background:#153b3f;border:1px solid #2f8c80;color:#6bf5dd;font:700 11px ui-monospace,monospace}
+#ref{color:#76f3df;font:700 12px ui-monospace,monospace}.hint{margin-top:26px;border-top:1px solid #36516c;padding-top:17px;color:#aec4dd;font-size:12px;line-height:1.9}
+.hint i{display:inline-block;width:30px;border-top:2px dashed #a3c4ea;vertical-align:middle;margin-right:7px}.note{margin-top:20px;background:#13323b;border:1px solid #347a71;padding:12px;border-radius:11px;color:#b8e9df;font-size:12px;line-height:1.6}
+#float{position:absolute;z-index:2;bottom:17px;left:17px;padding:6px;border:1px solid #35526a;background:#101e30e8;border-radius:12px;display:flex;gap:5px;align-items:center}
+#float button{min-width:38px}#percent{font:12px ui-monospace,monospace;color:#a6cce0;margin:0 9px}.banner{position:absolute;top:15px;left:16px;color:#9fc3d4;background:#10253bdc;border:1px solid #336078;padding:10px 13px;border-radius:10px;font-size:12px;z-index:1}
+footer{padding:8px 23px;border-top:1px solid #263f55;background:#0a1726;color:#839fb9;font-size:11px;display:flex;justify-content:space-between}
+.node{cursor:pointer;outline:none}.node:hover .body,.node.selected .body{stroke:#74f5df;stroke-width:3;filter:drop-shadow(0 0 8px #66e6cb66)}.node.dim{opacity:.16}.node.match .body{stroke:#ffcc80;stroke-width:4}
+.uc-title{fill:#ecf5ff;font-size:17px;font-weight:750;text-anchor:middle}.uc-id{fill:#77ffe5;font:700 14px ui-monospace,monospace;text-anchor:middle}.uc-sub{fill:#acc5dc;font-size:12px;text-anchor:middle}
+.class-name{fill:#ecf5ff;font-size:18px;font-weight:750;text-anchor:middle}.class-field{fill:#b2c9dd;font:13px ui-monospace,monospace}
+.edge{fill:none;stroke:#87a8c8;stroke-width:2.1}.edge.dashed{stroke-dasharray:7 6}.edge.extend{stroke:#f4ba7e;stroke-dasharray:7 5}
+.edge-label{fill:#d1e3f3;font:13px ui-monospace,monospace;paint-order:stroke;stroke:#0d1929;stroke-width:5;stroke-linejoin:round;text-anchor:middle}
+.caption{fill:#a2bdd6;font:700 17px ui-monospace,monospace;letter-spacing:1px}
+@media(max-width:950px){aside{width:240px}input{width:140px}}@media(max-width:680px){aside{display:none}header{padding:10px;flex-wrap:wrap}h1{font-size:18px}.controls{width:100%}input{flex:1}.notice{padding:8px}footer{padding:7px}.subtitle{display:none}}
+</style></head><body>
+<header><div><small>ENGINEERING DESIGN II · PROJECT GENESIS v2.0</small><h1>UML Studio · SRS-Driven Architecture</h1><div class="subtitle">SRS v0.4.0 · hedef mimari; implementasyon ve test kanıtı değildir</div></div>
+<div class="controls"><div class="tabs"><button id="tabUC" class="active">01 · USE CASE</button><button id="tabCL">02 · CLASS</button></div><input id="query" placeholder="UC, sınıf, FR ara…" aria-label="Diyagramda ara"><button id="full">⛶</button></div></header>
+<div class="notice"><span id="status">19 UC · 6 aktör · 10 «include/extend» bağı</span><span>İki ayrı kullanıcı onayı · değişmez V0 · yedi dil</span></div>
+<main><section id="viewport"><div class="banner"><b style="color:#6ff4dc">UML LIVE</b> · Sürükle · Yakınlaştır · Öğeye tıkla</div><div id="canvas"></div>
+<div id="float"><button id="zoomIn">＋</button><button id="zoomOut">−</button><button id="fit">Sığdır</button><button id="reset">↺</button><span id="percent">100%</span></div></section>
+<aside><span class="chip" id="identifier">SRS v0.4</span><h2 id="subject">Bir öğe seçin</h2><p id="detail">Diyagram üzerinde bir kullanım senaryosunu veya sınıfı seçerek SRS karşılığını ve mühendislik sorumluluğunu okuyun.</p><div id="ref">Kaynak: docs/SRS.md</div>
+<div class="hint" id="legend"><b>UML gösterimi</b><br><i></i> Aktör / kullanım senaryosu ilişkisi<br><i></i> «include» zorunlu alt senaryo<br><i style="border-color:#f7bf7a"></i> «extend» koşullu ek senaryo</div>
+<div class="note" id="guard">Security finding bir kalite refactoring adayı değildir. İki bağımsız kullanıcı onayı olmadan güvenli final yayınlanamaz.</div></aside></main>
+<footer><span>Kaynak: docs/SRS.md · docs/SRS_EN.md · docs/ARCHITECTURE.md</span><span>Çevrimdışı HTML · pan + zoom · haricî kütüphane yok</span></footer>
+<script>
+(function(){
+'use strict';
+const svgNS='http://www.w3.org/2000/svg',byId=id=>document.getElementById(id);
+const cases=[
+['UC-01','Kod yükle','ZIP / folder / snippet','FR-001–003','Güvenli manifest, riskli arşiv kontrolü ve değişmez V0.',520,180],
+['UC-02','İzinleri yönet','Consent / privacy','FR-004–005','Ayrı bulut gönderim, saklama ve kod yürütme izinleri.',520,330],
+['UC-03','Dil yeteneğini belirle','Language router · 7 dil','FR-008, 011','Dosya ve bileşen bazlı adapter/capability ve bilinmeyen desteği.',520,480],
+['UC-04','Kalite analizi çalıştır','AST / PMD / CPD','FR-012–014','Kanıtlı kalite ve complexity bulgularını normalize eder.',520,630],
+['UC-05','Güvenlik taraması','Gitleaks / Semgrep / OSV','FR-015–017','Security sınıfı kalite refactoring kapsamına alınamaz.',520,780],
+['UC-06','Baseline testlerini sabitle','Sandbox · frozen suite','FR-018–022','İzole test suite hash ve gerçek build/coverage kanıtı.',520,930],
+['UC-07','Bulguları incele','Source-line evidence','FR-023–024','Monaco dosya/satır kanıtı, filtreler ve metrikler.',940,180],
+['UC-08','ONAY 1 · Bulgu seç','Eligible QUALITY only','FR-025–026','İlk onay: immutable issue fingerprint snapshot.',940,330],
+['UC-09','Bağlam ve DAG oluştur','Read/write set · dependency','FR-027–030','Bağlam bütçesi ve muhafazakâr conflict planlaması.',940,480],
+['UC-10','Patch adayı üret','Bounded provider diff','FR-031–033','İzinli sağlayıcıdan kısıtlı unified diff alır.',940,630],
+['UC-11','Patch doğrula','Behavior + quality separately','FR-034–036','Ayrı workspace; frozen testler ve gerçek yeniden tarama.',940,780],
+['UC-12','Diff ve kanıtları incele','Monaco diff · attempts','FR-037–038','Her adayın hunks, test ve kalite sonucu açıklanır.',940,930],
+['UC-13','ONAY 2 · Patch seç','Verified candidates only','FR-037–038','İkinci onay, yalnız geçerli patch IDlerini onaylar.',1360,180],
+['UC-14','V0 üzerinde birleştir','Deterministic apply','FR-039','Taze V0 klonunda seçili patchleri uygular.',1360,330],
+['UC-15','Birleşik doğrulama','Full frozen + rescans','FR-039–040','Tekil PASS birleşik PASS demek değildir; final gate.',1360,480],
+['UC-16','Before / after ölç','Matching tool/rules/scope','FR-042–043','Ölçülebilir fark; units, missing ve N/A korunur.',1360,630],
+['UC-17','ZIP / HTML / PDF indir','Evidence-linked export','FR-041, 044','Doğrulanmış birleşim sonrası final rapor ve ZIP.',1360,780],
+['UC-18','Geçmişi ve audit gör','Versions / attempts','FR-041, 050','Sahipliğe bağlı kalıcı iş, sürüm ve rapor geçmişi.',1360,930],
+['UC-19','Yerel AI yorumu al','Falcon-Mamba · unconfirmed','FR-054–056','Kanıta atıflı yardımcı güvenlik yorumu; tek başına karar vermez.',940,1080]
+];
+const classes=[
+['Project','+id: UUID','+ownerId: UUID','FR-005',245,165],
+['ProjectVersion','+hash: SHA256','+kind: V0 / FINAL','FR-003',585,165],
+['ConsentRecord','+permission: Kind','+actorId: UUID','FR-004',925,165],
+['FileManifest','+entries: File[]','+excluded: Path[]','FR-001',1265,165],
+['Artifact','+type: ZIP/PDF/HTML','+sha256: String','FR-041',1605,165],
+['AuditEvent','+actorId: UUID','+time: UTC','NFR-12',1945,165],
+['AnalysisRun','+rulesetHash: String','+state: Status','FR-007',245,550],
+['Finding','+kind: FindingType','+fingerprint: String','FR-014',585,550],
+['Evidence','+file: String','+line: Range','FR-007',925,550],
+['Metric','+unit: String','+value: Number?','FR-042',1265,550],
+['BaselineTestSuite','+suiteHash: SHA256','+frozen: Boolean','FR-020',1605,550],
+['TestRun','+behavior: Status','+envHash: String','FR-022',1945,550],
+['IssueSelection','+snapshotHash: SHA256','+approvedAt: UTC','FR-025',245,935],
+['ContextPackage','+readSet: Set','+writeSet: Set','FR-027',585,935],
+['RefactorJob','+maxParallel: 3','+state: JobState','FR-030',925,935],
+['Attempt','+ordinal: 0..2','+provider: String','FR-036',1265,935],
+['PatchCandidate','+diffHash: SHA256','+allowedPaths: Set','FR-031',1605,935],
+['ValidationResult','+behavior: Status','+quality: Outcome','FR-035',1945,935],
+['PatchApproval','+approvedPatchIds: Set','+actorId: UUID','FR-038',245,1320],
+['CombinedValidation','+behavior: Status','+security: ScanStatus','FR-040',585,1320],
+['Report','+format: HTML/PDF','+measurementRun: UUID','FR-044',925,1320],
+['«interface» LanguageAdapter','+capabilities(): Map','+safePatch(): Result','FR-011',1265,1320],
+['«package» 7 Adapters','Java / Python / JS / TS','C# / Go / C++','FR-045',1605,1320],
+['CapabilityReport','+parse/build/test','+coverage/patch','NFR-14',1945,1320]
+];
+const useRel=[['UC-04','UC-03','include'],['UC-05','UC-03','include'],['UC-08','UC-07','include'],['UC-10','UC-09','include'],['UC-11','UC-06','include'],['UC-13','UC-12','include'],['UC-15','UC-06','include'],['UC-15','UC-05','include'],['UC-17','UC-16','include'],['UC-19','UC-05','extend']];
+const classRel=[['Project','ProjectVersion','composition','1 / 1..*'],['Project','ConsentRecord','aggregation','1 / 0..*'],['ProjectVersion','FileManifest','composition','1 / 1'],['ProjectVersion','Artifact','aggregation','1 / 0..*'],['Project','AuditEvent','association','1 / 0..*'],['ProjectVersion','AnalysisRun','composition','1 / 0..*'],['AnalysisRun','Finding','composition','1 / 0..*'],['Finding','Evidence','composition','1 / 1..*'],['AnalysisRun','Metric','composition','1 / 0..*'],['ProjectVersion','BaselineTestSuite','aggregation','1 / 0..1'],['BaselineTestSuite','TestRun','aggregation','1 / 0..*'],['AnalysisRun','IssueSelection','association','1 / 0..*'],['IssueSelection','RefactorJob','association','1 / 0..*'],['RefactorJob','ContextPackage','composition','1 / 1'],['RefactorJob','Attempt','composition','1 / 1..3'],['Attempt','PatchCandidate','composition','1 / 0..1'],['PatchCandidate','ValidationResult','association','1 / 1..*'],['PatchApproval','PatchCandidate','association','1 / 1..*'],['PatchApproval','CombinedValidation','association','1 / 0..1'],['CombinedValidation','ProjectVersion','dependency','FINAL only if PASS'],['CombinedValidation','Report','association','1 / 0..*'],['«package» 7 Adapters','«interface» LanguageAdapter','dependency','real adapters'],['«interface» LanguageAdapter','CapabilityReport','association','1 / 1..*']];
+let mode='uc',svg=null,w=0,h=0,zoom=1,tx=0,ty=0,drag=false,moved=0,mx=0,my=0;
+const viewport=byId('viewport'),canvas=byId('canvas');
+function E(tag,attrs={},value){let t=document.createElementNS(svgNS,tag);for(let k in attrs)t.setAttribute(k,attrs[k]);if(value!==undefined)t.textContent=value;return t}
+function T(x,y,value,cl,anchor){return E('text',{x,y,class:cl,'text-anchor':anchor||'middle'},value)}
+function rect(x,y,width,height,color,stroke,r){return E('rect',{x,y,width,height,rx:r||14,fill:color,stroke,'stroke-width':2})}
+function begin(W,H){w=W;h=H;canvas.textContent='';svg=E('svg',{width:W,height:H,viewBox:'0 0 '+W+' '+H,role:'img','aria-label':'UML '+mode+' diagramı'});let defs=E('defs');for(let n of ['arrow','triangle']){let mk=E('marker',{id:n,viewBox:'0 0 12 12',refX:11,refY:6,markerWidth:n==='triangle'?11:7,markerHeight:n==='triangle'?11:7,orient:'auto'});mk.append(E('path',{d:'M 1 1 L 11 6 L 1 11 Z',fill:n==='triangle'?'#0e1c2a':'#a1bdd6',stroke:'#a1bdd6'}));defs.append(mk)}svg.append(defs);canvas.append(svg)}
+function edge(d,type,label,x,y,arrow){let e=E('path',{d,class:'edge '+(type||''),...(arrow?{'marker-end':'url(#'+arrow+')'}:{})});svg.append(e);if(label)svg.append(T(x,y,label,'edge-label'))}
+function pick(id,name,detail,ref,el){document.querySelectorAll('.node.selected').forEach(n=>n.classList.remove('selected'));el.classList.add('selected');byId('identifier').textContent=id;byId('subject').textContent=name;byId('detail').textContent=detail;byId('ref').textContent='SRS: '+ref}
+function actor(x,y,label){let a=E('g');a.append(E('circle',{cx:x,cy:y-33,r:14,stroke:'#c3d6eb','stroke-width':3,fill:'none'}),E('path',{d:'M '+x+' '+(y-19)+'v46 m-23 -31 h46 m-23 31 l-21 30 m21 -30 l21 30',stroke:'#c3d6eb',fill:'none','stroke-width':2.7}),T(x,y+78,label,'uc-title'));svg.append(a)}
+function paintUC(){begin(1800,1230);let bounds=rect(290,85,1250,1090,'#102039','#3f6385',24);svg.append(bounds);svg.append(T(330,117,'REFACTORING PLATFORM · SYSTEM BOUNDARY','caption','start'));
+actor(126,305,'Geliştirici');actor(126,930,'Yerel AI');actor(1660,270,'LLM');actor(1660,620,'SAST / Security');actor(1660,920,'Sandbox / Audit');
+for(let p of [[[160,300],[365,180]],[[160,300],[365,330]],[[160,300],[785,330]],[[160,930],[785,1080]],[[1625,270],[1095,630]],[[1625,620],[1515,480]],[[1625,920],[1515,930]]])edge('M '+p[0][0]+' '+p[0][1]+' L '+p[1][0]+' '+p[1][1],'','',0,0);
+const coords=Object.fromEntries(cases.map(n=>[n[0],{x:n[5],y:n[6]}]));
+for(let i=0;i<useRel.length;i++){let [a,b,kind]=useRel[i],s=coords[a],t=coords[b];let same=Math.abs(s.x-t.x)<30;let d;if(same){let k=i%2?1:-1;d='M '+(s.x+80*k)+' '+(s.y+(t.y>s.y?45:-45))+' C '+(s.x+210*k)+' '+(s.y*.7+t.y*.3)+', '+(t.x+210*k)+' '+(s.y*.3+t.y*.7)+', '+(t.x+80*k)+' '+(t.y+(t.y>s.y?-45:45))}else{let k=t.x>s.x?1:-1;d='M '+(s.x+k*158)+' '+s.y+' C '+(s.x+k*200)+' '+s.y+', '+(t.x-k*200)+' '+t.y+', '+(t.x-k*158)+' '+t.y}edge(d,kind==='extend'?'extend':'dashed','«'+kind+'»',(s.x+t.x)/2+(same?(i%2?160:-160):0),(s.y+t.y)/2-10,'arrow')}
+for(let n of cases){let [id,name,sub,ref,detail,x,y]=n;let g=E('g',{class:'node',tabindex:'0','data-search':(id+' '+name+' '+sub+' '+ref).toLocaleLowerCase('tr')});g.append(E('ellipse',{class:'body',cx:x,cy:y,rx:158,ry:54,stroke:id==='UC-08'||id==='UC-13'?'#6dffdc':'#719ac2','stroke-width':2,fill:id==='UC-08'||id==='UC-13'?'#10454b':'#18304b'}),T(x,y-13,id,'uc-id'),T(x,y+9,name,'uc-title'),T(x,y+30,sub,'uc-sub'));g.onclick=()=>{if(moved<6)pick(id,name,detail,ref,g)};g.onkeydown=e=>{if(e.key==='Enter')pick(id,name,detail,ref,g)};svg.append(g)}}
+function paintClass(){begin(2200,1560);for(let [lab,y,color] of [['PROJE & ARTIFACT',60,'#3c739e'],['ANALİZ & TEST',445,'#4776a0'],['PATCH & ADAY DOĞRULAMA',830,'#287d78'],['FİNAL & DİL ADAPTERLARI',1215,'#7861ab']]){svg.append(rect(35,y,2130,340,'#112037',color,18),T(72,y+26,lab,'caption','start'))}
+let coords=Object.fromEntries(classes.map(n=>[n[0],{x:n[4],y:n[5]}]));
+for(let i=0;i<classRel.length;i++){let [a,b,kind,label]=classRel[i],s=coords[a],t=coords[b],delta=t.x-s.x,k=delta>=0?1:-1,vertical=Math.abs(delta)<60;let sx=vertical?s.x:s.x+k*133,sy=vertical?s.y+(t.y>s.y?65:-65):s.y,ex=vertical?t.x:t.x-k*133,ey=vertical?t.y-(t.y>s.y?65:-65):t.y;let path=vertical?'M '+sx+' '+sy+' L '+ex+' '+ey:'M '+sx+' '+sy+' L '+ex+' '+ey;let cls=kind==='dependency'?'dashed':'',arrow=kind==='dependency'?'arrow':'';edge(path,cls,label,(sx+ex)/2,(sy+ey)/2-9,arrow);if(kind==='composition'||kind==='aggregation'){let dx=vertical?0:k,dy=vertical?(t.y>s.y?1:-1):0;let pts=[[0,0],[10,8],[20,0],[10,-8]].map(([u,v])=>(sx+u*dx-v*dy)+','+(sy+u*dy+v*dx)).join(' ');svg.append(E('polygon',{points:pts,fill:kind==='composition'?'#67e8d1':'#112037',stroke:'#67e8d1','stroke-width':2}))}}
+for(let n of classes){let [name,field1,field2,ref,x,y]=n,g=E('g',{class:'node',tabindex:'0','data-search':(name+' '+field1+' '+field2+' '+ref).toLocaleLowerCase('tr')});g.append(rect(x-134,y-66,268,132,'#162a40','#73abcf',9),rect(x-134,y-66,268,38,'#274058','#73abcf',8),E('path',{d:'M '+(x-134)+' '+(y-28)+'h268 M '+(x-134)+' '+(y+18)+'h268',stroke:'#729aba',fill:'none'}),T(x,y-39,name,'class-name'),T(x-120,y+1,field1,'class-field','start'),T(x-120,y+39,field2,'class-field','start'),T(x+120,y+57,ref,'uc-id','end'));g.firstChild.classList.add('body');g.onclick=()=>{if(moved<6)pick(name,name,'SRS mantıksal varlığı / sözleşmesi. UML yapısı tasarımsaldır; çalışır ORM veya uygulama sınıfı olarak doğrulanmamıştır.',ref,g)};g.onkeydown=e=>{if(e.key==='Enter')pick(name,name,'Mantıksal alan modeli.',ref,g)};svg.append(g)}}
+function fit(){zoom=Math.min(viewport.clientWidth/w,viewport.clientHeight/h)*.92;tx=(viewport.clientWidth-w*zoom)/2;ty=(viewport.clientHeight-h*zoom)/2;apply()}function apply(){svg.style.transform='translate('+tx+'px,'+ty+'px) scale('+zoom+')';byId('percent').textContent=Math.round(zoom*100)+'%'}
+function inc(f,x=viewport.clientWidth/2,y=viewport.clientHeight/2){let next=Math.max(.2,Math.min(3,zoom*f));tx=x-(x-tx)*next/zoom;ty=y-(y-ty)*next/zoom;zoom=next;apply()}
+function filter(){let q=byId('query').value.trim().toLocaleLowerCase('tr');document.querySelectorAll('.node').forEach(n=>{let yes=n.getAttribute('data-search').includes(q);n.classList.toggle('dim',!!q&&!yes);n.classList.toggle('match',!!q&&yes)})}
+function show(which){mode=which;byId('tabUC').classList.toggle('active',which==='uc');byId('tabCL').classList.toggle('active',which==='class');byId('query').value='';byId('status').textContent=which==='uc'?'19 UC · 5 destekleyici/ana aktör · 10 «include/extend» bağı':'24 mantıksal öğe · 23 ilişki · 7 zorunlu dil';byId('subject').textContent='Bir öğe seçin';byId('detail').textContent='Düğüm seçildiğinde onun SRS karşılığı gösterilir.';byId('identifier').textContent='SRS v0.4';byId('legend').innerHTML=which==='uc'?'<b>UML ilişki sözlüğü</b><br><i></i> Actor association<br><i></i> «include» gerekli alt use case<br><i style="border-color:#f7bf7a"></i> «extend» koşullu use case':'<b>UML ilişki sözlüğü</b><br>◆ Composition &nbsp; ◇ Aggregation<br>— Association + multiplicity<br>⇢ Dependency / interface contract';byId('guard').textContent=which==='uc'?'Security finding doğrudan kalite refactoring seçimine girmez. İki onay ve birleşik doğrulama şarttır.':'SRS fiziksel tablo şeması dayatmaz. Çizim kavramsal UML modelidir; yedi adapter ilk teslim için zorunludur.';which==='uc'?paintUC():paintClass();requestAnimationFrame(fit)}
+byId('tabUC').onclick=()=>show('uc');byId('tabCL').onclick=()=>show('class');byId('query').oninput=filter;
+byId('zoomIn').onclick=()=>inc(1.25);byId('zoomOut').onclick=()=>inc(.8);byId('fit').onclick=fit;byId('reset').onclick=()=>show(mode);byId('full').onclick=()=>document.documentElement.requestFullscreen?.();
+viewport.addEventListener('wheel',e=>{e.preventDefault();inc(e.deltaY>0?.86:1.16,e.offsetX,e.offsetY)},{passive:false});
+viewport.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.node'))return;drag=true;moved=0;mx=e.clientX;my=e.clientY;viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging')});
+viewport.addEventListener('pointermove',e=>{if(!drag)return;let dx=e.clientX-mx,dy=e.clientY-my;moved+=Math.abs(dx)+Math.abs(dy);tx+=dx;ty+=dy;mx=e.clientX;my=e.clientY;apply()});
+viewport.addEventListener('pointerup',()=>{drag=false;viewport.classList.remove('dragging')});window.addEventListener('resize',fit);show('uc');
+})();
+</script></body></html>
