@@ -5,14 +5,14 @@
 
 ## 1. What remains authoritative
 - Product behavior: owner-provided Master Architecture v2.0 + Step-by-Step Development Guide v2.0; compiled [TR SRS](SRS.md) and [EN SRS](SRS_EN.md) await final sign-off.
-- Existing implementation planning: [roadmap](DEVELOPMENT_ROADMAP.md), `.github/task-plan.json`, native GitHub prerequisites (31 technical issues and 54 edges).
+- Existing implementation planning: [roadmap](DEVELOPMENT_ROADMAP.md), `.github/task-plan.json`, native GitHub prerequisites (31 original technical issues/54 original edges preserved; **34 tasks/69 edges planned** for seven-language scope; new native links PENDING_SAFE_SYNC).
 - Execution model: PROJECT GENESIS v2.0. Exactly **one** authorized implementation owner at any point. Old module expertise and historical issue assignees are not permission to implement.
 - Integration branch: `main`; issue-numbered topic branches and PRs remain for independent review, but do not permit several concurrent active writers.
 
 ## 2. Bootstrap migration safety
 Existing [PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38) was prepared before Genesis. It does **not** consume a Burkay/Cafer rotation turn and is not a completed handoff. The project owner authorized reconciling it to Genesis, but did **not** authorize merging it. The active reviewer must inspect the current revision and actual CI; the owner will be asked for a **separate explicit merge decision**. Never bypass existing governance checks to force the transition.
 
-The 31 native technical issues and their dependency graph are not deleted. Fixed assignees and legacy issue body primary/support/reviewer lines are cleared **only after** the new fail-closed gate, its regression tests and migration procedure have been accepted. The migration must preserve task IDs, issue links, Git history, budgets and known blockages.
+The 31 original native technical issues and 54 existing dependencies are not deleted. Newly approved #40–#42 (C#/Roslyn, Go, C++/Clang) add 3 tasks and 15 intended dependency edges to the proposed graph. Native synchronization and independent audit remain mandatory. Fixed assignees and legacy issue body primary/support/reviewer lines are cleared **only after** the new fail-closed gate, its regression tests and migration procedure have been accepted. The migration must preserve task IDs, issue links, Git history, budgets and known blockages.
 
 ## 3. One task per rotation
 1. Orchestrator reconstructs last confirmed Git state, approved SRS, outstanding requirements and dependencies.
@@ -43,3 +43,6 @@ Before publication, `report.md` contains base commit and `PENDING_PUSH_CONFIRMAT
 
 ## 6. No artificial schedule certainty
 The due date is **2027-01-01** (time UNKNOWN). Falcon-Mamba 7B, Python and JS/TS capabilities, PDF/HTML and mixed-language tests are first-delivery **P0**; lack of GPU/runtime/provider access is a release blocker, not approval to silently downgrade scope. Replan from evidence and actual available capacity, never from a speculative workload split.
+
+## 6. Mandatory 2026-10-27 release scope
+Every adapter for Java, Python, JavaScript, TypeScript, C#, Go and C++ is **P0**; real local Falcon-Mamba 7B, frozen V0/tests, isolated patch verification, two approvals and HTML/PDF/ZIP/history remain required. F14-MIX waits for all seven adapters; F15-P0 additionally waits for F07B-LOCAL and F13-ADV. Actual toolchain and build-test evidence is required before acceptance. PR #38 remains open and requires separate explicit owner merge permission after an independent GitHub-recorded current-head review; a verbal or chat-level statement without attributable reviewer evidence is REPORTED, not VERIFIED.
