@@ -32,7 +32,7 @@ Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLO
 - [Roadmap and all 34 tasks](docs/DEVELOPMENT_ROADMAP.md)
 - [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
 - [Weekly effort model](docs/TEAM_WORKLOAD.md)
-- [Developer environment and readiness](docs/DEVELOPMENT_ENVIRONMENT.md)
+- [Developer preflight and development workflow](docs/TEAM_WORKFLOW.md)
 
 Governance verification (Python standard library, no dependencies):
 
