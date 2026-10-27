@@ -1,13 +1,13 @@
 # Repository Codex instructions — Project Genesis v2.0
 
-Project: secure refactoring of AI-generated code (Java, Python, JS/TS, local Falcon-Mamba 7B); preserve owner-approved Master Architecture v2.0 and Step-by-Step Development Guide v2.0.
+Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, TypeScript, C#, Go, C++ and local Falcon-Mamba 7B**, all P0 first-delivery); preserve owner-approved Master Architecture v2.0 and Step-by-Step Development Guide v2.0.
 
 ## Source hierarchy
-1. Explicit owner decisions (2026-10-26): `main` is accepted integration branch, PR #38 cannot merge without separate owner approval, all #19/#20/#31/#32/#33/#34 are first-delivery P0.
+1. Explicit owner decisions (2026-10-26 and 2026-10-27): `main` is accepted integration branch, PR #38 cannot merge without separate owner approval, all #19/#20/#31/#32/#33/#34/#40/#41/#42 are first-delivery P0; verified seven-language acceptance is mandatory.
 2. SRS: `docs/SRS.md` and `docs/SRS_EN.md` (both DRAFT pending separate final sign-off); do not silently treat drafts as accepted where requirements conflict.
 3. Architecture: `docs/ARCHITECTURE.md` plus owner-provided v2.0 primary source PDFs (not assumed present in public repository).
 4. Planning and actual state: `.github/task-plan.json`, `docs/DEVELOPMENT_ROADMAP.md`, `docs/PROJECT_STATUS.md`, `docs/DECISIONS/`, `.github/acceptance.json`; actual repository and tests establish IMPLEMENTED versus VERIFIED.
-5. See `docs/TEAM_WORKFLOW.md`, `SECURITY.md`, `CONTRIBUTING.md`, `docs/DEPENDENCY_MANAGEMENT.md` for applicable detailed practice.
+5. See approved scope record `docs/DECISIONS/0003-mandatory-seven-language-delivery.md`; see `docs/TEAM_WORKFLOW.md`, `SECURITY.md`, `CONTRIBUTING.md`, `docs/DEPENDENCY_MANAGEMENT.md` for applicable detailed practice.
 
 ## Stable execution invariants
 - Exactly one active implementation developer, cyclic order **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay**. The orchestrator authorizes each task, accepts each evidence-backed handoff and advances at most once. Old issue assignments are transitional metadata, not valid owner authority.
@@ -21,3 +21,6 @@ Project: secure refactoring of AI-generated code (Java, Python, JS/TS, local Fal
 
 ## PR #38 transition lock
 This existing PR predates Project Genesis v2.0 and must undergo independent review and current CI first, then the owner's *separate explicit merge authorization*. Work on this preparatory branch is not a successful developer rotation. Do not clear old live issue assignments or merge the current migration before compatible governance gates and approval.
+
+## First-delivery language acceptance
+All seven language adapters require real symbol/quality/build/test/coverage and bounded validated patch evidence where applicable. F14-MIX depends on #32/#33/#40/#41/#42; F15-P0 also requires real local security AI and full PDF reporting. The 34-task/69-edge **planned** graph must not be mistaken for GitHub-native completion; original 31-task/54-edge graph is preserved and the new links remain pending reconciliation. Do not state release READY if a mandatory language, model, negative-path, or combined-test gate is unverified.
