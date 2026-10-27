@@ -114,7 +114,7 @@ function show(which){mode=which;byId('tabUC').classList.toggle('active',which===
 byId('tabUC').onclick=()=>show('uc');byId('tabCL').onclick=()=>show('class');byId('query').oninput=filter;
 byId('zoomIn').onclick=()=>inc(1.25);byId('zoomOut').onclick=()=>inc(.8);byId('fit').onclick=fit;byId('reset').onclick=()=>show(mode);byId('full').onclick=()=>document.documentElement.requestFullscreen?.();
 viewport.addEventListener('wheel',e=>{e.preventDefault();inc(e.deltaY>0?.86:1.16,e.offsetX,e.offsetY)},{passive:false});
-viewport.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag=true;moved=0;mx=e.clientX;my=e.clientY;viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging')});
+viewport.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.node'))return;drag=true;moved=0;mx=e.clientX;my=e.clientY;viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging')});
 viewport.addEventListener('pointermove',e=>{if(!drag)return;let dx=e.clientX-mx,dy=e.clientY-my;moved+=Math.abs(dx)+Math.abs(dy);tx+=dx;ty+=dy;mx=e.clientX;my=e.clientY;apply()});
 viewport.addEventListener('pointerup',()=>{drag=false;viewport.classList.remove('dragging')});window.addEventListener('resize',fit);show('uc');
 })();
