@@ -53,3 +53,9 @@ The first-delivery language set is **Java, Python, JavaScript, TypeScript, C#, G
 - C++ F14-CPP (#42): Clang AST/clang-tidy, real compilation database and compiler flags, native build/test/coverage in restricted sandbox; absent headers/compile context must yield UNVERIFIED.
 
 The 34-task, 69-dependency *planned* graph contains required join gates F14-MIX (#34) and F15-P0 (#35). Only the original 54 native GitHub edges are currently established; new issue parent/dependency links are **PENDING_SAFE_SYNC**. The expanded scope does not change the fixed developer rotation, PR #38 reviewer independence or owner-controlled merge authorization. Burkay is technical lead/audit coordinator for PR #38; this does not rewrite Cafer's GitHub PR authorship or waive independent review.
+
+## Mandatory seven-language first-delivery architecture — 2026-10-27
+
+Owner-approved P0: Java, Python, JavaScript, TypeScript, C# (Roslyn/.NET), Go (module-aware parser/types) and C++ (Clang/compilation database) are **all required working adapters**, together with real Falcon-Mamba 7B, two user approval gates, isolated original/frozen-test patch validation and HTML/PDF/ZIP/history. Older language-extension text is superseded by this decision.
+
+F14-CS (#40), F14-GO (#41) and F14-CPP (#42) depend on F02-CONTRACT, F06-SANDBOX and F11-VALIDATE. Each must report real parse/symbol/quality/build/test/coverage and safe-patch validation evidence, plus a negative regression case; missing toolchains are UNVERIFIED, not passing. F14-MIX (#34) depends on all new adapters as well as Python and JS/TS; F15-P0 (#35) depends on F14-MIX, F07B-LOCAL and F13-ADV. Original 31 tasks/54 edges are retained; the 34-task/69-edge **planned** graph awaits native GitHub synchronization. See [SRS TR](SRS.md) and [SRS EN](SRS_EN.md).
