@@ -74,6 +74,12 @@ def run(plan, api, apply=False, approved=False):
         raise ValueError("--apply requires explicit --owner-approved")
     if plan.get("scope_decision_2026_10_27", {}).get("graph_sync_status") != "VERIFIED":
         raise ValueError("Native GitHub parent/dependency graph must be VERIFIED before live assignment changes")
+    # A registry flag is not evidence. Re-audit all native parent and
+    # blocked-by links against the actual API before touching any issue.
+    from audit_plan import audit
+    mismatches = audit(plan, api)
+    if mismatches:
+        raise ValueError("Live native graph failed preflight: " + "; ".join(mismatches[:5]))
     branch = subprocess.check_output(
         ["git", "branch", "--show-current"], cwd=ROOT, text=True
     ).strip()
