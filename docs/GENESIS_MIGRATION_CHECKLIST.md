@@ -41,3 +41,10 @@
 **Merged into main:** NO.  
 **PR #38 owner merge approval:** NOT_GRANTED.  
 **This migration preparation:** documentation and safety governance work performed via authorized GitHub tooling, **not an execution by a developer's Codex**, and must not be misreported as an accepted Burkay or Cafer task.
+
+## 2026-10-27 — additional mandatory C#/Go/C++ migration
+
+- Owner approved *all seven* Java/Python/JS/TS/C#/Go/C++ adapters for first delivery; original 31 issues and 54 native edges remain. New issues #40–#42 exist without assignees; new planned graph has 34 tasks / 69 edges. See SRS v0.4.0.
+- **Native GitHub graph incomplete:** place #40–#42 under epic #7; add three blocked_by links to each (#11/#16/#26), add #40/#41/#42 to #34, and add #20/#31/#34 to #35. Validate entire graph and rerun live governance audit without deleting legacy edges. Do not claim sync until tool/API evidence confirms it.
+- This extends the previous 31-task assignment-clearing migration: `migrate_assignments.py` dry-run assumptions (31 issues, 54 edges) are **STALE** for expanded graph. Update/test its supported task-count logic before any live `--apply`; do not execute old version on new plan.
+- PR #38 remains open, no merge. Burkay is owner-designated technical lead and audit coordinator, but GitHub records Cafer as author; contributor-independent review and separate owner permission remain mandatory. Re-run all checks after these revisions.
