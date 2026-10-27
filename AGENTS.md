@@ -3,7 +3,7 @@
 Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, TypeScript, C#, Go, C++ and local Falcon-Mamba 7B**, all P0 first-delivery); preserve owner-approved Master Architecture v2.0 and Step-by-Step Development Guide v2.0.
 
 ## Source hierarchy
-1. Explicit owner decisions (2026-10-26 and 2026-10-27): `main` is accepted integration branch, PR #38 cannot merge without separate owner approval, all #19/#20/#31/#32/#33/#34/#40/#41/#42 are first-delivery P0; verified seven-language acceptance is mandatory.
+1. Explicit owner decisions (2026-10-26 and 2026-10-27): `main` is accepted integration branch, PR #38 was explicitly owner-authorized and merged (2026-10-27), all #19/#20/#31/#32/#33/#34/#40/#41/#42 are first-delivery P0; verified seven-language acceptance is mandatory.
 2. SRS: `docs/SRS.md` and `docs/SRS_EN.md` (both DRAFT pending separate final sign-off); do not silently treat drafts as accepted where requirements conflict.
 3. Architecture: `docs/ARCHITECTURE.md` plus owner-provided v2.0 primary source PDFs (not assumed present in public repository).
 4. Planning and actual state: `.github/task-plan.json`, `docs/DEVELOPMENT_ROADMAP.md`, `docs/PROJECT_STATUS.md`, `docs/DECISIONS/`, `.github/acceptance.json`; actual repository and tests establish IMPLEMENTED versus VERIFIED.
@@ -20,7 +20,7 @@ Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, Ty
 - For authorized implementation or repair use `.agents/skills/development-handoff/SKILL.md` when installed/supported; otherwise follow an equivalent concise contract. Load only task-relevant context.
 
 ## PR #38 transition lock
-This existing PR predates Project Genesis v2.0 and must undergo independent review and current CI first, then the owner's *separate explicit merge authorization*. Work on this preparatory branch is not a successful developer rotation. Do not clear old live issue assignments or merge the current migration before compatible governance gates and approval.
+PR #38 was merged into `main` on the owner's 2026-10-27 explicit authorization; it does not consume a rotation. Project owner Burkay alone approves each later PR and handoff; record `GENESIS-OWNER-APPROVED: <head SHA>` as an authenticated GitHub PR comment. Peer approvals are OPTIONAL, but real CI, task acceptance, safe publication and Git graph verification remain mandatory. Do not clear live issue assignments before approved governance is integrated and native dependencies match.
 
 ## First-delivery language acceptance
 All seven language adapters require real symbol/quality/build/test/coverage and bounded validated patch evidence where applicable. F14-MIX depends on #32/#33/#40/#41/#42; F15-P0 also requires real local security AI and full PDF reporting. The 34-task/69-edge **planned** graph must not be mistaken for GitHub-native completion; original 31-task/54-edge graph is preserved and the new links remain pending reconciliation. Do not state release READY if a mandatory language, model, negative-path, or combined-test gate is unverified.
