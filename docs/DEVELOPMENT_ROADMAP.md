@@ -86,6 +86,7 @@ Every milestone requires actual task output, focused and integration verificatio
 2. Fixed assignees in live GitHub issues are historic/transition metadata; removal must be coordinated only after compatible gate and review policy is accepted, without issue or dependency deletion.
 3. SRS in Turkish/English is a draft pending a distinct final owner approval.
 4. Actual local Falcon-Mamba GPU/runtime, C#/.NET, Go and C++/Clang toolchains, and patch-provider API/consent/budget are not verified.
-5. New #40–#42 issues currently have no GitHub-native #7 parent or blocked_by edges; #34 and #35 still have their historical live predecessors. Sync safely after governance review; do not call the 69 planned edges live.\n6. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
+5. New #40–#42 issues currently have no GitHub-native #7 parent or blocked_by edges; #34 and #35 still have their historical live predecessors. Sync safely after governance review; do not call the 69 planned edges live.
+6. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
 
 **Next eligible development rotation:** Burkay, starting from no Genesis handoff. The task selected in `sequential_execution` is `F00-PLAN` (issue #8), conditional on successful bootstrap governance migration and accepted owner/SRS requirements. Its acceptance cannot be implied by this draft roadmap.
