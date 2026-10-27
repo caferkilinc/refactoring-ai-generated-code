@@ -2,7 +2,7 @@
 
 Engineering Design II — Ankara Bilim University. A planned multilingual platform for improving AI-generated code with controlled patches, reproducible analysis, isolated validation and two explicit product approvals.
 
-**Current state (2026-10-22):** September planning/scaffolding history is preserved. Application modules, backend/frontend executable tests and experimental results are not implemented on `main`. Governance configuration is proposed in a review branch. See [actual status](docs/PROJECT_STATUS.md).
+**Current state (2026-10-27):** PR #38 and #39 are merged; SRS v0.4 TR/EN and 34-task/69-edge GitHub prerequisite graph are approved and audited. Application backend/frontend and product tests are still NOT_STARTED. See [actual status](docs/PROJECT_STATUS.md).
 
 **Final course deadline: 2027-01-01; time unspecified.** All owner-approved Python/JS/TS, Falcon-Mamba, HTML/PDF and core refactoring capabilities are mandatory first-delivery P0; historical P1 schedule must be replanned. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
 
@@ -24,16 +24,15 @@ FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components
 
 ## Working together
 
-Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Exactly one orchestrator-authorized developer may implement the dependency-ready task. Numbered topic PR branches remain for independent review, with `main` as accepted integration branch. PR #38 is a pre-Genesis bootstrap and requires separate owner merge approval. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
+Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Exactly one orchestrator-authorized developer may implement the dependency-ready task. Numbered topic branches remain for scoped review, with `main` as integration branch. Burkay is the sole required final approver; peer reviews are optional. PR #38 and #39 are already merged. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
 - [Project board](https://github.com/users/caferkilinc/projects/1)
-- [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (review drafts)
+- [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (both owner-approved v0.4)
 - [Architecture](docs/ARCHITECTURE.md) and [decisions](docs/DECISIONS/0001-scope-and-governance.md)
-- [Roadmap and all 31 tasks](docs/DEVELOPMENT_ROADMAP.md)
+- [Roadmap and all 34 tasks](docs/DEVELOPMENT_ROADMAP.md)
 - [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
 - [Weekly effort model](docs/TEAM_WORKLOAD.md)
-- [Setup verification and remaining activation](docs/SETUP_REPORT.md)
-- [Operational risks, fixes and remaining controls](docs/OPERATIONAL_AUDIT.md)
+- [Developer environment and readiness](docs/DEVELOPMENT_ENVIRONMENT.md)
 
 Governance verification (Python standard library, no dependencies):
 
