@@ -4,12 +4,12 @@
 **Kimlik:** RAGC-SRS-001  
 **Sürüm:** 0.4.0  
 **Tarih:** 2026-10-27  
-**Durum:** İNCELEME TASLAĞI — 2026-10-26 kapsam/yönetişim kararları işlenmiştir; Türkçe+İngilizce metinlerin nihai onayı henüz verilmemiştir.  
+**Durum:** ONAYLANMIŞ SRS — Burkay Çakar Türkçe ve İngilizce tam şartnameyi 2026-10-27 tarihinde onayladı; uygulama doğrulaması ayrıdır.  
 **Sistem:** AI-Generated Code Refactoring and Quality Evaluation / Engineering Design II  
 **Hedef teslim:** 2027-01-01; kesin saat henüz doğrulanmadı.  
 **Teknik otorite:** 01_Master_Sistem_Mimarisi.pdf (v2.0) → 02_Adim_Adim_Gelistirme_Rehberi.pdf (v2.0) → 04_Modular_Architecture_Visual_Presentation.pdf ve PPTX ile 2026-10-20 mimari görseli. Bunlar proje sahibi tarafından gönderilen dış kaynaklardır; depo içinde bulunmadıklarında Codex doğrudan okumuş varsaymayacaktır.  
 **Eski ve ikincil kaynaklar:** 01_System_Operation_and_Architecture.pdf (v1.0) ve 03_Technical_System_Presentation_Revised.pdf; yalnızca güncel v2.0 ile çelişmeyen ayrıntılarda kullanılabilir.  
-**Uygulama takibi:** GitHub F00–F15 planı, 31 mevcut teknik görev ve onların bağımlılıkları.  
+**Uygulama takibi:** GitHub F00–F15 planı, 31 korunan + 3 yeni = 34 teknik görev ve 69 planlanan bağımlılık; 54 orijinal GitHub bağlantısı korunmuştur.  
 **Yürütme otoritesi:** Project Genesis v2.0; ürün gereksinimleri yerine geçirilmez.
 
 > Bu SRS planlanan sistemi tanımlar. Buradaki hiçbir gereksinim tamamlanmış/ölçülmüş/deploy edilmiş kabul edilmez. Uygulama durumu kaynak kod, çalışan testler ve kabul edilen Git kanıtlarıyla ayrıca belirlenir.
@@ -216,7 +216,7 @@ Gereksinim kabulü için her satır gerçek davranış testi, kanıtlı kaynak �
 - **GOV-005:** Devir: bir task → Codex kod/yakın test/diff/report → insan incelemesi → commit ve push → rapor ve gerçek SHA → orkestratör acceptance → tam bir rotation. Aynı task+SHA bir kere sayılır.
 - **GOV-006:** Codex yalnızca geçerli iş kontratını uygulayabilir; sonraki görev, branch politikası, mimari veya production-release kararını tek başına değiştiremez.
 - **GOV-007:** Varsa mevcut docs/DEVELOPMENT_ROADMAP.md, docs/PROJECT_STATUS.md, docs/DECISIONS/ ve .github/acceptance.json tekrar kullanılır; rakip state dosyaları oluşturulmaz.
-- **GOV-008:** PR #38'in önce gerçek bağımsız incelemesi, mevcut revizyon kontrolleri ve insan merge kararı korunur. Yeni governance geçişi, bu bootstrap'ın onayını geçmiş gibi temsil edemez.
+- **GOV-008:** Tek nihai onay yetkilisi Burkay Çakar'dır; diğer üyelerin incelemeleri isteğe bağlıdır. PR #38 açık izinle birleştirilmiştir. Sonraki PR için güncel SHA'ya bağlı Burkay onayı ve gerçek CI/handoff kanıtı zorunludur.
 
 ## 10. Kaynak uzlaştırması ve açık karar kayıtları
 
@@ -251,3 +251,7 @@ Bu sürüm **derleme taslağıdır**. Project owner'ın 2026-10-26 tarihinde yet
 ### DEC-010 — 2026-10-27: C#, Go, C++ ilk teslim P0
 
 **Onaylanmış kapsam değişikliği:** Yedi dil (Java, Python, JavaScript, TypeScript, C#, Go, C++) ve yerel Falcon-Mamba 7B aynı ilk teslimin zorunlu parçalarıdır. Yeni teknik görevler F14-CS (#40), F14-GO (#41), F14-CPP (#42); her birinin plan önkoşulları F02-CONTRACT, F06-SANDBOX, F11-VALIDATE'dir. F14-MIX (#34) bu üç yeni adapterın kabulünü de bekleyecek; F15-P0 (#35) F14-MIX + F07B-LOCAL (#20) + F13-ADV (#31) kabul edilmeden READY değildir. Üç yeni native issue açıldı, ancak GitHub native sub-issue ve dependency edges henüz inceleme/aktivasyon sonrası güvenli senkronizasyon gerektirir. Önceki 31 görev ve 54 native edge silinmedi. PR #38 için merge izni **verilmedi**; Burkay teknik lider ve denetim koordinatörü, ancak PR yazarı ile katkıda bulunan kod incelemecisi arasındaki bağımsızlık şartı korunur.
+
+## 14. Şartnamenin nihai kabulü — 27 Ekim 2026
+
+**APPROVED_BY:** Burkay Çakar (@cakarburkayy). Türkçe ve İngilizce SRS v0.4.0, FR-001–062 ve NFR-01–17 dahil onaylandı. C#, Go ve C++ dahil yedi dil ile gerçek Falcon-Mamba 7B ilk teslim P0 kapsamındadır. Yalnız Burkay nihai onay verir; başkalarının bağımsız incelemesi zorunlu değildir. PR onayları HEAD SHA'ya bağlı, test/güvenlik/bağımlılık kontrolleri zorunludur. PR #38 `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c` ile merge edildi. Belge onayı çalışan ürün veya release kanıtı değildir.
