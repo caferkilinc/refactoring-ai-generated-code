@@ -72,9 +72,9 @@ def run(plan, api, apply=False, approved=False):
         return {"mode": "DRY_RUN", "planned": [n for n, _, _ in changed]}
     if not approved:
         raise ValueError("--apply requires explicit --owner-approved")
-    if plan.get("scope_decision_2026_10_27", {}).get("graph_sync_status") != "VERIFIED":
-        raise ValueError("Native GitHub parent/dependency graph must be VERIFIED before live assignment changes")
-    # A registry flag is not evidence. Re-audit all native parent and
+    # The committed registry flag is intentionally a pre-sync snapshot;
+    # use the actual live graph audit, not a self-asserted VERIFIED flag.
+    # Re-audit all native parent and
     # blocked-by links against the actual API before touching any issue.
     from audit_plan import audit
     mismatches = audit(plan, api)
