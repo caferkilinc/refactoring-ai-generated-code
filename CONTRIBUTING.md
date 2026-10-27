@@ -16,3 +16,6 @@
 Only the governance policy may update the task registry/dependencies and safety gates after independent review. All 31 technical tasks and 54 native prerequisites are retained, fixed owner/support/reviewer assignments removed in the proposed registry. See [TR SRS](docs/SRS.md), [EN SRS](docs/SRS_EN.md), [team guide](docs/TEAM_WORKFLOW.md), [dependency policy](docs/DEPENDENCY_MANAGEMENT.md), [security](SECURITY.md), [roadmap](docs/DEVELOPMENT_ROADMAP.md).
 
 Do not infer product build/test success from governance test output. Always keep user V0 and frozen tests immutable.
+
+## October 27 owner-only final approval override
+Burkay Çakar (`@cakarburkayy`) is the **sole required approver** for PR acceptance and handoffs. Peer reviews by other developers are optional. Burkay records approval for the exact commit with GitHub comment `GENESIS-OWNER-APPROVED: <HEAD_SHA>`; do not reuse approval after a new commit. Passing applicable checks, native dependency acceptance, security and publication remain mandatory. PR #38 merged on explicit owner authority and does not consume developer rotation.
