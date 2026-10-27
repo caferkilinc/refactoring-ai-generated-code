@@ -84,8 +84,8 @@ class IssueAssignmentMigrationTests(unittest.TestCase):
             run(PLAN, self.api, apply=True, approved=False)
         self.assertEqual([], self.api.writes)
 
-    def test_live_apply_requires_verified_new_native_graph(self):
-        with self.assertRaisesRegex(ValueError, "graph must be VERIFIED"):
+    def test_live_apply_requires_real_graph_even_before_registry_snapshot_updated(self):
+        with self.assertRaisesRegex(ValueError, "Live native graph failed preflight"):
             run(PLAN, self.api, apply=True, approved=True)
         self.assertEqual([], self.api.writes)
 
