@@ -236,7 +236,8 @@ class HygieneTests(unittest.TestCase):
 
 class SyncTests(unittest.TestCase):
     class FakeGraph:
-        def __init__(self, bad=False): self.writes=[];self.bad=bad
+        def __init__(self, bad=False, bad_marker=False):
+            self.writes=[];self.bad=bad;self.bad_marker=bad_marker
         def call(self, path, method='GET', data=None, **kw):
             if method != 'GET': self.writes.append((path,data)); return {}
             if path.startswith('/labels/'): return {}
@@ -244,12 +245,22 @@ class SyncTests(unittest.TestCase):
             if path.endswith('/parent'):
                 if self.bad and n == PLAN['tasks'][-1]['issue_number']: return {'number': 999}
                 return None
-            return {'id': n}
+            task = next((t for t in PLAN['tasks'] if t['issue_number'] == n), None)
+            body = f"<!-- plan-id: {task['plan_id']} -->" if task else ""
+            if task and n == 42 and self.bad_marker:
+                body = "<!-- plan-id: MALICIOUS -->"
+            return {'id': n, 'body': body}
         def pages(self, path, **kw): return []
 
     def test_late_graph_conflict_causes_no_earlier_writes(self):
         api=self.FakeGraph(bad=True)
         with self.assertRaisesRegex(RuntimeError,'Unexpected parent'):
+            synchronize(PLAN,api)
+        self.assertEqual([],api.writes)
+
+    def test_wrong_live_task_identity_aborts_before_first_write(self):
+        api=self.FakeGraph(bad_marker=True)
+        with self.assertRaisesRegex(RuntimeError, 'Unexpected Plan ID marker'):
             synchronize(PLAN,api)
         self.assertEqual([],api.writes)
 
