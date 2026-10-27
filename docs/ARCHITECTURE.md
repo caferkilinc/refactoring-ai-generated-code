@@ -43,3 +43,13 @@ The component labels above are *technical runtime responsibilities*, never perma
 ## Developer rotation is distinct from module expertise
 
 2026-10-26 owner decision: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay. The expertise column does **not** preassign task ownership. The orchestrator selects one ready task and owner at a time. PR #38 predates the rotation and requires independent review plus separate owner merge authorization. Refer to [SRS Türkçe](SRS.md) and [SRS English](SRS_EN.md) review drafts.
+
+## Seven mandatory language adapters — approved 2026-10-27
+
+The first-delivery language set is **Java, Python, JavaScript, TypeScript, C#, Go and C++**, all P0, together with real local Falcon-Mamba 7B. Previous `future C#/Go/C++` statements are superseded. The existing LanguageAdapter/CIR, immutable V0, evidence registry, isolated runtime and patch/combined-validation boundaries remain unchanged; do **not** introduce a parallel refactoring pipeline.
+
+- C# F14-CS (#40): Roslyn/.NET SDK for AST, symbol/dependency references and source ranges; real xUnit/NUnit/MSTest or compatible tests and coverage; isolated build/patch verification.
+- Go F14-GO (#41): go/parser/go/types, modules/workspaces, go test/coverage, appropriate static rules and safe source patch evidence.
+- C++ F14-CPP (#42): Clang AST/clang-tidy, real compilation database and compiler flags, native build/test/coverage in restricted sandbox; absent headers/compile context must yield UNVERIFIED.
+
+The 34-task, 69-dependency *planned* graph contains required join gates F14-MIX (#34) and F15-P0 (#35). Only the original 54 native GitHub edges are currently established; new issue parent/dependency links are **PENDING_SAFE_SYNC**. The expanded scope does not change the fixed developer rotation, PR #38 reviewer independence or owner-controlled merge authorization. Burkay is technical lead/audit coordinator for PR #38; this does not rewrite Cafer's GitHub PR authorship or waive independent review.
