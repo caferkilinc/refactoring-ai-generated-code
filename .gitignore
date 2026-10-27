@@ -1,0 +1,20 @@
+# Local configuration and private artefacts
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.docx
+*.doc
+private/
+uploads/
+artifacts/private/
+local-models/
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+.DS_Store
+coverage/
+.pytest_cache/

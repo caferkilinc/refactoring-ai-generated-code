@@ -1,0 +1,20 @@
+name: Live plan audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: read
+jobs:
+  audit:
+    if: github.actor == github.repository_owner && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Detect live issue and graph drift without writes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/governance/audit_plan.py

@@ -1,0 +1,20 @@
+# All accounts verified Write/Admin 2026-10-22. Last matching pattern wins.
+* @caferkilinc @ismail-cevik
+/docs/ @caferkilinc @tahaugurtoyran @ismail-cevik
+/experiments/ @caferkilinc @ismail-cevik @cakarburkayy
+/metrics/ @caferkilinc @ismail-cevik
+/results/ @caferkilinc @ismail-cevik
+/tests/ @ismail-cevik @cakarburkayy @caferkilinc
+/backend/ @caferkilinc @ismail-cevik @cakarburkayy
+/backend/core/schemas/ @caferkilinc @cakarburkayy @ismail-cevik
+/backend/language_adapters/ @cakarburkayy @ismail-cevik @caferkilinc
+/backend/analyzers/ @cakarburkayy @ismail-cevik @caferkilinc
+/backend/analyzers/local_llm/ @Yaman-A-E @cakarburkayy @ismail-cevik
+/backend/refactoring/ @Yaman-A-E @cakarburkayy @caferkilinc @ismail-cevik
+/backend/validation/ @ismail-cevik @cakarburkayy @caferkilinc
+/backend/reporting/ @tahaugurtoyran @caferkilinc @ismail-cevik
+/frontend/ @tahaugurtoyran @cakarburkayy @ismail-cevik @caferkilinc
+/infrastructure/ @ismail-cevik @caferkilinc @cakarburkayy
+/.github/ @cakarburkayy @ismail-cevik
+/scripts/governance/ @cakarburkayy @ismail-cevik
+/tests/governance/ @cakarburkayy @ismail-cevik
