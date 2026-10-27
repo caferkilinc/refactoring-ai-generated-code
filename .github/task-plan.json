@@ -1618,11 +1618,11 @@
     "next_owner_if_accepted": "caferkilinc",
     "last_accepted_handoff_key": null,
     "initialized_under": "PROJECT_GENESIS_V2_2026-10-26",
-    "note": "PR #38 is pre-Genesis bootstrap and does not consume a turn. Must independently review, verify, and obtain separate owner merge approval. State transitions require reviewed, independently verified handoff evidence."
+    "note": "PR #38 and PR #39 merged on explicit owner approval 2026-10-27; neither consumed a Genesis rotation. Only Burkay authorizes final PR/handoff acceptance; no peer approval is mandatory. Burkay F00-PLAN remains active until first accepted implementation handoff."
   },
   "assignment_migration": {
-    "status": "PENDING_REVIEW_AND_SAFE_MIGRATION",
-    "note": "Do not change live assignees while PR #38 base governance still enforces fixed assignments; clear after new gate and revised issue bodies approved. Preserve all 31 issue records and native edges. Newly created issues #40-42 also require native parent/blocked_by graph sync. Preserve original 31 records and original 54 edges."
+    "status": "PARTIAL",
+    "note": "Live cleanup began 2026-10-27 after owner approval; five issues (#8,#9,#1,#11,#13) had historical fixed assignees and 3 named-role lines cleared. Remaining 26 legacy issue assignments/role lines require approved script/manual cleanup; some connector writes were blocked. No missing issue IDs or dependency links may be deleted."
   },
   "milestones_historical_estimates": true,
   "scope_decision_2026_10_27": {
@@ -1644,9 +1644,9 @@
     ],
     "original_task_count": 31,
     "original_native_dependency_edges": 54,
-    "graph_sync_status": "PENDING_SAFE_SYNC",
+    "graph_sync_status": "VERIFIED",
     "reforecast_required": true,
     "release_rule": "P0 mandatory: no READY_FOR_RELEASE before seven-language verified E2E, real Falcon-Mamba and all product gates.",
-    "note": "New tasks and dependency edges are staged; native GitHub parent/blocked_by edges must be safely synchronized and audited, not claimed created by JSON edits."
+    "note": "Native issue parents and all 69 blocked-by links verified by GitHub Actions run 40518968864, attempt 2 (2026-10-27). Original 31 tasks/54 edges preserved; no approved task dependency removed."
   }
 }
