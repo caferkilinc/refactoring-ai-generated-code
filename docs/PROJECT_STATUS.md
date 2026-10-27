@@ -53,3 +53,9 @@ Do not mark `report.md` or main merged publication complete from this draft migr
 - SRS v0.4.0 TR+EN: **62 P0 functional and 17 P0 nonfunctional requirements** in each. Final dual-language owner acceptance remains outstanding.
 - **PR #38:** OPEN, NOT MERGED. Burkay is technical implementation lead and audit coordinator under latest owner clarification; PR author remains Cafer according to GitHub. Independent review must be by a contributor-independent reviewer. **Separate explicit merge permission NOT_GRANTED.**
 - **Rotation unchanged:** initial Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran; zero accepted Genesis handoffs. Release status NOT_READY, new .NET/Go/C++/Falcon-Mamba resources UNKNOWN; dates need critical-path reforecast.
+
+## Approved seven-language expansion — 2026-10-27
+
+New mandatory P0 tasks: C# / Roslyn (#40 / F14-CS), Go (#41 / F14-GO) and C++ / Clang (#42 / F14-CPP). Original 31 issue records and 54 native GitHub prerequisite links have not been removed. Planned registry: 34 tasks / 69 edges; **new native parent/blocked-by links are PENDING_SAFE_SYNC and NOT independently verified**. All seven adapters plus Falcon-Mamba 7B, HTML/PDF/history and secure combined patch verification block first-delivery acceptance until evidence exists.
+
+SRS v0.4 TR/EN review drafts have 62 FR + 17 NFR each; no final owner sign-off yet. PR #38 and stacked PR #39 must not merge without the applicable current-head independent checks and **separate owner merge approval for PR #38**. No confirmed Genesis implementation handoff: initial owner Burkay, conditional successor Cafer. Previous parallel schedule estimates cannot establish feasibility of the expanded serial scope.
