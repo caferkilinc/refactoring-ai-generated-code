@@ -32,6 +32,10 @@ class FakeAPI:
                               if task["issue_number"] <= 37 else []),
             }
 
+    def pages(self, path, **kwargs):
+        # Default deliberately simulates an unsynchronized native issue graph.
+        return []
+
     def call(self, path, method="GET", data=None, **kwargs):
         issue = int(path.split("/")[2])
         if method == "GET":
@@ -83,6 +87,13 @@ class IssueAssignmentMigrationTests(unittest.TestCase):
     def test_live_apply_requires_verified_new_native_graph(self):
         with self.assertRaisesRegex(ValueError, "graph must be VERIFIED"):
             run(PLAN, self.api, apply=True, approved=True)
+        self.assertEqual([], self.api.writes)
+
+    def test_forged_verified_registry_flag_cannot_bypass_live_graph_audit(self):
+        plan = copy.deepcopy(PLAN)
+        plan["scope_decision_2026_10_27"]["graph_sync_status"] = "VERIFIED"
+        with self.assertRaisesRegex(ValueError, "Live native graph failed preflight"):
+            run(plan, self.api, apply=True, approved=True)
         self.assertEqual([], self.api.writes)
 
     def test_repeated_dry_run_is_idempotent_after_exact_cleanup(self):
