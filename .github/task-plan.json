@@ -32,9 +32,6 @@
       "work_package": 1,
       "phase": "F00",
       "title": "Freeze scope, evidence protocol and resource decisions",
-      "owner": "caferkilinc",
-      "support": "cakarburkayy",
-      "reviewer": "ismail-cevik",
       "start": "2026-10-21",
       "target": "2026-10-25",
       "effort_min": 6,
@@ -72,9 +69,6 @@
       "work_package": 1,
       "phase": "F00",
       "title": "Prepare working Java pilot and immutable experiment baseline",
-      "owner": "caferkilinc",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-10-26",
       "target": "2026-11-01",
       "effort_min": 12,
@@ -118,9 +112,6 @@
       "work_package": 1,
       "phase": "F01",
       "title": "Establish team workflow, dependency gate and project controls",
-      "owner": "caferkilinc",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-10-21",
       "target": "2026-10-25",
       "effort_min": 8,
@@ -163,9 +154,6 @@
       "work_package": 1,
       "phase": "F01",
       "title": "Create reproducible development services and real application checks",
-      "owner": "ismail-cevik",
-      "support": "caferkilinc",
-      "reviewer": "cakarburkayy",
       "start": "2026-10-26",
       "target": "2026-11-01",
       "effort_min": 12,
@@ -214,9 +202,6 @@
       "work_package": 1,
       "phase": "F02",
       "title": "Approve CIR, LanguageAdapter and API contracts for parallel development",
-      "owner": "caferkilinc",
-      "support": "cakarburkayy",
-      "reviewer": "ismail-cevik",
       "start": "2026-10-21",
       "target": "2026-10-25",
       "effort_min": 10,
@@ -260,9 +245,6 @@
       "work_package": 1,
       "phase": "F02",
       "title": "Implement metadata, state machine, queue and idempotency",
-      "owner": "caferkilinc",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-10-26",
       "target": "2026-11-01",
       "effort_min": 12,
@@ -309,9 +291,6 @@
       "work_package": 1,
       "phase": "F03",
       "title": "Implement safe upload, consent and immutable artefacts",
-      "owner": "caferkilinc",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-02",
       "target": "2026-11-08",
       "effort_min": 14,
@@ -355,9 +334,6 @@
       "work_package": 2,
       "phase": "F04",
       "title": "Implement Language Router and Java symbol adapter",
-      "owner": "cakarburkayy",
-      "support": "Yaman-A-E",
-      "reviewer": "ismail-cevik",
       "start": "2026-11-02",
       "target": "2026-11-08",
       "effort_min": 16,
@@ -402,9 +378,6 @@
       "work_package": 2,
       "phase": "F05",
       "title": "Normalize real quality findings and comparable metrics",
-      "owner": "cakarburkayy",
-      "support": "caferkilinc",
-      "reviewer": "ismail-cevik",
       "start": "2026-11-09",
       "target": "2026-11-15",
       "effort_min": 16,
@@ -448,9 +421,6 @@
       "work_package": 2,
       "phase": "F06",
       "title": "Build isolated worker execution with resource limits",
-      "owner": "ismail-cevik",
-      "support": "caferkilinc",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-02",
       "target": "2026-11-08",
       "effort_min": 18,
@@ -497,9 +467,6 @@
       "work_package": 2,
       "phase": "F06",
       "title": "Freeze baseline tests and parse build/test/coverage evidence",
-      "owner": "ismail-cevik",
-      "support": "caferkilinc",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-09",
       "target": "2026-11-15",
       "effort_min": 12,
@@ -547,9 +514,6 @@
       "work_package": 3,
       "phase": "F07A",
       "title": "Integrate deterministic security scans and redaction",
-      "owner": "cakarburkayy",
-      "support": "ismail-cevik",
-      "reviewer": "caferkilinc",
       "start": "2026-11-16",
       "target": "2026-11-22",
       "effort_min": 14,
@@ -594,9 +558,6 @@
       "work_package": 3,
       "phase": "F07B",
       "title": "Verify GPU access, model variant and runtime compatibility",
-      "owner": "Yaman-A-E",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-10-26",
       "target": "2026-11-01",
       "effort_min": 6,
@@ -615,7 +576,7 @@
         "No paid purchase without approval"
       ],
       "kind": "research",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "BLOCKED",
       "issue_number": 19,
       "allowed_paths": [
@@ -637,9 +598,6 @@
       "work_package": 3,
       "phase": "F07B",
       "title": "Serve Local AI review and evaluate labelled security examples",
-      "owner": "Yaman-A-E",
-      "support": "cakarburkayy",
-      "reviewer": "ismail-cevik",
       "start": "2026-12-07",
       "target": "2026-12-13",
       "effort_min": 14,
@@ -659,7 +617,7 @@
         "Precision/recall and FP/FN include denominators; no standalone security guarantee"
       ],
       "kind": "code",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "NOT STARTED",
       "issue_number": 20,
       "allowed_paths": [
@@ -686,9 +644,6 @@
       "work_package": 4,
       "phase": "F08",
       "title": "Build first approval UI against approved API fixtures",
-      "owner": "tahaugurtoyran",
-      "support": "caferkilinc",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-02",
       "target": "2026-11-15",
       "effort_min": 16,
@@ -733,9 +688,6 @@
       "work_package": 4,
       "phase": "F08",
       "title": "Integrate real issue selection and approval snapshot",
-      "owner": "tahaugurtoyran",
-      "support": "caferkilinc",
-      "reviewer": "ismail-cevik",
       "start": "2026-11-16",
       "target": "2026-11-22",
       "effort_min": 8,
@@ -786,9 +738,6 @@
       "work_package": 4,
       "phase": "F09",
       "title": "Build dependency-aware context and symbol/test references",
-      "owner": "Yaman-A-E",
-      "support": "cakarburkayy",
-      "reviewer": "caferkilinc",
       "start": "2026-11-09",
       "target": "2026-11-15",
       "effort_min": 18,
@@ -833,9 +782,6 @@
       "work_package": 4,
       "phase": "F09",
       "title": "Implement conflict DAG and bounded parallel scheduling",
-      "owner": "Yaman-A-E",
-      "support": "cakarburkayy",
-      "reviewer": "ismail-cevik",
       "start": "2026-11-16",
       "target": "2026-11-22",
       "effort_min": 10,
@@ -878,9 +824,6 @@
       "work_package": 4,
       "phase": "F10",
       "title": "Implement real provider patch generation and scope guard",
-      "owner": "Yaman-A-E",
-      "support": "caferkilinc",
-      "reviewer": "ismail-cevik",
       "start": "2026-11-23",
       "target": "2026-11-29",
       "effort_min": 18,
@@ -928,9 +871,6 @@
       "work_package": 5,
       "phase": "F11",
       "title": "Implement candidate validation and dual result states",
-      "owner": "ismail-cevik",
-      "support": "cakarburkayy",
-      "reviewer": "caferkilinc",
       "start": "2026-11-30",
       "target": "2026-12-06",
       "effort_min": 18,
@@ -977,9 +917,6 @@
       "work_package": 5,
       "phase": "F11",
       "title": "Implement bounded retry with recorded feedback",
-      "owner": "Yaman-A-E",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-30",
       "target": "2026-12-06",
       "effort_min": 6,
@@ -1022,9 +959,6 @@
       "work_package": 5,
       "phase": "F12",
       "title": "Implement diff review and second approval UI",
-      "owner": "tahaugurtoyran",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-11-16",
       "target": "2026-11-29",
       "effort_min": 12,
@@ -1069,9 +1003,6 @@
       "work_package": 5,
       "phase": "F12",
       "title": "Combine approved patches, revalidate and export final ZIP",
-      "owner": "caferkilinc",
-      "support": "ismail-cevik",
-      "reviewer": "cakarburkayy",
       "start": "2026-12-01",
       "target": "2026-12-06",
       "effort_min": 14,
@@ -1119,9 +1050,6 @@
       "work_package": 5,
       "phase": "F13",
       "title": "Report real before/after values and basic history",
-      "owner": "tahaugurtoyran",
-      "support": "cakarburkayy",
-      "reviewer": "caferkilinc",
       "start": "2026-11-30",
       "target": "2026-12-06",
       "effort_min": 10,
@@ -1168,9 +1096,6 @@
       "work_package": 5,
       "phase": "F13",
       "title": "Add PDF and extended report/history presentation",
-      "owner": "tahaugurtoyran",
-      "support": "caferkilinc",
-      "reviewer": "ismail-cevik",
       "start": "2026-12-07",
       "target": "2026-12-13",
       "effort_min": 10,
@@ -1189,7 +1114,7 @@
         "Retention and access checks tested"
       ],
       "kind": "code",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "NOT STARTED",
       "issue_number": 31,
       "allowed_paths": [
@@ -1215,9 +1140,6 @@
       "work_package": 6,
       "phase": "F14",
       "title": "Implement Python adapter without Java-specific assumptions",
-      "owner": "cakarburkayy",
-      "support": "ismail-cevik",
-      "reviewer": "caferkilinc",
       "start": "2026-12-07",
       "target": "2026-12-13",
       "effort_min": 14,
@@ -1237,7 +1159,7 @@
         "Java E2E remains green"
       ],
       "kind": "code",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "NOT STARTED",
       "issue_number": 32,
       "allowed_paths": [
@@ -1262,9 +1184,6 @@
       "work_package": 6,
       "phase": "F14",
       "title": "Implement JavaScript and TypeScript adapters",
-      "owner": "cakarburkayy",
-      "support": "Yaman-A-E",
-      "reviewer": "ismail-cevik",
       "start": "2026-12-14",
       "target": "2026-12-20",
       "effort_min": 18,
@@ -1284,7 +1203,7 @@
         "No whole-repo behavior guarantee across unresolved services"
       ],
       "kind": "code",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "NOT STARTED",
       "issue_number": 33,
       "allowed_paths": [
@@ -1310,29 +1229,29 @@
       "work_package": 6,
       "phase": "F14",
       "title": "Validate mixed-language capability integration",
-      "owner": "tahaugurtoyran",
-      "support": "cakarburkayy",
-      "reviewer": "ismail-cevik",
-      "start": "2026-12-18",
-      "target": "2026-12-20",
+      "start": "2026-12-26",
+      "target": "2026-12-28",
       "effort_min": 6,
       "effort_max": 10,
       "estimated_effort": 8,
       "dependencies": [
         "F14-PY",
-        "F14-JSTS"
+        "F14-JSTS",
+        "F14-CS",
+        "F14-GO",
+        "F14-CPP"
       ],
       "module": "frontend",
-      "objective": "Expose per-component capabilities and exercise mixed React/TS plus Python project.",
-      "deliverable": "frontend/ component results and tests/e2e/ fixture.",
+      "objective": "Verify mixed-component integration, correct routing, separate toolchains and coverage for all seven mandatory first-delivery languages.",
+      "deliverable": "frontend/ component-level status + tests/e2e/ mixed-language fixtures and observed sandbox evidence.",
       "acceptance": [
-        "Each component routed to correct adapter",
-        "Coverage remains per language/component",
-        "Unresolved cross-service contracts visibly uncertain",
-        "P1 cutoff respected; incomplete adapters declared honestly"
+        "Each of Java, Python, JS, TS, C#, Go and C++ routes to genuine available adapter",
+        "Mixed-language repository analyzed by components with separate toolchain/test/coverage evidence",
+        "At least React/TS+Python and representative .NET/Go/C++ cross-component fixtures report honest uncertainties",
+        "No global behavior-equivalence assertion or silent bypass of unavailable adapters"
       ],
       "kind": "code",
-      "priority": "P1",
+      "priority": "P0",
       "actual_status": "NOT STARTED",
       "issue_number": 34,
       "allowed_paths": [
@@ -1349,7 +1268,10 @@
       ],
       "dependency_issues": [
         32,
-        33
+        33,
+        40,
+        41,
+        42
       ],
       "parent_issue": 7
     },
@@ -1358,25 +1280,28 @@
       "work_package": 6,
       "phase": "F15",
       "title": "Run P0 end-to-end acceptance and regression matrix",
-      "owner": "ismail-cevik",
-      "support": "tahaugurtoyran",
-      "reviewer": "caferkilinc",
-      "start": "2026-12-07",
-      "target": "2026-12-13",
+      "start": "2026-12-28",
+      "target": "2026-12-29",
       "effort_min": 16,
       "effort_max": 24,
       "estimated_effort": 20,
       "dependencies": [
-        "F13-BASIC"
+        "F13-BASIC",
+        "F13-ADV",
+        "F07B-LOCAL",
+        "F14-MIX"
       ],
       "module": "qa",
-      "objective": "Validate real Java flow, failures and combined final behavior before feature freeze.",
+      "objective": "Run release-blocking, real seven-language E2E with both approval gates, Falcon-Mamba, comprehensive reporting and negative-path checks.",
       "deliverable": "tests/e2e/, versioned run evidence and release-candidate record.",
       "acceptance": [
         "Real upload-to-ZIP with two product approvals",
         "Broken baseline/no tests/provider failure/conflict scenarios",
         "New regressions prevent validated output",
-        "No model mock counted as real patch; all required checks evidenced"
+        "No model mock counted as real patch; all required checks evidenced",
+        "Each of seven required languages has a real positive candidate-patch acceptance and failing regression example",
+        "Real Falcon-Mamba 7B security review, scanners and masking verified; no mock counts as model integration",
+        "Consistent final ZIP, HTML/PDF/history and mixed-language evidence for all supported components"
       ],
       "kind": "code",
       "priority": "P0",
@@ -1394,7 +1319,10 @@
         "frontend-checks"
       ],
       "dependency_issues": [
-        30
+        30,
+        31,
+        20,
+        34
       ],
       "parent_issue": 7
     },
@@ -1403,11 +1331,8 @@
       "work_package": 6,
       "phase": "F15",
       "title": "Evaluate refactoring tasks and sequential versus parallel execution",
-      "owner": "caferkilinc",
-      "support": "Yaman-A-E",
-      "reviewer": "ismail-cevik",
-      "start": "2026-12-14",
-      "target": "2026-12-20",
+      "start": "2026-12-29",
+      "target": "2026-12-30",
       "effort_min": 18,
       "effort_max": 26,
       "estimated_effort": 22,
@@ -1450,11 +1375,8 @@
       "work_package": 6,
       "phase": "F15",
       "title": "Package reproducible release and academic delivery",
-      "owner": "tahaugurtoyran",
-      "support": "caferkilinc",
-      "reviewer": "ismail-cevik",
-      "start": "2026-12-21",
-      "target": "2026-12-27",
+      "start": "2026-12-30",
+      "target": "2026-12-31",
       "effort_min": 10,
       "effort_max": 16,
       "estimated_effort": 13,
@@ -1489,43 +1411,178 @@
         36
       ],
       "parent_issue": 7
+    },
+    {
+      "plan_id": "F14-CS",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Implement verified C# / Roslyn language adapter",
+      "start": "2026-12-01",
+      "target": "2026-12-26",
+      "effort_min": 14,
+      "effort_max": 22,
+      "estimated_effort": 18,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F06-SANDBOX",
+        "F11-VALIDATE"
+      ],
+      "module": "adapters",
+      "objective": "Implement C# source symbols/quality and real dotnet build/test/coverage with safe patch validation and evidence-preserving LanguageAdapter contracts.",
+      "deliverable": "backend/language_adapters/csharp/ plus targeted real .NET fixtures and sandbox evidence.",
+      "acceptance": [
+        "Roslyn AST/symbol/source-range mapping includes uncertain references",
+        "Real .NET build/test/coverage and relevant quality tools produce attributable evidence",
+        "Authorized patch on frozen V0 passes real candidate validation and negative case is rejected",
+        "Preserve immutable V0 and frozen tests; no false safe_patch guarantee",
+        "Existing Java/Python/JS/TS adapter contracts remain compatible"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 40,
+      "allowed_paths": [
+        "backend/language_adapters/csharp/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        16,
+        26
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F14-GO",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Implement verified Go language adapter",
+      "start": "2026-12-01",
+      "target": "2026-12-26",
+      "effort_min": 12,
+      "effort_max": 20,
+      "estimated_effort": 16,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F06-SANDBOX",
+        "F11-VALIDATE"
+      ],
+      "module": "adapters",
+      "objective": "Implement go/parser/go/types or go/packages based symbol/dependency extraction, real go vet/test/coverage, and scope-guarded Go patch validation.",
+      "deliverable": "backend/language_adapters/go/ plus isolated go module fixtures and actual diagnostics.",
+      "acceptance": [
+        "Module-aware Go symbol/call/dependency/source-range extraction, unknown cases reported",
+        "Actual go test/coverage and quality checks with reproducible tool/version evidence",
+        "Real approved Go source patch validated against frozen tests including failure fixture",
+        "Protect go.mod/go.sum and original V0; record unsupported build/test conditions",
+        "No regression to other language adapter contracts"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 41,
+      "allowed_paths": [
+        "backend/language_adapters/go/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        16,
+        26
+      ],
+      "parent_issue": 7
+    },
+    {
+      "plan_id": "F14-CPP",
+      "work_package": 6,
+      "phase": "F14",
+      "title": "Implement verified C++ / Clang language adapter",
+      "start": "2026-12-01",
+      "target": "2026-12-26",
+      "effort_min": 18,
+      "effort_max": 30,
+      "estimated_effort": 24,
+      "dependencies": [
+        "F02-CONTRACT",
+        "F06-SANDBOX",
+        "F11-VALIDATE"
+      ],
+      "module": "adapters",
+      "objective": "Implement Clang AST/symbol/include/dependency extraction and real build/test/coverage with compilation database and safe isolated patch validation.",
+      "deliverable": "backend/language_adapters/cpp/ plus C++ fixture, compilation database and sandbox validation evidence.",
+      "acceptance": [
+        "Clang tooling extracts source ranges, relevant symbols/includes/overloads with compiler flags from genuine project",
+        "Selected quality analyzer and supported build/CTest or equivalent real test/coverage run record versions",
+        "Compile database/headers missing yields explicit UNVERIFIED, not fake parse/build PASS",
+        "Patch is source-bound, frozen original/tests protected, negative regression causes rejection",
+        "Existing language adapters and deterministic security scans remain compatible"
+      ],
+      "kind": "code",
+      "priority": "P0",
+      "actual_status": "NOT STARTED",
+      "issue_number": 42,
+      "allowed_paths": [
+        "backend/language_adapters/cpp/",
+        "tests/",
+        "docs/"
+      ],
+      "required_checks": [
+        "governance-tests",
+        "documentation-checks",
+        "security-checks",
+        "backend-checks"
+      ],
+      "dependency_issues": [
+        11,
+        16,
+        26
+      ],
+      "parent_issue": 7
     }
   ],
   "epics": [
     {
       "id": 1,
       "title": "Deney temeli ve platform sözleşmeleri",
-      "owner": "caferkilinc",
       "number": 2
     },
     {
       "id": 2,
       "title": "Dil çekirdeği ve başlangıç kalite/davranış ölçümü",
-      "owner": "cakarburkayy",
       "number": 3
     },
     {
       "id": 3,
       "title": "Güvenlik inceleme hattı ve Local AI",
-      "owner": "Yaman-A-E",
       "number": 4
     },
     {
       "id": 4,
       "title": "İlk onay ve bağımlılığa duyarlı paralel refactoring",
-      "owner": "Yaman-A-E",
       "number": 5
     },
     {
       "id": 5,
       "title": "Kanıta dayalı doğrulama ve nihai sürüm",
-      "owner": "ismail-cevik",
       "number": 6
     },
     {
       "id": 6,
       "title": "Çok dilli genişleme ve deneysel değerlendirme",
-      "owner": "tahaugurtoyran",
       "number": 7
     }
   ],
@@ -1542,5 +1599,54 @@
     "package": "2026-12-27",
     "reserve_start": "2026-12-28",
     "deadline": "2027-01-01"
+  },
+  "sequential_execution": {
+    "team_sequence": [
+      "cakarburkayy",
+      "caferkilinc",
+      "Yaman-A-E",
+      "ismail-cevik",
+      "tahaugurtoyran"
+    ],
+    "initial_owner": "cakarburkayy",
+    "active_owner": "cakarburkayy",
+    "active_task_plan_id": "F00-PLAN",
+    "last_confirmed_task_id": null,
+    "last_confirmed_commit": null,
+    "rotation_index": 0,
+    "handoff_confirmed": false,
+    "next_owner_if_accepted": "caferkilinc",
+    "last_accepted_handoff_key": null,
+    "initialized_under": "PROJECT_GENESIS_V2_2026-10-26",
+    "note": "PR #38 is pre-Genesis bootstrap and does not consume a turn. Must independently review, verify, and obtain separate owner merge approval. State transitions require reviewed, independently verified handoff evidence."
+  },
+  "assignment_migration": {
+    "status": "PENDING_REVIEW_AND_SAFE_MIGRATION",
+    "note": "Do not change live assignees while PR #38 base governance still enforces fixed assignments; clear after new gate and revised issue bodies approved. Preserve all 31 issue records and native edges. Newly created issues #40-42 also require native parent/blocked_by graph sync. Preserve original 31 records and original 54 edges."
+  },
+  "milestones_historical_estimates": true,
+  "scope_decision_2026_10_27": {
+    "status": "APPROVED",
+    "first_delivery_required_languages": [
+      "java",
+      "python",
+      "javascript",
+      "typescript",
+      "csharp",
+      "go",
+      "cpp"
+    ],
+    "required_local_security_model": "Falcon-Mamba 7B",
+    "new_task_ids": [
+      "F14-CS",
+      "F14-GO",
+      "F14-CPP"
+    ],
+    "original_task_count": 31,
+    "original_native_dependency_edges": 54,
+    "graph_sync_status": "PENDING_SAFE_SYNC",
+    "reforecast_required": true,
+    "release_rule": "P0 mandatory: no READY_FOR_RELEASE before seven-language verified E2E, real Falcon-Mamba and all product gates.",
+    "note": "New tasks and dependency edges are staged; native GitHub parent/blocked_by edges must be safely synchronized and audited, not claimed created by JSON edits."
   }
 }

@@ -1,7 +1,7 @@
 name: Issue graph sync
 on:
   push:
-    branches: ['chore/1-team-workflow']
+    branches: ['chore/1-team-workflow', main]
     paths: ['.github/task-plan.json', 'scripts/governance/sync_issues.py', '.github/workflows/issue-graph-sync.yml']
   workflow_dispatch:
 permissions:
@@ -9,7 +9,7 @@ permissions:
   issues: write
 jobs:
   sync:
-    if: github.actor == github.repository_owner && (github.ref == 'refs/heads/chore/1-team-workflow' || github.ref == 'refs/heads/main')
+    if: github.actor == 'cakarburkayy' && (github.ref == 'refs/heads/chore/1-team-workflow' || github.ref == 'refs/heads/main')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency: issue-graph-sync
@@ -17,7 +17,11 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - name: Synchronize existing issues without deletions
+      - name: Synchronize native issues without deleting existing work
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/governance/sync_issues.py
+      - name: Read-only verify complete native task graph
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/governance/audit_plan.py

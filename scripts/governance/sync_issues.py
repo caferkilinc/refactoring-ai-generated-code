@@ -12,6 +12,12 @@ def preflight(plan, api):
     operations = []
     for task in plan['tasks']:
         n, parent = task['issue_number'], task['parent_issue']
+        # A numeric issue address alone is not proof of planned identity.
+        # Validate every live task before producing the first POST.
+        body = issues[n].get('body') or ''
+        marker = '<!-- plan-id: ' + task['plan_id'] + ' -->'
+        if body.count(marker) != 1:
+            raise RuntimeError(f'Unexpected Plan ID marker for issue #{n}; refusing sync')
         old_parent = api.call(f'/issues/{n}/parent', missing_ok=True)
         if old_parent is None:
             operations.append((f'/issues/{parent}/sub_issues', {'sub_issue_id': issues[n]['id']}))

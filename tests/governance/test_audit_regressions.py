@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from test_gate import API, PLAN
 from gate import (Rejected, evaluate, readiness, validate_plan, verify_acceptance,
-                  required_checks, same_revision, successful_checks, independent_review)
+                  required_checks, same_revision, successful_checks, owner_approval)
 from security_check import file_errors
 from sync_issues import synchronize
 
@@ -21,28 +21,26 @@ class AuditGateTests(unittest.TestCase):
     def ready(self):
         return readiness(self.api.pr, self.plan, {}, self.api)
 
-    def test_current_pr_without_review_fails_readiness(self):
-        self.api.reviews = []
+    def test_current_pr_without_owner_approval_fails_readiness(self):
+        self.api.comments = []
         self.assertIn('all 0', evaluate(self.api.pr, self.plan, {}, self.api))
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
-    def test_current_pr_independent_review_and_real_checks_pass(self):
+    def test_owner_approval_and_real_checks_pass(self):
         self.assertIn('applicable CI verified', self.ready())
 
-    def test_support_approval_cannot_unlock_current_pr(self):
-        self.api.reviews[0]['user']['login'] = self.task['support']
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
-            self.ready()
+    def test_owner_can_approve_own_pr(self):
+        self.api.pr['user']['login'] = 'cakarburkayy'
+        self.assertIn('applicable CI verified', self.ready())
 
-    def test_actual_commit_author_cannot_review_their_contribution(self):
-        self.api.commits.append({'author': {'login': 'ismail-cevik'}})
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
-            self.ready()
+    def test_owner_author_commit_does_not_invalidate_owner_approval(self):
+        self.api.commits.append({'author': {'login': 'cakarburkayy'}})
+        self.assertIn('applicable CI verified', self.ready())
 
-    def test_actual_commit_committer_cannot_supply_review(self):
-        self.api.commits.append({'committer': {'login': 'ISMAIL-CEVIK'}})
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+    def test_other_developer_cannot_issue_owner_approval(self):
+        self.api.comments[0]['user']['login'] = 'ismail-cevik'
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
     def test_unlinked_commit_identity_does_not_crash(self):
@@ -71,12 +69,13 @@ class AuditGateTests(unittest.TestCase):
 
     def test_outsider_cannot_claim_registered_task(self):
         self.api.pr['user']['login'] = 'unregistered-person'
-        with self.assertRaisesRegex(Rejected, 'registered primary'):
+        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
             evaluate(self.api.pr, self.plan, {}, self.api)
 
-    def test_support_author_can_submit_task(self):
-        self.api.pr['user']['login'] = self.task['support']
-        self.assertIn('applicable CI verified', self.ready())
+    def test_other_team_member_cannot_steal_current_task(self):
+        self.api.pr['user']['login'] = 'caferkilinc'
+        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
+            self.ready()
 
     def test_wrong_base_rejected(self):
         self.api.pr['base']['ref'] = 'other'
@@ -99,8 +98,8 @@ class AuditGateTests(unittest.TestCase):
             validate_plan(self.plan)
 
     def test_unknown_team_member_rejected(self):
-        self.task['support'] = 'unknown'
-        with self.assertRaisesRegex(Rejected, 'Unknown team'):
+        self.plan['sequential_execution']['team_sequence'][2] = 'unknown'
+        with self.assertRaisesRegex(Rejected, 'rotation'):
             validate_plan(self.plan)
 
     def test_invalid_calendar_date_rejected(self):
@@ -123,26 +122,22 @@ class AuditGateTests(unittest.TestCase):
         with self.assertRaisesRegex(Rejected, 'Duplicate prerequisite'):
             validate_plan(self.plan)
 
-    def test_changes_request_blocks_other_approval(self):
-        self.api.reviews.append({'user': {'login': 'tahaugurtoyran'},
-            'state': 'CHANGES_REQUESTED', 'commit_id': 'abc'})
-        with self.assertRaisesRegex(Rejected, 'Unresolved independent'):
+    def test_peer_changes_request_is_not_a_required_approval(self):
+        self.api.reviews = [{'user': {'login': 'tahaugurtoyran'}, 'state': 'CHANGES_REQUESTED'}]
+        self.assertIn('applicable CI verified', self.ready())
+
+    def test_missing_exact_sha_blocks(self):
+        self.api.comments[0]['body'] = 'GENESIS-OWNER-APPROVED: prior-sha'
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
-    def test_dismissed_changes_request_can_be_resolved(self):
-        self.api.reviews.extend([
-            {'user': {'login': 'tahaugurtoyran'}, 'state': 'CHANGES_REQUESTED', 'commit_id': 'abc'},
-            {'user': {'login': 'tahaugurtoyran'}, 'state': 'DISMISSED', 'commit_id': 'abc'}])
+    def test_case_insensitive_owner_login(self):
+        self.api.comments[0]['user']['login'] = 'CAKARBURKAYY'
         self.assertIn('applicable CI verified', self.ready())
 
-    def test_case_insensitive_login(self):
-        self.api.reviews[0]['user']['login'] = 'ISMAIL-CEVIK'
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_read_only_reviewer_cannot_approve(self):
-        original = self.api.call
-        self.api.call = lambda path, **kw: {'permission': 'read'} if '/collaborators/' in path else original(path, **kw)
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+    def test_no_approval_from_read_only_peer(self):
+        self.api.comments = [{'user': {'login': 'caferkilinc'}, 'body': 'GENESIS-OWNER-APPROVED: abc'}]
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
     def test_task_modules_require_both_checks(self):
@@ -235,7 +230,8 @@ class HygieneTests(unittest.TestCase):
 
 class SyncTests(unittest.TestCase):
     class FakeGraph:
-        def __init__(self, bad=False): self.writes=[];self.bad=bad
+        def __init__(self, bad=False, bad_marker=False):
+            self.writes=[];self.bad=bad;self.bad_marker=bad_marker
         def call(self, path, method='GET', data=None, **kw):
             if method != 'GET': self.writes.append((path,data)); return {}
             if path.startswith('/labels/'): return {}
@@ -243,12 +239,22 @@ class SyncTests(unittest.TestCase):
             if path.endswith('/parent'):
                 if self.bad and n == PLAN['tasks'][-1]['issue_number']: return {'number': 999}
                 return None
-            return {'id': n}
+            task = next((t for t in PLAN['tasks'] if t['issue_number'] == n), None)
+            body = f"<!-- plan-id: {task['plan_id']} -->" if task else ""
+            if task and n == 42 and self.bad_marker:
+                body = "<!-- plan-id: MALICIOUS -->"
+            return {'id': n, 'body': body}
         def pages(self, path, **kw): return []
 
     def test_late_graph_conflict_causes_no_earlier_writes(self):
         api=self.FakeGraph(bad=True)
         with self.assertRaisesRegex(RuntimeError,'Unexpected parent'):
+            synchronize(PLAN,api)
+        self.assertEqual([],api.writes)
+
+    def test_wrong_live_task_identity_aborts_before_first_write(self):
+        api=self.FakeGraph(bad_marker=True)
+        with self.assertRaisesRegex(RuntimeError, 'Unexpected Plan ID marker'):
             synchronize(PLAN,api)
         self.assertEqual([],api.writes)
 
@@ -265,11 +271,10 @@ class LivePlanAuditTests(unittest.TestCase):
             self.dependencies={}
             for t in PLAN['tasks']:
                 body='\n'.join([f"<!-- plan-id: {t['plan_id']} -->"]+[f'- {key}: {value}' for key,value in (
-                    ('Primary Owner','@'+t['owner']),('Supporting Developer','@'+t['support']),
-                    ('Independent Reviewer','@'+t['reviewer']),('Priority',t['priority']),
-                    ('Planned Start',t['start']),('Target Date',t['target']))]+[
+                    ('Priority',t['priority']),('Planned Start',t['start']),
+                    ('Target Date',t['target']))]+[
                     f"- Estimated Effort: {t['effort_min']}–{t['effort_max']} person-hours; midpoint {t['estimated_effort']}."])
-                self.issues[t['issue_number']]={'number':t['issue_number'],'assignees':[{'login':t['owner']}],'body':body}
+                self.issues[t['issue_number']]={'number':t['issue_number'],'assignees':[],'body':body}
                 self.dependencies[t['issue_number']]=[{'number':n} for n in t['dependency_issues']]
         def pages(self,path,**kw):
             n=int(path.split('/')[2])
@@ -279,10 +284,11 @@ class LivePlanAuditTests(unittest.TestCase):
     def test_consistent_plan_has_no_errors(self):
         from audit_plan import audit
         self.assertEqual([],audit(PLAN,self.Fake()))
-    def test_metadata_drift_is_reported(self):
+    def test_completed_migration_rejects_static_assignees(self):
         from audit_plan import audit
-        a=self.Fake();a.issues[8]['assignees']=[]
-        self.assertIn('#8: assignee drift',audit(PLAN,a))
+        p=copy.deepcopy(PLAN);p['assignment_migration']['status']='COMPLETE'
+        a=self.Fake();a.issues[8]['assignees']=[{'login':'caferkilinc'}]
+        self.assertIn('#8: unexpected fixed assignee',audit(p,a))
     def test_dependency_drift_is_reported(self):
         from audit_plan import audit
         a=self.Fake();a.dependencies[9]=[]

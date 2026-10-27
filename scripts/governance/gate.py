@@ -34,12 +34,27 @@ def validate_plan(plan):
             visit(dep)
         visiting.remove(key)
         done.add(key)
+    rotation = plan.get('sequential_execution', {})
+    sequence = rotation.get('team_sequence', [])
+    require(sequence == ['cakarburkayy', 'caferkilinc', 'Yaman-A-E',
+                         'ismail-cevik', 'tahaugurtoyran'],
+            'Invalid or altered five-member rotation')
+    require(set(sequence) == set(plan['team']),
+            'Unknown team member in rotation')
+    require(type(rotation.get('rotation_index')) is int and rotation['rotation_index'] in range(len(sequence)),
+            'Invalid rotation index')
+    require(rotation.get('active_owner') == sequence[rotation['rotation_index']],
+            'Active owner disagrees with rotation index')
+    require(rotation.get('active_task_plan_id') in ids,
+            'Active task is not in trusted registry')
+    require(rotation.get('next_owner_if_accepted') ==
+            sequence[(rotation['rotation_index'] + 1) % len(sequence)],
+            'Next owner disagrees with rotation')
+    require(rotation.get('handoff_confirmed') is False,
+            'Handoff cannot be pre-confirmed by task registry')
+    require(not any(k in t for t in tasks for k in ('owner', 'support', 'reviewer')),
+            'Static developer assignments are forbidden')
     for task in tasks:
-        require(all(u in plan['team'] for u in (task['owner'], task['support'], task['reviewer'])),
-                'Unknown team member')
-        require(task['owner'].lower() != task['reviewer'].lower(), 'Reviewer must be independent')
-        require(task['reviewer'].lower() != task['support'].lower(), 'Reviewer cannot be supporting developer')
-        require(task['owner'].lower() != task['support'].lower(), 'Owner and support must differ')
         require(type(task['issue_number']) is int and task['issue_number'] > 0, 'Invalid issue number')
         require(task['priority'] in ('P0', 'P1'), 'Unknown priority')
         require(task['kind'] in ('code', 'research', 'documentation'), 'Unknown task kind')
@@ -78,38 +93,31 @@ def check_paths(task, files, pr=None):
         for path in [item['filename']] + ([item['previous_filename']] if item.get('previous_filename') else []):
             protected = path.startswith(('scripts/governance/', 'tests/governance/')) or path in (
                 '.github/CODEOWNERS', '.github/task-plan.json', '.github/acceptance.json',
+                'AGENTS.md', '.agents/skills/development-handoff/SKILL.md',
                 '.github/branch-protection.proposed.json', '.github/workflows/governance-ci.yml',
                 '.github/workflows/dependency-gate.yml', '.github/workflows/issue-graph-sync.yml',
                 '.github/workflows/live-plan-audit.yml')
             require(not protected or task['plan_id'] == 'F01-GOV',
                     'Governance policy changes require the governance task: ' + path)
-            require(any(path.startswith(p) if p.endswith('/') else path == p
-                        for p in task['allowed_paths']), 'Out-of-task path: ' + path)
+            continuity = {'report.md', 'docs/PROJECT_STATUS.md', 'docs/DEVELOPMENT_ROADMAP.md'}
+            require(path in continuity or any(
+                path.startswith(p) if p.endswith('/') else path == p
+                for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
-def independent_review(task, pr, api, plan):
-    """Same review rule before merge and before downstream acceptance."""
-    reviews = api.pages(f"/pulls/{pr['number']}/reviews")
-    latest = {}
-    for review in reviews:
-        if review['state'] in ('APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'):
-            latest[review['user']['login'].lower()] = review
-    team = {user.lower() for user in plan['team']}
-    excluded = {task['owner'].lower(), task['support'].lower(), pr['user']['login'].lower()}
-    for commit in api.pages(f"/pulls/{pr['number']}/commits"):
-        for field in ('author', 'committer'):
-            user = commit.get(field) or {}
-            if user.get('login'):
-                excluded.add(user['login'].lower())
-    approved = False
-    for user, review in latest.items():
-        if user not in team or user in excluded:
-            continue
-        permission = api.call('/collaborators/' + review['user']['login'] + '/permission')['permission']
-        if permission not in ('write', 'maintain', 'admin'):
-            continue
-        require(review['state'] != 'CHANGES_REQUESTED', 'Unresolved independent changes request')
-        approved |= review['state'] == 'APPROVED' and review.get('commit_id') == pr['head']['sha']
-    require(approved, 'No current independent Write approval for this revision')
+def owner_approval(task, pr, api, plan):
+    """Only the project owner may approve the exact current PR revision.
+
+    An authenticated GitHub issue comment binds the approval to the head SHA.
+    Other developers' approvals are not required and cannot substitute for it.
+    """
+    marker = 'GENESIS-OWNER-APPROVED: ' + pr['head']['sha']
+    comments = api.pages(f"/issues/{pr['number']}/comments")
+    require(any(
+        c.get('user', {}).get('login', '').lower() == 'cakarburkayy'
+        and (c.get('body') or '').strip() == marker
+        for c in comments
+    ), 'Missing current Burkay owner approval for this PR revision')
+
 
 def required_checks(task, files):
     """Do not let a frontend-labelled task hide backend changes, or vice versa."""
@@ -151,7 +159,7 @@ def verify_acceptance(task, record, api, plan):
     require(linked_task(pr, plan)['plan_id'] == task['plan_id'], 'Accepted PR belongs to another task')
     files = api.pages(f"/pulls/{record['pr']}/files")
     check_paths(task, files, pr)
-    independent_review(task, pr, api, plan)
+    owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api, record.get('ci_sha'))
 
 def evaluate(pr, plan, accepted, api):
@@ -164,8 +172,17 @@ def evaluate(pr, plan, accepted, api):
     require(issue.get('state') == 'open' or maintenance, 'Implementation task must be open')
     require(pr['base']['repo']['full_name'] == plan['repository'] and pr['base']['ref'] == 'main',
             'Wrong integration target')
-    require(pr['user']['login'].lower() in {task['owner'].lower(), task['support'].lower()},
-            'PR author is not the registered primary or supporting developer')
+    rotation = plan['sequential_execution']
+    # PR #38 is the sole owner-approved legacy bootstrap exception.
+    # It never consumes a rotation. It does not bypass checks or owner authorization.
+    legacy_bootstrap = (pr['number'] == 38 and task['plan_id'] == 'F01-GOV'
+                        and pr['head']['ref'] == 'chore/1-team-workflow'
+                        and pr['user']['login'].lower() == 'caferkilinc')
+    if not legacy_bootstrap:
+        require(task['plan_id'] == rotation['active_task_plan_id'],
+                'PR task is not the single authorized active task')
+        require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
+                'PR author is not the authorized active developer')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"), pr)
     # Live native dependencies supplement the base registry; missing native edges fail closed.
     native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")
@@ -182,9 +199,9 @@ def readiness(pr, plan, accepted, api):
     require(pr.get('state') == 'open' and not pr.get('draft'), 'PR must be open and ready for review')
     task = linked_task(pr, plan)
     files = api.pages(f"/pulls/{pr['number']}/files")
-    independent_review(task, pr, api, plan)
+    owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api)
-    return result + '; current independent review and applicable CI verified'
+    return result + '; current owner approval and applicable CI verified'
 
 def same_revision(pr, expected_head=None, policy_sha=None):
     if expected_head:

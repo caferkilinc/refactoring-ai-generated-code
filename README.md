@@ -4,9 +4,9 @@ Engineering Design II — Ankara Bilim University. A planned multilingual platfo
 
 **Current state (2026-10-22):** September planning/scaffolding history is preserved. Application modules, backend/frontend executable tests and experimental results are not implemented on `main`. Governance configuration is proposed in a review branch. See [actual status](docs/PROJECT_STATUS.md).
 
-**Final course deadline: 2027-01-01; time unspecified.** P0 target December 13, P1 cutoff December 20, package December 27, reserve December 28–31. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
+**Final course deadline: 2027-01-01; time unspecified.** All owner-approved Python/JS/TS, Falcon-Mamba, HTML/PDF and core refactoring capabilities are mandatory first-delivery P0; historical P1 schedule must be replanned. TÜBİTAK eligibility/application and advisors are separate, unverified decisions.
 
-| Member | GitHub | Primary responsibility |
+| Member | GitHub | Domain expertise (not fixed implementation assignment) |
 |---|---|---|
 | Cafer Tayyar Kılınç | @caferkilinc | Team Leader, FastAPI orchestrator, contracts, storage, integration |
 | İsmail Çevik | @ismail-cevik | Sandbox, baseline tests, candidate/combined validation, QA |
@@ -18,15 +18,16 @@ All five repository accounts were verified on October 22: Cafer Admin, four coll
 
 ## Scope
 
-P0: Java pilot → safe input/V0 → language and quality/security analysis → approval 1 → bounded dependency-aware parallel patches → candidate tests → approval 2 → combined validation → final ZIP/basic measured report. P1: real Local AI, Python/JavaScript/TypeScript, mixed projects and advanced reporting. Local AI does not block Java P0.
+First-delivery P0: Java, Python, JavaScript, TypeScript, C#, Go and C++ (including mixed projects), real local Falcon-Mamba 7B, deterministic security, immutable V0, both user approvals, bounded real-provider refactoring, isolated candidate and combined verification, final ZIP, evidence-based HTML/PDF reports and history. C#/Go/C++ are also mandatory P0 first-delivery requirements per the owner decision on 2026-10-27, requiring real build/test/coverage/patch evidence. Lack of required GPU/provider access blocks release rather than becoming a fabricated PASS.
 
 FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components. No completed platform or measured improvement rate is claimed here. M3/macOS is a development environment; CUDA inference needs a separately verified GPU runtime.
 
 ## Working together
 
-Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Choose an existing issue and numbered topic branch; submit a PR, obtain independent review and evidence-backed acceptance. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
+Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Exactly one orchestrator-authorized developer may implement the dependency-ready task. Numbered topic PR branches remain for independent review, with `main` as accepted integration branch. PR #38 is a pre-Genesis bootstrap and requires separate owner merge approval. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
 - [Project board](https://github.com/users/caferkilinc/projects/1)
+- [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (review drafts)
 - [Architecture](docs/ARCHITECTURE.md) and [decisions](docs/DECISIONS/0001-scope-and-governance.md)
 - [Roadmap and all 31 tasks](docs/DEVELOPMENT_ROADMAP.md)
 - [Dependencies and gate](docs/DEPENDENCY_MANAGEMENT.md)
@@ -43,3 +44,15 @@ python3 scripts/governance/security_check.py
 ```
 
 These checks validate development infrastructure. They do not demonstrate product validation or research experiment success.
+
+
+## Current approved architecture and development state (2026-10-26)
+
+The owner-approved target is the v2.0 modular secure-refactoring pipeline, including immutable V0, per-language analysis, deterministic security + local Falcon-Mamba 7B, two user approval gates, bounded context/LLM patching, individual and combined validation, Python/JS/TS, and measured ZIP/HTML/PDF/history. **This repository has not yet proven these product capabilities are implemented.** See [TR SRS](docs/SRS.md), [EN SRS](docs/SRS_EN.md), [architecture](docs/ARCHITECTURE.md), and [roadmap](docs/DEVELOPMENT_ROADMAP.md).
+
+Implementation ownership rotates one at a time: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat**, after evidence-based handoff acceptance. PR #38 predates this policy and cannot be counted as a rotation. `main` is the accepted integration branch; topic PR review remains mandatory. Current open PR #38 needs a separate owner merge authorization. The first delivery scope includes Falcon-Mamba, Python/JS/TS and full reporting; model hardware/provider capability is not yet verified.
+
+**2026-10-27 change note:** See [TR SRS v0.4](docs/SRS.md), [EN SRS v0.4](docs/SRS_EN.md) and [roadmap](docs/DEVELOPMENT_ROADMAP.md). 34 planned tasks and 69 planned edges replace the old 31-task *planning total*, but the 31 original issues and 54 live native edges have been preserved. New GitHub native issue edges remain pending, not verified. No PR #38 merge authorization has been granted.
+
+### Approval authority, 2026-10-27
+Project owner Burkay Çakar alone provides required final authorization across development phases and merge decisions. Peer reviewer approvals are not required. A current-HEAD owner approval comment and actual task-appropriate CI remain mandatory for future task acceptance. PR #38 was owner-approved and merged as pre-Genesis work; PR #39 prepares seven-language planning on top of that foundation.
