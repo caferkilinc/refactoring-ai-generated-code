@@ -2,11 +2,11 @@
 # Secure Refactoring and Quality Improvement of AI-Generated Code
 
 **Document:** RAGC-SRS-001 · **Version:** 0.4.0 · **Date:** 2026-10-27  
-**Status:** REVIEW DRAFT — Owner has approved the architecture and first-delivery scope; the complete Turkish/English SRS pair still requires final acceptance.  
+**Status:** APPROVED SRS — Burkay Çakar approved both complete Turkish and English specifications on 2026-10-27; product verification remains separate.  
 **Product:** Refactoring AI-Generated Code — Engineering Design II, Group B  
 **Target delivery:** 2027-01-01 (exact local submission time UNKNOWN)  
 **Authority:** Owner-supplied `01_Master_Sistem_Mimarisi.pdf` v2.0 → `02_Adim_Adim_Gelistirme_Rehberi.pdf` v2.0 → modular presentation + 2026-10-20 image → associated live GitHub requirement and issue records. Older `01_System_Operation_and_Architecture.pdf` and `03_Technical_System_Presentation_Revised.pdf` are secondary historical documents.  
-**Execution governance:** PROJECT GENESIS v2.0, approved owner decisions dated 2026-10-26.  
+**Execution governance:** PROJECT GENESIS v2.0, owner decisions dated 2026-10-26 and 2026-10-27, with sole final approval authority Burkay Çakar.  
 **Language equivalent:** [SRS.md](SRS.md), same stable FR/NFR IDs. The source PDFs were owner-provided artifacts and MUST NOT be assumed present inside the public repo.
 
 > This specifies an intended system; it does not claim that a requirement, integration, security claim, benchmark, deployment or research outcome is already VERIFIED.
@@ -232,10 +232,14 @@ A passing governance test or a successful Git push is *not* product acceptance. 
 | DEC-008 | Actual patch provider model, privacy/egress consent, quota and spending authorization UNKNOWN; not permission to incur costs. |
 | DEC-009 | Local academic demonstration versus internet-facing multi-user deployment requires a distinct threat/deployment approval. |
 
-This v0.3.0 document remains a review draft. Owner approval was given for the input authority, collaboration strategy, priority promotion, English+Turkish SRS delivery and non-merge PR policy. **Final sign-off of both SRS language versions remains pending**. Record deviations via scoped change request/ADR; keep stable FR/NFR IDs and version increments without rewriting unrelated historic task metadata.
+This v0.4.0 document was approved by the owner on 2026-10-27. Superseded historical note: Owner approval was given for the input authority, collaboration strategy, priority promotion, English+Turkish SRS delivery and non-merge PR policy. **Final sign-off of both SRS language versions remains pending**. Record deviations via scoped change request/ADR; keep stable FR/NFR IDs and version increments without rewriting unrelated historic task metadata.
 
 ## 11. DEC-010 — 2026-10-27 owner-approved seven-language mandatory scope
 
 The owner's latest explicit scope makes **C#, Go and C++ working adapters mandatory P0 for the same first delivery** as Java, Python, JavaScript, TypeScript and local Falcon-Mamba 7B. This supersedes any historical `future adapter` or P1 wording. New stable task IDs F14-CS (issue #40), F14-GO (#41) and F14-CPP (#42) are approved planning work. Each requires accepted F02-CONTRACT, F06-SANDBOX and F11-VALIDATE; mixed adapter acceptance F14-MIX (#34) requires all three plus Python/JS/TS. F15-P0 (#35) additionally requires F14-MIX, F07B-LOCAL (#20) and F13-ADV (#31) before it may pass first-delivery verification.
 
 Three live GitHub issues exist without fixed assignees. Existing 31 tasks / 54 native edges were not destroyed; new native subissue and prerequisite links remain **PENDING_SAFE_MIGRATION** until independently reviewed policy activation. PR #38 remains OPEN, and no separate merge authorization has been granted. Burkay is the owner-designated technical lead and audit coordinator for PR #38; independent review still requires a non-contributor, non-author reviewer under the existing governance controls. This SRS and the Turkish v0.4 counterpart remain **REVIEW DRAFT** until dual-language final sign-off.
+
+## 12. Final owner SRS approval — 27 October 2026
+
+**APPROVED_BY:** Burkay Çakar (@cakarburkayy). Both complete SRS v0.4.0 translations, FR-001–062 and NFR-01–17, are approved. Seven working language adapters (including C#, Go and C++) and real Falcon-Mamba 7B are mandatory P0 first delivery. Burkay is the sole required final approver; peer reviews are optional. Each future PR approval is bound to its HEAD SHA while actual CI, dependency, security and handoff verification remain mandatory. PR #38 was merged at `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`. Approved requirements are not verified running software.
