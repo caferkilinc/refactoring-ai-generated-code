@@ -1,0 +1,70 @@
+@startuml
+title Secure Refactoring Platform — Use Case Diagram
+SRS v0.4.0 · TARGET DESIGN
+left to right direction
+skinparam backgroundColor #0b1020
+skinparam defaultFontColor #e6f0fa
+skinparam actorFontColor #dceafe
+skinparam usecase { BackgroundColor #17314a BorderColor #4cc6bc FontColor #f4f8ff }
+skinparam rectangle { BackgroundColor #101e32 BorderColor #637d9c FontColor #f4f8ff }
+actor "Geliştirici / Kod Sahibi" as DEV
+actor "Platform Operatörü" as OPS
+actor "Akademik Denetçi" as AUD
+actor "LLM Sağlayıcısı" as LLM
+actor "Deterministik Tarayıcılar" as SCAN
+actor "İzole Test Worker" as WORKER
+actor "Falcon-Mamba Yerel Servisi" as LOCAL
+rectangle "Secure Refactoring Platform" {
+usecase "UC01: ZIP / klasör / snippet yükle" as U1
+usecase "UC02: İzin ve gizlilik tercihleri" as U2
+usecase "UC03: Baseline analizi başlat" as U3
+usecase "UC04: Kanıtlı bulguları incele" as U4
+usecase "UC05: Kalite bulguları seç · ONAY 1" as U5
+usecase "UC06: Sınırlı patch adayları üret" as U6
+usecase "UC07: Diff + validasyonları incele" as U7
+usecase "UC08: Doğrulanmış patch seç · ONAY 2" as U8
+usecase "UC09: Taze V0 üstünde birleştir ve doğrula" as U9
+usecase "UC10: ZIP / HTML / PDF indir" as U10
+usecase "UC11: Geçmiş ve sürümleri incele" as U11
+usecase "UC12: Worker sağlığı izle" as U12
+usecase "UC13: Audit / deney kanıtını incele" as U13
+usecase "UC14: Güvenlik taraması" as U14
+usecase "UC15: Frozen suite ile izole test" as U15
+usecase "UC16: Yerel AI yardımcı inceleme" as U16
+}
+DEV -- U1
+DEV -- U2
+DEV -- U3
+DEV -- U4
+DEV -- U5
+DEV -- U6
+DEV -- U7
+DEV -- U8
+DEV -- U9
+DEV -- U10
+DEV -- U11
+OPS -- U12
+AUD -- U13
+AUD -- U10
+LLM -- U6
+SCAN -- U14
+WORKER -- U15
+LOCAL -- U16
+U3 ..> U14 : <<include>>
+U3 ..> U15 : <<include>>
+U5 ..> U4 : <<requires>>
+U6 ..> U5 : <<requires>>
+U8 ..> U7 : <<requires>>
+U9 ..> U8 : <<requires>>
+U9 ..> U15 : <<include>>
+U10 ..> U9 : <<requires>>
+U16 ..> U14 : <<optional review>>
+note bottom of U5
+Only eligible QUALITY_REFACTOR findings.
+SECURITY_REVIEW is not automatically selectable.
+end note
+note bottom of U9
+Frozen tests + immutable V0.
+Combined failure blocks VALIDATED final.
+end note
+@enduml
