@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from test_gate import API, PLAN
 from gate import (Rejected, evaluate, readiness, validate_plan, verify_acceptance,
-                  required_checks, same_revision, successful_checks, independent_review)
+                  required_checks, same_revision, successful_checks, owner_approval)
 from security_check import file_errors
 from sync_issues import synchronize
 
@@ -21,28 +21,26 @@ class AuditGateTests(unittest.TestCase):
     def ready(self):
         return readiness(self.api.pr, self.plan, {}, self.api)
 
-    def test_current_pr_without_review_fails_readiness(self):
-        self.api.reviews = []
+    def test_current_pr_without_owner_approval_fails_readiness(self):
+        self.api.comments = []
         self.assertIn('all 0', evaluate(self.api.pr, self.plan, {}, self.api))
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
-    def test_current_pr_independent_review_and_real_checks_pass(self):
+    def test_owner_approval_and_real_checks_pass(self):
         self.assertIn('applicable CI verified', self.ready())
 
-    def test_pr_author_cannot_unlock_current_pr(self):
-        self.api.reviews[0]['user']['login'] = 'cakarburkayy'
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
-            self.ready()
+    def test_owner_can_approve_own_pr(self):
+        self.api.pr['user']['login'] = 'cakarburkayy'
+        self.assertIn('applicable CI verified', self.ready())
 
-    def test_actual_commit_author_cannot_review_their_contribution(self):
-        self.api.commits.append({'author': {'login': 'ismail-cevik'}})
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
-            self.ready()
+    def test_owner_author_commit_does_not_invalidate_owner_approval(self):
+        self.api.commits.append({'author': {'login': 'cakarburkayy'}})
+        self.assertIn('applicable CI verified', self.ready())
 
-    def test_actual_commit_committer_cannot_supply_review(self):
-        self.api.commits.append({'committer': {'login': 'ISMAIL-CEVIK'}})
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+    def test_other_developer_cannot_issue_owner_approval(self):
+        self.api.comments[0]['user']['login'] = 'ismail-cevik'
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
     def test_unlinked_commit_identity_does_not_crash(self):
@@ -124,26 +122,22 @@ class AuditGateTests(unittest.TestCase):
         with self.assertRaisesRegex(Rejected, 'Duplicate prerequisite'):
             validate_plan(self.plan)
 
-    def test_changes_request_blocks_other_approval(self):
-        self.api.reviews.append({'user': {'login': 'tahaugurtoyran'},
-            'state': 'CHANGES_REQUESTED', 'commit_id': 'abc'})
-        with self.assertRaisesRegex(Rejected, 'Unresolved independent'):
+    def test_peer_changes_request_is_not_a_required_approval(self):
+        self.api.reviews = [{'user': {'login': 'tahaugurtoyran'}, 'state': 'CHANGES_REQUESTED'}]
+        self.assertIn('applicable CI verified', self.ready())
+
+    def test_missing_exact_sha_blocks(self):
+        self.api.comments[0]['body'] = 'GENESIS-OWNER-APPROVED: prior-sha'
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
-    def test_dismissed_changes_request_can_be_resolved(self):
-        self.api.reviews.extend([
-            {'user': {'login': 'tahaugurtoyran'}, 'state': 'CHANGES_REQUESTED', 'commit_id': 'abc'},
-            {'user': {'login': 'tahaugurtoyran'}, 'state': 'DISMISSED', 'commit_id': 'abc'}])
+    def test_case_insensitive_owner_login(self):
+        self.api.comments[0]['user']['login'] = 'CAKARBURKAYY'
         self.assertIn('applicable CI verified', self.ready())
 
-    def test_case_insensitive_login(self):
-        self.api.reviews[0]['user']['login'] = 'ISMAIL-CEVIK'
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_read_only_reviewer_cannot_approve(self):
-        original = self.api.call
-        self.api.call = lambda path, **kw: {'permission': 'read'} if '/collaborators/' in path else original(path, **kw)
-        with self.assertRaisesRegex(Rejected, 'No current independent'):
+    def test_no_approval_from_read_only_peer(self):
+        self.api.comments = [{'user': {'login': 'caferkilinc'}, 'body': 'GENESIS-OWNER-APPROVED: abc'}]
+        with self.assertRaisesRegex(Rejected, 'current Burkay'):
             self.ready()
 
     def test_task_modules_require_both_checks(self):
