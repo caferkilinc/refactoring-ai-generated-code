@@ -44,3 +44,12 @@ Research protocol targets (not measured results): at least 12 frozen refactoring
 | Release readiness | NOT_READY | No running app/full test evidence on accepted main |
 
 Do not mark `report.md` or main merged publication complete from this draft migration branch. Git revisions and actual product tests must be re-inspected at each handoff.
+
+## 2026-10-27 scope extension — approved scope, unverified implementation
+
+- **Owner decision:** Java, Python, JavaScript, TypeScript, C#, Go, C++ and Falcon-Mamba 7B all mandatory first-delivery P0; no adapter implemented merely by updating SRS/tasks.
+- Three newly created unassigned GitHub issues: C# [#40](https://github.com/caferkilinc/refactoring-ai-generated-code/issues/40), Go [#41](https://github.com/caferkilinc/refactoring-ai-generated-code/issues/41), C++ [#42](https://github.com/caferkilinc/refactoring-ai-generated-code/issues/42). Old 31 technical issues retained.
+- Registry: **34 planned tasks / 69 expected edges**. GitHub native: prior **54 predecessor edges**; newly required #40/#41/#42 sub-issues/blocked_by and #34/#35 links **NOT YET SYNCHRONIZED**. This is a real governance blocker. Do not mark F14 or F15 ready.
+- SRS v0.4.0 TR+EN: **62 P0 functional and 17 P0 nonfunctional requirements** in each. Final dual-language owner acceptance remains outstanding.
+- **PR #38:** OPEN, NOT MERGED. Burkay is technical implementation lead and audit coordinator under latest owner clarification; PR author remains Cafer according to GitHub. Independent review must be by a contributor-independent reviewer. **Separate explicit merge permission NOT_GRANTED.**
+- **Rotation unchanged:** initial Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran; zero accepted Genesis handoffs. Release status NOT_READY, new .NET/Go/C++/Falcon-Mamba resources UNKNOWN; dates need critical-path reforecast.
