@@ -16,7 +16,7 @@ Changed behavior, files, acceptance criteria, actual test commands/results, scop
 - [ ] Applicable real checks and negative cases executed or honestly marked NOT_RUN
 - [ ] Source/V0/frozen tests and secrets/allowed paths preserved
 - [ ] No unapproved new dependency, deployment or architecture change
-- [ ] Independent reviewer (not PR/commit author) requested for current HEAD
+- [ ] Burkay (@cakarburkayy) posted an authenticated GitHub comment `GENESIS-OWNER-APPROVED: <CURRENT_HEAD_SHA>` for this exact HEAD; other reviewers are optional
 - [ ] Human commit/push evidence supplied; handoff remains pending until orchestrator accepts
 
 **Review ≠ product approval 1/2 ≠ successful handoff.**
