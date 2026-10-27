@@ -49,12 +49,14 @@ def replacement(issue, task, team):
 
 
 def prepare(plan, api):
-    """Read all 31 issues BEFORE any mutation; check task graph and identity."""
+    """Read ALL registered issues before writing; preserve the original 31 tasks/54 links."""
     validate_plan(plan)
-    if len(plan["tasks"]) != 31:
-        raise ValueError("Expected 31 preserved technical issues")
-    if sum(len(task["dependencies"]) for task in plan["tasks"]) != 54:
-        raise ValueError("Dependency count changed; stop")
+    legacy = [t for t in plan["tasks"] if t["issue_number"] in ({1} | set(range(8, 38)))]
+    scope = plan.get("scope_decision_2026_10_27", {})
+    if (len(legacy) != 31 or len(plan["tasks"]) != 34
+            or scope.get("original_native_dependency_edges") != 54
+            or sum(len(task["dependencies"]) for task in plan["tasks"]) != 69):
+        raise ValueError("Approved 31-task baseline or 34-task dependency graph changed; stop")
     prepared = []
     for task in plan["tasks"]:
         issue = api.call("/issues/" + str(task["issue_number"]))
@@ -70,6 +72,8 @@ def run(plan, api, apply=False, approved=False):
         return {"mode": "DRY_RUN", "planned": [n for n, _, _ in changed]}
     if not approved:
         raise ValueError("--apply requires explicit --owner-approved")
+    if plan.get("scope_decision_2026_10_27", {}).get("graph_sync_status") != "VERIFIED":
+        raise ValueError("Native GitHub parent/dependency graph must be VERIFIED before live assignment changes")
     branch = subprocess.check_output(
         ["git", "branch", "--show-current"], cwd=ROOT, text=True
     ).strip()
