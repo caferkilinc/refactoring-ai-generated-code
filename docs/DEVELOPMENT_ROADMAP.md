@@ -1,18 +1,18 @@
 # Genesis v2.0 transition and mandatory release scope
 
-Owner decision (2026-10-26): 31 existing technical issues and 54 original dependencies are preserved, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is a pre-Genesis bootstrap; merge requires independent review and an additional explicit project owner approval. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
+Owner decision (2026-10-27): 31 existing technical issues and 54 original dependencies are retained, with three new unassigned P0 issues (#40–#42) and a staged 34-task / 69-edge dependency graph, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is a pre-Genesis bootstrap; merge requires independent review and an additional explicit project owner approval. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
 
 # Development Roadmap — PROJECT GENESIS v2.0
 
-**Status:** proposed staged migration; no Genesis handoff accepted yet. **Last update:** 2026-10-26. **Due:** 2027-01-01; exact time UNKNOWN.
+**Status:** proposed staged migration; no Genesis handoff accepted yet. **Last update:** 2026-10-27. **Due:** 2027-01-01; exact time UNKNOWN.
 
 ## Authority and ordering
 
-Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: PROJECT GENESIS v2.0. Previous 31 task IDs and 54 native prerequisite edges are retained. Old date windows are preliminary, NOT binding allocations and NOT proof that all mandatory scope fits before the deadline.
+Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: PROJECT GENESIS v2.0. Original 31 task IDs and their 54 live native prerequisite edges are retained; the new 34-task plan has 69 intended edges, but new native relations are **PENDING_SAFE_SYNC** (not yet verified live). Old date windows are preliminary, NOT binding allocations and NOT proof that all mandatory scope fits before the deadline.
 
 Only ONE active implementation developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. Do not treat issue assignee, epic historical role or model expertise as task authorization. Orchestrator selects one ready task from verified state and hard prerequisites; current execution state is in `.github/task-plan.json#sequential_execution` and [project status](PROJECT_STATUS.md). The canonical source for dependencies is the task registry and GitHub native issue edges.
 
-**Scope elevation approved 2026-10-26:** Falcon-Mamba 7B (#19–#20), full PDF reports (#31), Python (#32), JavaScript/TypeScript (#33) and mixed language (#34) are first-delivery **P0** obligations. P1-only historical scheduling cannot defer them. C#/Go/C++ remain later extensions. P0 may be implemented in dependency order, not concurrently. No unapproved scope change.
+**Scope elevation approved 2026-10-26:** Falcon-Mamba 7B (#19–#20), full PDF reports (#31), Python (#32), JavaScript/TypeScript (#33) and mixed language (#34) are first-delivery **P0** obligations. P1-only historical scheduling cannot defer them. C#, Go and C++ are mandatory first-delivery P0 under the 2026-10-27 owner decision. Each requires real adapter/source symbols, tests, coverage, safely validated patch E2E and release evidence. P0 may be implemented in dependency order, not concurrently. No unapproved scope change.
 
 ## Six research work packages (not developer assignments)
 
@@ -25,13 +25,15 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 | İP5 | Evidence-based validation, final version and reporting | #6 |
 | İP6 | Mandatory multilingual expansion and empirical evaluation | #7 |
 
-## Retained technical tasks and dependencies
+## Technical task registry and mandatory dependencies — revised 2026-10-27
 
-| Plan ID | Issue | Priority | Objective | Required task predecessors | Status |
+**34 P0 tasks = 31 existing + 3 added (#40–#42).** The original 54 live native issue edges are preserved. The new 69-edge directed task plan has been recorded in `.github/task-plan.json`, but GitHub native issue parent/dependency updates **remain pending**; no downstream task may claim prerequisites accepted until that graph is reconciled.
+
+| Plan ID | Issue | P | Scope | Prerequisite Plan IDs | Registry status |
 |---|---:|---|---|---|---|
-| F00-PLAN | #8 | P0 | Freeze scope, evidence protocol and resource decisions | None | IN PROGRESS |
+| F00-PLAN | #8 | P0 | Freeze scope, evidence protocol and resource decisions | — | IN PROGRESS |
 | F00-V0 | #9 | P0 | Prepare working Java pilot and immutable experiment baseline | F00-PLAN | NOT STARTED |
-| F01-GOV | #1 | P0 | Establish team workflow, dependency gate and project controls | None | IN PROGRESS |
+| F01-GOV | #1 | P0 | Establish team workflow, dependency gate and project controls | — | IN PROGRESS |
 | F01-ENV | #10 | P0 | Create reproducible development services and real application checks | F01-GOV | NOT STARTED |
 | F02-CONTRACT | #11 | P0 | Approve CIR, LanguageAdapter and API contracts for parallel development | F00-PLAN | NOT STARTED |
 | F02-STATE | #12 | P0 | Implement metadata, state machine, queue and idempotency | F02-CONTRACT, F01-ENV | NOT STARTED |
@@ -56,18 +58,25 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 | F13-ADV | #31 | P0 | Add PDF and extended report/history presentation | F13-BASIC | NOT STARTED |
 | F14-PY | #32 | P0 | Implement Python adapter without Java-specific assumptions | F13-BASIC, F04-JAVA | NOT STARTED |
 | F14-JSTS | #33 | P0 | Implement JavaScript and TypeScript adapters | F13-BASIC, F04-JAVA | NOT STARTED |
-| F14-MIX | #34 | P0 | Validate mixed-language capability integration | F14-PY, F14-JSTS | NOT STARTED |
-| F15-P0 | #35 | P0 | Run P0 end-to-end acceptance and regression matrix | F13-BASIC | NOT STARTED |
+| F14-MIX | #34 | P0 | Validate mixed-language capability integration | F14-PY, F14-JSTS, F14-CS, F14-GO, F14-CPP | NOT STARTED |
+| F15-P0 | #35 | P0 | Run P0 end-to-end acceptance and regression matrix | F13-BASIC, F13-ADV, F07B-LOCAL, F14-MIX | NOT STARTED |
 | F15-EXPERIMENT | #36 | P0 | Evaluate refactoring tasks and sequential versus parallel execution | F15-P0, F00-PLAN | NOT STARTED |
 | F15-HANDIN | #37 | P0 | Package reproducible release and academic delivery | F15-P0, F15-EXPERIMENT | NOT STARTED |
+| F14-CS | #40 | P0 | Implement verified C# / Roslyn language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+| F14-GO | #41 | P0 | Implement verified Go language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+| F14-CPP | #42 | P0 | Implement verified C++ / Clang language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+
+**Added P0 work:** F14-CS/#40 Roslyn, F14-GO/#41 Go modules/types, F14-CPP/#42 Clang/native build. Each depends on F02-CONTRACT + F06-SANDBOX + F11-VALIDATE. **Release-critical joins:** F14-MIX/#34 waits for Python/JS/TS plus all three new adapters; F15-P0/#35 waits for F13-BASIC + F13-ADV + F07B-LOCAL + F14-MIX. The latter blocks the experiment and final hand-in through existing F15 dependencies.
+
+**Important schedule constraint:** Several historic dates and effort estimates are infeasible to treat as confirmed after seven-language expansion and strictly sequential ownership. They remain archival planning values; a dependency-based reforecast and toolchain availability check are mandatory before confirming delivery feasibility.
 
 ## Milestone acceptance, not calendar completion
 
 - **F00–F03:** Approved requirements and V0, reproducible environment, typed contracts, stable job state and safe input.
 - **F04–F07B:** Real Java parser/quality/baseline/sandbox, deterministic security, Falcon-Mamba 7B measured local reviewer.
 - **F08–F12:** Two user approvals, context and conflicts, real bounded cloud patch, independent and combined validation.
-- **F13–F14:** Before/after dashboard, full HTML/PDF/history, verified Python/JS/TS and mixed-component capabilities.
-- **F15:** Java and multi-language E2E, frozen failure-inclusive experiment, reproducible first delivery and release review.
+- **F13–F14:** Before/after dashboard, full HTML/PDF/history, verified Python/JS/TS/C#/Go/C++ and mixed-component capabilities.
+- **F15:** E2E acceptance for all seven languages plus actual Falcon-Mamba, frozen failure-inclusive experiment, reproducible first delivery and release review.
 
 Every milestone requires actual task output, focused and integration verification, inspected acceptance evidence and accepted handoff. GitHub CI for governance does not prove product implementation.
 
@@ -76,7 +85,7 @@ Every milestone requires actual task output, focused and integration verificatio
 1. Bootstrap PR #38 remains open and must be independently reviewed and owner-authorized to merge.
 2. Fixed assignees in live GitHub issues are historic/transition metadata; removal must be coordinated only after compatible gate and review policy is accepted, without issue or dependency deletion.
 3. SRS in Turkish/English is a draft pending a distinct final owner approval.
-4. Actual local Falcon-Mamba GPU/runtime and real patch-provider API/consent/budget are not verified.
-5. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
+4. Actual local Falcon-Mamba GPU/runtime, C#/.NET, Go and C++/Clang toolchains, and patch-provider API/consent/budget are not verified.
+5. New #40–#42 issues currently have no GitHub-native #7 parent or blocked_by edges; #34 and #35 still have their historical live predecessors. Sync safely after governance review; do not call the 69 planned edges live.\n6. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
 
 **Next eligible development rotation:** Burkay, starting from no Genesis handoff. The task selected in `sequential_execution` is `F00-PLAN` (issue #8), conditional on successful bootstrap governance migration and accepted owner/SRS requirements. Its acceptance cannot be implied by this draft roadmap.
