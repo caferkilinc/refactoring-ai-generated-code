@@ -48,3 +48,11 @@
 - **Native GitHub graph incomplete:** place #40–#42 under epic #7; add three blocked_by links to each (#11/#16/#26), add #40/#41/#42 to #34, and add #20/#31/#34 to #35. Validate entire graph and rerun live governance audit without deleting legacy edges. Do not claim sync until tool/API evidence confirms it.
 - This extends the previous 31-task assignment-clearing migration: `migrate_assignments.py` dry-run assumptions (31 issues, 54 edges) are **STALE** for expanded graph. Update/test its supported task-count logic before any live `--apply`; do not execute old version on new plan.
 - PR #38 remains open, no merge. Burkay is owner-designated technical lead and audit coordinator, but GitHub records Cafer as author; contributor-independent review and separate owner permission remain mandatory. Re-run all checks after these revisions.
+
+## 2026-10-27 scope extension — additional review gates
+
+Three new P0 issues #40 C#/Roslyn, #41 Go and #42 C++/Clang are recorded without permanent developer assignment. The existing 31 tasks and 54 native edges are preserved; the reviewed plan intends **34 tasks, 69 edges**.
+
+Native GitHub parent (#7) and blocked-by relationships for the new tasks, plus changed #34 and #35 prerequisites, still require guarded synchronization and independent live audit. GitHub issue creation and updating task-plan.json do NOT establish native graph linkage. Do not run live assignment migration until the new graph is VERIFIED and the governance policy is reviewed and accepted.
+
+Turkish/English SRS v0.4 contain 62 FR and 17 NFR apiece (review draft, no final sign-off). PR #38 is still open and **must not be merged** without independent review, passing checks and a separate explicit owner merge permission.
