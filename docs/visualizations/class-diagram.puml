@@ -1,0 +1,87 @@
+@startuml
+title Secure Refactoring — Logical Class Diagram
+SRS v0.4.0 · planned conceptual entities, not deployed ORM
+skinparam backgroundColor #0b1020
+skinparam defaultFontColor #e6f0fa
+skinparam class { BackgroundColor #15283d BorderColor #70a6cb FontColor #e8f4ff ArrowColor #7cb9cf }
+hide circle
+class Project { +id: UUID
++ownerId: UUID }
+class ProjectVersion { +id: UUID
++sourceHash: SHA256
++immutable: Boolean
++kind: V0/FINAL }
+class FileManifest { +entries: FileEntry[*] }
+class Artifact { +type: ZIP/HTML/PDF
++hash: SHA256 }
+class AnalysisRun { +id: UUID
++rulesetFingerprint: String }
+class Finding { +category: FindingCategory
++eligibility: Boolean
++fingerprint: String }
+class Evidence { +location: SourceLocation
++toolVersion: String }
+class Metric { +name: String
++value: Decimal?
++unit: String }
+class BaselineTestSuite { +suiteHash: SHA256
++frozen: Boolean }
+class TestRun { +outcome: BehaviorStatus }
+class IssueSelection { +snapshotHash: SHA256
++approvedAt: UTC }
+class RefactorJob { +status: JobState
++maxIndependent: Integer = 3 }
+class ContextPackage { +readSet: Set
++writeSet: Set
++masked: Boolean }
+class Attempt { +index: Integer 0..2 }
+class PatchCandidate { +patchHash: SHA256
++unifiedDiff: String }
+class ValidationResult { +behavior: BehaviorStatus
++quality: QualityOutcome
++security: ScanStatus }
+class PatchApproval { +approvedPatchIds: UUID[*] }
+class CombinedValidation { +outcome: BehaviorStatus }
+interface LanguageAdapter { +detectCapabilities()
++parseSymbols()
++scanQuality()
++runTests()
++validatePatch() }
+class JavaAdapter
+class PythonAdapter
+class JavaScriptTypeScriptAdapter
+class CSharpAdapter
+class GoAdapter
+class CppAdapter
+Project "1" o-- "1..*" ProjectVersion
+ProjectVersion "1" *-- "1" FileManifest
+ProjectVersion "1" o-- "0..*" Artifact
+ProjectVersion "1" o-- "0..*" AnalysisRun
+ProjectVersion "1" o-- "0..1" BaselineTestSuite
+AnalysisRun "1" o-- "0..*" Finding
+AnalysisRun "1" o-- "0..*" Metric
+Finding "1" o-- "1..*" Evidence
+BaselineTestSuite "1" o-- "0..*" TestRun
+AnalysisRun "1" o-- "0..*" IssueSelection
+IssueSelection "1" --> "1..*" Finding : selects
+IssueSelection "1" --> "0..*" RefactorJob
+RefactorJob "1" --> "1" ContextPackage
+RefactorJob "1" o-- "1..3" Attempt
+Attempt "1" o-- "0..1" PatchCandidate
+PatchCandidate "1" --> "1..*" ValidationResult
+RefactorJob "1" --> "0..1" PatchApproval
+PatchApproval "1" --> "1..*" PatchCandidate : approves
+PatchApproval "1" --> "0..1" CombinedValidation
+CombinedValidation ..> ProjectVersion : creates final ONLY if PASSED
+LanguageAdapter <|.. JavaAdapter
+LanguageAdapter <|.. PythonAdapter
+LanguageAdapter <|.. JavaScriptTypeScriptAdapter
+LanguageAdapter <|.. CSharpAdapter
+LanguageAdapter <|.. GoAdapter
+LanguageAdapter <|.. CppAdapter
+note bottom of LanguageAdapter
+Seven mandatory languages:
+Java / Python / JavaScript / TypeScript / C# / Go / C++.
+JavaScript and TypeScript have distinct capability results.
+end note
+@enduml
