@@ -115,3 +115,9 @@ is **NOT_READY**. F00-V0 has not started; F00-PLAN is not the whole F00 mileston
 via a commit-pinned link/accessible artifact together with the full verified SHA,
 commit link, real check/PR results and remaining blockers. A filename alone is
 insufficient. See [ADR 0005 section 8](DECISIONS/0005-f00-research-baseline.md).
+
+## F00-PLAN accepted handoff and Cafer task assignment — 2026-11-02
+
+**Decision:** ACCEPTED; explicit project-owner authorization, verified PR #44 current-head approval (`a281caec295487b78371bac1e106cb378fa64bba`), successful Governance CI run [41515819414](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515819414), successful dependency/merge-readiness run [41515952397](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515952397), merge to `main` at [`ac321cb43fdea3f6b64bb1631de8daca8cf1d229`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ac321cb43fdea3f6b64bb1631de8daca8cf1d229), and GitHub Issue #8 closed as completed. This is **one** accepted handoff; key `F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba` must not advance rotation again. [Full commit-pinned report](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md).
+
+**Next current owner:** Cafer (`@caferkilinc`), current assigned task **F00-V0 / #9**. Conditional next owner if accepted: Alperen Enes Yaman (`@Yaman-A-E`). Do not mark Cafer's work complete before tests, Burkay current-HEAD approval, merge and accepted report. Verified F00-PLAN protocol does **not** mean the F00 Java pilot, frozen experimental dataset, production software or end-to-end tests exist. Dataset `NOT_FROZEN`, pilot `NOT_STARTED`, study `NOT_RUN`, release `NOT_READY`. Academic verbal course approval remains **REPORTED** evidence accepted for the F00-PLAN task only; GPU/provider/toolchain access remains UNKNOWN.

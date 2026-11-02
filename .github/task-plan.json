@@ -49,7 +49,7 @@
       ],
       "kind": "research",
       "priority": "P0",
-      "actual_status": "IN PROGRESS",
+      "actual_status": "VERIFIED_COMPLETE",
       "issue_number": 8,
       "allowed_paths": [
         "docs/DECISIONS/",
@@ -88,7 +88,7 @@
       ],
       "kind": "code",
       "priority": "P0",
-      "actual_status": "NOT STARTED",
+      "actual_status": "ASSIGNED",
       "issue_number": 9,
       "allowed_paths": [
         "experiments/",
@@ -1609,16 +1609,16 @@
       "tahaugurtoyran"
     ],
     "initial_owner": "cakarburkayy",
-    "active_owner": "cakarburkayy",
-    "active_task_plan_id": "F00-PLAN",
-    "last_confirmed_task_id": null,
-    "last_confirmed_commit": null,
-    "rotation_index": 0,
+    "active_owner": "caferkilinc",
+    "active_task_plan_id": "F00-V0",
+    "last_confirmed_task_id": "F00-PLAN",
+    "last_confirmed_commit": "ac321cb43fdea3f6b64bb1631de8daca8cf1d229",
+    "rotation_index": 1,
     "handoff_confirmed": false,
-    "next_owner_if_accepted": "caferkilinc",
-    "last_accepted_handoff_key": null,
+    "next_owner_if_accepted": "Yaman-A-E",
+    "last_accepted_handoff_key": "F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba",
     "initialized_under": "PROJECT_GENESIS_V2_2026-10-26",
-    "note": "PR #38 and PR #39 merged on explicit owner approval 2026-10-27; neither consumed a Genesis rotation. Only Burkay authorizes final PR/handoff acceptance; no peer approval is mandatory. Burkay F00-PLAN remains active until first accepted implementation handoff."
+    "note": "F00-PLAN #8 accepted after owner-approved PR #44 merged to main at ac321cb43fdea3f6b64bb1631de8daca8cf1d229 (HEAD a281caec295487b78371bac1e106cb378fa64bba); issue #8 closed completed. Rotation advanced exactly once to Cafer / F00-V0 #9. handoff_confirmed=false refers to current Cafer task not yet handed off."
   },
   "assignment_migration": {
     "status": "PARTIAL",
