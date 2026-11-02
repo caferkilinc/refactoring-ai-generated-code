@@ -90,3 +90,28 @@ SRS v0.4 TR/EN review drafts have 62 FR + 17 NFR each; no final owner sign-off y
 **Application code baseline:** Read-only GitHub tree inspection of main merge commit `5c297836b9ec70112e7b662eac05ec966543a134` found **53 tracked files; no backend/, frontend/ or tests/e2e/ directories**. All seven real language adapters, real Falcon-Mamba service, sandboxed product workflows and release verification are **NOT_STARTED/NOT_VERIFIED**, not production-ready. The 34-task planning effort range **436–666 person-hours** is a historical estimate, not committed capacity or a proven 2027-01-01 forecast.
 
 **Final phase classification:** Requirements / architecture / planning governance: **OWNER_APPROVED**. Native issue dependency graph: **VERIFIED**. Production implementation: **NOT_STARTED**. Release: **NOT_READY**. The next step is a separately authorized, single Burkay Codex task contract derived from the current main HEAD and live task preflight; it has intentionally NOT been generated during planning sign-off.
+
+## F00-PLAN local research baseline — 2026-11-02
+
+Burkay's authorized F00-PLAN (#8) task uses main baseline `67233482f2d10462933328c4b162d150bb4b0993`
+on local branch `docs/8-freeze-evidence-protocol`. The [research protocol](DECISIONS/0005-f00-research-baseline.md)
+defines selection/freeze, immutable V0/tests, failure-inclusive quality/behavior
+measurement and three matched sequential/parallel repetitions. Dataset **NOT_FROZEN**,
+pilot/application **NOT_STARTED**, research **NOT_RUN**; all seven languages and real
+Falcon-Mamba remain mandatory P0. Local check/acceptance outcomes are in [report.md](../report.md).
+
+Course approval: Burkay reports Hakan Çağlar's verbal approval on 2026-10-28 and
+explicitly accepts it for AC-09; this is **REPORTED**, not independently documented.
+Alperen Enes Yaman and Taha Uğur Toyran are owner-reported GPU/API resource contacts;
+actual hardware/runtime/API/budget/consent access remains **UNKNOWN** and relevant
+later execution gates remain blocked. No new technical dependency or owner assignment
+is created. Burkay authorized commit/push and owner approval for F00-PLAN on
+2026-11-02. Publication evidence is recorded in [report.md](../report.md) and the
+final chat delivery receipt. Merge and orchestrator acceptance remain separate;
+Burkay remains current owner, Cafer is conditional on accepted handoff, and release
+is **NOT_READY**. F00-V0 has not started; F00-PLAN is not the whole F00 milestone.
+
+**Required at every subsequent task handoff:** deliver the actual report in chat
+via a commit-pinned link/accessible artifact together with the full verified SHA,
+commit link, real check/PR results and remaining blockers. A filename alone is
+insufficient. See [ADR 0005 section 8](DECISIONS/0005-f00-research-baseline.md).
