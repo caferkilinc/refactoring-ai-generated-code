@@ -173,7 +173,7 @@ class GateTests(unittest.TestCase):
   self.assertEqual('F00-V0',p['sequential_execution']['active_task_plan_id'])
   self.assertEqual(1,p['sequential_execution']['rotation_index'])
   self.a.issue={'state':'open'}
-  self.a.pr.update(body='Task: #9\\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'},user={'login':'cakarburkayy'})
+  self.a.pr.update(body='Task: #9\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'},user={'login':'cakarburkayy'})
   self.a.files=[{'filename':'experiments/original-ai-code/Main.java'}]
   self.a.dependencies=[{'number':8}]
   with self.assertRaisesRegex(Rejected,'authorized active developer'):
