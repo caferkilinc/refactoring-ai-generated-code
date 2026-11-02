@@ -2,7 +2,21 @@ import copy,json,sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts/governance'))
 from gate import evaluate,verify_acceptance,validate_plan,Rejected
-PLAN=json.loads((Path(__file__).resolve().parents[2]/'.github/task-plan.json').read_text())
+LIVE_PLAN=json.loads((Path(__file__).resolve().parents[2]/'.github/task-plan.json').read_text())
+# Stable synthetic pre-handoff fixture: tests must not silently change when
+# the real team's active rotation advances on main.
+PLAN=copy.deepcopy(LIVE_PLAN)
+PLAN['sequential_execution'].update(
+ active_owner='cakarburkayy',
+ active_task_plan_id='F00-PLAN',
+ rotation_index=0,
+ next_owner_if_accepted='caferkilinc',
+ last_confirmed_task_id=None,
+ last_confirmed_commit=None,
+ last_accepted_handoff_key=None,
+ handoff_confirmed=False,
+)
+
 class API:
  def __init__(self):
   self.issue={'state':'closed','state_reason':'completed'}
@@ -153,6 +167,20 @@ class GateTests(unittest.TestCase):
   self.a.issue={'state':'open'}
   self.a.pr['user']['login']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'authorized active developer'):evaluate(self.a.pr,self.p,{},self.a)
+ def test_current_live_rotation_requires_cafer_for_f00_v0(self):
+  p=copy.deepcopy(LIVE_PLAN)
+  self.assertEqual('caferkilinc',p['sequential_execution']['active_owner'])
+  self.assertEqual('F00-V0',p['sequential_execution']['active_task_plan_id'])
+  self.assertEqual(1,p['sequential_execution']['rotation_index'])
+  self.a.issue={'state':'open'}
+  self.a.pr.update(body='Task: #9\\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'},user={'login':'cakarburkayy'})
+  self.a.files=[{'filename':'experiments/original-ai-code/Main.java'}]
+  self.a.dependencies=[{'number':8}]
+  with self.assertRaisesRegex(Rejected,'authorized active developer'):
+   evaluate(self.a.pr,p,{},self.a)
+  self.a.pr['user']['login']='caferkilinc'
+  with self.assertRaisesRegex(Rejected,'missing trusted acceptance record'):
+   evaluate(self.a.pr,p,{},self.a)
  def test_other_task_cannot_start_before_handoff(self):
   self.a.issue={'state':'open'}
   self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
