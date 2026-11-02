@@ -10,9 +10,11 @@ DATE: 2026-11-02 (Europe/Istanbul)<br>
 REPOSITORY: `C:\refactoring-ai-generated-code`<br>
 BRANCH: `docs/8-freeze-evidence-protocol`<br>
 BASE_COMMIT: `67233482f2d10462933328c4b162d150bb4b0993`<br>
-STATUS: READY_TO_PUSH<br>
-HANDOFF_STATUS: PENDING_PUSH_CONFIRMATION<br>
-GIT_PUBLICATION: NOT_YET_CONFIRMED<br>
+STATUS: REVIEW_REQUIRED<br>
+TASK_IMPLEMENTATION: COMPLETE — F00-PLAN documentation; integration/handoff pending<br>
+HANDOFF_STATUS: PENDING_ORCHESTRATOR_ACCEPTANCE<br>
+GIT_PUBLICATION: VERIFIED_FOR_TASK_COMMIT<br>
+PUBLISHED_TASK_COMMIT: `ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`<br>
 OWNER_PUBLICATION_AUTHORIZATION: Explicitly granted by Burkay in chat on 2026-11-02
 
 ## OBJECTIVE
@@ -95,7 +97,7 @@ Preserved approved architecture, all P0 scope, developer rotation, registry and 
 
 ## RESOURCE_STATUS / RISKS_AND_BLOCKERS
 
-- **Local F00 acceptance:** no unresolved blocking check or required resource decision for this documentation task after the owner's AC-09 clarification. READY_TO_PUSH means local evidence is ready for human review/publication, not that the handoff is accepted.
+- **Local F00 acceptance:** no unresolved blocking check or required resource decision for this documentation task after the owner's AC-09 clarification. The task documentation and its first published revision are verified; REVIEW_REQUIRED refers to PR integration and orchestrator acceptance, not unfinished protocol work.
 - **F00 academic gate resolved by owner decision:** verbal Hakan Çağlar approval recorded as REPORTED; independent artifact and exact viewed SHA unavailable. This limitation is disclosed, not represented as independently VERIFIED.
 - **Later execution gates remain:** no frozen dataset, Java pilot or sandbox; GPU/model/runtime access and provider/API permissions, budget and privacy/retention consents are unverified. Alperen Enes Yaman and Taha Uğur Toyran are reported resource contacts; per-resource custodian split is UNKNOWN. See protocol matrix for resolving actions and existing dependencies.
 - **Schedule:** registry due date 2027-01-01; time/channel and available capacity UNKNOWN. Historical 436–666 person-hours are not a verified delivery forecast. No scope demotion or new deadline.
@@ -125,3 +127,11 @@ The PR must retain real acceptance/check evidence. The user's authorization allo
 Report delivery is not complete merely because this file exists locally. Every subsequent authorized task must deliver the full verified SHA, commit link, report link pinned to that SHA, actual checks/PR status and readable summary in the final chat response. This persistent rule is recorded in ADR 0005 section 8 and PROJECT_STATUS. A later evidence-only commit may record an already verified published task SHA; the report's final containing SHA is supplied externally in chat to avoid impossible self-reference.
 
 Submit the published SHA/report for orchestrator acceptance, then stop. F00-V0 and F01-ENV are not authorized by this publication request.
+
+## Verified GitHub publication receipt — 2026-11-02
+
+The complete four-file F00 task was committed and pushed as [`ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4). `git ls-remote --heads origin refs/heads/docs/8-freeze-evidence-protocol` returned that exact SHA, matching local HEAD; the worktree was clean and upstream tracking established. [PR #44](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44) was created by authenticated `cakarburkayy`, targeting `main`, with Task #8 / Plan F00-PLAN and all four files.
+
+This receipt is a later report-only revision of that verified task commit. PUBLISHED_TASK_COMMIT identifies the already published content revision, **not this report's containing revision**. The final report revision is delivered as a full remote-verified SHA and commit-pinned report URL in the final chat response. No own-commit SHA is fabricated here.
+
+At preparation of this receipt the initial hosted Governance CI run was in progress; current-HEAD CI and authenticated owner-approval results must be taken from the final PR/check receipt, not assumed from the first revision. The final report-only revision is checked with documentation/security and staged whitespace checks and pushed before its final SHA-bound owner approval. No merge or orchestrator acceptance is claimed. The original main baseline remains unchanged.
