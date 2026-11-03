@@ -1236,19 +1236,17 @@
       "estimated_effort": 8,
       "dependencies": [
         "F14-PY",
-        "F14-JSTS",
-        "F14-CS",
-        "F14-GO",
-        "F14-CPP"
+        "F14-JSTS"
       ],
       "module": "frontend",
-      "objective": "Verify mixed-component integration, correct routing, separate toolchains and coverage for all seven mandatory first-delivery languages.",
+      "objective": "Verify mixed-component integration, language routing, separate toolchains and coverage for Java, Python, JavaScript and TypeScript first-delivery capabilities.",
       "deliverable": "frontend/ component-level status + tests/e2e/ mixed-language fixtures and observed sandbox evidence.",
       "acceptance": [
-        "Each of Java, Python, JS, TS, C#, Go and C++ routes to genuine available adapter",
+        "Each mandatory first-delivery Java, Python, JavaScript and TypeScript component routes to a genuine available adapter, not an invented fallback",
         "Mixed-language repository analyzed by components with separate toolchain/test/coverage evidence",
-        "At least React/TS+Python and representative .NET/Go/C++ cross-component fixtures report honest uncertainties",
-        "No global behavior-equivalence assertion or silent bypass of unavailable adapters"
+        "At least React/TypeScript + Python cross-component fixtures report honest unsupported or uncertain references",
+        "P1 C#/Go/C++ adapters remain explicitly unavailable unless separately verified; their absence does not block P0 release",
+        "No global behavior-equivalence assertion or silent bypass of missing P0 adapters"
       ],
       "kind": "code",
       "priority": "P0",
@@ -1268,10 +1266,7 @@
       ],
       "dependency_issues": [
         32,
-        33,
-        40,
-        41,
-        42
+        33
       ],
       "parent_issue": 7
     },
@@ -1292,16 +1287,16 @@
         "F14-MIX"
       ],
       "module": "qa",
-      "objective": "Run release-blocking, real seven-language E2E with both approval gates, Falcon-Mamba, comprehensive reporting and negative-path checks.",
+      "objective": "Run release-blocking end-to-end acceptance with four mandatory language adapters, both user approval gates, actual Falcon-Mamba, comprehensive reporting and negative-path checks.",
       "deliverable": "tests/e2e/, versioned run evidence and release-candidate record.",
       "acceptance": [
-        "Real upload-to-ZIP with two product approvals",
-        "Broken baseline/no tests/provider failure/conflict scenarios",
-        "New regressions prevent validated output",
-        "No model mock counted as real patch; all required checks evidenced",
-        "Each of seven required languages has a real positive candidate-patch acceptance and failing regression example",
-        "Real Falcon-Mamba 7B security review, scanners and masking verified; no mock counts as model integration",
-        "Consistent final ZIP, HTML/PDF/history and mixed-language evidence for all supported components"
+        "Real upload-to-ZIP with two product approvals and source/test integrity",
+        "Broken baseline, missing tests, provider failure, conflict and combined regression cause correct rejection",
+        "New regressions prevent validated output and no mocked provider/model result counts as a real integration",
+        "Java, Python, JavaScript and TypeScript each pass a real positive candidate patch and a failing-regression example",
+        "Actual Falcon-Mamba 7B masked-evidence security review and deterministic scanners operate with attributable results",
+        "Consistent final ZIP, HTML/PDF/history and mixed-language evidence for all required P0 components",
+        "Deferred C#/Go/C++ are disclosed as P1 and do not block the P0 first delivery"
       ],
       "kind": "code",
       "priority": "P0",
@@ -1438,7 +1433,7 @@
         "Existing Java/Python/JS/TS adapter contracts remain compatible"
       ],
       "kind": "code",
-      "priority": "P0",
+      "priority": "P1",
       "actual_status": "NOT STARTED",
       "issue_number": 40,
       "allowed_paths": [
@@ -1485,7 +1480,7 @@
         "No regression to other language adapter contracts"
       ],
       "kind": "code",
-      "priority": "P0",
+      "priority": "P1",
       "actual_status": "NOT STARTED",
       "issue_number": 41,
       "allowed_paths": [
@@ -1532,7 +1527,7 @@
         "Existing language adapters and deterministic security scans remain compatible"
       ],
       "kind": "code",
-      "priority": "P0",
+      "priority": "P1",
       "actual_status": "NOT STARTED",
       "issue_number": 42,
       "allowed_paths": [
@@ -1647,6 +1642,31 @@
     "graph_sync_status": "VERIFIED",
     "reforecast_required": true,
     "release_rule": "P0 mandatory: no READY_FOR_RELEASE before seven-language verified E2E, real Falcon-Mamba and all product gates.",
-    "note": "Native issue parents and all 69 blocked-by links verified by GitHub Actions run 40518968864, attempt 2 (2026-10-27). Original 31 tasks/54 edges preserved; no approved task dependency removed."
+    "note": "Native issue parents and all 69 blocked-by links verified by GitHub Actions run 40518968864, attempt 2 (2026-10-27). Original 31 tasks/54 edges preserved; no approved task dependency removed.",
+    "superseded_by": "scope_decision_2026_11_03"
+  },
+  "scope_decision_2026_11_03": {
+    "status": "OWNER_APPROVED_PENDING_REPOSITORY_MERGE",
+    "approved_by": "cakarburkayy",
+    "date": "2026-11-03",
+    "approved_srs_version": "0.5.0-rc1",
+    "first_delivery_required_languages": [
+      "java",
+      "python",
+      "javascript",
+      "typescript"
+    ],
+    "required_local_security_model": "Falcon-Mamba 7B",
+    "deferred_language_tasks": [
+      "F14-CS",
+      "F14-GO",
+      "F14-CPP"
+    ],
+    "mandatory_first_delivery_task_count": 31,
+    "deferred_p1_task_count": 3,
+    "planned_dependency_edges": 66,
+    "native_dependency_sync": "PENDING_SAFE_REMOVAL_OF_F14_MIX_BLOCKED_BY_ISSUES_40_41_42",
+    "release_rule": "P0 first delivery requires four real language E2E paths and actual Falcon-Mamba plus all existing security/two-approval/final-export/report gates; deferred C#/Go/C++ do not block P0.",
+    "notes": "Preserve all 34 task IDs and F14-CS/GO/CPP own prerequisites/epic parent; remove exactly the three outdated #34 native blocked-by edges after full GitHub audit. No active owner, rotation or F00-V0 change. Historical deadlines are planning estimates; P1 implementation is separately authorized."
   }
 }
