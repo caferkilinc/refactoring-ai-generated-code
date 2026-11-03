@@ -1,100 +1,137 @@
-# Project Genesis — PR #45 delegated-approval maintenance
+# PROJECT GENESIS v2.0 — F00-PLAN handoff
 
 REPORT_SCHEMA_VERSION: 1<br>
-TASK_ID: F01-GOV / #1 — PR45-DELEGATION bounded maintenance<br>
-OWNER: Cafer Kılınç (@caferkilinc)<br>
-DATE: 2026-11-04 (Europe/Istanbul)<br>
-BRANCH: chore/1-pr45-approval-delegation<br>
-BASE_COMMIT: aa7d2c810a3c19dbc92bd6efa69c517a598dde7e<br>
+PROJECT: Refactoring AI-Generated Code<br>
+TASK_ID: F00-PLAN<br>
+MILESTONE_ID: F00<br>
+GITHUB_ISSUE: #8<br>
+OWNER: Burkay Çakar (@cakarburkayy)<br>
+DATE: 2026-11-02 (Europe/Istanbul)<br>
+REPOSITORY: `C:\refactoring-ai-generated-code`<br>
+BRANCH: `docs/8-freeze-evidence-protocol`<br>
+BASE_COMMIT: `67233482f2d10462933328c4b162d150bb4b0993`<br>
 STATUS: REVIEW_REQUIRED<br>
-HANDOFF_STATUS: BLOCKED — activation on trusted main pending<br>
-POLICY_ACTIVATED: NO<br>
-TARGET_PR: #45<br>
-TARGET_SOURCE_HEAD: d923134da4f9f5a2ab55a5f51fbf9415ff717262
+TASK_IMPLEMENTATION: COMPLETE — F00-PLAN documentation; integration/handoff pending<br>
+HANDOFF_STATUS: PENDING_ORCHESTRATOR_ACCEPTANCE<br>
+GIT_PUBLICATION: VERIFIED_FOR_TASK_COMMIT<br>
+PUBLISHED_TASK_COMMIT: `ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`<br>
+OWNER_PUBLICATION_AUTHORIZATION: Explicitly granted by Burkay in chat on 2026-11-02
 
-## Bounded task and authority
+## OBJECTIVE
 
-Cafer explicitly asked in this chat to handle the delegation and necessary
-policy change here on 2026-11-04. This authorizes the small governance
-maintenance described in [ADR 0006](docs/DECISIONS/0006-pr45-revision-bound-delegation.md).
-Burkay's off-platform review/delegation is REPORTED via Cafer, not an
-authenticated Burkay GitHub comment. The connected GitHub account is Cafer;
-no Burkay identity or approval has been fabricated.
+Establish the bounded F00 research baseline, >=12-task dataset selection/freeze procedure, reproducible measurement and resource decisions against approved TR/EN SRS v0.4.0. Prepare evidence for human review; no pilot/application implementation or subsequent task.
 
-The registry stays Cafer/F00-V0, rotation index 1. This governance preparation
-is isolated from the pilot branch and consumes no implementation rotation.
-PR #45 remains OPEN, UNMERGED and unchanged at the target SHA. No future task,
-F00-V0 merge, acceptance-record write, issue closure or rotation advancement
-is authorized by this preparation. Integration/activation remains an explicit
-final decision because it changes the trusted main approval policy.
+## BASELINE
 
-## Implemented and files changed
+Preflight inspected root, `git status --short`, branch, HEAD, remotes and `git branch -vv`. The chat working directory was not a Git repository; the previously prepared repository above was verified as the expected origin. Initial worktree was clean on `main`, tracking `origin/main`. `git fetch origin --tags` succeeded; local and remote main both remained at BASE_COMMIT. No equivalent F00/issue-8 task branch existed; the new local branch starts at that SHA and has no upstream yet.
 
-| File | Change |
+Historical September baseline `7e068040c3a4fb1a2f32783a4c592dc974324f36` (ten commits/eight Markdown files), PR #38 merge `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c` and PR #39 merge `5c297836b9ec70112e7b662eac05ec966543a134` are ancestors of HEAD. Baseline has 53 tracked files: governance and documentation, no application or executable experiment. Issue #8 was fetched read-only and is open with no comments. Registry confirms Burkay/F00-PLAN, no technical prerequisites and no accepted Genesis handoff.
+
+## IMPLEMENTED
+
+- One [research baseline/protocol](docs/DECISIONS/0005-f00-research-baseline.md), with historical evidence, admission/exclusion states, >=12-task freeze, SHA-256 source/test integrity and Java pilot prerequisites.
+- Separate quality/behavior results, explicit 50% target/formula, three matched repetitions per condition, failure-inclusive denominators, actual runtime/token/cost accounting and evidence retention.
+- Resource matrix tied to existing tasks, owner-reported GPU/API contacts, and a separate attributed verbal academic approval record.
+- Experiment README link and appended current project status; historical records preserved.
+- Persistent owner-directed delivery rule: every task ends with its full verified SHA, commit-pinned report link and actual verification summary in chat (protocol section 8).
+
+Only documentation is implemented here. Dataset NOT_FROZEN; pilot/product NOT_STARTED; research runs NOT_RUN. F00-PLAN completion does not complete the whole F00 milestone: F00-V0 remains outstanding.
+
+## FILES_CHANGED
+
+| Path | Change |
 |---|---|
-| scripts/governance/gate.py | Preserve ordinary Burkay approval; allow Cafer's distinct delegated marker only for the exact PR/repository/task/issue/branch/author/SHA tuple |
-| tests/governance/test_pr45_delegation.py | Nine tests with boundary subcases, including full readiness and historical acceptance verification |
-| docs/DECISIONS/0006-pr45-revision-bound-delegation.md | Exact task contract, reported provenance, scoped grant, verification and activation boundary |
-| docs/DEPENDENCY_MANAGEMENT.md | Link the single revision-bound exception; preserve ordinary policy elsewhere |
-| report.md | This maintenance snapshot; the pilot report remains intact on feature/9-java-v0-pilot |
+| `docs/DECISIONS/0005-f00-research-baseline.md` | Canonical F00 research protocol/resource record and persistent report-delivery policy |
+| `experiments/README.md` | Link protocol and state actual evidence availability |
+| `docs/PROJECT_STATUS.md` | Append F00 snapshot, publication authorization and report-delivery requirement |
+| `report.md` | New latest-task handoff report under continuity exception |
 
-No generic delegation infrastructure, workflow edits, task registry changes,
-acceptance edits, SRS/architecture changes, source/test-fixture changes or
-pilot manifest changes. The exception never approves a new SHA, other PR,
-fork, branch, task or author. Approval is still an authenticated API comment,
-using `GENESIS-DELEGATE-APPROVED`, never Burkay's owner marker from Cafer.
+## REQUIREMENTS_COVERED
 
-The first path-policy review rejected an AGENTS.md clarification because that
-path is outside F01-GOV's registered allowed paths. The clarification was
-placed in the existing dependency policy instead; AGENTS.md remains unchanged.
-The existing scope rule was not broadened or bypassed.
+FR-009, FR-047, FR-048, FR-049, FR-050; NFR-02, NFR-04, NFR-09, NFR-13. Protocol section 7 maps each to later real execution evidence. Supporting safety references: FR-003–004, FR-030–036, FR-038–044, NFR-01/03/05. Coverage means requirements-aligned protocol, not verified product implementation.
 
-## Actual verification
+## ACCEPTANCE_CRITERIA
 
-| Command / inspection | Actual outcome |
-|---|---|
-| git fetch --tags origin with canonical branch refspec | PASS; trusted main unchanged at BASE_COMMIT |
-| Live PR #45, account and comment reads | OPEN; target HEAD unchanged; account caferkilinc; zero approval comments |
-| python3 -B -m unittest discover -s tests/governance -v | PASS: 111 tests (102 existing plus 9 new), with boundary subcases |
-| python3 -B scripts/governance/check_docs.py | PASS |
-| python3 -B scripts/governance/security_check.py | PASS; limited credential/private-artifact hygiene only |
-| git diff --check and complete new-file whitespace/scope inspection | PASS |
-| Read-only live-API evaluation with proposed policy and actual comments | Correctly REJECTED: approval is missing |
-| Same evaluation with one explicitly simulated in-memory Cafer delegated marker | PASS: F00-V0's existing predecessor and actual applicable GitHub CI also verified |
+| ID | Expected | Actual / evidence | Result |
+|---|---|---|---|
+| AC-01 | Inspect safe actual repository baseline | Clean main/expected origin and upstream; fetch unchanged SHA; numbered branch created; BASELINE above | PASS |
+| AC-02 | Align approved TR/EN v0.4.0 without demoting P0 | Protocol sections 1/7 preserve seven languages, Falcon-Mamba and safety/reporting scope; bilingual governance tests pass | PASS |
+| AC-03 | Preserve history and decisions | Historical and both merge commits are ancestors; existing ADRs unchanged; status only appended | PASS |
+| AC-04 | Define task, inclusion/exclusion and >=12 fixed tasks honestly | Protocol section 2; no samples invented, dataset NOT_FROZEN | PASS |
+| AC-05 | Define freeze, V0/tests, versions and evidence IDs | Protocol sections 2–3; raw-byte manifests, change control and traceable evidence chain | PASS |
+| AC-06 | Separate behavior/quality; define formulas/denominators | Protocol section 4; target >=50%, new findings, zero/missing values and failed behavior retained | PASS |
+| AC-07 | Three matched repetitions/condition with cost/failures | Protocol section 4; SEQ/PAR R1–R3, fixed inputs/settings, planned/started/request denominators; none executed | PASS |
+| AC-08 | Evidence-based resource statuses and roles | Protocol section 5; local Git/Python verified, resource contacts owner-reported, actual GPU/API/toolchain/data access UNKNOWN | PASS |
+| AC-09 | Separate course approval from product-owner approval | Hakan Çağlar verbal approval on 2026-10-28 reported by Burkay; Burkay's later explicit instruction accepts this for AC-09. Protocol section 6 retains REPORTED provenance and unknown exact viewed revision | PASS — owner-accepted verbal evidence |
+| AC-10 | Authorized files only, no later implementation | Existing path gate accepts exactly four listed Markdown files; full diff/content inspected; no protected changes | PASS |
+| AC-11 | Execute actual applicable checks | 101 governance tests, documentation, security hygiene, path policy and whitespace checks pass; outputs below | PASS |
+| AC-12 | Accurate task/owner/baseline/files/results/blockers/publication/conditional successor | This report contains actual outcomes and unresolved later resources; full published SHA and pinned report are delivered in the final chat receipt | PASS |
 
-The live-API check used 12 authenticated GET requests via gh api. It wrote
-nothing to GitHub. Its injected marker existed only in memory and is not an
-actual approval or hosted readiness result. Both the negative and positive
-outcomes are disclosed. The complete real-data simulation returned:
+AC-09's original independent-document requirement is superseded only by the owner's explicit instruction in this chat: no reference exists, verbal approval was obtained, and AC-09 is to pass. No academic document or authenticated GitHub approval is fabricated. Git's latest reachable main commit before 2026-10-28 end-of-day is BASE_COMMIT, dated 2026-10-27; it is a plausible scope reference, not proof of what the academic approver viewed.
+
+## VERIFICATION
+
+Commands run from the repository above on Windows with Git 2.53.0.windows.3 and Python 3.14.5. `PYTHONDONTWRITEBYTECODE=1` prevents generated Python cache artifacts; no dependencies installed.
+
+| Command / inspection | Result | Relevant evidence |
+|---|---|---|
+| `git rev-parse --show-toplevel`; `git status --short`; `git branch --show-current`; `git rev-parse HEAD`; `git remote -v`; `git branch -vv` | PASS | Actual root/origin, clean initial main and tracking; BASE_COMMIT |
+| `git fetch origin --tags`; `git rev-parse main origin/main` | PASS | Successful fetch; both SHAs equal BASE_COMMIT |
+| `git for-each-ref --format=%(refname) refs/heads refs/remotes`; `git switch -c docs/8-freeze-evidence-protocol` | PASS | No equivalent existing branch; new branch based on main |
+| `git log 7e068040c3a4fb1a2f32783a4c592dc974324f36 --oneline --max-count=12`; `git ls-tree -r --name-only HEAD`; ancestry checks for the three historical/merge SHAs | PASS | Historical scaffold retained; no product/experiment source; all ancestry checks exit 0 |
+| `python3 -m unittest discover -s tests/governance -v` | PASS | Initial run: 101 tests in 0.141s; publication revision: 101 tests in 0.077s; both OK, exit 0 |
+| `python3 scripts/governance/check_docs.py` | PASS | Exit 0: Local documentation links and required artefacts verified |
+| `python3 scripts/governance/security_check.py` | PASS | Exit 0: Repository hygiene checks passed; not a claim of full security analysis |
+| Existing `gate.check_paths` against actual modified + untracked paths via inline `python3 -` | PASS | Exactly four authorized paths accepted; no policy bypass, staged changes or HEAD change |
+| `git diff --check`; untracked-file whitespace/UTF-8 inspection via inline `python3 -` | PASS | Initial staged check FAILED on Markdown two-space hard breaks in new files; converted to explicit HTML breaks and reran the staged check without weakening it |
+| `git diff --stat`; `git status --short`; full diff/content review | PASS | Only the four listed Markdown files; both existing-file diff and new protocol/report content inspected |
+| Direct protocol-to-AC/FR/NFR review | PASS | Protocol sections 1–7 and criterion table above; no fictional measurements |
+| Product builds/tests, real provider/model runs and scientific experiment | NOT_APPLICABLE | Documentation-only F00-PLAN; none executed |
+| Hosted PR CI and authenticated current-HEAD owner approval | NOT_RUN | Not run at the prepublication snapshot; final current-HEAD hosted results belong in the publication receipt |
+
+Governance checks do not validate an application. Security hygiene is the existing limited credential/private-artifact check, not full SAST/SCA. A local path-policy check does not replace live GitHub dependency/owner/CI checks.
+
+## ARCHITECTURE_AND_SCOPE
+
+Preserved approved architecture, all P0 scope, developer rotation, registry and protected governance files. Older P1/optional-model, independent-review and pending-merge/graph statements are identified as historical in protocol section 1; no repository-wide cleanup. Existing project-local `development-handoff` skill was read and its procedure followed manually; no automatic skill execution claimed. The initial task stopped before commit/push. The owner explicitly authorized publication in the follow-up. No dependency installation, API inference, model download or application code change.
+
+## RESOURCE_STATUS / RISKS_AND_BLOCKERS
+
+- **Local F00 acceptance:** no unresolved blocking check or required resource decision for this documentation task after the owner's AC-09 clarification. The task documentation and its first published revision are verified; REVIEW_REQUIRED refers to PR integration and orchestrator acceptance, not unfinished protocol work.
+- **F00 academic gate resolved by owner decision:** verbal Hakan Çağlar approval recorded as REPORTED; independent artifact and exact viewed SHA unavailable. This limitation is disclosed, not represented as independently VERIFIED.
+- **Later execution gates remain:** no frozen dataset, Java pilot or sandbox; GPU/model/runtime access and provider/API permissions, budget and privacy/retention consents are unverified. Alperen Enes Yaman and Taha Uğur Toyran are reported resource contacts; per-resource custodian split is UNKNOWN. See protocol matrix for resolving actions and existing dependencies.
+- **Schedule:** registry due date 2027-01-01; time/channel and available capacity UNKNOWN. Historical 436–666 person-hours are not a verified delivery forecast. No scope demotion or new deadline.
+- **Publication/handoff pending:** local documentation is not an accepted handoff or completed milestone; hosted checks and authenticated current-head owner approval apply after the authorized publication.
+
+## NEXT_TASK_CANDIDATE / ROTATION
+
+F00-V0 (#9) is a candidate after accepted F00-PLAN, its existing sole prerequisite. This is not authorization or a claim of present eligibility; orchestrator decides the next task. F01-ENV's dependency remains F01-GOV; no new edges or assignments were added.
+
+CURRENT_OWNER: Burkay<br>
+NEXT_OWNER_IF_ACCEPTED: Cafer<br>
+ROTATION_ADVANCE: NOT_YET_CONFIRMED
+
+## AUTHORIZED PUBLICATION / MANDATORY REPORT DELIVERY
+
+On 2026-11-02 Burkay explicitly authorized committing/pushing the final F00 work, gave owner approval, and required the actual report plus SHA to be delivered in chat every time. This supersedes the prior stop-before-commit/push restriction for this task. The connected GitHub identity was verified as `cakarburkayy`.
+
+Publish the reviewed four-file change on `docs/8-freeze-evidence-protocol`, with a PR targeting `main` and these identity lines:
 
 ```text
-F00-V0: all 1 mandatory prerequisites accepted; current revision approval and applicable CI verified
+Task: #8
+Plan: F00-PLAN
 ```
 
-The output wording reports revision approval without falsely attributing the
-delegated marker to Burkay. All missing/failed/skipped check and prerequisite
-rejections still apply. The proposal cannot pass itself through a head-defined
-policy: existing privileged workflows continue to execute trusted main.
+The PR must retain real acceptance/check evidence. The user's authorization allows recording the authenticated `GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>` comment through the verified owner account after the final HEAD is known. New commits invalidate previous SHA-bound approval. Hosted CI/dependency/readiness results remain mandatory; no merge, issue closure or rotation advancement is implied.
 
-## Activation and remaining blocker
+Report delivery is not complete merely because this file exists locally. Every subsequent authorized task must deliver the full verified SHA, commit link, report link pinned to that SHA, actual checks/PR status and readable summary in the final chat response. This persistent rule is recorded in ADR 0005 section 8 and PROJECT_STATUS. A later evidence-only commit may record an already verified published task SHA; the report's final containing SHA is supplied externally in chat to avoid impossible self-reference.
 
-A trusted-main policy update is needed before Cafer's marker can satisfy the
-hosted readiness gate. The current registry authorizes F00-V0, so a separate
-#1 policy proposal is expected to be blocked by the old active-task rule until
-an explicitly authorized integration decision. This proposal does not weaken
-that rule, rewrite the registry, manufacture a successful check or authorize
-its own governance PR. Review the exact diff and full test evidence before
-approving the narrow activation in this chat.
+Submit the published SHA/report for orchestrator acceptance, then stop. F00-V0 and F01-ENV are not authorized by this publication request.
 
-After activation is explicitly authorized, publish the governance policy,
-record this exact comment through the actual caferkilinc account on PR #45,
-and rerun the trusted-main dependency/readiness workflow:
+## Verified GitHub publication receipt — 2026-11-02
 
-```text
-GENESIS-DELEGATE-APPROVED: d923134da4f9f5a2ab55a5f51fbf9415ff717262
-```
+The complete four-file F00 task was committed and pushed as [`ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4). `git ls-remote --heads origin refs/heads/docs/8-freeze-evidence-protocol` returned that exact SHA, matching local HEAD; the worktree was clean and upstream tracking established. [PR #44](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44) was created by authenticated `cakarburkayy`, targeting `main`, with Task #8 / Plan F00-PLAN and all four files.
 
-That subsequent step is not performed by the current preparation snapshot.
-If PR #45 moves, this grant is invalid and a new decision is required. Preserve
-source/test manifests and the pilot report. Merge/acceptance and handoff to
-Alperen remain separate decisions. ROTATION_ADVANCED: NO.
+This receipt is a later report-only revision of that verified task commit. PUBLISHED_TASK_COMMIT identifies the already published content revision, **not this report's containing revision**. The final report revision is delivered as a full remote-verified SHA and commit-pinned report URL in the final chat response. No own-commit SHA is fabricated here.
+
+At preparation of this receipt the initial hosted Governance CI run was in progress; current-HEAD CI and authenticated owner-approval results must be taken from the final PR/check receipt, not assumed from the first revision. The final report-only revision is checked with documentation/security and staged whitespace checks and pushed before its final SHA-bound owner approval. No merge or orchestrator acceptance is claimed. The original main baseline remains unchanged.

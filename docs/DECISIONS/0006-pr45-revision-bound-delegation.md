@@ -56,7 +56,9 @@ to a new commit or another PR.
 
 Allowed files: `scripts/governance/gate.py`,
 `tests/governance/test_pr45_delegation.py`, this ADR, the dependency-policy note
-and `report.md`. No workflow, registry, acceptance record, SRS, roadmap,
+and `docs/reports/pr45-approval-delegation.md`. Root `report.md` stays unchanged
+to avoid a conflict that would invalidate PR #45's SHA. No workflow, registry,
+acceptance record, SRS, roadmap,
 application source, V0, test fixture or pilot manifest changes.
 
 Acceptance requires a valid delegated-readiness case; rejection of missing or
