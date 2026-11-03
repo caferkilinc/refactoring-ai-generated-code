@@ -1,3 +1,15 @@
+# Current owner-approved first-delivery scope — 2026-11-03
+
+**Authority:** Burkay Çakar approved bilingual SRS **v0.5.0-rc1** (TR/EN). It supersedes the 2026-10-27 seven-language mandate only for release scope. **P0: working Java, Python, JavaScript, TypeScript adapters and real Falcon-Mamba 7B**, together with both user approvals, isolated source/test validation, security controls, ZIP, HTML/PDF, history and reproducible research. **P1: C#, Go, C++** as later expansion; all original task identifiers and their own prerequisite edges remain.
+
+**Current planned dependency graph (review branch):** 34 task identities, **31 P0 / 3 P1**, **66 directed edges**, with only **F14-MIX/#34 → F14-CS/#40, F14-GO/#41 and F14-CPP/#42** removed from the P0 critical path. F15-P0/#35 still requires F13-BASIC, F13-ADV, F07B-LOCAL and F14-MIX. **GitHub's native issue edges still have the old three blockers; do not claim live sync** until explicit safe removal and read-only audit. Older 69-edge and seven-language statements further below are historic evidence, not current scope.
+
+**Active execution is unchanged:** Cafer (`@caferkilinc`) owns F00-V0 / #9 (registry rotation index 1). Cafer's local READY_TO_PUSH report is REPORTED, not merged/published/accepted. Alperen is conditional only. No additional handoff, no release acceptance and no automatic date reforecast are authorized.
+
+**Safe migration order:** (1) review the proposed SRS/registry/roadmap together; (2) reconcile the three native #34 blocker links with owner authorization and a scoped API operation that verifies actual issue IDs; (3) align issue #40–#42 P1 priority metadata and #34/#35 descriptions; (4) rerun complete live graph audit and governance CI; (5) merge the changes only under an explicit governance-compatible owner-approved path while protecting the active F00-V0 task. Existing `sync_issues.py` intentionally rejects native-edge deletion, so it must not be used as if it supports this migration.
+
+---
+
 # Genesis v2.0 transition and mandatory release scope
 
 Owner decision (2026-10-27): 31 existing technical issues and 54 original dependencies are retained, with three new unassigned P0 issues (#40–#42) and a staged 34-task / 69-edge dependency graph, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is pre-Genesis bootstrap and was merged to `main` on Burkay Çakar's explicit approval (`5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`). Burkay is the sole required approval authority; other reviewers are optional. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
@@ -27,7 +39,7 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 
 ## Technical task registry and mandatory dependencies — revised 2026-10-27
 
-**34 P0 tasks = 31 existing + 3 added (#40–#42).** The original 54 live native issue edges are preserved. The new 69-edge directed task plan has been recorded in `.github/task-plan.json`, but GitHub native issue parent/dependency updates **remain pending**; no downstream task may claim prerequisites accepted until that graph is reconciled.
+**Current approved task priorities: 31 P0 first-delivery tasks + 3 P1 expansion tasks (#40–#42), 34 retained tasks total.** The original 54 live native issue edges are preserved. The new 69-edge directed task plan has been recorded in `.github/task-plan.json`, but GitHub native issue parent/dependency updates **remain pending**; no downstream task may claim prerequisites accepted until that graph is reconciled.
 
 | Plan ID | Issue | P | Scope | Prerequisite Plan IDs | Registry status |
 |---|---:|---|---|---|---|
@@ -58,15 +70,15 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 | F13-ADV | #31 | P0 | Add PDF and extended report/history presentation | F13-BASIC | NOT STARTED |
 | F14-PY | #32 | P0 | Implement Python adapter without Java-specific assumptions | F13-BASIC, F04-JAVA | NOT STARTED |
 | F14-JSTS | #33 | P0 | Implement JavaScript and TypeScript adapters | F13-BASIC, F04-JAVA | NOT STARTED |
-| F14-MIX | #34 | P0 | Validate mixed-language capability integration | F14-PY, F14-JSTS, F14-CS, F14-GO, F14-CPP | NOT STARTED |
+| F14-MIX | #34 | P0 | Validate mixed-language capability integration for Java/Python/JS/TS | F14-PY, F14-JSTS | NOT STARTED |
 | F15-P0 | #35 | P0 | Run P0 end-to-end acceptance and regression matrix | F13-BASIC, F13-ADV, F07B-LOCAL, F14-MIX | NOT STARTED |
 | F15-EXPERIMENT | #36 | P0 | Evaluate refactoring tasks and sequential versus parallel execution | F15-P0, F00-PLAN | NOT STARTED |
 | F15-HANDIN | #37 | P0 | Package reproducible release and academic delivery | F15-P0, F15-EXPERIMENT | NOT STARTED |
-| F14-CS | #40 | P0 | Implement verified C# / Roslyn language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
-| F14-GO | #41 | P0 | Implement verified Go language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
-| F14-CPP | #42 | P0 | Implement verified C++ / Clang language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+| F14-CS | #40 | P1 | Implement verified C# / Roslyn language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+| F14-GO | #41 | P1 | Implement verified Go language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
+| F14-CPP | #42 | P1 | Implement verified C++ / Clang language adapter | F02-CONTRACT, F06-SANDBOX, F11-VALIDATE | NOT STARTED |
 
-**Added P0 work:** F14-CS/#40 Roslyn, F14-GO/#41 Go modules/types, F14-CPP/#42 Clang/native build. Each depends on F02-CONTRACT + F06-SANDBOX + F11-VALIDATE. **Release-critical joins:** F14-MIX/#34 waits for Python/JS/TS plus all three new adapters; F15-P0/#35 waits for F13-BASIC + F13-ADV + F07B-LOCAL + F14-MIX. The latter blocks the experiment and final hand-in through existing F15 dependencies.
+**Retained P1 extension work:** F14-CS/#40 Roslyn, F14-GO/#41 Go modules/types, F14-CPP/#42 Clang/native build. Each depends on F02-CONTRACT + F06-SANDBOX + F11-VALIDATE. **Release-critical joins:** F14-MIX/#34 waits for Python and JS/TS, not the three P1 adapters; F15-P0/#35 waits for F13-BASIC + F13-ADV + F07B-LOCAL + F14-MIX. The latter blocks the experiment and final hand-in through existing F15 dependencies.
 
 **Important schedule constraint:** Several historic dates and effort estimates are infeasible to treat as confirmed after seven-language expansion and strictly sequential ownership. They remain archival planning values; a dependency-based reforecast and toolchain availability check are mandatory before confirming delivery feasibility.
 
@@ -93,9 +105,9 @@ Every milestone requires actual task output, focused and integration verificatio
 
 ## Final planning acceptance (2026-10-27)
 
-**Approved by:** Burkay Çakar. This roadmap defines all 34 mandatory implementation tasks across the existing six research work packages; every one is P0 and links to current functional/nonfunctional requirements. An audit of the task registry confirms **69 unique, valid directed prerequisite edges, zero missing task references, and no dependency cycle**. All 31 original issues and 54 original live edges are preserved. Exactly 15 new live prerequisite edges and three parent links remain subject to the gated graph synchronization and post-write audit. Start with active F00-PLAN (#8), owner Burkay. F01-GOV (#1) is pre-Genesis governance work, not a completed rotation or authorization to skip F00-PLAN. No second owner begins without accepted handoff.
+**Approved by:** Burkay Çakar. The original 2026-10-27 roadmap defined 34 mandatory implementation tasks across six work packages; it was subsequently amended on 2026-11-03 to 31 P0 + 3 P1 and links to current functional/nonfunctional requirements. An audit of the task registry confirms **69 unique, valid directed prerequisite edges, zero missing task references, and no dependency cycle**. All 31 original issues and 54 original live edges are preserved. Exactly 15 new live prerequisite edges and three parent links remain subject to the gated graph synchronization and post-write audit. Start with active F00-PLAN (#8), owner Burkay. F01-GOV (#1) is pre-Genesis governance work, not a completed rotation or authorization to skip F00-PLAN. No second owner begins without accepted handoff.
 
-**Planning capacity warning:** Current registry estimates sum to **436–666 person-hours** for the 34 tasks. These are historical/rough planning figures, NOT actual executed hours and NOT a credible 2027-01-01 completion forecast without staffing and runtime evidence. The one-active-owner rule prohibits parallel implementation; prioritize mandatory prerequisites and reforecast after the real baseline. No mandatory adapter, Falcon-Mamba, negative-path validation or final report can be silently deferred. The next Codex prompt is intentionally NOT generated by this plan-acceptance phase.
+**Historical planning capacity warning:** The unadjusted 34-task estimates sum to **436–666 person-hours** for the 34 tasks. These are historical/rough planning figures, NOT actual executed hours and NOT a credible 2027-01-01 completion forecast without staffing and runtime evidence. The one-active-owner rule prohibits parallel implementation; prioritize mandatory prerequisites and reforecast after the real baseline. No mandatory adapter, Falcon-Mamba, negative-path validation or final report can be silently deferred. The next Codex prompt is intentionally NOT generated by this plan-acceptance phase.
 
 **Sole approval control:** Burkay posts `GENESIS-OWNER-APPROVED: <CURRENT_HEAD_SHA>` in the relevant PR conversation. Peer approvals are optional; checks, Git ancestry, immutable V0 and product acceptance still apply. Implementation readiness and release readiness remain `NOT_READY` until demonstrated.
 
