@@ -1,8 +1,8 @@
 # Software Requirements Specification (SRS)
 # Secure Refactoring and Quality Improvement of AI-Generated Code
 
-**Document:** RAGC-SRS-001 · **Version:** 0.4.0 · **Date:** 2026-10-27  
-**Status:** APPROVED SRS — Burkay Çakar approved both complete Turkish and English specifications on 2026-10-27; product verification remains separate.  
+**Document:** RAGC-SRS-001 · **Version:** 0.5.0-rc1 · **Date:** 2026-10-27  
+**Status:** DRAFT FOR FINAL OWNER APPROVAL — prior v0.4.0 approval remains historical; v0.5.0-rc1 is not yet approved.
 **Product:** Refactoring AI-Generated Code — Engineering Design II, Group B  
 **Target delivery:** 2027-01-01 (exact local submission time UNKNOWN)  
 **Authority:** Owner-supplied `01_Master_Sistem_Mimarisi.pdf` v2.0 → `02_Adim_Adim_Gelistirme_Rehberi.pdf` v2.0 → modular presentation + 2026-10-20 image → associated live GitHub requirement and issue records. Older `01_System_Operation_and_Architecture.pdf` and `03_Technical_System_Presentation_Revised.pdf` are secondary historical documents.  
@@ -17,7 +17,7 @@ The product receives authorized AI-generated or other source code as ZIP, folder
 
 **Actors:** code owner/user (two product decisions and input/cloud/execution consents); application operator; research evaluator; language analysis adapters; sandbox/build/test workers; authorized cloud patch providers; local Falcon-Mamba security review; developer/Codex/orchestrator (development responsibilities only).
 
-**Included:** safe input and evidence provenance, language adapter framework, real Java/Python/JavaScript/TypeScript/C#/Go/C++ capabilities, security scanner and mandatory 7B local review, deterministic validation, approval UX, bounded LLM calls, final ZIP/PDF/HTML/history and rigorous research protocol.
+**Included (P0):** safe input, provenance, working Java/Python/JavaScript/TypeScript adapters, deterministic security and mandatory actual Falcon-Mamba 7B review, isolated validation, two approval gates, controlled LLM patches, ZIP/HTML/PDF/history, and reproducible research. C#/Go/C++ remain P1 future expansion.
 
 **Excluded unless separately approved:** automatic remediation of arbitrary security findings, broad bug fixing, replacement of a user's tests to obtain a pass, uncontrolled program rewrites, arbitrary network/code exfiltration, proof of complete behavior equivalence.
 
@@ -39,9 +39,9 @@ The product receives authorized AI-generated or other source code as ZIP, folder
 | Context/scheduler | Symbol graph, side-effect/read-write analysis, conservative DAG | Serialize unknown conflicts, up to three genuinely independent jobs |
 | Validation | Sandbox workers, per-language test/build/coverage/scanners | Candidate and complete combined validation, independent quality/behavior assessment |
 | Reporting | Comparison engine, charts, artifact/history service, HTML/PDF | **Mandatory first delivery (P0)** |
-| C# language adapter | Roslyn/.NET SDK, supported xUnit/NUnit/MSTest and coverage | **Mandatory P0 first delivery**, real build, source/symbol evidence and safe patch |
-| Go language adapter | go/parser, go/types, go vet, go test/coverage and go module dependencies | **Mandatory P0 first delivery**, real build/test and safe patch |
-| C++ language adapter | Clang/clang-tidy, compile_commands.json, existing CMake/CTest or supported equivalent | **Mandatory P0 first delivery**, native build/test and safe patch |
+| C# language adapter | Roslyn/.NET SDK, supported xUnit/NUnit/MSTest and coverage | **P1 later expansion**; real build/symbol evidence/safe patch required when implemented |
+| Go language adapter | go/parser, go/types, go vet, go test/coverage and modules | **P1 later expansion**; real build/test/safe patch required when implemented |
+| C++ language adapter | Clang/clang-tidy, compile_commands.json and existing CMake/CTest equivalent | **P1 later expansion**; real native verification required when implemented |
 
 The exact dependency versions, model weight IDs, quantization/runtime and deployment hardware are **to be verified**, not inferred from the diagram. SonarQube may supplement PMD/CPD but is not required for the core Java build. A desktop M3 does not provide CUDA; access to a compatible discrete GPU is UNKNOWN.
 
@@ -73,7 +73,7 @@ The exact dependency versions, model weight IDs, quantization/runtime and deploy
 
 ## 5. Functional requirements
 
-P0 = mandatory first delivery; all FR-001–FR-062 requirements below are P0 under the explicit 2026-10-26 owner scope decision. Requirements are acceptance contracts, not claims of implementation. Existing issue IDs are traceability references.
+P0 means mandatory first delivery; FR-058–FR-060 and NFR-17 are now P1 expansion obligations. Remaining FR/NFR rows are P0. Existing issue identifiers remain traceability references, not evidence of completion.
 
 | ID | Priority | Required observable behavior | Source issue(s) |
 |---|---|---|---|
@@ -121,7 +121,7 @@ P0 = mandatory first delivery; all FR-001–FR-062 requirements below are P0 und
 | FR-042 | P0 | Compute before/after findings, complexity, duplication and coverage with the same rules, tools and scope; mark incomparable outputs. | #30 |
 | FR-043 | P0 | Report zero-denominator as N/A, distinguish percent versus percentage points, and retain failures/new findings. | #30 |
 | FR-044 | P0 | Derive HTML and PDF from the same measured run and evidence references; redact secrets and prohibit invented AI explanations. | #30,#31 |
-| FR-045 | P0 | Demonstrate real upload → analysis → Approval 1 → patch → candidate validation → Approval 2 → combined validation → ZIP for each of seven mandatory Java/Python/JS/TS/C#/Go/C++ languages. Missing capabilities BLOCK the release. | #35,#40–#42 |
+| FR-045 | P0 | Demonstrate real upload → analysis → Approval 1 → scoped patch → candidate validation → Approval 2 → combined validation → ZIP for each required Java/Python/JavaScript/TypeScript adapter. Missing P0 language capability blocks release. | #35 |
 | FR-046 | P0 | Verify negative E2E cases for broken baseline, no tests, provider timeouts, conflict, secret leakage and combined regressions. | #35 |
 | FR-047 | P0 | Use a fixed research dataset of at least 12 tasks and include unsuccessful attempts in all appropriate denominators. | #8,#36 |
 | FR-048 | P0 | Compare sequential versus parallel execution in three matched repetitions with constant context/tests/rules and measured time/token cost. | #36 |
@@ -129,16 +129,16 @@ P0 = mandatory first delivery; all FR-001–FR-062 requirements below are P0 und
 | FR-050 | P0 | Deliver reproducible V0/V1 hashes, generation prompts, real test evidence, working setup/demo and documented limitations. | #37 |
 | FR-051 | P0 | Deliver a working Python AST/LibCST, Ruff/Pylint and pytest/coverage adapter with safe-patch validation without breaking Java. | #32 |
 | FR-052 | P0 | Deliver JS/TS adapters using TS Compiler API, ESLint, tsc, Jest/Vitest and coverage with actual verified capabilities. | #33 |
-| FR-053 | P0 | Support mixed Java/Python/JS/TS/C#/Go/C++ projects with per-component metrics/tests, honest cross-service uncertainty and language-specific verification. | #34,#40–#42 |
+| FR-053 | P0 | Support mixed Java/Python/JavaScript/TypeScript projects with per-component metrics/tests and honest cross-service uncertainty; clearly label any unavailable P1 adapter. | #34 |
 | FR-054 | P0 | Integrate a real Falcon-Mamba 7B review service after validating exact model/revision, quantization, GPU/runtime, VRAM and latency. | #19 |
 | FR-055 | P0 | Return redacted, evidence-linked UNCONFIRMED Falcon-Mamba commentary; deterministic SAST continues when local AI fails. | #20 |
 | FR-056 | P0 | Evaluate Falcon-Mamba against independently labeled examples, including precision/recall and complete FP/FN denominators. | #20 |
 | FR-057 | P0 | Provide detailed AI-assisted PDF/HTML reports with numeric parity, backend-derived metrics and evidence-based narration. | #31 |
-| FR-058 | P0 | Implement a working C#/Roslyn adapter with symbol/source-range analysis, real .NET build, supported xUnit/NUnit/MSTest and coverage, evidence-backed quality checks, scoped patch and sandbox verification; report missing SDK honestly. | #40 |
-| FR-059 | P0 | Implement a working Go adapter with module/workspace-aware parser/type analysis, go vet or applicable quality rules, real go test/coverage and dependency-aware scoped patch validation. | #41 |
-| FR-060 | P0 | Implement a working C++/Clang adapter with AST/source locations, compile_commands-aware context, clang-tidy, real CMake/CTest or supported project build/test/coverage, isolated scoped patch validation; missing build context is UNVERIFIED. | #42 |
-| FR-061 | P0 | Produce real positive and negative validation evidence for all seven mandatory language adapters, mixed-project capability, immutable V0/frozen tests and trustworthy export/report results. | #34,#35,#40–#42 |
-| FR-062 | P0 | Gate first-delivery acceptance on seven VERIFIED language patch capabilities together with Falcon-Mamba, HTML/PDF/ZIP and all required security validation. No missing adapter may be silently deferred. | #35,#37,#40–#42 |
+| FR-058 | P1 | Implement a working C#/Roslyn adapter with symbol/source-range analysis, real .NET build, supported xUnit/NUnit/MSTest and coverage, evidence-backed quality checks, scoped patch and sandbox verification; report missing SDK honestly. | #40 |
+| FR-059 | P1 | Implement a working Go adapter with module/workspace-aware parser/type analysis, go vet or applicable quality rules, real go test/coverage and dependency-aware scoped patch validation. | #41 |
+| FR-060 | P1 | Implement a working C++/Clang adapter with AST/source locations, compile_commands-aware context, clang-tidy, real CMake/CTest or supported project build/test/coverage, isolated scoped patch validation; missing build context is UNVERIFIED. | #42 |
+| FR-061 | P0 | Provide real positive and negative evidence for all four mandatory language adapters, mixed-component capability, immutable V0, frozen tests and trustworthy exports; P1 adapters have separate future gates. | #34,#35 |
+| FR-062 | P0 | Gate first-delivery release on verified Java/Python/JavaScript/TypeScript patch capabilities, real Falcon-Mamba, HTML/PDF/ZIP and all required security validations; absence of a P1 adapter alone does not block P0 release. | #35,#37 |
 
 ## 6. Non-functional requirements
 
@@ -157,10 +157,10 @@ P0 = mandatory first delivery; all FR-001–FR-062 requirements below are P0 und
 | NFR-11 | P0 | Never expose API keys in browser/repository; untrusted source comments cannot override execution instructions. | #18,#25 |
 | NFR-12 | P0 | Persist run/attempt/approval/final UTC audit and history without leaking source or credentials in logs. | #12,#30 |
 | NFR-13 | P0 | Support hardware/model/research claims only with real measurements, limitations and configurations. | #19,#36 |
-| NFR-14 | P0 | All seven mandatory adapters expose individual capabilities/confidence/coverage without regressing other language workflows. | #32–#34,#40–#42 |
+| NFR-14 | P0 | The four mandatory adapters expose per-language capability, confidence and coverage without cross-language regression; unsupported P1 languages are reported explicitly. | #32–#34 |
 | NFR-15 | P0 | Do not claim public deployment without verified isolation, threat model, deployment configuration and release decision. | Architecture v2 §16 |
-| NFR-16 | P0 | Verify actual installability, licensing, OS/runtime constraints and reproducible tool versions for JDK, Python, Node/TypeScript, .NET SDK, Go, Clang/native build and Falcon-Mamba service. | #10,#19,#40–#42 |
-| NFR-17 | P0 | Execute native, .NET and Go builds/tests only in resource-limited sandboxes; expose C++ ABI/compile database assumptions, Go module dependencies and .NET restore egress restrictions. | #16,#35,#40–#42 |
+| NFR-16 | P0 | Verify installability, licensing, OS/runtime and reproducible versions for JDK, Python, Node/TypeScript and Falcon-Mamba; .NET, Go and Clang toolchains are verified at P1 acceptance. | #10,#19,#40–#42 |
+| NFR-17 | P1 | Execute native, .NET and Go builds/tests only in resource-limited sandboxes; expose C++ ABI/compile database assumptions, Go module dependencies and .NET restore egress restrictions. | #16,#35,#40–#42 |
 
 ## 7. Measurable acceptance matrix and release gates
 
@@ -183,7 +183,7 @@ P0 = mandatory first delivery; all FR-001–FR-062 requirements below are P0 und
 | HTML/PDF/ZIP/history | Same evidence/run numbers, user authorization, complete redact/re-download paths |
 | Research dataset and repeated trials | At least 12 frozen tasks, 3 matched repeats per condition, failed attempts in denominators |
 
-A passing governance test or a successful Git push is *not* product acceptance. All mandatory paths require task-specific test evidence and a separate risk-based release decision. Delivery cannot be declared ready while any of the seven mandatory language adapters, Falcon-Mamba, PDF/HTML or secure sandbox requirements remain unverified.
+A passing governance test or a successful Git push is *not* product acceptance. All mandatory paths require task-specific test evidence and a separate risk-based release decision. Delivery cannot be declared ready while any required Java/Python/JS/TS adapter, Falcon-Mamba, PDF/HTML or sandbox gate remains unverified; P1 adapter absence alone is not a release blocker.
 
 ## 8. Traceability to existing GitHub plans (do not delete planning history)
 
@@ -202,7 +202,7 @@ A passing governance test or a successful Git push is *not* product acceptance. 
 | F12-REVIEW #28; F12-FINAL #29 | FR-037–040 |
 | F13-BASIC #30; F13-ADV #31 | FR-041–044, FR-057 |
 | F14-PY #32; F14-JSTS #33; F14-MIX #34 | FR-051–053, FR-061 | 
-| F14-CS #40; F14-GO #41; F14-CPP #42 | FR-058–062, NFR-16–17 |
+| F14-CS #40; F14-GO #41; F14-CPP #42 | FR-058–060, NFR-17 (P1 expansion; not dependencies of P0 first-delivery gate) |
 | F15-P0 #35; F15-EXPERIMENT #36; F15-HANDIN #37 | FR-045–050, FR-061–062 |
 
 **Priority promotion:** #19, #20, #31, #32, #33 and #34 were originally P1 in the GitHub task registry; explicit owner approval on 2026-10-26 promotes them to P0. The 31 technical issues, six research work packages and verified dependency graph must remain intact, while fixed personal implementation assignments migrate to sequential task ownership only after compatible gate, test, live issue and PR updates. No implementation success is inferred from this reclassification.
@@ -226,7 +226,7 @@ A passing governance test or a successful Git push is *not* product acceptance. 
 | DEC-002 | Due 2027-01-01; submission time/channel UNKNOWN. |
 | DEC-003 | Fixed team assignments are superseded by rotating single developer; actual registry/gate and issue migration is staged to avoid bypassing review. |
 | DEC-004 | PR #38 cannot merge solely because its existing governance CI checks passed; fresh independent review and separate owner merge decision are prerequisites. |
-| DEC-005 | Java may implement first, but Python, JS/TS, C#, Go, C++, mixed-component validation and local Falcon-Mamba are mandatory **in the same first delivery**. |
+| DEC-005 | Java/Python/JavaScript/TypeScript and actual Falcon-Mamba are mandatory first delivery; C#/Go/C++ are P1 expansion. |
 | DEC-006 | Falcon-Mamba exact weights, quantization, compatible GPU/runtime and latency remain unverified; access to an M3 is not CUDA. |
 | DEC-007 | HTML/PDF and history must use real evidence and consistent numbers, not an optional mock final. |
 | DEC-008 | Actual patch provider model, privacy/egress consent, quota and spending authorization UNKNOWN; not permission to incur costs. |
@@ -234,12 +234,17 @@ A passing governance test or a successful Git push is *not* product acceptance. 
 
 This v0.4.0 document was approved by the owner on 2026-10-27. Superseded historical note: Owner approval was given for the input authority, collaboration strategy, priority promotion, English+Turkish SRS delivery and non-merge PR policy. **Final sign-off of both SRS language versions remains pending**. Record deviations via scoped change request/ADR; keep stable FR/NFR IDs and version increments without rewriting unrelated historic task metadata.
 
-## 11. DEC-010 — 2026-10-27 owner-approved seven-language mandatory scope
+## 11. DEC-010 — 2026-10-27 historical seven-language P0 scope (superseded on 2026-11-03)
 
-The owner's latest explicit scope makes **C#, Go and C++ working adapters mandatory P0 for the same first delivery** as Java, Python, JavaScript, TypeScript and local Falcon-Mamba 7B. This supersedes any historical `future adapter` or P1 wording. New stable task IDs F14-CS (issue #40), F14-GO (#41) and F14-CPP (#42) are approved planning work. Each requires accepted F02-CONTRACT, F06-SANDBOX and F11-VALIDATE; mixed adapter acceptance F14-MIX (#34) requires all three plus Python/JS/TS. F15-P0 (#35) additionally requires F14-MIX, F07B-LOCAL (#20) and F13-ADV (#31) before it may pass first-delivery verification.
+Historical decision (superseded): on 2026-10-27 C#/Go/C++ were classified P0. The new 2026-11-03 owner decision assigns them P1, preserving F14-CS/#40, F14-GO/#41 and F14-CPP/#42 as future work. F14-MIX/#34 and F15-P0/#35 no longer depend on acceptance of those P1 tasks; GitHub task/dependency records still require separately authorized synchronization.
 
 Three live GitHub issues exist without fixed assignees. Existing 31 tasks / 54 native edges were not destroyed; new native subissue and prerequisite links remain **PENDING_SAFE_MIGRATION** until independently reviewed policy activation. PR #38 remains OPEN, and no separate merge authorization has been granted. Burkay is the owner-designated technical lead and audit coordinator for PR #38; independent review still requires a non-contributor, non-author reviewer under the existing governance controls. This SRS and the Turkish v0.4 counterpart remain **REVIEW DRAFT** until dual-language final sign-off.
 
 ## 12. Final owner SRS approval — 27 October 2026
 
-**APPROVED_BY:** Burkay Çakar (@cakarburkayy). Both complete SRS v0.4.0 translations, FR-001–062 and NFR-01–17, are approved. Seven working language adapters (including C#, Go and C++) and real Falcon-Mamba 7B are mandatory P0 first delivery. Burkay is the sole required final approver; peer reviews are optional. Each future PR approval is bound to its HEAD SHA while actual CI, dependency, security and handoff verification remain mandatory. PR #38 was merged at `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`. Approved requirements are not verified running software.
+**REVIEW_REQUESTED_FROM:** Burkay Çakar (@cakarburkayy). v0.5.0-rc1 is NOT YET APPROVED; prior v0.4.0 approval remains historical. FR-001–062 and NFR-01–17 identifiers are stable; FR-058–060 and NFR-17 are P1. PR #38 was already merged on 2026-10-27 and was not touched.
+
+
+## 12. DEC-011 — 2026-11-03 proposed first-release scope correction (pending final approval)
+
+The latest owner scope instruction is: **P0: Java, Python, JavaScript, TypeScript and working Falcon-Mamba; P1: C#, Go and C++**. This draft supersedes DEC-010 solely for delivery scope, not historical truth. Do not delete task #40–#42 or their implementation criteria; remove them only from P0 critical-path prerequisites after owner approval. Maintain two human approval gates, immutable source/test hashes, sandbox isolation, security and reporting controls. The release matrix must show four independently exercised language pathways and actual Falcon-Mamba feasibility rather than a mocked result. No product implementation, CI run, task reassignment, or release approval is asserted by this SRS draft.
