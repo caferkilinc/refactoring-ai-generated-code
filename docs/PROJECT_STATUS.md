@@ -121,3 +121,23 @@ insufficient. See [ADR 0005 section 8](DECISIONS/0005-f00-research-baseline.md).
 **Decision:** ACCEPTED; explicit project-owner authorization, verified PR #44 current-head approval (`a281caec295487b78371bac1e106cb378fa64bba`), successful Governance CI run [41515819414](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515819414), successful dependency/merge-readiness run [41515952397](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515952397), merge to `main` at [`ac321cb43fdea3f6b64bb1631de8daca8cf1d229`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ac321cb43fdea3f6b64bb1631de8daca8cf1d229), and GitHub Issue #8 closed as completed. This is **one** accepted handoff; key `F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba` must not advance rotation again. [Full commit-pinned report](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md).
 
 **Next current owner:** Cafer (`@caferkilinc`), current assigned task **F00-V0 / #9**. Conditional next owner if accepted: Alperen Enes Yaman (`@Yaman-A-E`). Do not mark Cafer's work complete before tests, Burkay current-HEAD approval, merge and accepted report. Verified F00-PLAN protocol does **not** mean the F00 Java pilot, frozen experimental dataset, production software or end-to-end tests exist. Dataset `NOT_FROZEN`, pilot `NOT_STARTED`, study `NOT_RUN`, release `NOT_READY`. Academic verbal course approval remains **REPORTED** evidence accepted for the F00-PLAN task only; GPU/provider/toolchain access remains UNKNOWN.
+
+## F00-V0 local Java pilot — 2026-11-03
+
+Cafer's authorized task uses main `aa7d2c810a3c19dbc92bd6efa69c517a598dde7e`
+on `feature/9-java-v0-pilot`. The [pilot and reproduction instructions](../experiments/java-pilot/README.md)
+provide one AI-generated in-memory inventory/order implementation, Java 21,
+Maven 3.9.11, ten external JUnit 5 regressions, genuine prompt/attempt evidence
+and distinct source/test SHA-256 manifests. Initial build and a clean temporary
+derivative each passed ten tests; local JAR bytes matched. Integrity rejection
+probes and a deliberate stock-update regression were tested only in disposable
+derivatives; original source and tests remain unchanged.
+
+State: **IMPLEMENTED_LOCALLY / VERIFIED_LOCALLY / PENDING_PUBLICATION**.
+`pilot-checks` is authored but hosted execution is **NOT_RUN**. Exact serving
+model ID/revision/settings are UNKNOWN because this Codex session does not expose
+them. Local artifact seal is pending Burkay acceptance; dataset **NOT_FROZEN**,
+research **NOT_RUN**, platform and release **NOT_READY**. No owner approval,
+commit/push, PR, merge, Issue #9 completion or accepted handoff is claimed.
+Registry and rotation are unchanged: active Cafer, index 1, Alperen conditional.
+See [latest task report](../report.md) for acceptance and remaining human actions.

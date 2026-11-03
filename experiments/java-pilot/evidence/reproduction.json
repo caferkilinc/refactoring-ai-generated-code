@@ -1,0 +1,36 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "experiments/java-pilot/reproduce.py",
+    "--maven",
+    "/Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn"
+  ],
+  "started_at_utc": "2026-11-03T16:44:57.889665+00:00",
+  "finished_at_utc": "2026-11-03T16:45:00.867739+00:00",
+  "exit_code": 0,
+  "log": "experiments/java-pilot/evidence/reproduction.log.json",
+  "summary": {
+    "errors": 0,
+    "execution_scope": "temporary derivative; original files verified before and after",
+    "failures": 0,
+    "jar_sha256": "932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb",
+    "skipped": 0,
+    "test_cases": [
+      "sequentialOrdersConsumeStockAndRejectedOrderDoesNotUndoSuccess",
+      "nonPositiveOrdersAreRejectedWithoutChangingStock",
+      "invalidItemIdsAreRejectedWithoutChangingStock",
+      "maximumIntegerAndInitiallyEmptyStockHaveDefinedBehavior",
+      "insufficientStockRejectsOrderWithoutChangingAnyItem",
+      "initialStockIsCopiedAndCallerMapIsNotChangedByOrders",
+      "invalidInitialStockCannotConstructAnInventory",
+      "successfulOrderReturnsReceiptAndChangesOnlySelectedItem",
+      "exactStockOrderSucceedsAndFurtherOrderIsRejected",
+      "unknownItemCannotBeReadOrOrderedAndExistingStockIsPreserved"
+    ],
+    "tests": 10
+  },
+  "initial_build_jar_sha256": "932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb",
+  "jar_byte_identity_across_two_builds": true,
+  "limitations": "Reproduced locally with the same machine/JDK/Maven and resolved dependency cache. This does not prove cross-platform or hosted success."
+}

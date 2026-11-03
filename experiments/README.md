@@ -17,3 +17,13 @@ directories contain README scaffolds only: dataset **NOT_FROZEN**, Java pilot
 **NOT_STARTED**, research executions **NOT_RUN**. The 50% finding-reduction
 threshold is an experimental target, not a measured result. Actual Java pilot
 work belongs to F00-V0 (#9); comparative execution belongs to F15-EXPERIMENT (#36).
+
+## F00-V0 local implementation — 2026-11-03
+
+The [Java inventory/order pilot](java-pilot/README.md) now has generated Java 21
+source, a pinned Maven build, external JUnit tests, attributable generation
+records and separate raw-byte source/test manifests. Its local build and
+temporary-copy reproduction passed ten tests each. This is a local task
+snapshot pending human publication, hosted CI and Burkay's exact-HEAD approval;
+the earlier paragraph records the historical baseline. The twelve-task dataset
+remains NOT_FROZEN, comparative research NOT_RUN and release NOT_READY.

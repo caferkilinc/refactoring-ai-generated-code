@@ -1,0 +1,18 @@
+{
+  "algorithm": "SHA-256",
+  "base_git_commit": "aa7d2c810a3c19dbc92bd6efa69c517a598dde7e",
+  "files": [
+    {
+      "path": "tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java",
+      "sha256": "657ad49bbf768864036f15570cd721baa1f54dc4697fa54a0cf22719018165ca"
+    }
+  ],
+  "format": "genesis-raw-byte-manifest",
+  "kind": "fixed-tests",
+  "provenance_reference": "experiments/java-pilot/provenance/generation.json",
+  "seal_status": "LOCAL_SEALED_PENDING_OWNER_ACCEPTANCE",
+  "serialization": "UTF-8 JSON, sorted object keys, indent=2, LF final newline; hash file bytes without normalization",
+  "source_revision": "java-inventory-v0.1",
+  "verification": "python3 experiments/java-pilot/verify_integrity.py",
+  "version": 1
+}
