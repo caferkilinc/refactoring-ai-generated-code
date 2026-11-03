@@ -1,3 +1,15 @@
+# Current scope-and-handoff snapshot — 2026-11-03
+
+- **Latest owner-approved specification:** `docs/SRS.md` + `docs/SRS_EN.md`, exact version **v0.5.0-rc1**, approved by Burkay Çakar on 2026-11-03. This approval supersedes the seven-language P0 mandate solely for release scope; it is not product acceptance.
+- **P0 first delivery:** Java, Python, JavaScript, TypeScript real adapters, real Falcon-Mamba 7B, and the previously required secure two-approval refactoring, validation, ZIP/HTML/PDF/history/research capabilities.
+- **P1 later extension:** C# (F14-CS/#40), Go (F14-GO/#41), C++ (F14-CPP/#42). Their tasks and internal prerequisites remain; these three tasks no longer block F14-MIX/#34 or F15-P0/#35.
+- **Plan state on review branch:** 34 tasks (31 P0, 3 P1), 66 dependencies with **three proposed native issue-edge deletions still pending**. Main and GitHub native issue metadata remain at prior scope until a controlled governance transition. Do not claim those three live links removed.
+- **Current authorized implementation owner:** Cafer (`caferkilinc`), `F00-V0` / #9, rotation index **1**, no accepted handoff. His locally verified `READY_TO_PUSH` summary is **REPORTED** and contains no published commit, PR, hosted `pilot-checks`, or accepted merge. The next conditional owner is Alperen Enes Yaman. Do not change ownership or start another task.
+- **Release:** NOT_READY. No scope or documentation approval establishes verified deployed software.
+- **Historical notes below:** prior seven-language P0, 69-edge graph, pre-PR #38 status, and Burkay-as-active statements are preserved as dated snapshots, not current authority.
+
+---
+
 # Actual project status
 
 Audited 2026-10-22: main `7e068040c3a4fb1a2f32783a4c592dc974324f36`, tree `4cb63e9e40fc88ae19cd83eadc538f951601b123`. Ten September commits and eight Markdown files are preserved. There is no application package, executable product test suite, measured refactoring experiment or deployed model in that base.
