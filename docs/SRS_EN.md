@@ -1,8 +1,8 @@
 # Software Requirements Specification (SRS)
 # Secure Refactoring and Quality Improvement of AI-Generated Code
 
-**Document:** RAGC-SRS-001 · **Version:** 0.5.0-rc1 · **Date:** 2026-10-27  
-**Status:** DRAFT FOR FINAL OWNER APPROVAL — prior v0.4.0 approval remains historical; v0.5.0-rc1 is not yet approved.
+**Document:** RAGC-SRS-001 · **Version:** 0.5.0-rc1 · **Date:** 2026-11-03  
+**Status:** OWNER-APPROVED — Burkay Çakar approved both language versions v0.5.0-rc1 on 2026-11-03; registry/native-issue synchronization and implementation verification remain separate.
 **Product:** Refactoring AI-Generated Code — Engineering Design II, Group B  
 **Target delivery:** 2027-01-01 (exact local submission time UNKNOWN)  
 **Authority:** Owner-supplied `01_Master_Sistem_Mimarisi.pdf` v2.0 → `02_Adim_Adim_Gelistirme_Rehberi.pdf` v2.0 → modular presentation + 2026-10-20 image → associated live GitHub requirement and issue records. Older `01_System_Operation_and_Architecture.pdf` and `03_Technical_System_Presentation_Revised.pdf` are secondary historical documents.  
@@ -242,9 +242,9 @@ Three live GitHub issues exist without fixed assignees. Existing 31 tasks / 54 n
 
 ## 12. Final owner SRS approval — 27 October 2026
 
-**REVIEW_REQUESTED_FROM:** Burkay Çakar (@cakarburkayy). v0.5.0-rc1 is NOT YET APPROVED; prior v0.4.0 approval remains historical. FR-001–062 and NFR-01–17 identifiers are stable; FR-058–060 and NFR-17 are P1. PR #38 was already merged on 2026-10-27 and was not touched.
+**APPROVED_BY:** Burkay Çakar (@cakarburkayy), 2026-11-03. v0.5.0-rc1 is approved in both languages; prior v0.4.0 approval remains historical. FR-001–062 and NFR-01–17 identifiers are stable; FR-058–060 and NFR-17 are P1. PR #38 was already merged on 2026-10-27 and was not touched.
 
 
-## 12. DEC-011 — 2026-11-03 proposed first-release scope correction (pending final approval)
+## 12. DEC-011 — 2026-11-03 approved first-release scope correction
 
-The latest owner scope instruction is: **P0: Java, Python, JavaScript, TypeScript and working Falcon-Mamba; P1: C#, Go and C++**. This draft supersedes DEC-010 solely for delivery scope, not historical truth. Do not delete task #40–#42 or their implementation criteria; remove them only from P0 critical-path prerequisites after owner approval. Maintain two human approval gates, immutable source/test hashes, sandbox isolation, security and reporting controls. The release matrix must show four independently exercised language pathways and actual Falcon-Mamba feasibility rather than a mocked result. No product implementation, CI run, task reassignment, or release approval is asserted by this SRS draft.
+The latest approved owner scope is: **P0: Java, Python, JavaScript, TypeScript and working Falcon-Mamba; P1: C#, Go and C++**. This approved scope supersedes DEC-010 solely for delivery scope, not historical truth. Do not delete task #40–#42 or their implementation criteria; remove them only from P0 critical-path prerequisites after owner approval. Maintain two human approval gates, immutable source/test hashes, sandbox isolation, security and reporting controls. The release matrix must show four independently exercised language pathways and actual Falcon-Mamba feasibility rather than a mocked result. No product implementation, CI run, task reassignment, or release approval is asserted by this SRS approval.
