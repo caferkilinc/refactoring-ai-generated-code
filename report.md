@@ -268,3 +268,24 @@ fresh approval. Provide the full observed published SHA, commit URL, report.md
 URL pinned to that SHA, PR/merge state and actual check results to the
 orchestrator. Publication, approval, merge and accepted handoff are distinct.
 No final SHA is invented in this uncommitted report. Stop after this task.
+
+## First publication and bounded hosted-CI correction
+
+Implementation commit `5ad4c27f591e86c6b81cc140214eff75c7d65922` was pushed
+to canonical `feature/9-java-v0-pilot`; local/remote SHA matched and the worktree
+was clean. [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+was opened by authenticated `caferkilinc`, targeting main. Earlier NOT_RUN and
+pre-push statements above describe the prior local snapshot.
+
+The first [Governance CI](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630454)
+passed all three required governance jobs; the bootstrap preview was SKIPPED.
+[Dependency gate](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630473)
+passed dependency-gate but correctly failed merge-readiness for missing current
+Burkay approval. [Pilot CI](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630491)
+failed before Maven/JUnit: setup-java rejected `21.0.4+7` and listed the exact
+available vendor-normalized version `21.0.4+7.0.LTS`. The only runtime correction
+sets that offered version in the permitted pilot workflow; generated V0, POM,
+provenance, fixed tests and their manifests remain byte-identical. This failed
+setup is retained as an actual CI failure, not a failed source-generation attempt.
+See [hosted history](experiments/java-pilot/evidence/hosted-ci-history.json).
+Corrected-head hosted checks are still pending at this correction snapshot.
