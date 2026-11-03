@@ -16,6 +16,14 @@ PLAN['sequential_execution'].update(
  last_accepted_handoff_key=None,
  handoff_confirmed=False,
 )
+# Historical Cafer turn, independent of subsequent live registry transitions.
+CAFER_PLAN=copy.deepcopy(PLAN)
+CAFER_PLAN['sequential_execution'].update(
+ active_owner='caferkilinc', active_task_plan_id='F00-V0', rotation_index=1,
+ next_owner_if_accepted='Yaman-A-E', last_confirmed_task_id='F00-PLAN',
+ last_confirmed_commit='ac321cb43fdea3f6b64bb1631de8daca8cf1d229',
+ last_accepted_handoff_key='F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba',
+)
 
 class API:
  def __init__(self):
@@ -167,8 +175,8 @@ class GateTests(unittest.TestCase):
   self.a.issue={'state':'open'}
   self.a.pr['user']['login']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'authorized active developer'):evaluate(self.a.pr,self.p,{},self.a)
- def test_current_live_rotation_requires_cafer_for_f00_v0(self):
-  p=copy.deepcopy(LIVE_PLAN)
+ def test_historical_cafer_rotation_requires_cafer_for_f00_v0(self):
+  p=copy.deepcopy(CAFER_PLAN)
   self.assertEqual('caferkilinc',p['sequential_execution']['active_owner'])
   self.assertEqual('F00-V0',p['sequential_execution']['active_task_plan_id'])
   self.assertEqual(1,p['sequential_execution']['rotation_index'])

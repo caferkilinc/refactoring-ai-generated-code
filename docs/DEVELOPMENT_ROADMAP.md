@@ -32,10 +32,10 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 | Plan ID | Issue | P | Scope | Prerequisite Plan IDs | Registry status |
 |---|---:|---|---|---|---|
 | F00-PLAN | #8 | P0 | Freeze scope, evidence protocol and resource decisions | — | VERIFIED_COMPLETE (PR #44 merged; #8 closed) |
-| F00-V0 | #9 | P0 | Prepare working Java pilot and immutable experiment baseline | F00-PLAN | ASSIGNED — Cafer; implementation NOT_STARTED |
+| F00-V0 | #9 | P0 | Prepare working Java pilot and immutable experiment baseline | F00-PLAN | VERIFIED_COMPLETE — PR #45 merged; accepted Cafer handoff |
 | F01-GOV | #1 | P0 | Establish team workflow, dependency gate and project controls | — | IN PROGRESS |
 | F01-ENV | #10 | P0 | Create reproducible development services and real application checks | F01-GOV | NOT STARTED |
-| F02-CONTRACT | #11 | P0 | Approve CIR, LanguageAdapter and API contracts for parallel development | F00-PLAN | NOT STARTED |
+| F02-CONTRACT | #11 | P0 | Approve CIR, LanguageAdapter and API contracts for parallel development | F00-PLAN | ASSIGNED — Alperen; implementation NOT_STARTED |
 | F02-STATE | #12 | P0 | Implement metadata, state machine, queue and idempotency | F02-CONTRACT, F01-ENV | NOT STARTED |
 | F03-INPUT | #13 | P0 | Implement safe upload, consent and immutable artefacts | F02-STATE | NOT STARTED |
 | F04-JAVA | #14 | P0 | Implement Language Router and Java symbol adapter | F02-CONTRACT, F03-INPUT | NOT STARTED |
@@ -102,3 +102,17 @@ Every milestone requires actual task output, focused and integration verificatio
 ## Confirmed rotation transition — 2026-11-02
 
 Previous roadmap snapshots indicating F00-PLAN in progress or new native dependencies pending are historical. After successful full issue-graph audit, Burkay-approved PR #44 merged at `ac321cb43fdea3f6b64bb1631de8daca8cf1d229`; Issue #8 is completed, and `.github/acceptance.json` contains the verified exact-HEAD acceptance. **One rotation turn accepted**: Burkay → **Cafer**, now assigned **F00-V0 / #9**. Next owner Alperen is conditional, not authorized. No other task or requirement is thereby completed. Earlier estimated task dates do not establish executed work.
+
+## F00-V0 accepted handoff and next assignment — 2026-11-04
+
+Cafer explicitly accepted the bounded F00-V0 result and selected Alperen for
+F02-CONTRACT / #11 in this chat. PR #45 source
+`d923134da4f9f5a2ab55a5f51fbf9415ff717262` merged at
+`fdd573286834fe15c1ac1c0d51db4ed9b0015db7`; exact delegated approval and real
+PR/main checks are recorded in trusted acceptance #9. This consumes one Cafer
+turn, index 1 → 2, keyed by that task/source pair. Current task is Alperen /
+F02-CONTRACT; conditional successor is İsmail. The only hard prerequisite of
+#11 remains #8; no graph edge or historical estimate was changed.
+[Preparation-only handoff](handoffs/F00-V0-to-F02-CONTRACT.md) is supplied; no
+next-task code or execution contract has been implemented. Earlier Cafer-active
+notes are historical. Dataset NOT_FROZEN; research NOT_RUN; release NOT_READY.
