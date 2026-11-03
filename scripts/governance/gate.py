@@ -105,18 +105,42 @@ def check_paths(task, files, pr=None):
                 for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
 def owner_approval(task, pr, api, plan):
-    """Only the project owner may approve the exact current PR revision.
+    """Require current owner approval, or the one revision-bound ADR 0006 grant.
 
-    An authenticated GitHub issue comment binds the approval to the head SHA.
-    Other developers' approvals are not required and cannot substitute for it.
+    The delegated marker identifies Cafer's own approval, never Burkay's identity.
+    New PRs/revisions require the ordinary owner approval unless policy changes.
     """
     marker = 'GENESIS-OWNER-APPROVED: ' + pr['head']['sha']
     comments = api.pages(f"/issues/{pr['number']}/comments")
-    require(any(
+    if any(
         c.get('user', {}).get('login', '').lower() == 'cakarburkayy'
         and (c.get('body') or '').strip() == marker
         for c in comments
-    ), 'Missing current Burkay owner approval for this PR revision')
+    ):
+        return
+    # Explicit user-authorized exception, recorded in ADR 0006. This policy
+    # must be present on trusted main; a PR cannot authorize its own head code.
+    delegated_revision = 'd923134da4f9f5a2ab55a5f51fbf9415ff717262'
+    repository = 'caferkilinc/refactoring-ai-generated-code'
+    delegated_scope = (
+        plan['repository'] == repository
+        and task['plan_id'] == 'F00-V0' and task['issue_number'] == 9
+        and pr['number'] == 45
+        and pr['head']['sha'] == delegated_revision
+        and pr['head']['ref'] == 'feature/9-java-v0-pilot'
+        and (pr['head'].get('repo') or {}).get('full_name') == repository
+        and pr['base']['ref'] == 'main'
+        and pr['base']['repo']['full_name'] == repository
+        and pr['user']['login'].lower() == 'caferkilinc'
+    )
+    if delegated_scope and any(
+        c.get('user', {}).get('login', '').lower() == 'caferkilinc'
+        and (c.get('body') or '').strip() == 'GENESIS-DELEGATE-APPROVED: ' + delegated_revision
+        for c in comments
+    ):
+        return
+    require(False, 'Missing current Burkay owner approval for this PR revision; '
+            'ADR 0006 delegated approval is limited to PR #45 at its recorded SHA')
 
 
 def required_checks(task, files):
@@ -201,7 +225,7 @@ def readiness(pr, plan, accepted, api):
     files = api.pages(f"/pulls/{pr['number']}/files")
     owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api)
-    return result + '; current owner approval and applicable CI verified'
+    return result + '; current revision approval and applicable CI verified'
 
 def same_revision(pr, expected_head=None, policy_sha=None):
     if expected_head:

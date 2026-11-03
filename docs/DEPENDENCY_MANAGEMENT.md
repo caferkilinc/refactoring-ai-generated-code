@@ -62,3 +62,18 @@ Issue graph sync performs a complete read preflight before the first write; unex
 Bootstrap #38 first needs Burkay's current independent approval and successful actual CI; a separate affirmative owner merge decision remains pending. After separately authorized merge, run real canary cases including missing prerequisite, accepted dependency, old-event rerun, missing/failed app CI, primary/support approval rejection, review resolution and current independent approval. Only then activate the five proven proposed required names in [protection JSON](../.github/branch-protection.proposed.json), with current-branch checks, stale review dismissal, CODEOWNERS, resolved conversations, admin enforcement and no force push/deletion.
 
 The bootstrap cannot test a trusted-main workflow absent from main. Unit tests prove engine behavior with isolated API fixtures; hosted bootstrap previews prove read-only API compatibility. Neither demonstrates that GitHub currently blocks merge. See [operational audit](OPERATIONAL_AUDIT.md) for verified findings, fixes and residual risks.
+
+## Revision-bound PR #45 delegated approval proposal — 2026-11-04
+
+Cafer authorized the policy maintenance in [ADR 0006](DECISIONS/0006-pr45-revision-bound-delegation.md)
+in this chat, based on reported off-platform delegation from Burkay. Once
+integrated into trusted main, only PR #45 / F00-V0 at the ADR's exact source
+SHA may use Cafer's authenticated `GENESIS-DELEGATE-APPROVED` marker. This is
+the single specified exception to ADR 0004's ordinary owner-only approval
+rule; it does not grant general self-approval or impersonate Burkay.
+
+Every existing prerequisite, scope, CI and freshness check still applies.
+Changing the source SHA invalidates the grant. Approval evidence remains tied
+to that revision for later prerequisite verification. Until activation, main
+still runs the old owner-only policy. This proposal does not change active
+task/rotation, activate itself, authorize PR #45 merge or claim accepted handoff.
