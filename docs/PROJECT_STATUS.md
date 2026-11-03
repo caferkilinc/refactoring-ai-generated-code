@@ -141,3 +141,24 @@ research **NOT_RUN**, platform and release **NOT_READY**. No owner approval,
 commit/push, PR, merge, Issue #9 completion or accepted handoff is claimed.
 Registry and rotation are unchanged: active Cafer, index 1, Alperen conditional.
 See [latest task report](../report.md) for acceptance and remaining human actions.
+
+## F00-V0 publication and observed hosted verification — 2026-11-03
+
+Cafer explicitly authorized commit/push/PR. [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+is OPEN, targeting main. Published implementation SHA is
+`5ad4c27f591e86c6b81cc140214eff75c7d65922`; a pilot-workflow-only Java version
+format correction was published at `eae5d891e926ec12b87375023f33b813cc1c64a2`.
+The first pilot run failed at setup-java before tests; the offered normalized
+Temurin version fixed it without altering original V0, POM, provenance or tests.
+At the corrected revision, [pilot-checks](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387)
+passed ten real JUnit tests and integrity checks on Ubuntu;
+[governance](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880397)
+passed all three required jobs. [Dependency gate](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687877219)
+passed dependency-gate but failed merge-readiness for missing current Burkay
+approval. SKIPPED preview is not PASS. See [publication evidence](../experiments/java-pilot/evidence/publication-checks.json).
+
+Earlier PENDING_PUBLICATION/NOT_RUN statements are local-stage snapshots.
+This later report/evidence revision requires fresh final-HEAD checks delivered
+in the final chat receipt. No merge, Issue #9 closure, owner approval, task
+acceptance or rotation advancement occurred. Dataset NOT_FROZEN, research
+NOT_RUN and release NOT_READY. Alperen remains conditional.

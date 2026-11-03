@@ -128,8 +128,22 @@ The [workflow](../../.github/workflows/pilot-checks.yml) defines the exact
 `pilot-checks` job for all PRs targeting main and pushes to main, avoiding path
 filters that could leave a required check missing. It uses pinned official
 actions, read-only contents permission, no secrets/persistent credentials, a
-ten-minute limit, Temurin 21.0.4+7 and digest-verified Maven 3.9.11. It runs the
+ten-minute limit, Temurin 21.0.4+7 (`21.0.4+7.0.LTS` action syntax) and digest-verified Maven 3.9.11. It runs the
 same temporary-copy reproduction and a final integrity check even on failure.
-Hosted results are **NOT_RUN** until publication and GitHub execution; the old
-main CI is not evidence for these new files. Governance checks, owner approval,
+Hosted results must be observed after publication for the actual revision; old
+main CI is not evidence for these files. Governance checks, owner approval,
 merge and orchestrator acceptance remain separate requirements.
+
+### Published execution evidence
+
+[PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+is open. [Hosted history](evidence/hosted-ci-history.json) retains the initial
+setup-java version-resolution failure and exact one-line correction. At the
+observed correction SHA `eae5d891e926ec12b87375023f33b813cc1c64a2`, the real
+[pilot run](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387)
+passed all ten JUnit tests and both manifest checks on Ubuntu. Governance jobs
+and dependency-gate passed; merge-readiness failed for missing Burkay approval.
+[Publication evidence](evidence/publication-checks.json) distinguishes the
+observed source SHA, GitHub test-merge checkout and the later containing report
+revision, whose fresh results are delivered in the final chat receipt. No merge,
+owner approval, dataset freeze or accepted handoff is claimed.

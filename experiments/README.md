@@ -27,3 +27,10 @@ temporary-copy reproduction passed ten tests each. This is a local task
 snapshot pending human publication, hosted CI and Burkay's exact-HEAD approval;
 the earlier paragraph records the historical baseline. The twelve-task dataset
 remains NOT_FROZEN, comparative research NOT_RUN and release NOT_READY.
+
+Publication update: [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+is open. The corrected source revision passed real hosted pilot/governance
+checks; [publication evidence](java-pilot/evidence/publication-checks.json)
+records the exact revision and missing-owner-approval readiness failure.
+Earlier pending-publication wording is the local-stage snapshot. No accepted
+handoff, rotation advancement or whole-dataset freeze has occurred.

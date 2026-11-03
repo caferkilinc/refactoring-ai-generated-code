@@ -9,9 +9,12 @@ GITHUB_ISSUE: #9<br>
 DATE: 2026-11-03 (Europe/Istanbul)<br>
 BRANCH: feature/9-java-v0-pilot<br>
 BASE_COMMIT: aa7d2c810a3c19dbc92bd6efa69c517a598dde7e<br>
-STATUS: READY_TO_PUSH<br>
-HANDOFF_STATUS: PENDING_PUSH_CONFIRMATION<br>
-PUBLICATION: AUTHORIZED_PENDING_PUSH — pre-push snapshot<br>
+STATUS: REVIEW_REQUIRED<br>
+HANDOFF_STATUS: BLOCKED<br>
+PUBLICATION: VERIFIED_FOR_OBSERVED_COMMITS — final containing HEAD delivered externally<br>
+OBSERVED_IMPLEMENTATION_SHA: 5ad4c27f591e86c6b81cc140214eff75c7d65922<br>
+OBSERVED_CI_CORRECTION_SHA: eae5d891e926ec12b87375023f33b813cc1c64a2<br>
+OWNER_APPROVAL: PENDING — no authenticated current-HEAD approval<br>
 LOCAL_ARTIFACT_STATE: LOCAL_SEALED_PENDING_OWNER_ACCEPTANCE
 
 ## OBJECTIVE
@@ -55,7 +58,7 @@ no automatic skill invocation or parallel agent framework is claimed.
 - Read-only integrity verifier; temporary-copy reproduction with actual Maven
   execution and Surefire XML inspection; meaningful failing-regression probe.
 - Least-privilege, pinned-action GitHub workflow defining `pilot-checks`.
-  Hosted execution is NOT_RUN, not PASS.
+  Hosted execution passed at the observed CI-correction revision; see publication evidence.
 
 ## FILES_CHANGED
 
@@ -72,8 +75,10 @@ no automatic skill invocation or parallel agent framework is claimed.
 
 No governance code/tests/registries, AGENTS.md, SRS, architecture, roadmap or
 other protected workflow was edited. Build output stays ignored and temporary
-reproduction workspaces are removed. Final exact file inventory is recorded in
-[verification.json](experiments/java-pilot/evidence/verification.json).
+reproduction workspaces are removed. Original local file inventory is recorded in
+[verification.json](experiments/java-pilot/evidence/verification.json); the complete
+published task inventory and hosted results are in
+[publication-checks.json](experiments/java-pilot/evidence/publication-checks.json).
 
 ## REQUIREMENTS_COVERED
 
@@ -152,14 +157,15 @@ Burkay-approved dataset freeze: the minimum twelve-task dataset is NOT_FROZEN.
 | AC-10 | Reproducible test manifest | Separate test manifest verified; changed/missing-test probes rejected | PASS |
 | AC-11 | Unchanged sealed source/tests | Before/after checks and original capture digest match; formal owner freeze still pending | PASS |
 | AC-12 | No artificial defects in V0 | Source reviewed; first attempt unchanged; deliberate failing probe exists only in a disposable derivative | PASS |
-| AC-13 | Real hosted pilot-checks workflow | Authored/parsed read-only pinned workflow runs proven helper; GitHub execution requires later publication | NOT_RUN |
-| AC-14 | Accurate check outcomes | Actual local logs and final verification.json; all new hosted checks explicitly NOT_RUN | PASS |
+| AC-13 | Real hosted pilot-checks workflow | Corrected workflow executed ten actual JUnit tests and before/after integrity checks on Ubuntu; run 41687880387, source eae5d891e926ec12b87375023f33b813cc1c64a2 | PASS |
+| AC-14 | Accurate check outcomes | Actual local and hosted evidence; required four checks passed at observed correction SHA; merge-readiness failed for missing owner approval, preview SKIPPED | PASS |
 | AC-15 | Scoped final diff | Existing path gate and full new/modified-file review; verification.json | PASS |
 | AC-16 | Evidence-based handoff | This report, actual artifacts, limitations and human actions; publication pending | PASS |
 
-AC-13 is a hosted acceptance gate, not an unresolved local implementation or
-local test failure. READY_TO_PUSH means ready for
-human review/publication; it does not mean accepted handoff or ready to merge.
+All sixteen task criteria have local/hosted evidence at the observed correction
+revision. This is not accepted handoff or merge readiness: Burkay approval,
+final-containing-HEAD verification and orchestrator acceptance remain separate.
+The final chat receipt supplies fresh checks for the containing report revision.
 
 ## VERIFICATION
 
@@ -198,10 +204,13 @@ validation probe, not a concealed generation failure. The six integrity probes
 all returned nonzero as required. The two successful local builds produced JAR
 SHA-256 `932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb`.
 
-Required new-head hosted checks: governance-tests, documentation-checks,
-security-checks and pilot-checks are all **NOT_RUN**. No new SHA/PR exists.
-Old main Governance CI success is not attributed to this work. Governance tests
-and credential hygiene checks do not prove product security or E2E behavior.
+At the observed correction SHA, governance-tests, documentation-checks,
+security-checks and pilot-checks all completed SUCCESS. Dependency-gate passed;
+merge-readiness failed for missing Burkay approval, and dependency-gate-preview
+was SKIPPED. Exact runs/jobs and source/test-merge revisions are in publication
+evidence. These are task PR checks, not old main results. The report-containing
+revision will be checked again and its results delivered in the final chat
+receipt. Governance/hygiene do not prove full product security or E2E behavior.
 Initial new-file whitespace review identified Maven's natural trailing spaces in
 raw log output. Exact bytes were preserved losslessly in JSON log artifacts
 (with raw-byte SHA-256), and raw copies kept user-locally; no check was weakened.
@@ -220,15 +229,17 @@ model, cloud API, deployment or system package upgrade occurred.
 
 ## RISKS_AND_BLOCKERS
 
-- Human review, explicit publication authorization, real hosted CI, Burkay's
-  authenticated final-HEAD approval, merge and orchestrator acceptance remain.
+- Publication was explicitly authorized and observed; Burkay's authenticated
+  final-HEAD approval, merge authorization and orchestrator acceptance remain.
+  merge-readiness is FAILED for that missing approval; no gate was bypassed.
 - Exact serving model metadata is unavailable and disclosed; do not claim full
   provider-level provenance. No additional historic prompt/model input is invented.
 - Local execution is controlled synthetic pilot verification, not the later
   product sandbox. Future untrusted uploads must not run directly on the host.
-- Local reproduction used the same machine/JDK/Maven and dependency cache;
-  Linux hosted/cross-platform execution is unverified. No coverage guarantee,
-  behavioral equivalence proof, quality reduction or research result is claimed.
+- Both local macOS and hosted Ubuntu execution passed with the pinned tools,
+  and the observed JAR digests matched. Other platforms are unverified. No
+  coverage guarantee, behavioral equivalence proof, quality reduction or
+  research result is claimed.
 - Project board read failed in startup with INSUFFICIENT_SCOPES (`read:project`);
   issue/registry authority was available. No credential or scope was changed.
 - Later GPU/model/API permissions, budget, toolchains, privacy/data intake and
@@ -249,25 +260,24 @@ ACCEPTED_HANDOFF: NOT_CLAIMED
 
 ## HUMAN_ACTION
 
-Cafer explicitly authorized Codex to commit, push this numbered branch and open
-a main-target PR in this chat on 2026-11-03. Publication preflight revalidated
-the unchanged main/task ownership and reran the real pilot (10 tests), governance
-(102 tests), documentation, security hygiene and integrity checks, all successful.
-See [publication preflight](experiments/java-pilot/evidence/publication-preflight.json).
-This pre-push snapshot does not claim an observed publication. No owner approval,
-issue closure, merge or rotation advancement is authorized. The PR must contain:
+Cafer explicitly authorized commit, push and opening PR #45 in this chat on
+2026-11-03. Publication preflight passed and both observed commits were pushed
+with local/remote SHA equality and clean worktrees. The PR targets main and has:
 
 ```text
 Task: #9
 Plan: F00-V0
 ```
 
-After publication and actual required checks, Burkay alone posts an authenticated
-`GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>` comment. A new commit requires
-fresh approval. Provide the full observed published SHA, commit URL, report.md
-URL pinned to that SHA, PR/merge state and actual check results to the
-orchestrator. Publication, approval, merge and accepted handoff are distinct.
-No final SHA is invented in this uncommitted report. Stop after this task.
+Burkay alone must provide an authenticated approval for the actual final PR HEAD:
+`GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>`. A new commit invalidates an old
+approval. Then re-evaluate the live readiness gate under the applicable merge
+policy; no merge or acceptance is authorized by this task. The final chat receipt
+provides the actual full containing SHA, commit link, SHA-pinned report, PR state
+and fresh check results. This evidence-only report update links already observed
+published commits, not its own unknowable containing SHA. No endless
+self-reference commit is created. Send that receipt and this report to the
+orchestrator. Do not close Issue #9 or advance rotation. Stop after publication.
 
 ## First publication and bounded hosted-CI correction
 
@@ -288,4 +298,21 @@ sets that offered version in the permitted pilot workflow; generated V0, POM,
 provenance, fixed tests and their manifests remain byte-identical. This failed
 setup is retained as an actual CI failure, not a failed source-generation attempt.
 See [hosted history](experiments/java-pilot/evidence/hosted-ci-history.json).
-Corrected-head hosted checks are still pending at this correction snapshot.
+The corrected revision `eae5d891e926ec12b87375023f33b813cc1c64a2` was pushed
+and observed with the following real results:
+
+| Workflow / job | Result | Evidence |
+|---|---|---|
+| Governance CI: governance-tests, documentation-checks, security-checks | SUCCESS | [41687880397](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880397) |
+| Java pilot checks: pilot-checks | SUCCESS; 10 tests, 0 failures/errors/skips; V0/tests unchanged | [41687880387](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387) |
+| Dependency gate: dependency-gate | SUCCESS | [41687877219](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687877219) |
+| Dependency gate: merge-readiness | FAILURE: missing current Burkay owner approval | Same dependency run |
+| dependency-gate-preview | SKIPPED; not counted as PASS | Same governance run |
+
+The pilot job checked out GitHub test-merge revision
+`2ab3b76724eb3ca5d45eccb3a3eded9b71c49cba` associated with that PR source HEAD,
+not a merged main commit. PR #45 remains OPEN and UNMERGED, Issue #9 OPEN,
+acceptance/rotation unchanged. [Publication evidence](experiments/java-pilot/evidence/publication-checks.json)
+records the observed source revision and actual job results. This containing
+report revision is a later documentation/evidence update; its final full SHA
+and fresh hosted results are supplied in the external final receipt.
