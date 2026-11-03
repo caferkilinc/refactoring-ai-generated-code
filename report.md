@@ -1,137 +1,318 @@
-# PROJECT GENESIS v2.0 — F00-PLAN handoff
+# PROJECT GENESIS v2.0 — F00-V0 handoff
 
 REPORT_SCHEMA_VERSION: 1<br>
 PROJECT: Refactoring AI-Generated Code<br>
-TASK_ID: F00-PLAN<br>
+TASK_ID: F00-V0<br>
 MILESTONE_ID: F00<br>
-GITHUB_ISSUE: #8<br>
-OWNER: Burkay Çakar (@cakarburkayy)<br>
-DATE: 2026-11-02 (Europe/Istanbul)<br>
-REPOSITORY: `C:\refactoring-ai-generated-code`<br>
-BRANCH: `docs/8-freeze-evidence-protocol`<br>
-BASE_COMMIT: `67233482f2d10462933328c4b162d150bb4b0993`<br>
+OWNER: Cafer Kılınç (@caferkilinc)<br>
+GITHUB_ISSUE: #9<br>
+DATE: 2026-11-03 (Europe/Istanbul)<br>
+BRANCH: feature/9-java-v0-pilot<br>
+BASE_COMMIT: aa7d2c810a3c19dbc92bd6efa69c517a598dde7e<br>
 STATUS: REVIEW_REQUIRED<br>
-TASK_IMPLEMENTATION: COMPLETE — F00-PLAN documentation; integration/handoff pending<br>
-HANDOFF_STATUS: PENDING_ORCHESTRATOR_ACCEPTANCE<br>
-GIT_PUBLICATION: VERIFIED_FOR_TASK_COMMIT<br>
-PUBLISHED_TASK_COMMIT: `ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`<br>
-OWNER_PUBLICATION_AUTHORIZATION: Explicitly granted by Burkay in chat on 2026-11-02
+HANDOFF_STATUS: BLOCKED<br>
+PUBLICATION: VERIFIED_FOR_OBSERVED_COMMITS — final containing HEAD delivered externally<br>
+OBSERVED_IMPLEMENTATION_SHA: 5ad4c27f591e86c6b81cc140214eff75c7d65922<br>
+OBSERVED_CI_CORRECTION_SHA: eae5d891e926ec12b87375023f33b813cc1c64a2<br>
+OWNER_APPROVAL: PENDING — no authenticated current-HEAD approval<br>
+LOCAL_ARTIFACT_STATE: LOCAL_SEALED_PENDING_OWNER_ACCEPTANCE
 
 ## OBJECTIVE
 
-Establish the bounded F00 research baseline, >=12-task dataset selection/freeze procedure, reproducible measurement and resource decisions against approved TR/EN SRS v0.4.0. Prepare evidence for human review; no pilot/application implementation or subsequent task.
+Implement only the genuine AI-generated Java inventory/order pilot, its
+external fixed tests, truthful provenance, distinct raw-byte SHA-256 manifests,
+reproduction procedure and real pilot-checks workflow. This does not complete
+F00, the twelve-task study, any adapter or the refactoring platform.
 
 ## BASELINE
 
-Preflight inspected root, `git status --short`, branch, HEAD, remotes and `git branch -vv`. The chat working directory was not a Git repository; the previously prepared repository above was verified as the expected origin. Initial worktree was clean on `main`, tracking `origin/main`. `git fetch origin --tags` succeeded; local and remote main both remained at BASE_COMMIT. No equivalent F00/issue-8 task branch existed; the new local branch starts at that SHA and has no upstream yet.
+Repository: `/Users/caferkilinc/Desktop/refactoring-ai-generated-code/refactoring-ai-generated-code`.
+Canonical origin: `https://github.com/caferkilinc/refactoring-ai-generated-code.git`.
+Initial local main was `7e068040c3a4fb1a2f32783a4c592dc974324f36`, 110 commits
+behind, zero ahead. Only the two known untracked `.DS_Store` files existed;
+tracked/staged files were clean, one worktree, no in-progress Git operation.
+Verified their paths absent from incoming main, preserved them, fetched all
+canonical branch refs/tags, and ran `git pull --ff-only origin main`.
+Main now equals BASE_COMMIT. Existing main `.gitignore` ignores those preserved
+files. No equivalent issue-9 branch existed; created the branch above at main.
 
-Historical September baseline `7e068040c3a4fb1a2f32783a4c592dc974324f36` (ten commits/eight Markdown files), PR #38 merge `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c` and PR #39 merge `5c297836b9ec70112e7b662eac05ec966543a134` are ancestors of HEAD. Baseline has 53 tracked files: governance and documentation, no application or executable experiment. Issue #8 was fetched read-only and is open with no comments. Registry confirms Burkay/F00-PLAN, no technical prerequisites and no accepted Genesis handoff.
+Live Issue #8 is closed/completed, #9 open; native #9 predecessor is only #8.
+Trusted registry confirms active `caferkilinc` / `F00-V0`, rotation index 1.
+Acceptance records PR #44 source `a281caec295487b78371bac1e106cb378fa64bba`;
+merge `ac321cb43fdea3f6b64bb1631de8daca8cf1d229` is an ancestor of BASE_COMMIT.
+The previous report is retained in Git history at
+[the accepted source revision](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md).
+The development-handoff skill was read and its procedure followed manually;
+no automatic skill invocation or parallel agent framework is claimed.
 
 ## IMPLEMENTED
 
-- One [research baseline/protocol](docs/DECISIONS/0005-f00-research-baseline.md), with historical evidence, admission/exclusion states, >=12-task freeze, SHA-256 source/test integrity and Java pilot prerequisites.
-- Separate quality/behavior results, explicit 50% target/formula, three matched repetitions per condition, failure-inclusive denominators, actual runtime/token/cost accounting and evidence retention.
-- Resource matrix tied to existing tasks, owner-reported GPU/API contacts, and a separate attributed verbal academic approval record.
-- Experiment README link and appended current project status; historical records preserved.
-- Persistent owner-directed delivery rule: every task ends with its full verified SHA, commit-pinned report link and actual verification summary in chat (protocol section 8).
-
-Only documentation is implemented here. Dataset NOT_FROZEN; pilot/product NOT_STARTED; research runs NOT_RUN. F00-PLAN completion does not complete the whole F00 milestone: F00-V0 remains outstanding.
+- One generated standard-library `Inventory` class and immutable receipt, with
+  defensive initial-state copy, stock lookup, successful orders, validation,
+  insufficient-stock rejection, exact-stock boundary and state preservation.
+- Java 21 Maven project, pinned plugins and test-only JUnit 5.12.2; ten fixed
+  external regression tests. No production dependency or artificial defect.
+- Exact execution contract, contemporaneous generation instruction and one
+  attributable source-generation attempt; separate versioned source/test
+  manifests with external manifest digest receipts.
+- Read-only integrity verifier; temporary-copy reproduction with actual Maven
+  execution and Surefire XML inspection; meaningful failing-regression probe.
+- Least-privilege, pinned-action GitHub workflow defining `pilot-checks`.
+  Hosted execution passed at the observed CI-correction revision; see publication evidence.
 
 ## FILES_CHANGED
 
-| Path | Change |
-|---|---|
-| `docs/DECISIONS/0005-f00-research-baseline.md` | Canonical F00 research protocol/resource record and persistent report-delivery policy |
-| `experiments/README.md` | Link protocol and state actual evidence availability |
-| `docs/PROJECT_STATUS.md` | Append F00 snapshot, publication authorization and report-delivery requirement |
-| `report.md` | New latest-task handoff report under continuity exception |
+- `.github/workflows/pilot-checks.yml` — only new permitted workflow.
+- `experiments/original-ai-code/java-inventory-v0/` — original `Inventory.java`,
+  `pom.xml`, task-local `.gitignore` excluding `target/`.
+- `tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java`.
+- `experiments/java-pilot/` — README, `verify_integrity.py`, `reproduce.py`,
+  `provenance/`, two `manifests/*.json` plus `.sha256` receipts, and actual
+  command/result/log artifacts under `evidence/`.
+- `experiments/README.md`, `experiments/original-ai-code/README.md`,
+  `docs/PROJECT_STATUS.md` — bounded local-state links and historical distinction.
+- `report.md` — latest-task snapshot; previous report remains in history.
+
+No governance code/tests/registries, AGENTS.md, SRS, architecture, roadmap or
+other protected workflow was edited. Build output stays ignored and temporary
+reproduction workspaces are removed. Original local file inventory is recorded in
+[verification.json](experiments/java-pilot/evidence/verification.json); the complete
+published task inventory and hosted results are in
+[publication-checks.json](experiments/java-pilot/evidence/publication-checks.json).
 
 ## REQUIREMENTS_COVERED
 
-FR-009, FR-047, FR-048, FR-049, FR-050; NFR-02, NFR-04, NFR-09, NFR-13. Protocol section 7 maps each to later real execution evidence. Supporting safety references: FR-003–004, FR-030–036, FR-038–044, NFR-01/03/05. Coverage means requirements-aligned protocol, not verified product implementation.
+| Requirement | Bounded task evidence |
+|---|---|
+| FR-003 | Original bytes preserved; post-seal execution in disposable derivatives |
+| FR-009 | Actual Java 21/Maven AI output, prompt/attempt record, external JUnit tests and hashes |
+| NFR-02 | Separate raw-byte manifests, before/after verification and negative probes |
+| NFR-04 | Actual tool/environment outputs, pinned build/test configuration and reproduction logs |
+| NFR-09 | One small standard-library class, no database/server/framework or test inflation |
+
+This is pilot-level coverage, not full-platform acceptance of these requirements.
+JavaParser/PMD/CPD/JaCoCo, security scanners and product sandbox belong to their
+later tasks; no coverage or quality-improvement percentage is claimed.
+
+## GENERATION_PROVENANCE
+
+[Recorded attempt ledger](experiments/java-pilot/provenance/generation.json)
+links the saved owner contract, current agent instruction and actual output.
+`F00-V0-GEN-001` is one genuine current-Codex attempt. First compilation/tests
+passed; no source correction occurred. Provider OpenAI and agent Codex are
+known. Exact serving model ID/revision, sampling settings, provider request ID,
+usage/cost and provider-side timestamps are UNKNOWN because not exposed.
+The capture time is explicitly distinguished from provider generation time.
+No historical metadata or failed attempts were fabricated; this is attributable
+agent evidence, not complete or independently attested provider provenance.
+
+The synthetic owner-authorized pilot uses no third-party/customer source,
+production data or secret; no external inference request was made. This task
+contract permits local controlled pilot verification. It does not grant public
+publication or blanket execution rights over later untrusted inputs.
+
+## V0_INTEGRITY
+
+Source revision: `java-inventory-v0.1`, locally sealed pending owner acceptance.
+[Manifest](experiments/java-pilot/manifests/v0-source.json): five files covering
+production source, POM and three provenance artifacts. Raw-byte manifest SHA-256:
+
+`1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376`
+
+Original generated `Inventory.java` capture SHA-256:
+
+`64578428482fd874797fb56822b50690f30565afbc5c1a4bed2b27128a4d2e21`
+
+The original source still matches its first captured bytes. Sorted paths and
+serialization/version are recorded in the manifest. Its digest receipt is
+separate; no self-referential hash or build output is in the input inventory.
+Do not regenerate receipts to bless drift. Changes require a traceable baseline
+revision and owner decision. Unsigned hashes are integrity evidence, not proof
+against simultaneous adversarial replacement of inputs and receipts.
+
+## TEST_SUITE_INTEGRITY
+
+[Fixed-suite manifest](experiments/java-pilot/manifests/fixed-tests.json) covers
+one external JUnit source with ten behavioral tests. Manifest SHA-256:
+
+`d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028`
+
+Test bytes were not edited after capture/seal. Source and tests passed integrity
+checks before and after temporary-copy execution. This local seal is not a
+Burkay-approved dataset freeze: the minimum twelve-task dataset is NOT_FROZEN.
 
 ## ACCEPTANCE_CRITERIA
 
-| ID | Expected | Actual / evidence | Result |
+| ID | Expected | Actual and evidence | Result |
 |---|---|---|---|
-| AC-01 | Inspect safe actual repository baseline | Clean main/expected origin and upstream; fetch unchanged SHA; numbered branch created; BASELINE above | PASS |
-| AC-02 | Align approved TR/EN v0.4.0 without demoting P0 | Protocol sections 1/7 preserve seven languages, Falcon-Mamba and safety/reporting scope; bilingual governance tests pass | PASS |
-| AC-03 | Preserve history and decisions | Historical and both merge commits are ancestors; existing ADRs unchanged; status only appended | PASS |
-| AC-04 | Define task, inclusion/exclusion and >=12 fixed tasks honestly | Protocol section 2; no samples invented, dataset NOT_FROZEN | PASS |
-| AC-05 | Define freeze, V0/tests, versions and evidence IDs | Protocol sections 2–3; raw-byte manifests, change control and traceable evidence chain | PASS |
-| AC-06 | Separate behavior/quality; define formulas/denominators | Protocol section 4; target >=50%, new findings, zero/missing values and failed behavior retained | PASS |
-| AC-07 | Three matched repetitions/condition with cost/failures | Protocol section 4; SEQ/PAR R1–R3, fixed inputs/settings, planned/started/request denominators; none executed | PASS |
-| AC-08 | Evidence-based resource statuses and roles | Protocol section 5; local Git/Python verified, resource contacts owner-reported, actual GPU/API/toolchain/data access UNKNOWN | PASS |
-| AC-09 | Separate course approval from product-owner approval | Hakan Çağlar verbal approval on 2026-10-28 reported by Burkay; Burkay's later explicit instruction accepts this for AC-09. Protocol section 6 retains REPORTED provenance and unknown exact viewed revision | PASS — owner-accepted verbal evidence |
-| AC-10 | Authorized files only, no later implementation | Existing path gate accepts exactly four listed Markdown files; full diff/content inspected; no protected changes | PASS |
-| AC-11 | Execute actual applicable checks | 101 governance tests, documentation, security hygiene, path policy and whitespace checks pass; outputs below | PASS |
-| AC-12 | Accurate task/owner/baseline/files/results/blockers/publication/conditional successor | This report contains actual outcomes and unresolved later resources; full published SHA and pinned report are delivered in the final chat receipt | PASS |
+| AC-01 | Repository and accepted predecessor verified | Canonical URL, live #8 completed, acceptance #8/#44 and main ancestry; BASELINE | PASS |
+| AC-02 | Correct active developer/task | Registry `caferkilinc` / F00-V0, open #9, single native predecessor #8 | PASS |
+| AC-03 | Available Java 21 and Maven | Temurin 21.0.4+7; user-local Maven 3.9.11, verified distribution digest; environment.json | PASS |
+| AC-04 | Genuine AI output and attributable provenance | One actual attempt, saved instructions/output hash, truthful UNKNOWN metadata; generation.json | PASS |
+| AC-05 | Successful compilation | Initial and temporary-copy Maven builds exit 0; maven-initial.log.json / reproduction.log.json | PASS |
+| AC-06 | Coherent inventory/order behavior | Real state/receipt assertions; InventoryTest and actual Surefire results | PASS |
+| AC-07 | Passing external fixed JUnit suite | 10 tests, 0 failures/errors/skips in each successful build | PASS |
+| AC-08 | Failure and boundary cases | Invalid/unknown/insufficient, exact/zero/max stock, rejected-state preservation and defensive copy | PASS |
+| AC-09 | Reproducible V0 manifest | Raw-byte source manifest verified in original and derivative; changed-source probe rejected | PASS |
+| AC-10 | Reproducible test manifest | Separate test manifest verified; changed/missing-test probes rejected | PASS |
+| AC-11 | Unchanged sealed source/tests | Before/after checks and original capture digest match; formal owner freeze still pending | PASS |
+| AC-12 | No artificial defects in V0 | Source reviewed; first attempt unchanged; deliberate failing probe exists only in a disposable derivative | PASS |
+| AC-13 | Real hosted pilot-checks workflow | Corrected workflow executed ten actual JUnit tests and before/after integrity checks on Ubuntu; run 41687880387, source eae5d891e926ec12b87375023f33b813cc1c64a2 | PASS |
+| AC-14 | Accurate check outcomes | Actual local and hosted evidence; required four checks passed at observed correction SHA; merge-readiness failed for missing owner approval, preview SKIPPED | PASS |
+| AC-15 | Scoped final diff | Existing path gate and full new/modified-file review; verification.json | PASS |
+| AC-16 | Evidence-based handoff | This report, actual artifacts, limitations and human actions; publication pending | PASS |
 
-AC-09's original independent-document requirement is superseded only by the owner's explicit instruction in this chat: no reference exists, verbal approval was obtained, and AC-09 is to pass. No academic document or authenticated GitHub approval is fabricated. Git's latest reachable main commit before 2026-10-28 end-of-day is BASE_COMMIT, dated 2026-10-27; it is a plausible scope reference, not proof of what the academic approver viewed.
+All sixteen task criteria have local/hosted evidence at the observed correction
+revision. This is not accepted handoff or merge readiness: Burkay approval,
+final-containing-HEAD verification and orchestrator acceptance remain separate.
+The final chat receipt supplies fresh checks for the containing report revision.
 
 ## VERIFICATION
 
-Commands run from the repository above on Windows with Git 2.53.0.windows.3 and Python 3.14.5. `PYTHONDONTWRITEBYTECODE=1` prevents generated Python cache artifacts; no dependencies installed.
+Actual initial command, using the installed Maven executable:
 
-| Command / inspection | Result | Relevant evidence |
-|---|---|---|
-| `git rev-parse --show-toplevel`; `git status --short`; `git branch --show-current`; `git rev-parse HEAD`; `git remote -v`; `git branch -vv` | PASS | Actual root/origin, clean initial main and tracking; BASE_COMMIT |
-| `git fetch origin --tags`; `git rev-parse main origin/main` | PASS | Successful fetch; both SHAs equal BASE_COMMIT |
-| `git for-each-ref --format=%(refname) refs/heads refs/remotes`; `git switch -c docs/8-freeze-evidence-protocol` | PASS | No equivalent existing branch; new branch based on main |
-| `git log 7e068040c3a4fb1a2f32783a4c592dc974324f36 --oneline --max-count=12`; `git ls-tree -r --name-only HEAD`; ancestry checks for the three historical/merge SHAs | PASS | Historical scaffold retained; no product/experiment source; all ancestry checks exit 0 |
-| `python3 -m unittest discover -s tests/governance -v` | PASS | Initial run: 101 tests in 0.141s; publication revision: 101 tests in 0.077s; both OK, exit 0 |
-| `python3 scripts/governance/check_docs.py` | PASS | Exit 0: Local documentation links and required artefacts verified |
-| `python3 scripts/governance/security_check.py` | PASS | Exit 0: Repository hygiene checks passed; not a claim of full security analysis |
-| Existing `gate.check_paths` against actual modified + untracked paths via inline `python3 -` | PASS | Exactly four authorized paths accepted; no policy bypass, staged changes or HEAD change |
-| `git diff --check`; untracked-file whitespace/UTF-8 inspection via inline `python3 -` | PASS | Initial staged check FAILED on Markdown two-space hard breaks in new files; converted to explicit HTML breaks and reran the staged check without weakening it |
-| `git diff --stat`; `git status --short`; full diff/content review | PASS | Only the four listed Markdown files; both existing-file diff and new protocol/report content inspected |
-| Direct protocol-to-AC/FR/NFR review | PASS | Protocol sections 1–7 and criterion table above; no fictional measurements |
-| Product builds/tests, real provider/model runs and scientific experiment | NOT_APPLICABLE | Documentation-only F00-PLAN; none executed |
-| Hosted PR CI and authenticated current-HEAD owner approval | NOT_RUN | Not run at the prepublication snapshot; final current-HEAD hosted results belong in the publication receipt |
+```sh
+/Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn -B -ntp -f experiments/original-ai-code/java-inventory-v0/pom.xml clean verify
+```
 
-Governance checks do not validate an application. Security hygiene is the existing limited credential/private-artifact check, not full SAST/SCA. A local path-policy check does not replace live GitHub dependency/owner/CI checks.
+Exit 0; ten actual JUnit tests passed. The initial build occurred before local
+sealing; later verification uses a derivative. Repeatable post-seal commands:
+
+```sh
+python3 -B experiments/java-pilot/verify_integrity.py
+python3 -B experiments/java-pilot/reproduce.py --maven /Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn
+python3 -B -m unittest discover -s tests/governance -v
+python3 -B scripts/governance/check_docs.py
+python3 -B scripts/governance/security_check.py
+git diff --check
+```
+
+Local outcomes: 102 governance tests passed; documentation and security hygiene
+checks passed; workflow YAML parsed; task path policy passed; source/test
+integrity passed. Exact command outputs are in verification.json. Security
+hygiene remains a limited credential/private-artifact check.
+
+[Environment](experiments/java-pilot/evidence/environment.json),
+[initial build](experiments/java-pilot/evidence/initial-run.json),
+[reproduction](experiments/java-pilot/evidence/reproduction.json),
+[integrity probes](experiments/java-pilot/evidence/integrity-negative-probes.json),
+[regression rejection](experiments/java-pilot/evidence/regression-rejection.json)
+and [final local verification](experiments/java-pilot/evidence/verification.json)
+record actual commands/results and limitations. The deliberate regression
+caused five test failures, Maven exit 1 as expected; it is a successful negative
+validation probe, not a concealed generation failure. The six integrity probes
+all returned nonzero as required. The two successful local builds produced JAR
+SHA-256 `932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb`.
+
+At the observed correction SHA, governance-tests, documentation-checks,
+security-checks and pilot-checks all completed SUCCESS. Dependency-gate passed;
+merge-readiness failed for missing Burkay approval, and dependency-gate-preview
+was SKIPPED. Exact runs/jobs and source/test-merge revisions are in publication
+evidence. These are task PR checks, not old main results. The report-containing
+revision will be checked again and its results delivered in the final chat
+receipt. Governance/hygiene do not prove full product security or E2E behavior.
+Initial new-file whitespace review identified Maven's natural trailing spaces in
+raw log output. Exact bytes were preserved losslessly in JSON log artifacts
+(with raw-byte SHA-256), and raw copies kept user-locally; no check was weakened.
+Affected checks were rerun. Full source/static review, workflow syntax review, task path policy, ignored
+build-output inspection and whitespace checks are included in final local
+verification. No failing check was suppressed or test weakened.
 
 ## ARCHITECTURE_AND_SCOPE
 
-Preserved approved architecture, all P0 scope, developer rotation, registry and protected governance files. Older P1/optional-model, independent-review and pending-merge/graph statements are identified as historical in protocol section 1; no repository-wide cleanup. Existing project-local `development-handoff` skill was read and its procedure followed manually; no automatic skill execution claimed. The initial task stopped before commit/push. The owner explicitly authorized publication in the follow-up. No dependency installation, API inference, model download or application code change.
+The seven mandatory languages, real Falcon-Mamba, two product approvals,
+immutable artifacts, isolated candidate/combined verification and complete
+reporting remain P0. None is implemented by this small pilot. No dependency
+edge, registry, architecture, team rotation or milestone completion was changed.
+Only necessary Maven tooling was installed user-locally; no unrelated framework,
+model, cloud API, deployment or system package upgrade occurred.
 
-## RESOURCE_STATUS / RISKS_AND_BLOCKERS
+## RISKS_AND_BLOCKERS
 
-- **Local F00 acceptance:** no unresolved blocking check or required resource decision for this documentation task after the owner's AC-09 clarification. The task documentation and its first published revision are verified; REVIEW_REQUIRED refers to PR integration and orchestrator acceptance, not unfinished protocol work.
-- **F00 academic gate resolved by owner decision:** verbal Hakan Çağlar approval recorded as REPORTED; independent artifact and exact viewed SHA unavailable. This limitation is disclosed, not represented as independently VERIFIED.
-- **Later execution gates remain:** no frozen dataset, Java pilot or sandbox; GPU/model/runtime access and provider/API permissions, budget and privacy/retention consents are unverified. Alperen Enes Yaman and Taha Uğur Toyran are reported resource contacts; per-resource custodian split is UNKNOWN. See protocol matrix for resolving actions and existing dependencies.
-- **Schedule:** registry due date 2027-01-01; time/channel and available capacity UNKNOWN. Historical 436–666 person-hours are not a verified delivery forecast. No scope demotion or new deadline.
-- **Publication/handoff pending:** local documentation is not an accepted handoff or completed milestone; hosted checks and authenticated current-head owner approval apply after the authorized publication.
+- Publication was explicitly authorized and observed; Burkay's authenticated
+  final-HEAD approval, merge authorization and orchestrator acceptance remain.
+  merge-readiness is FAILED for that missing approval; no gate was bypassed.
+- Exact serving model metadata is unavailable and disclosed; do not claim full
+  provider-level provenance. No additional historic prompt/model input is invented.
+- Local execution is controlled synthetic pilot verification, not the later
+  product sandbox. Future untrusted uploads must not run directly on the host.
+- Both local macOS and hosted Ubuntu execution passed with the pinned tools,
+  and the observed JAR digests matched. Other platforms are unverified. No
+  coverage guarantee, behavioral equivalence proof, quality reduction or
+  research result is claimed.
+- Project board read failed in startup with INSUFFICIENT_SCOPES (`read:project`);
+  issue/registry authority was available. No credential or scope was changed.
+- Later GPU/model/API permissions, budget, toolchains, privacy/data intake and
+  dataset freeze gates remain outstanding; no new Java dependency is invented.
 
-## NEXT_TASK_CANDIDATE / ROTATION
+## NEXT_TASK_CANDIDATE
 
-F00-V0 (#9) is a candidate after accepted F00-PLAN, its existing sole prerequisite. This is not authorization or a claim of present eligibility; orchestrator decides the next task. F01-ENV's dependency remains F01-GOV; no new edges or assignments were added.
+NOT_AUTHORIZED. Orchestrator selects later work only after accepted F00-V0
+handoff. Do not start F01-ENV, F02-CONTRACT, F04-JAVA, Falcon-Mamba or any adapter.
 
-CURRENT_OWNER: Burkay<br>
-NEXT_OWNER_IF_ACCEPTED: Cafer<br>
-ROTATION_ADVANCE: NOT_YET_CONFIRMED
+## ROTATION
 
-## AUTHORIZED PUBLICATION / MANDATORY REPORT DELIVERY
+CURRENT_OWNER: Cafer (@caferkilinc)<br>
+ROTATION_INDEX: 1 (unchanged)<br>
+NEXT_OWNER_IF_ACCEPTED: Alperen Enes Yaman (@Yaman-A-E)<br>
+ROTATION_ADVANCED: NO<br>
+ACCEPTED_HANDOFF: NOT_CLAIMED
 
-On 2026-11-02 Burkay explicitly authorized committing/pushing the final F00 work, gave owner approval, and required the actual report plus SHA to be delivered in chat every time. This supersedes the prior stop-before-commit/push restriction for this task. The connected GitHub identity was verified as `cakarburkayy`.
+## HUMAN_ACTION
 
-Publish the reviewed four-file change on `docs/8-freeze-evidence-protocol`, with a PR targeting `main` and these identity lines:
+Cafer explicitly authorized commit, push and opening PR #45 in this chat on
+2026-11-03. Publication preflight passed and both observed commits were pushed
+with local/remote SHA equality and clean worktrees. The PR targets main and has:
 
 ```text
-Task: #8
-Plan: F00-PLAN
+Task: #9
+Plan: F00-V0
 ```
 
-The PR must retain real acceptance/check evidence. The user's authorization allows recording the authenticated `GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>` comment through the verified owner account after the final HEAD is known. New commits invalidate previous SHA-bound approval. Hosted CI/dependency/readiness results remain mandatory; no merge, issue closure or rotation advancement is implied.
+Burkay alone must provide an authenticated approval for the actual final PR HEAD:
+`GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>`. A new commit invalidates an old
+approval. Then re-evaluate the live readiness gate under the applicable merge
+policy; no merge or acceptance is authorized by this task. The final chat receipt
+provides the actual full containing SHA, commit link, SHA-pinned report, PR state
+and fresh check results. This evidence-only report update links already observed
+published commits, not its own unknowable containing SHA. No endless
+self-reference commit is created. Send that receipt and this report to the
+orchestrator. Do not close Issue #9 or advance rotation. Stop after publication.
 
-Report delivery is not complete merely because this file exists locally. Every subsequent authorized task must deliver the full verified SHA, commit link, report link pinned to that SHA, actual checks/PR status and readable summary in the final chat response. This persistent rule is recorded in ADR 0005 section 8 and PROJECT_STATUS. A later evidence-only commit may record an already verified published task SHA; the report's final containing SHA is supplied externally in chat to avoid impossible self-reference.
+## First publication and bounded hosted-CI correction
 
-Submit the published SHA/report for orchestrator acceptance, then stop. F00-V0 and F01-ENV are not authorized by this publication request.
+Implementation commit `5ad4c27f591e86c6b81cc140214eff75c7d65922` was pushed
+to canonical `feature/9-java-v0-pilot`; local/remote SHA matched and the worktree
+was clean. [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+was opened by authenticated `caferkilinc`, targeting main. Earlier NOT_RUN and
+pre-push statements above describe the prior local snapshot.
 
-## Verified GitHub publication receipt — 2026-11-02
+The first [Governance CI](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630454)
+passed all three required governance jobs; the bootstrap preview was SKIPPED.
+[Dependency gate](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630473)
+passed dependency-gate but correctly failed merge-readiness for missing current
+Burkay approval. [Pilot CI](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687630491)
+failed before Maven/JUnit: setup-java rejected `21.0.4+7` and listed the exact
+available vendor-normalized version `21.0.4+7.0.LTS`. The only runtime correction
+sets that offered version in the permitted pilot workflow; generated V0, POM,
+provenance, fixed tests and their manifests remain byte-identical. This failed
+setup is retained as an actual CI failure, not a failed source-generation attempt.
+See [hosted history](experiments/java-pilot/evidence/hosted-ci-history.json).
+The corrected revision `eae5d891e926ec12b87375023f33b813cc1c64a2` was pushed
+and observed with the following real results:
 
-The complete four-file F00 task was committed and pushed as [`ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ef2d90e09fedc5e6943d39c3cfd9b91d1cfee2f4). `git ls-remote --heads origin refs/heads/docs/8-freeze-evidence-protocol` returned that exact SHA, matching local HEAD; the worktree was clean and upstream tracking established. [PR #44](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44) was created by authenticated `cakarburkayy`, targeting `main`, with Task #8 / Plan F00-PLAN and all four files.
+| Workflow / job | Result | Evidence |
+|---|---|---|
+| Governance CI: governance-tests, documentation-checks, security-checks | SUCCESS | [41687880397](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880397) |
+| Java pilot checks: pilot-checks | SUCCESS; 10 tests, 0 failures/errors/skips; V0/tests unchanged | [41687880387](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387) |
+| Dependency gate: dependency-gate | SUCCESS | [41687877219](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687877219) |
+| Dependency gate: merge-readiness | FAILURE: missing current Burkay owner approval | Same dependency run |
+| dependency-gate-preview | SKIPPED; not counted as PASS | Same governance run |
 
-This receipt is a later report-only revision of that verified task commit. PUBLISHED_TASK_COMMIT identifies the already published content revision, **not this report's containing revision**. The final report revision is delivered as a full remote-verified SHA and commit-pinned report URL in the final chat response. No own-commit SHA is fabricated here.
-
-At preparation of this receipt the initial hosted Governance CI run was in progress; current-HEAD CI and authenticated owner-approval results must be taken from the final PR/check receipt, not assumed from the first revision. The final report-only revision is checked with documentation/security and staged whitespace checks and pushed before its final SHA-bound owner approval. No merge or orchestrator acceptance is claimed. The original main baseline remains unchanged.
+The pilot job checked out GitHub test-merge revision
+`2ab3b76724eb3ca5d45eccb3a3eded9b71c49cba` associated with that PR source HEAD,
+not a merged main commit. PR #45 remains OPEN and UNMERGED, Issue #9 OPEN,
+acceptance/rotation unchanged. [Publication evidence](experiments/java-pilot/evidence/publication-checks.json)
+records the observed source revision and actual job results. This containing
+report revision is a later documentation/evidence update; its final full SHA
+and fresh hosted results are supplied in the external final receipt.

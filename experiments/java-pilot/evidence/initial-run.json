@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn",
+    "-B",
+    "-ntp",
+    "-f",
+    "experiments/original-ai-code/java-inventory-v0/pom.xml",
+    "clean",
+    "verify"
+  ],
+  "started_at_utc": "2026-11-03T16:43:32.278896+00:00",
+  "finished_at_utc": "2026-11-03T16:43:45.795919+00:00",
+  "exit_code": 0,
+  "log": "experiments/java-pilot/evidence/maven-initial.log.json",
+  "phase": "pre-seal baseline validation"
+}

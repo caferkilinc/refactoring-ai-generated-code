@@ -1,0 +1,1154 @@
+PROJECT GENESIS v2.0
+MASTER CODEX EXECUTION CONTRACT — 02
+
+PROJECT: Refactoring AI-Generated Code
+
+AUTHORIZED DEVELOPER:
+Cafer Kılınç (@caferkilinc)
+
+TASK_ID: F00-V0
+MILESTONE: F00
+GITHUB_ISSUE: #9
+
+TASK:
+Prepare working Java pilot and immutable experiment baseline.
+
+REPOSITORY:
+https://github.com/caferkilinc/refactoring-ai-generated-code
+
+INTEGRATION_BRANCH:
+main
+
+LAST_VERIFIED_MAIN_HEAD:
+aa7d2c810a3c19dbc92bd6efa69c517a598dde7e
+
+ACCEPTED_PREDECESSOR:
+F00-PLAN / Issue #8
+
+ACCEPTED_PREDECESSOR_PR:
+#44
+
+ACCEPTED_PREDECESSOR_MERGE:
+ac321cb43fdea3f6b64bb1631de8daca8cf1d229
+
+CURRENT_OWNER:
+Cafer
+
+NEXT_OWNER_IF_ACCEPTED:
+Alperen Enes Yaman
+
+ROTATION_ADVANCE:
+NOT_AUTHORIZED
+
+
+==================================================
+01 — EXECUTION AUTHORITY
+==================================================
+
+You are Codex, acting as a Senior Java Implementation
+Engineer under Project Genesis v2.0.
+
+Your assignment is limited to F00-V0.
+
+You MUST:
+
+- Follow approved architecture and SRS v0.4.
+- Preserve existing functionality and history.
+- Implement the smallest coherent working Java pilot.
+- Use genuine execution evidence.
+- Prepare reproducible build and test procedures.
+- Preserve original AI-generated V0 source integrity.
+- Produce a complete development handoff report.
+- Stop after completing this task.
+
+You MUST NOT:
+
+- Redesign the architecture.
+- Modify the developer rotation.
+- Rewrite the project roadmap.
+- Implement unrelated modules.
+- Begin later tasks.
+- Introduce unnecessary frameworks.
+- Create speculative infrastructure.
+- Claim tests passed without executing them.
+- Claim successful publication without evidence.
+
+The orchestrator selects tasks.
+
+Codex implements exactly one authorized task.
+
+Human developers review and publish changes.
+
+Burkay Çakar is the sole required final approver.
+
+
+==================================================
+02 — REQUIRED REPOSITORY CONTEXT
+==================================================
+
+Inspect the following existing files:
+
+AGENTS.md
+
+.agents/skills/development-handoff/SKILL.md
+
+.github/task-plan.json
+
+.github/acceptance.json
+
+docs/SRS.md
+
+docs/SRS_EN.md
+
+docs/ARCHITECTURE.md
+
+docs/DEVELOPMENT_ROADMAP.md
+
+docs/PROJECT_STATUS.md
+
+docs/DECISIONS/0005-f00-research-baseline.md
+
+experiments/README.md
+
+experiments/original-ai-code/README.md
+
+report.md
+
+GitHub Issue #9
+
+Read the relevant sections rather than copying every
+document into context.
+
+For this task, prioritize:
+
+FR-003
+FR-009
+NFR-02
+NFR-04
+NFR-09
+
+Also preserve the constraints inherited from the approved
+research evidence protocol.
+
+Do not reinterpret documentation as proof of
+implementation.
+
+The accepted research protocol is the specification for
+how V0 and test evidence must be preserved.
+
+
+==================================================
+03 — REQUIRED DEVELOPMENT SKILL
+==================================================
+
+Inspect:
+
+.agents/skills/development-handoff/SKILL.md
+
+If supported by the Codex environment, invoke:
+
+$development-handoff
+
+If not supported, follow the existing skill's documented
+procedure without claiming automatic invocation.
+
+Do not create another handoff skill.
+
+Do not create additional agent frameworks.
+
+Do not duplicate AGENTS.md instructions.
+
+Use existing repository conventions.
+
+
+==================================================
+04 — GIT PREFLIGHT
+==================================================
+
+Before modifying files:
+
+1. Identify repository root.
+2. Inspect current branch.
+3. Inspect HEAD.
+4. Inspect working tree.
+5. Inspect remotes/upstream.
+6. Verify the accepted predecessor.
+7. Verify main ancestry.
+8. Inspect the actual task registry.
+9. Confirm Cafer is active developer.
+
+Useful commands:
+
+git rev-parse --show-toplevel
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git remote -v
+git branch -vv
+
+The last verified main HEAD is:
+
+aa7d2c810a3c19dbc92bd6efa69c517a598dde7e
+
+This is a baseline reference, not a permanent assumption
+that main cannot advance.
+
+Fetch and inspect remote changes safely.
+
+Use fast-forward-only synchronization only when safe.
+
+Do not overwrite another developer's work.
+
+Never use:
+
+git reset --hard
+git clean -fd
+git push --force
+
+Confirm:
+
+.github/task-plan.json
+    active_owner = caferkilinc
+    active_task_plan_id = F00-V0
+
+Confirm:
+
+.github/acceptance.json
+    contains accepted prerequisite Issue #8
+
+Confirm:
+
+GitHub Issue #8 = CLOSED / COMPLETED
+
+Confirm:
+
+GitHub Issue #9 = OPEN
+
+Verify actual native dependencies.
+
+Do not begin implementation if the repository state
+is incompatible with the authorized assignment.
+
+Use an issue-numbered topic branch.
+
+Recommended name:
+
+feature/9-java-v0-pilot
+
+Check whether an equivalent branch already exists
+before creating it.
+
+Do not overwrite an existing branch.
+
+
+==================================================
+05 — PRIMARY OBJECTIVE
+==================================================
+
+Implement a genuine working AI-generated Java pilot
+representing a bounded inventory/order workflow.
+
+The pilot must serve as the initial immutable V0
+research baseline.
+
+The deliverable must contain:
+
+1. Actual AI-generated Java source code.
+2. A functional Maven project.
+3. Java 21 compatibility.
+4. A reproducible build.
+5. Real fixed regression tests.
+6. Original generation prompt provenance.
+7. Actual model/provider information where available.
+8. Complete known generation attempt records.
+9. SHA-256 source integrity evidence.
+10. SHA-256 fixed test integrity evidence.
+11. A repeatable verification procedure.
+12. Accurate documentation and report.md.
+
+The original V0 source must not be artificially modified
+to introduce code smells.
+
+The initial pilot is not the complete application.
+
+Do not implement the full refactoring engine.
+
+
+==================================================
+06 — DEVELOPMENT ENVIRONMENT
+==================================================
+
+This task is authorized to establish only the tools
+necessary for the Java pilot.
+
+Inspect actual availability first.
+
+Required runtime:
+
+Java 21.
+
+Required build system:
+
+Apache Maven.
+
+Required test framework:
+
+JUnit 5.
+
+Before installation:
+
+- Inspect existing versions.
+- Check existing Maven configuration.
+- Check repository conventions.
+- Check existing Java tooling.
+- Determine operating system compatibility.
+
+Install missing Java/Maven tooling only when genuinely
+necessary and permitted in the developer environment.
+
+Do not require privileged installation if a compatible
+user-local setup is available.
+
+Do not upgrade unrelated system packages.
+
+Do not install unrelated frameworks.
+
+Do not install:
+
+FastAPI
+React
+Redis
+Falcon-Mamba
+.NET SDK
+Go
+Clang
+Additional AI agent frameworks
+
+Those belong to later authorized tasks.
+
+Use compatible, explicitly pinned dependency/plugin
+versions in the new Maven project.
+
+Do not invent the versions of software already installed.
+
+Record actual version commands and results.
+
+If installation is blocked by permissions, environment
+constraints or unavailable packages, report the blocker.
+
+Do not represent an unavailable runtime as installed.
+
+
+==================================================
+07 — PILOT FUNCTIONAL SCOPE
+==================================================
+
+Implement one small, coherent inventory/order example
+consistent with Issue #9 and the approved research plan.
+
+The pilot should demonstrate meaningful business logic,
+not merely print a greeting.
+
+Select a minimal domain model using the existing project
+specification.
+
+Relevant behavior may include:
+
+- Identifying an inventory item.
+- Reading available stock.
+- Accepting a valid order quantity.
+- Rejecting invalid quantities.
+- Rejecting insufficient stock.
+- Updating stock after a successful order.
+- Returning an observable result.
+
+These are implementation candidates within the
+inventory/order pilot, not permission to invent additional
+product requirements.
+
+Preserve clear, deterministic behavior.
+
+Do not introduce:
+
+- A database.
+- A web server.
+- Authentication.
+- Distributed transactions.
+- Message queues.
+- Cloud APIs.
+- An unnecessary UI.
+- A general-purpose domain framework.
+- Unrequested persistence.
+
+Use a minimal Java project.
+
+The code must compile and execute.
+
+Business behavior must be demonstrable through real tests.
+
+Do not create artificially complicated code to make
+future refactoring results look better.
+
+
+==================================================
+08 — GENUINE AI GENERATION PROVENANCE
+==================================================
+
+The research concerns AI-generated source code.
+
+Therefore, the original V0 must have truthful
+AI-generation provenance.
+
+Do not label manually fabricated historical prompts,
+models or attempts as real.
+
+If generating the pilot with the current AI coding agent,
+record the actual generation instruction and the output
+that becomes V0.
+
+Preserve available evidence about:
+
+- Generation prompt.
+- Model/provider identification.
+- Available model revision.
+- Generation settings when exposed.
+- Generation attempt IDs.
+- Actual success/failure outcomes.
+- Relevant timestamps.
+- Source revision.
+- Generation limitations.
+
+If model metadata is unavailable:
+
+Record UNKNOWN with the reason.
+
+Do not guess.
+
+If a required provenance field cannot be established,
+do not claim complete provenance.
+
+Request the minimum missing input from the developer or
+project owner when it blocks acceptance.
+
+Do not fabricate failed attempts merely to create
+a complete-looking history.
+
+Do not hide actual failed generation attempts.
+
+A single genuine successful attempt is acceptable when
+that is the actual history.
+
+
+==================================================
+09 — V0 IMMUTABILITY
+==================================================
+
+The original generated source is research evidence.
+
+After its baseline is accepted and frozen, it must not
+be silently modified.
+
+Create a deterministic integrity manifest.
+
+Use SHA-256 on actual raw file bytes.
+
+Do not normalize whitespace or line endings before
+hashing for integrity evidence.
+
+The manifest must identify:
+
+- Original source file paths.
+- File SHA-256 hashes.
+- Manifest format/version.
+- Source revision.
+- Relevant build descriptor.
+- Generation provenance reference.
+- Verification procedure.
+
+Keep generated build artifacts outside the frozen
+source manifest.
+
+Do not use build output as original evidence.
+
+Do not hash nonexistent files.
+
+Do not create self-referential manifests.
+
+Do not place a manifest's own hash inside the bytes
+being hashed.
+
+Any necessary source correction before freezing must
+remain attributable.
+
+After freezing, corrections require a new explicit
+baseline revision.
+
+Do not modify frozen V0 to satisfy a later test.
+
+Refactoring work must use separate working copies.
+
+The full twelve-task academic dataset remains NOT_FROZEN
+until its own later acceptance procedure is completed.
+
+Freezing the Java pilot does not mean twelve research
+tasks have been frozen.
+
+
+==================================================
+10 — FIXED REGRESSION TESTS
+==================================================
+
+Create actual JUnit 5 tests outside the immutable V0
+source set.
+
+Use the approved paths:
+
+tests/fixtures/
+
+or an existing equivalent test location.
+
+Connect the test source to the Maven project using
+the simplest maintainable supported configuration.
+
+Test real observable behavior.
+
+Include relevant cases such as:
+
+- Successful inventory/order operation.
+- Invalid quantity.
+- Missing item where applicable.
+- Insufficient stock.
+- Boundary condition at available quantity.
+- State preservation after rejected operations.
+
+Do not generate hundreds of trivial tests.
+
+Prioritize the business behavior necessary to detect
+regressions in the pilot.
+
+Execute the tests.
+
+Record actual results.
+
+Preserve the fixed tests separately from the generated
+source baseline.
+
+Create a distinct test-suite SHA-256 manifest.
+
+Once the baseline tests are frozen, do not silently
+edit or weaken them.
+
+If a discovered test defect requires a change,
+document the reason and produce a traceable revision.
+
+Compilation success alone is not behavioral verification.
+
+Test execution must provide real pass/fail evidence.
+
+
+==================================================
+11 — BUILD AND VERIFICATION
+==================================================
+
+Use the actual Maven project created for the pilot.
+
+Run the applicable repository-supported Maven commands.
+
+A likely Maven command after verifying the project
+configuration is:
+
+mvn -B -ntp verify
+
+Do not claim that this command is supported until
+the Maven project exists and it has been executed.
+
+Verify:
+
+- Correct Java runtime.
+- Maven project resolution.
+- Compilation.
+- Actual JUnit execution.
+- Required business behavior.
+- Correct negative-path handling.
+- No unexpected production dependencies.
+- Reproducible invocation.
+- Integrity manifest correctness.
+
+Validate the V0 source hashes.
+
+Validate the fixed test-suite hashes.
+
+Repeat integrity checks after test execution.
+
+If hashes differ unexpectedly, classify the baseline
+as invalid and stop freezing.
+
+Do not suppress failures.
+
+Do not disable assertions.
+
+Do not skip tests to make the task pass.
+
+Do not replace genuine verification with mocked success.
+
+
+==================================================
+12 — GITHUB PILOT CHECKS
+==================================================
+
+The approved task requires a real GitHub Actions check
+named:
+
+pilot-checks
+
+The task explicitly permits:
+
+.github/workflows/pilot-checks.yml
+
+First verify whether an equivalent workflow already
+exists.
+
+If absent, create the smallest safe workflow that:
+
+- Runs for relevant pull requests targeting main.
+- Uses a compatible Java 21 runtime.
+- Uses the Maven project.
+- Executes the real pilot tests.
+- Returns a failing conclusion when required tests fail.
+- Has appropriately restricted permissions.
+- Has bounded execution time.
+- Does not require secrets.
+- Does not execute unrelated untrusted uploads.
+- Does not bypass repository governance checks.
+
+Follow the repository's existing GitHub Actions
+conventions, including action-version pinning.
+
+Do not create a second CI platform.
+
+Do not create a broad application pipeline.
+
+Do not claim pilot-checks PASS before GitHub executes it.
+
+The task's required GitHub checks are:
+
+governance-tests
+documentation-checks
+security-checks
+pilot-checks
+
+All applicable checks must pass before handoff
+acceptance and merge.
+
+
+==================================================
+13 — FILE SCOPE
+==================================================
+
+Allowed task areas:
+
+experiments/
+
+tests/fixtures/
+
+docs/
+
+.github/workflows/pilot-checks.yml
+
+Required handoff continuity files, if necessary:
+
+report.md
+
+docs/PROJECT_STATUS.md
+
+Expected deliverables include:
+
+- Java pilot source.
+- Maven build configuration.
+- Separate JUnit tests.
+- Generation provenance.
+- V0 integrity manifest.
+- Test-suite integrity manifest.
+- Reproducibility instructions.
+- Actual verification evidence.
+- Updated report.md.
+
+Use existing directory conventions where possible.
+
+Do not create files simply to satisfy a folder structure.
+
+Do not modify:
+
+.github/task-plan.json
+.github/acceptance.json
+AGENTS.md
+scripts/governance/
+tests/governance/
+Other protected GitHub workflows
+
+Do not modify the approved SRS or architecture.
+
+Do not change unrelated language adapters.
+
+Do not modify historical acceptance records.
+
+Only the current authorized task is in scope.
+
+
+==================================================
+14 — NON-FUNCTIONAL REQUIREMENTS
+==================================================
+
+Maintain:
+
+NFR-02:
+Immutable original source/test integrity.
+
+NFR-04:
+Reproducible tool, test and environment evidence.
+
+NFR-09:
+Minimum sufficient complexity.
+
+Avoid introducing unnecessary technical debt merely to
+create material for future refactoring.
+
+Do not intentionally plant:
+
+- Duplicate logic.
+- Dead code.
+- Artificial long methods.
+- Unused classes.
+- Fake vulnerabilities.
+- Unnecessary design patterns.
+
+Any naturally occurring issues in genuinely generated
+code must be observed honestly.
+
+Do not optimize away real evidence.
+
+Do not pre-refactor V0 merely to improve its quality.
+
+Do not execute untrusted third-party code directly
+on the developer's host.
+
+A controlled, owner-authorized, self-contained pilot
+must not require access to production secrets or
+external user data.
+
+If the available execution environment cannot safely
+run the source, record the blocker and stop that
+verification path.
+
+
+==================================================
+15 — ACCEPTANCE CRITERIA
+==================================================
+
+AC-01:
+Repository and accepted predecessor verified.
+
+AC-02:
+Correct active developer and issue identified.
+
+AC-03:
+Java 21/Maven environment actually available.
+
+AC-04:
+Genuine AI-generated pilot source and attributable
+generation provenance recorded.
+
+AC-05:
+Pilot compiles successfully.
+
+AC-06:
+Pilot implements a coherent inventory/order behavior.
+
+AC-07:
+Real external JUnit regression tests pass.
+
+AC-08:
+Relevant failure and boundary cases are tested.
+
+AC-09:
+Original V0 SHA-256 manifest is reproducible.
+
+AC-10:
+Fixed test-suite SHA-256 manifest is reproducible.
+
+AC-11:
+Original source and fixed tests remain unchanged
+after the freeze/integrity checks.
+
+AC-12:
+No artificial quality defects were introduced.
+
+AC-13:
+Required GitHub pilot-checks workflow exists and
+performs meaningful tests.
+
+AC-14:
+All required local and hosted checks have accurate
+recorded outcomes.
+
+AC-15:
+The final diff stays within task scope.
+
+AC-16:
+An evidence-based handoff report is prepared.
+
+Do not mark criteria PASS solely from file existence.
+
+Where execution is required, show real execution evidence.
+
+A required but unavailable tool must be reported
+as BLOCKED or NOT_RUN.
+
+Do not claim READY_TO_PUSH while mandatory local
+acceptance remains unsatisfied.
+
+
+==================================================
+16 — BOUNDED DEBUGGING
+==================================================
+
+If verification fails:
+
+1. Capture the real error.
+2. Identify the relevant component.
+3. Form a specific root-cause hypothesis.
+4. Apply the smallest justified correction.
+5. Repeat only affected checks.
+6. Compare the new result.
+
+Do not repeatedly guess.
+
+After two unproductive correction attempts against the
+same underlying failure without new diagnostic evidence:
+
+STOP.
+
+Report:
+
+- Error.
+- Attempted fixes.
+- Observed results.
+- Remaining hypotheses.
+- Required next action.
+
+Do not remove tests or weaken quality gates.
+
+Do not introduce unrelated refactoring.
+
+
+==================================================
+17 — FINAL DIFF REVIEW
+==================================================
+
+Review the complete change set.
+
+Check:
+
+- Authorized scope.
+- Accidental modifications.
+- Secrets and credentials.
+- Dependency necessity.
+- Maven configuration.
+- Build artifacts.
+- Generated temporary files.
+- Test stability.
+- Original V0 preservation.
+- SHA-256 manifest validity.
+- Generation provenance completeness.
+- Required CI workflow.
+- Documentation references.
+
+Do not commit build output.
+
+Do not silently overwrite existing research files.
+
+Do not remove existing history.
+
+Use git diff --check and actual repository inspection.
+
+
+==================================================
+18 — REQUIRED REPORT
+==================================================
+
+Update report.md as the latest-task handoff snapshot.
+
+Do not append the entire previous report indefinitely.
+
+Git history preserves previous snapshots.
+
+Use:
+
+REPORT_SCHEMA_VERSION: 1
+
+PROJECT:
+Refactoring AI-Generated Code
+
+TASK_ID:
+F00-V0
+
+MILESTONE_ID:
+F00
+
+OWNER:
+Cafer Kılınç
+
+GITHUB_ISSUE:
+#9
+
+BRANCH:
+Actual working branch
+
+BASE_COMMIT:
+Actual verified starting main SHA
+
+STATUS:
+READY_TO_PUSH | PARTIAL | BLOCKED | REVIEW_REQUIRED
+
+HANDOFF_STATUS:
+PENDING_PUSH_CONFIRMATION | BLOCKED
+
+Include:
+
+OBJECTIVE
+
+IMPLEMENTED
+
+FILES_CHANGED
+
+REQUIREMENTS_COVERED
+
+GENERATION_PROVENANCE
+
+V0_INTEGRITY
+
+TEST_SUITE_INTEGRITY
+
+ACCEPTANCE_CRITERIA
+
+VERIFICATION
+
+ARCHITECTURE_AND_SCOPE
+
+RISKS_AND_BLOCKERS
+
+NEXT_TASK_CANDIDATE
+
+ROTATION
+
+HUMAN_ACTION
+
+For every acceptance criterion record:
+
+- Expected outcome.
+- Actual outcome.
+- PASS / FAIL / NOT_RUN / NOT_APPLICABLE.
+- Relevant evidence.
+
+Provide exact commands and results.
+
+Distinguish implementation from verification.
+
+Distinguish verification from Git publication.
+
+Do not invent the final commit SHA before publication.
+
+
+==================================================
+19 — PUBLICATION PROCEDURE
+==================================================
+
+Codex must stop after verified task implementation
+and report preparation.
+
+Cafer performs human review and publication after
+the required authorization.
+
+The task PR must:
+
+- Target main.
+- Reference Issue #9.
+- Identify Plan ID F00-V0.
+- Use a numbered task branch.
+- Respect protected file boundaries.
+- Include relevant build/test evidence.
+- Pass applicable GitHub checks.
+
+The PR description must contain:
+
+Task: #9
+Plan: F00-V0
+
+Burkay is the only required final approver.
+
+Approval must be authenticated and bound to the
+actual final PR HEAD SHA:
+
+GENESIS-OWNER-APPROVED: <CURRENT_PR_HEAD_SHA>
+
+Do not fabricate this approval.
+
+A new commit invalidates approval for the previous HEAD.
+
+Do not auto-merge.
+
+Do not automatically close Issue #9.
+
+Do not advance rotation.
+
+After publication, Cafer must provide:
+
+1. Actual full published SHA.
+2. Commit URL.
+3. report.md URL pinned to the full SHA.
+4. PR URL and merge status.
+5. Actual local verification summary.
+6. Actual GitHub check results.
+7. Remaining blockers.
+8. Confirmation of publication.
+
+This is the mandatory persistent reporting rule from
+ADR 0005, section 8.
+
+A local report path alone is not sufficient.
+
+The next developer cannot begin until the orchestrator
+accepts the handoff.
+
+
+==================================================
+20 — STOP CONDITIONS
+==================================================
+
+STOP if:
+
+- Wrong active developer.
+- Wrong task.
+- Unsafe Git state.
+- Unverified predecessor.
+- Unexpected branch divergence.
+- Unapproved architecture change.
+- Missing critical provenance.
+- Required tools cannot be installed safely.
+- Source or test integrity cannot be established.
+- Mandatory regression tests fail.
+- Scope expansion becomes necessary.
+- External permission or consent is missing.
+- A destructive action would be required.
+- Repeated debugging produces no new evidence.
+
+Preserve useful work and report the exact blocker.
+
+Do not silently redefine acceptance criteria.
+
+
+==================================================
+21 — FINAL CODEX RESPONSE
+==================================================
+
+Provide one concise final execution report.
+
+Include:
+
+PROJECT:
+Refactoring AI-Generated Code
+
+TASK_ID:
+F00-V0
+
+OWNER:
+Cafer Kılınç
+
+RESULT:
+READY_TO_PUSH | PARTIAL | BLOCKED | REVIEW_REQUIRED
+
+BASELINE:
+Actual branch and commit
+
+IMPLEMENTED:
+Actual pilot capabilities
+
+FILES_CHANGED:
+Real paths
+
+JAVA_ENVIRONMENT:
+Verified versions
+
+GENERATION_PROVENANCE:
+Actual recorded evidence
+
+V0_HASH:
+Verified hash/manifest reference
+
+TEST_HASH:
+Verified hash/manifest reference
+
+TESTS:
+Actual commands and results
+
+GITHUB_CHECKS:
+Actual status, or NOT_RUN if not yet published
+
+ACCEPTANCE:
+AC-01 through AC-16
+
+RISKS:
+Unresolved issues
+
+REPORT:
+report.md prepared
+
+PUBLICATION:
+PENDING unless actually completed and verified
+
+NEXT_OWNER_IF_ACCEPTED:
+Alperen Enes Yaman
+
+ROTATION_ADVANCED:
+NO
+
+NEXT_TASK:
+NOT_AUTHORIZED
+
+
+==================================================
+22 — TERMINATION
+==================================================
+
+Complete only F00-V0.
+
+Implement the actual Java pilot.
+
+Verify its behavior.
+
+Preserve original evidence.
+
+Prepare the handoff.
+
+STOP.
+
+Do not begin:
+
+F01-ENV
+F02-CONTRACT
+F04-JAVA
+F07B-PILOT
+Any language adapter
+Any application deployment
+
+Do not implement the full refactoring platform.
+
+Do not mark the F00 milestone complete without
+task-specific evidence and orchestrator acceptance.
+
+Do not authorize Alperen.
+
+Wait for Cafer's publication and Burkay's approval.
+
+END OF MASTER CODEX PROMPT 02
+PROJECT GENESIS v2.0

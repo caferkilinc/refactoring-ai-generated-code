@@ -1,0 +1,60 @@
+{
+  "recorded_at_utc": "2026-11-03T16:45:30.083851+00:00",
+  "method": "Fresh temporary copies of manifest inventories for each listed single mutation; execute the actual read-only verifier and require nonzero status. No original source/test/manifest altered.",
+  "cases": [
+    {
+      "case": "changed_source",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "",
+      "stderr": "INTEGRITY FAILED: Artifact hash mismatch: experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    },
+    {
+      "case": "changed_test",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376\n",
+      "stderr": "INTEGRITY FAILED: Artifact hash mismatch: tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    },
+    {
+      "case": "missing_test",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376\n",
+      "stderr": "INTEGRITY FAILED: Artifact inventory mismatch: experiments/java-pilot/manifests/fixed-tests.json\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    },
+    {
+      "case": "added_source",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "",
+      "stderr": "INTEGRITY FAILED: Artifact inventory mismatch: experiments/java-pilot/manifests/v0-source.json\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    },
+    {
+      "case": "changed_manifest",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "",
+      "stderr": "INTEGRITY FAILED: Manifest hash mismatch: experiments/java-pilot/manifests/v0-source.json\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    },
+    {
+      "case": "symlink_source",
+      "exit_code": 1,
+      "expected_exit": "nonzero",
+      "result": "PASS",
+      "stdout": "",
+      "stderr": "INTEGRITY FAILED: Symlink is not an immutable artifact: experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java\n",
+      "scope": "temporary derivative only; sealed original untouched"
+    }
+  ]
+}

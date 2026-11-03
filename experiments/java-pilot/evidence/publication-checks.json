@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "observed_head_sha": "eae5d891e926ec12b87375023f33b813cc1c64a2",
+  "implementation_sha": "5ad4c27f591e86c6b81cc140214eff75c7d65922",
+  "pr": 45,
+  "pr_url": "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45",
+  "pr_state": "OPEN; not merged",
+  "runs": [
+    {
+      "id": 41687880397,
+      "name": "Governance CI",
+      "head_sha": "eae5d891e926ec12b87375023f33b813cc1c64a2",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880397",
+      "jobs": [
+        {
+          "id": 126098348853,
+          "name": "security-checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126098349157,
+          "name": "governance-tests",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126098349169,
+          "name": "documentation-checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126098351105,
+          "name": "dependency-gate-preview",
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ]
+    },
+    {
+      "id": 41687880387,
+      "name": "Java pilot checks",
+      "head_sha": "eae5d891e926ec12b87375023f33b813cc1c64a2",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387",
+      "jobs": [
+        {
+          "id": 126098347794,
+          "name": "pilot-checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 41687877219,
+      "name": "Dependency gate",
+      "head_sha": "eae5d891e926ec12b87375023f33b813cc1c64a2",
+      "event": "pull_request_target",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687877219",
+      "jobs": [
+        {
+          "id": 126098338917,
+          "name": "dependency-gate",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 126098340205,
+          "name": "merge-readiness",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      ]
+    }
+  ],
+  "pilot_checkout_revision": "2ab3b76724eb3ca5d45eccb3a3eded9b71c49cba",
+  "pilot_summary": {
+    "errors": 0,
+    "execution_scope": "temporary derivative; original files verified before and after",
+    "failures": 0,
+    "jar_sha256": "932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb",
+    "skipped": 0,
+    "test_cases": [
+      "sequentialOrdersConsumeStockAndRejectedOrderDoesNotUndoSuccess",
+      "nonPositiveOrdersAreRejectedWithoutChangingStock",
+      "invalidItemIdsAreRejectedWithoutChangingStock",
+      "maximumIntegerAndInitiallyEmptyStockHaveDefinedBehavior",
+      "insufficientStockRejectsOrderWithoutChangingAnyItem",
+      "initialStockIsCopiedAndCallerMapIsNotChangedByOrders",
+      "invalidInitialStockCannotConstructAnInventory",
+      "successfulOrderReturnsReceiptAndChangesOnlySelectedItem",
+      "exactStockOrderSucceedsAndFurtherOrderIsRejected",
+      "unknownItemCannotBeReadOrOrderedAndExistingStockIsPreserved"
+    ],
+    "tests": 10
+  },
+  "pilot_log_excerpt": [
+    "2026-11-03T17:49:20.3011486Z openjdk version \"21.0.4\" 2024-07-16 LTS",
+    "2026-11-03T17:49:20.5042215Z Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)",
+    "2026-11-03T17:49:20.5050106Z Java version: 21.0.4, vendor: Eclipse Adoptium, runtime: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.4-7.0.LTS/x64",
+    "2026-11-03T17:49:20.5384529Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:20.5385283Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028",
+    "2026-11-03T17:49:20.6084476Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:20.6085549Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028",
+    "2026-11-03T17:49:20.8349542Z Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)",
+    "2026-11-03T17:49:20.8350695Z Java version: 21.0.4, vendor: Eclipse Adoptium, runtime: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.4-7.0.LTS/x64",
+    "2026-11-03T17:49:20.8658497Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:20.8659159Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028",
+    "2026-11-03T17:49:28.3789513Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 s -- in org.genesis.pilot.InventoryTest",
+    "2026-11-03T17:49:28.3879779Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0",
+    "2026-11-03T17:49:29.7643134Z [INFO] BUILD SUCCESS",
+    "2026-11-03T17:49:29.8706003Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:29.8706960Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028",
+    "2026-11-03T17:49:29.9339966Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:29.9341029Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028",
+    "2026-11-03T17:49:29.9705797Z SUMMARY {\"errors\": 0, \"execution_scope\": \"temporary derivative; original files verified before and after\", \"failures\": 0, \"jar_sha256\": \"932baefb2c4d17abf836ed2dd503b4d145e7604fa68533166288e3e38035e6bb\", \"skipped\": 0, \"test_cases\": [\"sequentialOrdersConsumeStockAndRejectedOrderDoesNotUndoSuccess\", \"nonPositiveOrdersAreRejectedWithoutChangingStock\", \"invalidItemIdsAreRejectedWithoutChangingStock\", \"maximumIntegerAndInitiallyEmptyStockHaveDefinedBehavior\", \"insufficientStockRejectsOrderWithoutChangingAnyItem\", \"initialStockIsCopiedAndCallerMapIsNotChangedByOrders\", \"invalidInitialStockCannotConstructAnInventory\", \"successfulOrderReturnsReceiptAndChangesOnlySelectedItem\", \"exactStockOrderSucceedsAndFurtherOrderIsRejected\", \"unknownItemCannotBeReadOrOrderedAndExistingStockIsPreserved\"], \"tests\": 10}",
+    "2026-11-03T17:49:30.0126558Z PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376",
+    "2026-11-03T17:49:30.0127581Z PASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028"
+  ],
+  "readiness_error": "Missing current Burkay owner approval for this PR revision",
+  "approval_record": "No owner approval comment observed; not fabricated",
+  "publication_scope": "Only commit/push/PR authorized; no merge, issue closure, acceptance registry mutation or rotation advancement",
+  "report_self_reference_policy": "This later report revision records already observed and published commits. Its containing HEAD, remote equality and fresh hosted check results are delivered externally in the final chat receipt; no self-referential final SHA is invented.",
+  "complete_task_file_inventory": [
+    ".github/workflows/pilot-checks.yml",
+    "docs/PROJECT_STATUS.md",
+    "experiments/README.md",
+    "experiments/java-pilot/README.md",
+    "experiments/java-pilot/evidence/environment.json",
+    "experiments/java-pilot/evidence/hosted-ci-history.json",
+    "experiments/java-pilot/evidence/initial-run.json",
+    "experiments/java-pilot/evidence/integrity-negative-probes.json",
+    "experiments/java-pilot/evidence/maven-initial.log.json",
+    "experiments/java-pilot/evidence/publication-checks.json",
+    "experiments/java-pilot/evidence/publication-preflight.json",
+    "experiments/java-pilot/evidence/regression-rejection.json",
+    "experiments/java-pilot/evidence/regression-rejection.log.json",
+    "experiments/java-pilot/evidence/reproduction.json",
+    "experiments/java-pilot/evidence/reproduction.log.json",
+    "experiments/java-pilot/evidence/verification.json",
+    "experiments/java-pilot/manifests/fixed-tests.json",
+    "experiments/java-pilot/manifests/fixed-tests.json.sha256",
+    "experiments/java-pilot/manifests/v0-source.json",
+    "experiments/java-pilot/manifests/v0-source.json.sha256",
+    "experiments/java-pilot/provenance/execution-contract-02.txt",
+    "experiments/java-pilot/provenance/generation-prompt.txt",
+    "experiments/java-pilot/provenance/generation.json",
+    "experiments/java-pilot/reproduce.py",
+    "experiments/java-pilot/verify_integrity.py",
+    "experiments/original-ai-code/README.md",
+    "experiments/original-ai-code/java-inventory-v0/.gitignore",
+    "experiments/original-ai-code/java-inventory-v0/pom.xml",
+    "experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java",
+    "report.md",
+    "tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java"
+  ],
+  "recorded_at_utc": "2026-11-03T17:51:22.354650+00:00",
+  "final_report_revision_changes": [
+    "docs/PROJECT_STATUS.md",
+    "experiments/README.md",
+    "experiments/java-pilot/README.md",
+    "report.md",
+    "experiments/java-pilot/evidence/publication-checks.json"
+  ],
+  "current_pilot_workflow_sha256": "2000b1d6ec047ab659905cbe5284e89b156149d4a4d8f62c668c0f9f7db5c479"
+}
