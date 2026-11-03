@@ -3,8 +3,8 @@
 
 **Kimlik:** RAGC-SRS-001  
 **Sürüm:** 0.5.0-rc1  
-**Tarih:** 2026-10-27  
-**Durum:** SON ONAY İÇİN TASLAK — önceki v0.4.0 onayı tarihsel olarak geçerlidir; v0.5.0-rc1 henüz Burkay Çakar tarafından onaylanmadı.
+**Tarih:** 2026-11-03  
+**Durum:** PROJE SAHİBİ TARAFINDAN ONAYLANDI — Burkay Çakar, 2026-11-03 tarihinde Türkçe ve İngilizce v0.5.0-rc1 gereksinimlerini onayladı; depo/issue grafiği senkronizasyonu ve uygulama doğrulaması ayrı işlemlerdir.
 **Sistem:** AI-Generated Code Refactoring and Quality Evaluation / Engineering Design II  
 **Hedef teslim:** 2027-01-01; kesin saat henüz doğrulanmadı.  
 **Teknik otorite:** 01_Master_Sistem_Mimarisi.pdf (v2.0) → 02_Adim_Adim_Gelistirme_Rehberi.pdf (v2.0) → 04_Modular_Architecture_Visual_Presentation.pdf ve PPTX ile 2026-10-20 mimari görseli. Bunlar proje sahibi tarafından gönderilen dış kaynaklardır; depo içinde bulunmadıklarında Codex doğrudan okumuş varsaymayacaktır.  
@@ -248,15 +248,15 @@ Bu sürüm **derleme taslağıdır**. Project owner'ın 2026-10-26 tarihinde yet
 
 **Belge uyumu:** `docs/SRS.md` Türkçe kanonik SRS'dir; `docs/SRS_EN.md` aynı FR/NFR kimliklerine sahip İngilizce teknik eşdeğeridir. Terminoloji farklılığı davranış değiştirmemelidir. Anlaşmazlık varsa owner kararı ile eşdeğer sürümlerde birlikte düzeltme yapılır. Ayrı SRS kabulü kaydı beklenmektedir.
 
-### DEC-010 — 2026-10-27: tarihsel yedi-dilli kapsam kararı (2026-11-03 kararıyla yürürlükten kaldırıldı)
+### DEC-010 — 2026-10-27: tarihsel yedi-dilli kapsam kararı (2026-11-03 kararıyla kapsam bakımından yürürlükten kaldırıldı)
 
 **Tarihsel karar — GÜNCEL DEĞİL:** 2026-10-27 tarihinde yedi dil P0 kabul edilmişti. 2026-11-03 kararı C#/Go/C++ işlerini P1'e taşır. #40–#42 görevleri ve geçmiş bağımlılıkları silinmez; F14-MIX (#34) ve F15-P0 (#35) release kapıları artık P1 görevlerin tamamlanmasını beklemez. Repo görev grafiği henüz bu taslağa göre senkronize edilmemiştir. PR #38 2026-10-27 tarihinde zaten merge edilmiştir; geçmiş olay yeniden yazılmaz.
 
 ## 14. Şartnamenin nihai kabulü — 27 Ekim 2026
 
-**REVIEW_REQUESTED_FROM:** Burkay Çakar (@cakarburkayy). v0.5.0-rc1 henüz onaylanmamış taslaktır; önceki v0.4.0 tarihsel onayı korunur. FR-001–062 ve NFR-01–17 kimlikleri korunmuştur; FR-058–060 ve NFR-17 P1, diğerleri P0. PR #38'in mevcut merge geçmişi değiştirilmemiştir.
+**APPROVED_BY:** Burkay Çakar (@cakarburkayy), 2026-11-03. v0.5.0-rc1 iki dilde onaylandı; önceki v0.4.0 tarihsel onayı korunur. FR-001–062 ve NFR-01–17 kimlikleri korunmuştur; FR-058–060 ve NFR-17 P1, diğerleri P0. PR #38'in mevcut merge geçmişi değiştirilmemiştir.
 
 
-## 12. DEC-011 — 2026-11-03 önerilen kapsam düzeltmesi (nihai onay bekleniyor)
+## 12. DEC-011 — 2026-11-03 onaylanan kapsam düzeltmesi
 
-Güncel proje sahibi talimatı: **P0: Java, Python, JavaScript, TypeScript ve çalışan Falcon-Mamba; P1: C#, Go ve C++**. Bu taslak yalnızca teslim kapsamı bakımından DEC-010'u geçersiz kılar; tarihsel olayı silmez. #40–#42 görevleri ve kabul ölçütleri korunur; proje sahibi onayından sonra yalnız P0 kritik-yol önkoşullarından çıkarılır. İki kullanıcı onayı, değişmez kaynak/test hash'leri, sandbox izolasyonu, güvenlik ve raporlama kapıları aynen korunur. Yayın matrisi dört ayrı dilin gerçek E2E kanıtını ve gerçek Falcon-Mamba fizibilitesini gerektirir; mock sonuç başarı sayılamaz. Bu SRS taslağı kod uygulaması, CI geçişi, görev ataması veya release onayı değildir.
+Proje sahibi tarafından onaylanan güncel kapsam: **P0: Java, Python, JavaScript, TypeScript ve çalışan Falcon-Mamba; P1: C#, Go ve C++**. Bu taslak yalnızca teslim kapsamı bakımından DEC-010'u geçersiz kılar; tarihsel olayı silmez. #40–#42 görevleri ve kabul ölçütleri korunur; proje sahibi onayından sonra yalnız P0 kritik-yol önkoşullarından çıkarılır. İki kullanıcı onayı, değişmez kaynak/test hash'leri, sandbox izolasyonu, güvenlik ve raporlama kapıları aynen korunur. Yayın matrisi dört ayrı dilin gerçek E2E kanıtını ve gerçek Falcon-Mamba fizibilitesini gerektirir; mock sonuç başarı sayılamaz. Bu SRS onayı kod uygulaması, CI geçişi, görev ataması veya release onayı değildir.
