@@ -162,3 +162,28 @@ This later report/evidence revision requires fresh final-HEAD checks delivered
 in the final chat receipt. No merge, Issue #9 closure, owner approval, task
 acceptance or rotation advancement occurred. Dataset NOT_FROZEN, research
 NOT_RUN and release NOT_READY. Alperen remains conditional.
+
+## F00-V0 accepted and assigned onward — 2026-11-04
+
+**ACCEPTED:** F00-V0 / Issue #9, source
+`d923134da4f9f5a2ab55a5f51fbf9415ff717262`, PR #45 merged at
+`fdd573286834fe15c1ac1c0d51db4ed9b0015db7`. Actual delegated Cafer approval
+is permitted only for that revision by ADR 0006; no Burkay GitHub identity
+was fabricated. Both PR dependency/readiness jobs passed (run 41688380131,
+attempt 3). Merge-main pilot run 41731529368 passed ten JUnit tests and
+integrity; governance run 41731529429 passed 111 tests and documentation/security
+checks. Source/test manifest bytes remain unchanged. Exact model metadata
+limitations remain disclosed and the whole dataset is NOT_FROZEN.
+
+Cafer explicitly authorized formal closeout here and selected Alperen /
+F02-CONTRACT #11. Trusted acceptance #9 and issue completed state are part of
+this administrative closeout. Rotation is consumed exactly once: index 1 → 2,
+key `F00-V0:d923134da4f9f5a2ab55a5f51fbf9415ff717262`. Active owner is
+`Yaman-A-E`, active task F02-CONTRACT; handoff_confirmed=false belongs to
+that new unexecuted task. Conditional next owner is `ismail-cevik`.
+
+[Next-developer preparation prompt](handoffs/F00-V0-to-F02-CONTRACT.md) is ready.
+No next-task code, contract-check workflow, adapter or environment was built.
+F02-CONTRACT's sole hard prerequisite remains accepted #8; #9 is continuity
+evidence, not a new dependency. Research NOT_RUN and release NOT_READY.
+Older pending/owner-only/current-Cafer snapshots above remain historical.

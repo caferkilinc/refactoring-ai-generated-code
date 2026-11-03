@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from test_gate import API, LIVE_PLAN
+from test_gate import API, CAFER_PLAN
 from gate import Rejected, owner_approval, readiness, verify_acceptance
 
 
@@ -49,7 +49,7 @@ class DelegationAPI(API):
 
 class DelegationTests(unittest.TestCase):
     def setUp(self):
-        self.plan = copy.deepcopy(LIVE_PLAN)
+        self.plan = copy.deepcopy(CAFER_PLAN)
         self.task = next(t for t in self.plan['tasks'] if t['plan_id'] == 'F00-V0')
         self.api = DelegationAPI(self.task)
         self.accepted = {'8': {'pr': 101, 'head_sha': 'abc',
