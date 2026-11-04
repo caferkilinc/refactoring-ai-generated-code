@@ -12,11 +12,11 @@ from pathlib import Path
 from gate import (Rejected, check_dependencies, check_paths, protected_path, require,
                   required_checks, validate_plan)
 from github_api import GitHub
+from repository_identity import current_repository, effective_plan, repository_urls
 
 
-REPO = 'caferkilinc/refactoring-ai-generated-code'
-URLS = {f'https://github.com/{REPO}{suffix}' for suffix in ('', '.git')}
-URLS.update({f'git@github.com:{REPO}.git', f'ssh://git@github.com/{REPO}.git'})
+REPO = current_repository()
+URLS = repository_urls(REPO)
 REGISTRIES = ('.github/task-plan.json', '.github/acceptance.json')
 CONTEXT = ('AGENTS.md', *REGISTRIES)
 FROZEN = ('experiments/original-ai-code/', 'experiments/java-pilot/manifests/',
@@ -140,6 +140,7 @@ def authorize(repo, contract, api=None):
     for path in set(CONTEXT) | set(path_list(contract.get('required_context'), 'required_context')):
         repo.blob(main, path)
     plan, accepted = (json.loads(repo.blob(main, path)) for path in REGISTRIES)
+    plan = effective_plan(plan, api, REPO)
     require(plan['repository'] == REPO, 'Registry repository mismatch')
     ids = validate_plan(plan)
     scopes = path_list(contract.get('allowed_paths'), 'allowed_paths', prefixes=True)

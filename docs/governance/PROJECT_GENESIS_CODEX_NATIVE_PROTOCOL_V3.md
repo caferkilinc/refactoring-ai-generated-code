@@ -40,4 +40,12 @@ Obtain separate, recorded authorization from the project owner for changes to ap
 
 ## Recovery
 
+The [organization transfer proposal](migrations/ORGANIZATION_TRANSFER.md) defines
+a separately owner-reviewed compatibility transition for the same immutable
+GitHub repository ID `1391020028`. It is not active merely because proposed.
+Once independently integrated and verified, its exact two-name identity bridge
+may normalize the historical registry in memory after verifying the destination
+ID; canonical acceptance evidence and developer rotation are not rewritten.
+Repository Admin grants do not replace project-owner decisions or bypass gates.
+
 Keep task, branch, head/main SHAs, actors, approval/CI URLs, check results and acceptance key in the review record. If enforcement cannot be verified, stop publication and preserve the branch and evidence. Recheck policy and actual GitHub configuration with the authorized administrator. Roll back a published policy through a separately owner-authorized revert PR with the same review and check protections. Preserve the acceptance registry and audit history during reconciliation.

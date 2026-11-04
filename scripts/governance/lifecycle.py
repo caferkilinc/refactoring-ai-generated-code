@@ -12,6 +12,7 @@ import gate
 from gate import Rejected, require
 from github_api import GitHub
 from task_execution import REPO, REGISTRIES, Repository, digest
+from repository_identity import effective_plan
 
 
 PLAN, ACCEPTANCE = REGISTRIES
@@ -128,7 +129,7 @@ class State:
                 relative = 'scripts/governance/' + name
                 require(repo.blob(self.main, relative) == Path(__file__).with_name(name).read_bytes(),
                         'Lifecycle implementation differs from trusted main: ' + relative)
-        self.plan = json.loads(repo.blob(self.main, PLAN))
+        self.plan = effective_plan(json.loads(repo.blob(self.main, PLAN)), api, REPO)
         self.registry = json.loads(repo.blob(self.main, ACCEPTANCE))
         require(self.plan['repository'] == REPO and self.registry['schema_version'] == 1,
                 'Unexpected trusted registry')
