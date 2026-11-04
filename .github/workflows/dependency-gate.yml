@@ -24,7 +24,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-        run: python3 scripts/governance/gate.py --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
+        run: python3 scripts/governance/v3_activation.py --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
   merge-readiness:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -40,4 +40,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-        run: python3 scripts/governance/gate.py --mode readiness --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
+        run: python3 scripts/governance/v3_activation.py --mode readiness --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
