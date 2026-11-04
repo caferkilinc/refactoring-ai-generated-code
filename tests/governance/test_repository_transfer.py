@@ -86,11 +86,19 @@ class RepositoryTransferTests(unittest.TestCase):
             subprocess.run(['git', '-C', str(directory), 'remote', 'add', 'origin',
                             f'https://github.com/{DESTINATION}.git'], check=True)
             env = dict(os.environ, GITHUB_REPOSITORY=DESTINATION, PYTHONDONTWRITEBYTECODE='1',
-                       PYTHONPATH=str(execution.ROOT / 'scripts/governance'))
+                       PYTHONPATH=os.pathsep.join((str(execution.ROOT / 'scripts/governance'),
+                                                 str(execution.ROOT / 'tests/governance'))))
             script = ('import task_execution,lifecycle,safe_publish; '
                       f'assert task_execution.REPO == lifecycle.REPO == safe_publish.REPO == {DESTINATION!r}; '
                       f'assert "https://github.com/{DESTINATION}.git" in task_execution.URLS; '
-                      f'assert "https://github.com/{ORIGINAL}.git" not in task_execution.URLS')
+                      f'assert "https://github.com/{ORIGINAL}.git" not in task_execution.URLS; '
+                      'import test_task_execution as fixture; '
+                      'case=fixture.ExecutionTests(); case.setUp(); '
+                      'assert case.start()["status"] == "TASK_AUTHORIZED"; '
+                      'from test_safe_publish import FakeGitHub; '
+                      'api=FakeGitHub(case, [fixture.FILE]); '
+                      f'assert api.call("/")["id"] == {REPOSITORY_ID}; '
+                      'case.doCleanups()')
             result = subprocess.run([sys.executable, '-B', '-c', script], cwd=directory, env=env,
                                     text=True, capture_output=True)
             self.assertEqual(0, result.returncode, result.stderr)
