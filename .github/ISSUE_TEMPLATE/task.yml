@@ -10,9 +10,10 @@ body:
     validations:
       required: true
   - type: textarea
-    id: ownership
+    id: registry
     attributes:
-      label: Plan ID, primary owner, supporting developer, independent reviewer
+      label: Plan ID and registered scope
+      description: The trusted task registry determines the active developer and prerequisites.
     validations:
       required: true
   - type: textarea

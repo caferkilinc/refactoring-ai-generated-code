@@ -1,15 +1,15 @@
-> **Genesis v2.0 transition, owner approved 2026-10-26:** This document describes the legacy issue-based CI evidence mechanism. Fixed developer assignments are superseded by a single active owner; preserved issue prerequisites and independent review remain mandatory. Current transition branch introduces `sequential_execution` in the registry and removes fixed primary/support/reviewer fields. Live issue assignments and metadata are intentionally left intact until the new gate and migration receive independent review. PR #38 may only merge after separate explicit owner approval. All P0 first delivery obligations include Falcon-Mamba, Python/JS/TS and complete PDF reporting.
-
 # Dependency and merge-readiness policy
+
+The [v3 protocol](governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) defines the proposed activation and authority model. The current trusted `main` and actual GitHub settings govern until activation.
 
 The reviewed `.github/task-plan.json` maps Plan ID → issue → work package → dynamic authorized owner via sequential_execution → dates/effort → mandatory prerequisites → allowed paths → applicable checks. Issue text and Project cells are planning displays, not sources that can weaken trusted policy. Native issue edges mirror this registry; epics aggregate child work without duplicated effort.
 
 ## Two different checks
 
 - `dependency-gate`: currently authorized developer, main target, branch/Task/Plan agreement, complete file scope, native edges and accepted prerequisites.
-- `merge-readiness`: all of the above **plus the current PR's** independent Write/Admin approval and successful applicable CI. No review, stale review, a supporting developer's approval, unresolved independent changes requests, draft PR, missing/failed/skipped tests or unrelated check revision may pass.
+- `merge-readiness`: all of the above plus authenticated exact-head developer approval and successful applicable CI under active v3. Known protected changes require a separate exact-head owner approval. GitHub enforces required independent reviews and conversation resolution separately. Draft PRs and missing, failed, skipped or unrelated CI block readiness.
 
-Both jobs are proposed required checks, not active protection. `merge-readiness` can initially fail while review/tests are pending; that is expected, not a reason to remove it. After review and CI finish, a maintainer re-runs the Dependency gate workflow. Review submission is deliberately **not** wired to an untrusted head-defined workflow or a new write token. A branch may be developed before integration prerequisites pass.
+Both jobs are proposed required checks. Verify actual hosted configuration before relying on them for merge protection. After approval and CI finish, an authorized maintainer reruns the Dependency gate workflow against the current revision. The workflow uses read-only permissions and trusted code.
 
 ## Trusted policy freshness
 
@@ -24,19 +24,19 @@ Every prerequisite needs a record in trusted main `.github/acceptance.json` and 
 1. Issue closed as completed, not not-planned.
 2. Matching PR merged to this repository's main; accepted head SHA equals its PR head.
 3. Registered Task/Plan/branch and complete changed-file list within allowed scope.
-4. Current-revision approval by a Write/Admin teammate outside the PR author and actual GitHub-linked commit authors/committers; unresolved independent changes requests block.
+4. Revision-bound publication authority. New v3 records name the authorized developer in `developer`, while historical records use their original owner or scoped delegation evidence. Required GitHub reviews remain separately verified.
 5. All applicable GitHub Actions checks completed with **success**, not missing/skipped/neutral.
 6. A nonempty list of HTTPS evidence URLs without embedded credentials, independently assessed against the task acceptance criteria.
 
 Illustrative schema, not a real acceptance:
 
 ```json
-{"schema_version":1,"accepted":{"8":{"pr":101,"head_sha":"actual-accepted-pr-head","evidence":["https://github.com/OWNER/REPO/pull/101"]}}}
+{"pr":101,"head_sha":"actual-accepted-pr-head","developer":"authorized-login","evidence":["https://github.com/OWNER/REPO/pull/101"]}
 ```
 
 Optional `ci_sha` may identify that PR's head or its actual merged commit when check placement requires it; arbitrary commits cannot supply CI proof. On the audited bootstrap PR the hosted checks were confirmed on its head SHA. Evidence URLs are reviewed attestations, not automated semantic proof of a research result.
 
-Governance maintenance must be an explicitly authorized sequential task; historically it used `chore/1-...`, `Task: #1`, `Plan: F01-GOV`, even after #1 closes. Ordinary application tasks cannot change governance scripts/tests, policy registries, CODEOWNERS or protected workflows through a broad `tests/` path. #10 may define only application CI workflow paths; governance workflow changes require #1. Policy changes require independent review and activated main protection.
+Governance maintenance uses a separately authorized `chore/1-...` branch, `Task: #1` and `Plan: F01-GOV`. Working during another developer's turn requires an explicit protected exception under the trusted policy. Governance policy paths require #1 and its applicable scope. A task-authorized application workflow still needs protected owner approval because it changes CI. Policy changes require independent review and verified main protection.
 
 ## Real checks for each deliverable
 
@@ -49,7 +49,7 @@ Governance maintenance must be an explicitly authorized sequential task; histori
 | Any PR changing backend or frontend | Adds corresponding check based on actual changed paths | A frontend task label cannot hide backend code |
 | Schema paths / contract tests | Adds contract-checks | Real contract tests; no fake green command |
 
-No application, pilot or contract workflow is claimed implemented by this setup. Their tasks must provide actual executable checks before readiness/acceptance can pass. The extra #21 → #10 integration edge makes the UI's real environment prerequisite explicit while mock development can proceed independently.
+Verify each required workflow's existence, runtime and result on the relevant revision before granting readiness or acceptance. The #21 → #10 integration edge records the UI's environment prerequisite.
 
 ## Synchronization and drift
 
@@ -59,21 +59,10 @@ Issue graph sync performs a complete read preflight before the first write; unex
 
 ## Activation
 
-Bootstrap #38 first needs Burkay's current independent approval and successful actual CI; a separate affirmative owner merge decision remains pending. After separately authorized merge, run real canary cases including missing prerequisite, accepted dependency, old-event rerun, missing/failed app CI, primary/support approval rejection, review resolution and current independent approval. Only then activate the five proven proposed required names in [protection JSON](../.github/branch-protection.proposed.json), with current-branch checks, stale review dismissal, CODEOWNERS, resolved conversations, admin enforcement and no force push/deletion.
+PR #38 is a historical bootstrap. Before activating v3, obtain the separate protected migration decision and verify the actual rules for `main`. Use the five required names in [protection JSON](../.github/branch-protection.proposed.json) with strict current-branch checks, stale review dismissal, CODEOWNERS, resolved conversations, admin enforcement and no force push/deletion. Retain any additional effective protections. Run hosted positive and negative cases for exact-head approval, CI, protected scope and policy freshness.
 
 The bootstrap cannot test a trusted-main workflow absent from main. Unit tests prove engine behavior with isolated API fixtures; hosted bootstrap previews prove read-only API compatibility. Neither demonstrates that GitHub currently blocks merge. See [operational audit](OPERATIONAL_AUDIT.md) for verified findings, fixes and residual risks.
 
-## Revision-bound PR #45 delegated approval proposal — 2026-11-04
+## Historical PR #45 delegation
 
-Cafer authorized the policy maintenance in [ADR 0006](DECISIONS/0006-pr45-revision-bound-delegation.md)
-in this chat, based on reported off-platform delegation from Burkay. Once
-integrated into trusted main, only PR #45 / F00-V0 at the ADR's exact source
-SHA may use Cafer's authenticated `GENESIS-DELEGATE-APPROVED` marker. This is
-the single specified exception to ADR 0004's ordinary owner-only approval
-rule; it does not grant general self-approval or impersonate Burkay.
-
-Every existing prerequisite, scope, CI and freshness check still applies.
-Changing the source SHA invalidates the grant. Approval evidence remains tied
-to that revision for later prerequisite verification. Until activation, main
-still runs the old owner-only policy. This proposal does not change active
-task/rotation, activate itself, authorize PR #45 merge or claim accepted handoff.
+[ADR 0006](DECISIONS/0006-pr45-revision-bound-delegation.md) preserves Cafer's authenticated approval for the accepted PR #45 revision only. Keep its original evidence and CI when rechecking the F00-V0 acceptance.
