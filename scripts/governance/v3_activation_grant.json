@@ -43,5 +43,28 @@
     "tests/governance/test_lifecycle.py",
     "tests/governance/test_safe_publish.py",
     "tests/governance/test_task_execution.py"
-  ]
+  ],
+  "prior_bootstrap": "c8d820e2d52485954873cda8f09f0c0ba0413678",
+  "repair": {
+    "pr": 48,
+    "author": "Yaman-A-E",
+    "head": "2f0d21e9c289abd783855c6d4687b38c388bcc8b",
+    "accepted_pr": 45,
+    "accepted_head": "d923134da4f9f5a2ab55a5f51fbf9415ff717262",
+    "paths": [
+      "docs/PROJECT_STATUS.md",
+      "docs/SRS.md",
+      "docs/SRS_EN.md",
+      "docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md",
+      "experiments/java-pilot/manifests/fixed-tests.json",
+      "experiments/java-pilot/manifests/fixed-tests.json.sha256",
+      "experiments/java-pilot/manifests/v0-source.json",
+      "experiments/java-pilot/manifests/v0-source.json.sha256",
+      "experiments/original-ai-code/README.md",
+      "experiments/original-ai-code/java-inventory-v0/.gitignore",
+      "experiments/original-ai-code/java-inventory-v0/pom.xml",
+      "experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java",
+      "tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java"
+    ]
+  }
 }
