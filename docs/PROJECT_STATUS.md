@@ -1,5 +1,16 @@
 # Actual project status
 
+> **Current-state precedence:** This document contains historical
+> project snapshots. Always use the current GitHub main commit,
+> `.github/task-plan.json`, `.github/acceptance.json` and
+> live issue/PR evidence to determine the current task and owner.
+> At the last verified state, F00-PLAN and F00-V0 were accepted;
+> F02-CONTRACT / Issue #11 was assigned and not yet accepted.
+> PR #38 and #39 were merged; the 34-task / 69-edge graph was
+> verified. The Turkish and English SRS v0.4.0 were approved.
+> Historical statements below do not override newer verified
+> evidence. Release remains NOT_READY.
+
 Audited 2026-10-22: main `7e068040c3a4fb1a2f32783a4c592dc974324f36`, tree `4cb63e9e40fc88ae19cd83eadc538f951601b123`. Ten September commits and eight Markdown files are preserved. There is no application package, executable product test suite, measured refactoring experiment or deployed model in that base.
 
 | Phase | Actual state | Evidence / next acceptance |

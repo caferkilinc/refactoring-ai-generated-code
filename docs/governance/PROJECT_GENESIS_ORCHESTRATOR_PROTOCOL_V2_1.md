@@ -1,6 +1,6 @@
 # PROJECT GENESIS — Orchestrator Protocol v2.1 (Canonical Runtime Specification)
 
-**Status:** PROPOSED — requires Burkay Çakar approval and merge to the trusted `main` branch before becoming authoritative.  
+**Status:** PUBLISHED_ON_MAIN — approval evidence has not yet been independently verified. Canonical activation remains pending verification.
 **Repository:** `caferkilinc/refactoring-ai-generated-code`  
 **Target file:** `docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md`  
 **Derived from:** owner-supplied *Project Genesis v2.0 Master AI Project Orchestrator & Vibe Coding Engineering Protocol*, PART 01/03–03/03, sections 0–60; plus the 19-item prompt-quality review.  
