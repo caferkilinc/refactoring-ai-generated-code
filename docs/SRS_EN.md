@@ -1,6 +1,12 @@
 # Software Requirements Specification (SRS)
 # Secure Refactoring and Quality Improvement of AI-Generated Code
 
+> **Current-decision precedence:** Earlier draft and transition
+> statements are historical records. The approved SRS v0.4.0
+> and subsequently approved scope decisions take precedence.
+> Current GitHub task, PR and dependency states must always
+> be independently verified against live repository evidence.
+
 **Document:** RAGC-SRS-001 · **Version:** 0.4.0 · **Date:** 2026-10-27  
 **Status:** APPROVED SRS — Burkay Çakar approved both complete Turkish and English specifications on 2026-10-27; product verification remains separate.  
 **Product:** Refactoring AI-Generated Code — Engineering Design II, Group B  
