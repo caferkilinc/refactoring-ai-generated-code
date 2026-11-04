@@ -1,18 +1,20 @@
 # Project Genesis v2.0 — Developer Team Operating Guide
 
+> **Current orchestration reference (after approved merge):** [`PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md`](governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md). Historical transition notes in this document do not override newer verified acceptance records.
+
 **Owner-approved:** 2026-10-26. Five authorized developers in the fixed order:
 **Burkay (@cakarburkayy) → Cafer (@caferkilinc) → Alperen Enes Yaman (@Yaman-A-E) → İsmail (@ismail-cevik) → Taha Uğur Toyran (@tahaugurtoyran) → repeat.**
 
 ## 1. What remains authoritative
-- Product behavior: owner-provided Master Architecture v2.0 + Step-by-Step Development Guide v2.0; compiled [TR SRS](SRS.md) and [EN SRS](SRS_EN.md) await final sign-off.
-- Existing implementation planning: [roadmap](DEVELOPMENT_ROADMAP.md), `.github/task-plan.json`, native GitHub prerequisites (31 original technical issues/54 original edges preserved; **34 tasks/69 edges planned** for seven-language scope; new native links PENDING_SAFE_SYNC).
+- Product behavior: owner-provided Master Architecture v2.0 + Step-by-Step Development Guide v2.0; [TR SRS](SRS.md) and [EN SRS](SRS_EN.md) v0.4.0 were approved by Burkay Çakar on 2026-10-27. Approval does not prove implementation.
+- Existing implementation planning: [roadmap](DEVELOPMENT_ROADMAP.md), `.github/task-plan.json`, and the verified GitHub-native graph: 34 technical tasks / 69 dependencies (31 original tasks and 54 original edges preserved). Actual acceptances and the active owner come from the trusted registry and GitHub evidence, not legacy issue assignees.
 - Execution model: PROJECT GENESIS v2.0. Exactly **one** authorized implementation owner at any point. Old module expertise and historical issue assignees are not permission to implement.
 - Integration branch: `main`; issue-numbered topic branches and PRs remain for independent review, but do not permit several concurrent active writers.
 
 ## 2. Bootstrap migration safety
 Existing [PR #38](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/38) was prepared before Genesis. It does **not** consume a Burkay/Cafer rotation turn and is not a completed handoff. The project owner explicitly authorized merging PR #38 on 2026-10-27; it is now merged at commit `5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`. This does not consume a Genesis rotation turn. Burkay alone authorizes later merges, verified task handoffs and scope changes; peer-review requests are optional. Never bypass existing governance checks to force the transition.
 
-The 31 original native technical issues and 54 existing dependencies are not deleted. Newly approved #40–#42 (C#/Roslyn, Go, C++/Clang) add 3 tasks and 15 intended dependency edges to the proposed graph. Native synchronization and independent audit remain mandatory. Fixed assignees and legacy issue body primary/support/reviewer lines are cleared **only after** the new fail-closed gate, its regression tests and migration procedure have been accepted. The migration must preserve task IDs, issue links, Git history, budgets and known blockages.
+The 31 original technical issues and their 54 native dependencies were preserved; 3 required language tasks (#40–#42) and 15 new dependency edges were added, bringing the audited live graph to 34 tasks / 69 edges. Legacy fixed-assignee cleanup is PARTIAL and must be handled only in separately authorized maintenance; do not erase historical work or the dependency graph.
 
 ## 3. One task per rotation
 1. Orchestrator reconstructs last confirmed Git state, approved SRS, outstanding requirements and dependencies.
@@ -45,7 +47,7 @@ Before publication, `report.md` contains base commit and `PENDING_PUSH_CONFIRMAT
 The due date is **2027-01-01** (time UNKNOWN). Falcon-Mamba 7B, Python and JS/TS capabilities, PDF/HTML and mixed-language tests are first-delivery **P0**; lack of GPU/runtime/provider access is a release blocker, not approval to silently downgrade scope. Replan from evidence and actual available capacity, never from a speculative workload split.
 
 ## 6. Mandatory 2026-10-27 release scope
-Every adapter for Java, Python, JavaScript, TypeScript, C#, Go and C++ is **P0**; real local Falcon-Mamba 7B, frozen V0/tests, isolated patch verification, two approvals and HTML/PDF/ZIP/history remain required. F14-MIX waits for all seven adapters; F15-P0 additionally waits for F07B-LOCAL and F13-ADV. Actual toolchain and build-test evidence is required before acceptance. PR #38 remains open and requires separate explicit owner merge permission after an independent GitHub-recorded current-head review; a verbal or chat-level statement without attributable reviewer evidence is REPORTED, not VERIFIED.
+Every adapter for Java, Python, JavaScript, TypeScript, C#, Go and C++ is **P0**; real local Falcon-Mamba 7B, frozen V0/tests, isolated patch verification, two product approvals and HTML/PDF/ZIP/history remain mandatory. F14-MIX depends on all seven adapters, and F15-P0 requires the final integration gates. PR #38 and #39 are MERGED historical transitions; current PRs require the current applicable owner-approval and CI rules. The PR #45 revision-bound delegation is not a reusable general approval.
 
 ## Owner-only authorization (27 October 2026)
-Burkay Çakar (@cakarburkayy) is the sole required final approver for *all project phases*. Other team members may review or report findings but their approvals are not prerequisites. The governance gate requires an authenticated GitHub PR comment with exact body `GENESIS-OWNER-APPROVED: <PR_HEAD_SHA>` from Burkay and all applicable real CI checks. A new commit invalidates the old approval. Implementation tasks remain serialized and product approvals 1/2 remain separate user actions. The owner-authorized PR #38 was merged; PR #39 is a separate stacked transition and must be reconciled with `main` before acceptance.
+Burkay Çakar (@cakarburkayy) is the sole ordinary final approver for project phases. Peer reviews are optional. The trusted gate uses an authenticated, current-head `GENESIS-OWNER-APPROVED: <PR_HEAD_SHA>` comment, except the narrowly scoped historical PR #45 delegation recorded in ADR 0006. A new head SHA invalidates a previous approval; CI and ancestry gates remain mandatory. PR #38 and PR #39 are already merged.

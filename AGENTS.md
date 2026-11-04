@@ -1,5 +1,7 @@
 # Repository Codex instructions — Project Genesis v2.0
 
+> **For the ChatGPT orchestrator:** After owner approval and merge, [`docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md`](docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md) is the canonical operational reference. This file provides instructions for Codex; ChatGPT does not automatically read GitHub files. The orchestrator must not generate a new development task prompt without verifying the live `main` SHA and producing a source audit certificate. If the referenced protocol is not yet present on `main`, report `SOURCE_BLOCKED`.
+
 Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, TypeScript, C#, Go, C++ and local Falcon-Mamba 7B**, all P0 first-delivery); preserve owner-approved Master Architecture v2.0 and Step-by-Step Development Guide v2.0.
 
 ## Source hierarchy

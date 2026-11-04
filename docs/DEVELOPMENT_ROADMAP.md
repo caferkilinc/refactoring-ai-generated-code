@@ -1,14 +1,16 @@
 # Genesis v2.0 transition and mandatory release scope
 
+> **Live-state precedence:** This roadmap preserves dated historical planning snapshots. As of audited `main` `3d43a94fbf494360dfec1e7fb852cc99100d51eb`, the native graph is 34 tasks / 69 edges; F00-PLAN #8 and F00-V0 #9 were accepted, and Alperen Enes Yaman is the active owner for F02-CONTRACT #11 (implementation NOT_STARTED). Always re-fetch current `main`, registry, acceptance and Issue #11 before a new task. Approved SRS remains v0.4.0. After owner approval and merge, the [v2.1 canonical orchestration protocol](governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md) controls next-task compilation. Older paragraphs below describing pending graph sync or Burkay/Cafer as active are historical, not active instructions.
+
 Owner decision (2026-10-27): 31 existing technical issues and 54 original dependencies are retained, with three new unassigned P0 issues (#40–#42) and a staged 34-task / 69-edge dependency graph, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is pre-Genesis bootstrap and was merged to `main` on Burkay Çakar's explicit approval (`5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`). Burkay is the sole required approval authority; other reviewers are optional. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
 
 # Development Roadmap — PROJECT GENESIS v2.0
 
-**Status:** owner-approved implementation plan; sequential application NOT_STARTED, native graph sync pending; no Genesis handoff accepted yet. **Last update:** 2026-10-27. **Due:** 2027-01-01; exact time UNKNOWN.
+**Status:** Owner-approved implementation roadmap; sequential execution IN_PROGRESS, native 34-task/69-edge graph VERIFIED, first two accepted rotation tasks F00-PLAN and F00-V0; current task F02-CONTRACT / #11 assigned to Alperen, implementation NOT_STARTED at inspected baseline. **Original planning date:** 2026-10-27. **Delivery target:** 2027-01-01, exact time UNKNOWN.
 
 ## Authority and ordering
 
-Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: PROJECT GENESIS v2.0. Original 31 task IDs and their 54 live native prerequisite edges are retained; the new 34-task plan has 69 intended edges, but new native relations are **PENDING_SAFE_SYNC** (not yet verified live). Old date windows are preliminary, NOT binding allocations and NOT proof that all mandatory scope fits before the deadline.
+Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: approved Genesis v2.0 and (after merge) v2.1 operational protocol. The 31 original tasks/54 native edges remain intact; the 34-task/69-edge live graph was independently verified. Historical date windows are nonbinding estimates, not proof of future feasibility.
 
 Only ONE active implementation developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. Do not treat issue assignee, epic historical role or model expertise as task authorization. Orchestrator selects one ready task from verified state and hard prerequisites; current execution state is in `.github/task-plan.json#sequential_execution` and [project status](PROJECT_STATUS.md). The canonical source for dependencies is the task registry and GitHub native issue edges.
 
@@ -27,7 +29,7 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 
 ## Technical task registry and mandatory dependencies — revised 2026-10-27
 
-**34 P0 tasks = 31 existing + 3 added (#40–#42).** The original 54 live native issue edges are preserved. The new 69-edge directed task plan has been recorded in `.github/task-plan.json`, but GitHub native issue parent/dependency updates **remain pending**; no downstream task may claim prerequisites accepted until that graph is reconciled.
+**34 P0 tasks = 31 original + 3 additional (#40–#42).** The original 54 native dependency edges remain, with 15 added and the complete 69-edge native graph verified. Prerequisite acceptance is still checked separately for each next task; a dependency edge is not completion evidence.
 
 | Plan ID | Issue | P | Scope | Prerequisite Plan IDs | Registry status |
 |---|---:|---|---|---|---|
@@ -82,16 +84,17 @@ Every milestone requires actual task output, focused and integration verificatio
 
 ## Current transition and release risks
 
-1. Bootstrap PR #38 remains open and must be independently reviewed and owner-authorized to merge.
+1. Historical transition: PR #38 and #39 have already been merged. Their former open/review requirements are no longer blockers. Current changes must satisfy current approval, CI and safe-merge policy.
 2. Fixed assignees in live GitHub issues are historic/transition metadata; removal must be coordinated only after compatible gate and review policy is accepted, without issue or dependency deletion.
 3. Both Turkish and English SRS v0.4 are explicitly approved by Burkay on 2026-10-27; do not confuse approval with verified software.
 4. Actual local Falcon-Mamba GPU/runtime, C#/.NET, Go and C++/Clang toolchains, and patch-provider API/consent/budget are not verified.
-5. New #40–#42 issues currently have no GitHub-native #7 parent or blocked_by edges; #34 and #35 still have their historical live predecessors. Sync safely after governance review; do not call the 69 planned edges live.
+5. New #40–#42 issues and all 69 native dependency edges have been synchronized and audited. Any new graph change must be separately authorized and verified; do not delete live dependencies merely to simplify planning.
 6. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
 
-**Next eligible development rotation:** Burkay, starting from no Genesis handoff. The task selected in `sequential_execution` is `F00-PLAN` (issue #8), conditional on successful bootstrap governance migration and accepted owner/SRS requirements. Its acceptance cannot be implied by this draft roadmap.
+**Current authorized development (at audited `main` 3d43a94fbf494360dfec1e7fb852cc99100d51eb):** Alperen Enes Yaman / F02-CONTRACT / Issue #11, implementation NOT_STARTED; conditional next owner İsmail after accepted handoff. The accepted tasks F00-PLAN / #8 and F00-V0 / #9 remain historical evidence, not new assignments. Recheck GitHub on every resumed turn.
 
 ## Final planning acceptance (2026-10-27)
+> **Historical snapshot (2026-10-27):** The following acceptance paragraph records decisions at that date. Statements that the 69-edge graph is pending or Burkay remains active are superseded by the live-state note at the top and subsequent accepted handoffs.
 
 **Approved by:** Burkay Çakar. This roadmap defines all 34 mandatory implementation tasks across the existing six research work packages; every one is P0 and links to current functional/nonfunctional requirements. An audit of the task registry confirms **69 unique, valid directed prerequisite edges, zero missing task references, and no dependency cycle**. All 31 original issues and 54 original live edges are preserved. Exactly 15 new live prerequisite edges and three parent links remain subject to the gated graph synchronization and post-write audit. Start with active F00-PLAN (#8), owner Burkay. F01-GOV (#1) is pre-Genesis governance work, not a completed rotation or authorization to skip F00-PLAN. No second owner begins without accepted handoff.
 
