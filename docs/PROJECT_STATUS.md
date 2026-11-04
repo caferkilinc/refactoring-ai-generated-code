@@ -1,5 +1,16 @@
 # Actual project status
 
+> **Current-state precedence:** This document contains historical
+> project snapshots. Always use the current GitHub main commit,
+> `.github/task-plan.json`, `.github/acceptance.json` and
+> live issue/PR evidence to determine the current task and owner.
+> At the last verified state, F00-PLAN and F00-V0 were accepted;
+> F02-CONTRACT / Issue #11 was assigned and not yet accepted.
+> PR #38 and #39 were merged; the 34-task / 69-edge graph was
+> verified. The Turkish and English SRS v0.4.0 were approved.
+> Historical statements below do not override newer verified
+> evidence. Release remains NOT_READY.
+
 Audited 2026-10-22: main `7e068040c3a4fb1a2f32783a4c592dc974324f36`, tree `4cb63e9e40fc88ae19cd83eadc538f951601b123`. Ten September commits and eight Markdown files are preserved. There is no application package, executable product test suite, measured refactoring experiment or deployed model in that base.
 
 | Phase | Actual state | Evidence / next acceptance |
@@ -90,3 +101,100 @@ SRS v0.4 TR/EN review drafts have 62 FR + 17 NFR each; no final owner sign-off y
 **Application code baseline:** Read-only GitHub tree inspection of main merge commit `5c297836b9ec70112e7b662eac05ec966543a134` found **53 tracked files; no backend/, frontend/ or tests/e2e/ directories**. All seven real language adapters, real Falcon-Mamba service, sandboxed product workflows and release verification are **NOT_STARTED/NOT_VERIFIED**, not production-ready. The 34-task planning effort range **436–666 person-hours** is a historical estimate, not committed capacity or a proven 2027-01-01 forecast.
 
 **Final phase classification:** Requirements / architecture / planning governance: **OWNER_APPROVED**. Native issue dependency graph: **VERIFIED**. Production implementation: **NOT_STARTED**. Release: **NOT_READY**. The next step is a separately authorized, single Burkay Codex task contract derived from the current main HEAD and live task preflight; it has intentionally NOT been generated during planning sign-off.
+
+## F00-PLAN local research baseline — 2026-11-02
+
+Burkay's authorized F00-PLAN (#8) task uses main baseline `67233482f2d10462933328c4b162d150bb4b0993`
+on local branch `docs/8-freeze-evidence-protocol`. The [research protocol](DECISIONS/0005-f00-research-baseline.md)
+defines selection/freeze, immutable V0/tests, failure-inclusive quality/behavior
+measurement and three matched sequential/parallel repetitions. Dataset **NOT_FROZEN**,
+pilot/application **NOT_STARTED**, research **NOT_RUN**; all seven languages and real
+Falcon-Mamba remain mandatory P0. Local check/acceptance outcomes are in [report.md](../report.md).
+
+Course approval: Burkay reports Hakan Çağlar's verbal approval on 2026-10-28 and
+explicitly accepts it for AC-09; this is **REPORTED**, not independently documented.
+Alperen Enes Yaman and Taha Uğur Toyran are owner-reported GPU/API resource contacts;
+actual hardware/runtime/API/budget/consent access remains **UNKNOWN** and relevant
+later execution gates remain blocked. No new technical dependency or owner assignment
+is created. Burkay authorized commit/push and owner approval for F00-PLAN on
+2026-11-02. Publication evidence is recorded in [report.md](../report.md) and the
+final chat delivery receipt. Merge and orchestrator acceptance remain separate;
+Burkay remains current owner, Cafer is conditional on accepted handoff, and release
+is **NOT_READY**. F00-V0 has not started; F00-PLAN is not the whole F00 milestone.
+
+**Required at every subsequent task handoff:** deliver the actual report in chat
+via a commit-pinned link/accessible artifact together with the full verified SHA,
+commit link, real check/PR results and remaining blockers. A filename alone is
+insufficient. See [ADR 0005 section 8](DECISIONS/0005-f00-research-baseline.md).
+
+## F00-PLAN accepted handoff and Cafer task assignment — 2026-11-02
+
+**Decision:** ACCEPTED; explicit project-owner authorization, verified PR #44 current-head approval (`a281caec295487b78371bac1e106cb378fa64bba`), successful Governance CI run [41515819414](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515819414), successful dependency/merge-readiness run [41515952397](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515952397), merge to `main` at [`ac321cb43fdea3f6b64bb1631de8daca8cf1d229`](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ac321cb43fdea3f6b64bb1631de8daca8cf1d229), and GitHub Issue #8 closed as completed. This is **one** accepted handoff; key `F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba` must not advance rotation again. [Full commit-pinned report](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md).
+
+**Next current owner:** Cafer (`@caferkilinc`), current assigned task **F00-V0 / #9**. Conditional next owner if accepted: Alperen Enes Yaman (`@Yaman-A-E`). Do not mark Cafer's work complete before tests, Burkay current-HEAD approval, merge and accepted report. Verified F00-PLAN protocol does **not** mean the F00 Java pilot, frozen experimental dataset, production software or end-to-end tests exist. Dataset `NOT_FROZEN`, pilot `NOT_STARTED`, study `NOT_RUN`, release `NOT_READY`. Academic verbal course approval remains **REPORTED** evidence accepted for the F00-PLAN task only; GPU/provider/toolchain access remains UNKNOWN.
+
+## F00-V0 local Java pilot — 2026-11-03
+
+Cafer's authorized task uses main `aa7d2c810a3c19dbc92bd6efa69c517a598dde7e`
+on `feature/9-java-v0-pilot`. The [pilot and reproduction instructions](../experiments/java-pilot/README.md)
+provide one AI-generated in-memory inventory/order implementation, Java 21,
+Maven 3.9.11, ten external JUnit 5 regressions, genuine prompt/attempt evidence
+and distinct source/test SHA-256 manifests. Initial build and a clean temporary
+derivative each passed ten tests; local JAR bytes matched. Integrity rejection
+probes and a deliberate stock-update regression were tested only in disposable
+derivatives; original source and tests remain unchanged.
+
+State: **IMPLEMENTED_LOCALLY / VERIFIED_LOCALLY / PENDING_PUBLICATION**.
+`pilot-checks` is authored but hosted execution is **NOT_RUN**. Exact serving
+model ID/revision/settings are UNKNOWN because this Codex session does not expose
+them. Local artifact seal is pending Burkay acceptance; dataset **NOT_FROZEN**,
+research **NOT_RUN**, platform and release **NOT_READY**. No owner approval,
+commit/push, PR, merge, Issue #9 completion or accepted handoff is claimed.
+Registry and rotation are unchanged: active Cafer, index 1, Alperen conditional.
+See [latest task report](../report.md) for acceptance and remaining human actions.
+
+## F00-V0 publication and observed hosted verification — 2026-11-03
+
+Cafer explicitly authorized commit/push/PR. [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+is OPEN, targeting main. Published implementation SHA is
+`5ad4c27f591e86c6b81cc140214eff75c7d65922`; a pilot-workflow-only Java version
+format correction was published at `eae5d891e926ec12b87375023f33b813cc1c64a2`.
+The first pilot run failed at setup-java before tests; the offered normalized
+Temurin version fixed it without altering original V0, POM, provenance or tests.
+At the corrected revision, [pilot-checks](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880387)
+passed ten real JUnit tests and integrity checks on Ubuntu;
+[governance](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687880397)
+passed all three required jobs. [Dependency gate](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41687877219)
+passed dependency-gate but failed merge-readiness for missing current Burkay
+approval. SKIPPED preview is not PASS. See [publication evidence](../experiments/java-pilot/evidence/publication-checks.json).
+
+Earlier PENDING_PUBLICATION/NOT_RUN statements are local-stage snapshots.
+This later report/evidence revision requires fresh final-HEAD checks delivered
+in the final chat receipt. No merge, Issue #9 closure, owner approval, task
+acceptance or rotation advancement occurred. Dataset NOT_FROZEN, research
+NOT_RUN and release NOT_READY. Alperen remains conditional.
+
+## F00-V0 accepted and assigned onward — 2026-11-04
+
+**ACCEPTED:** F00-V0 / Issue #9, source
+`d923134da4f9f5a2ab55a5f51fbf9415ff717262`, PR #45 merged at
+`fdd573286834fe15c1ac1c0d51db4ed9b0015db7`. Actual delegated Cafer approval
+is permitted only for that revision by ADR 0006; no Burkay GitHub identity
+was fabricated. Both PR dependency/readiness jobs passed (run 41688380131,
+attempt 3). Merge-main pilot run 41731529368 passed ten JUnit tests and
+integrity; governance run 41731529429 passed 111 tests and documentation/security
+checks. Source/test manifest bytes remain unchanged. Exact model metadata
+limitations remain disclosed and the whole dataset is NOT_FROZEN.
+
+Cafer explicitly authorized formal closeout here and selected Alperen /
+F02-CONTRACT #11. Trusted acceptance #9 and issue completed state are part of
+this administrative closeout. Rotation is consumed exactly once: index 1 → 2,
+key `F00-V0:d923134da4f9f5a2ab55a5f51fbf9415ff717262`. Active owner is
+`Yaman-A-E`, active task F02-CONTRACT; handoff_confirmed=false belongs to
+that new unexecuted task. Conditional next owner is `ismail-cevik`.
+
+[Next-developer preparation prompt](handoffs/F00-V0-to-F02-CONTRACT.md) is ready.
+No next-task code, contract-check workflow, adapter or environment was built.
+F02-CONTRACT's sole hard prerequisite remains accepted #8; #9 is continuity
+evidence, not a new dependency. Research NOT_RUN and release NOT_READY.
+Older pending/owner-only/current-Cafer snapshots above remain historical.

@@ -1,0 +1,30 @@
+GENERATION ATTEMPT: F00-V0-GEN-001
+
+This is the current Codex agent's explicit implementation instruction, derived
+from the owner's saved execution-contract-02.txt. It is a contemporaneous
+generation instruction, not a reconstructed historical provider request.
+
+Generate one minimal Java 21 class org.genesis.pilot.Inventory for a deterministic,
+single-threaded, in-memory inventory/order pilot. Accept an initial map of item
+IDs to non-negative stock, validate null/blank IDs and invalid stock, and copy
+the map so callers cannot change internal stock. Expose availableStock(itemId)
+and placeOrder(itemId, positiveQuantity). Unknown items and invalid quantities
+must be rejected with IllegalArgumentException; insufficient stock must be
+rejected with IllegalStateException. A successful order decrements stock and
+returns an immutable receipt containing itemId, quantity and remainingStock.
+Rejected operations must leave stock unchanged. Exact-stock orders must succeed.
+Use only the Java standard library. Do not introduce persistence, networking,
+threads, frameworks, artificial defects, deliberately poor structure or a CLI.
+The generated Inventory.java bytes are the actual original output for V0.
+
+Also supply a Java 21 Maven build and external JUnit 5 regression tests under
+tests/fixtures/java-inventory-v0, as separately identified harness artifacts.
+Record actual execution outcomes and preserve every source correction, if any,
+before sealing; do not silently revise the original to fit a later test.
+
+Context available to this agent: the two owner startup/execution prompts,
+approved main aa7d2c810a3c19dbc92bd6efa69c517a598dde7e, repository AGENTS.md,
+development-handoff procedure, Issue #9 and its accepted predecessor, relevant
+SRS/architecture/roadmap/status/research-protocol sections, and existing CI and
+security conventions. This file does not claim to be the full model transport
+payload, hidden instructions, or internal reasoning.

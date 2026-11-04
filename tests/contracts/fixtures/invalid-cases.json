@@ -1,0 +1,23 @@
+[
+  {"case":"missing-required-field","code":"INVALID_CONTRACT","changes":[{"target":"finding:quality","field":"rule_id","remove":true}]},
+  {"case":"incorrect-field-type","code":"INVALID_CONTRACT","changes":[{"target":"finding:quality","field":"rule_id","value":42}]},
+  {"case":"invalid-enum","code":"INVALID_CONTRACT","changes":[{"target":"validation:first","field":"behavior_status","value":"SUCCESS"}]},
+  {"case":"invalid-schema-version","code":"INVALID_CONTRACT","changes":[{"target":"$bundle","field":"schema_version","value":"2.0.0"}]},
+  {"case":"invalid-source-range","code":"INVALID_CONTRACT","changes":[{"target":"location:main","field":"end_column","value":1}]},
+  {"case":"broken-entity-reference","code":"BROKEN_REFERENCE","changes":[{"target":"finding:quality","field":"evidence_ids","value":["evidence:missing"]}]},
+  {"case":"inconsistent-source-version","code":"SCOPE_MISMATCH","changes":[{"target":"symbol:main","field":"scope.version_id","value":"version:different"}]},
+  {"case":"missing-evidence-provenance","code":"INVALID_CONTRACT","changes":[{"target":"evidence:analysis","field":"tool","remove":true}]},
+  {"case":"unsupported-capability-misrepresentation","code":"INVALID_CONTRACT","changes":[{"target":"capability:java-parse","field":"status","value":"SUPPORTED"}]},
+  {"case":"security-finding-quality-eligibility","code":"INVALID_CONTRACT","changes":[{"target":"finding:security","field":"eligibility","value":"ELIGIBLE"}]},
+  {"case":"stale-selection-fingerprint","code":"STALE_SELECTION","changes":[{"target":"selection:first","field":"fingerprint","value":"0000000000000000000000000000000000000000000000000000000000000000"}]},
+  {"case":"invalid-context-reference","code":"BROKEN_REFERENCE","changes":[{"target":"context:bounded","field":"included_ids","value":["symbol:missing"]}]},
+  {"case":"critical-context-marked-complete","code":"INVALID_CONTRACT","changes":[{"target":"context:bounded","field":"missing_critical_ids","value":["symbol:missing"]}]},
+  {"case":"out-of-scope-patch-path","code":"FORBIDDEN_SCOPE","changes":[{"target":"patch:first","field":"changed_files.0.path","value":"outside/Main.java"}]},
+  {"case":"missing-validation-reference","code":"BROKEN_REFERENCE","changes":[{"target":"patch:first","field":"validation_ids","value":["validation:missing"]}]},
+  {"case":"missing-security-evidence-is-not-clean","code":"INVALID_CONTRACT","changes":[{"target":"validation:first","field":"security_evidence_ids","value":[]}]},
+  {"case":"cross-contract-identifier-type","code":"BROKEN_REFERENCE","changes":[{"target":"finding:quality","field":"evidence_ids","value":["symbol:main"]}]},
+  {"case":"source-coordinate-coercion","code":"INVALID_CONTRACT","changes":[{"target":"location:main","field":"start_column","value":"2"}]},
+  {"case":"unknown-field","code":"INVALID_CONTRACT","changes":[{"target":"finding:quality","field":"accidental_field","value":true}]},
+  {"case":"absolute-api-source-path","code":"INVALID_CONTRACT","changes":[{"target":"location:main","field":"path","value":"C:/work/secret.java"}]},
+  {"case":"invalid-patch-integrity","code":"VALIDATION_FAILED","changes":[{"target":"patch:first","field":"diff_sha256","value":"0000000000000000000000000000000000000000000000000000000000000000"}]}
+]

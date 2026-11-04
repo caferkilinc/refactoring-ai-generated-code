@@ -1,6 +1,12 @@
 # Yazılım Gereksinimleri Şartnamesi (SRS)
 # Yapay Zekâ Tarafından Üretilen Kodun Güvenli Refactoring ile İyileştirilmesi
 
+> **Güncel kararların önceliği:** Bu belgedeki eski tarihli
+> taslak ve geçiş açıklamaları tarihsel kayıttır.
+> 27 Ekim 2026 tarihinde onaylanan SRS v0.4.0 ve sonradan
+> onaylanmış kapsam kararları geçerlidir. Güncel GitHub görev,
+> PR ve bağımlılık durumları canlı kaynaklardan doğrulanır.
+
 **Kimlik:** RAGC-SRS-001  
 **Sürüm:** 0.4.0  
 **Tarih:** 2026-10-27  

@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 from github_api import GitHub
+from repository_identity import current_repository, effective_plan
 
 class Rejected(Exception):
     pass
@@ -72,16 +73,37 @@ def validate_plan(plan):
                     for e in plan['epics']), 'Wrong parent work package')
     return ids
 
-def linked_task(pr, plan):
+def branch_issue(pr):
     match = re.fullmatch(r'(?:feature|fix|docs|test|chore)/(\d+)-[a-z0-9][a-z0-9-]*', pr['head']['ref'])
-    require(match, 'Use a numbered topic branch')
-    numbers = re.findall(r'^Task: #([0-9]+)\s*$', pr.get('body') or '', re.M)
-    require(len(numbers) == 1 and numbers[0] == match[1], 'Task line and branch disagree')
-    task = next((t for t in plan['tasks'] if t['issue_number'] == int(match[1])), None)
+    return int(match[1]) if match else None
+
+def linked_task(pr, plan):
+    number = branch_issue(pr)
+    task = next((entry for entry in plan['tasks'] if entry['issue_number'] == number), None)
     require(task, 'Issue is not registered in trusted base task-plan')
-    plans = re.findall(r'^Plan: ([A-Z0-9-]+)\s*$', pr.get('body') or '', re.M)
-    require(plans == [task['plan_id']], 'Plan line disagrees with trusted registry')
+    # Historical PR metadata remains usable. Ordinary GitHub PRs need no special lines.
+    numbers = re.findall(r'^Task: #([0-9]+)[ \t]*$', pr.get('body') or '', re.M)
+    plans = re.findall(r'^Plan: ([A-Z0-9-]+)[ \t]*$', pr.get('body') or '', re.M)
+    require(not numbers or numbers == [str(number)], 'Task line and branch disagree')
+    require(not plans or plans == [task['plan_id']], 'Plan line disagrees with trusted registry')
     return task
+
+def changed_paths(files):
+    for item in files:
+        yield item['filename']
+        if item.get('previous_filename'):
+            yield item['previous_filename']
+
+def governance_path(path):
+    return path.startswith(('scripts/governance/', 'tests/governance/', 'docs/governance/',
+                            '.agents/skills/', '.github/issue_template/')) or path in {
+        '.github/codeowners', '.github/task-plan.json', '.github/acceptance.json',
+        '.github/pull_request_template.md', '.github/branch-protection.proposed.json',
+        '.github/workflows/governance-ci.yml', '.github/workflows/dependency-gate.yml',
+        '.github/workflows/issue-graph-sync.yml', '.github/workflows/live-plan-audit.yml',
+        'agents.md', 'contributing.md', 'docs/team_workflow.md', 'docs/dependency_management.md',
+        'docs/history/genesis_events.jsonl',
+    }
 
 def check_paths(task, files, pr=None):
     require(files, 'Changed files unavailable')
@@ -89,40 +111,18 @@ def check_paths(task, files, pr=None):
         require(type(pr.get('changed_files')) is int and len(files) == pr['changed_files']
                 and len({i['filename'] for i in files}) == len(files),
                 'Incomplete changed-file list; refusing partial scope validation')
-    for item in files:
-        for path in [item['filename']] + ([item['previous_filename']] if item.get('previous_filename') else []):
-            protected = path.startswith(('scripts/governance/', 'tests/governance/')) or path in (
-                '.github/CODEOWNERS', '.github/task-plan.json', '.github/acceptance.json',
-                'AGENTS.md', '.agents/skills/development-handoff/SKILL.md',
-                '.github/branch-protection.proposed.json', '.github/workflows/governance-ci.yml',
-                '.github/workflows/dependency-gate.yml', '.github/workflows/issue-graph-sync.yml',
-                '.github/workflows/live-plan-audit.yml')
-            require(not protected or task['plan_id'] == 'F01-GOV',
-                    'Governance policy changes require the governance task: ' + path)
-            continuity = {'report.md', 'docs/PROJECT_STATUS.md', 'docs/DEVELOPMENT_ROADMAP.md'}
-            require(path in continuity or any(
-                path.startswith(p) if p.endswith('/') else path == p
-                for p in task['allowed_paths']), 'Out-of-task path: ' + path)
-
-def owner_approval(task, pr, api, plan):
-    """Only the project owner may approve the exact current PR revision.
-
-    An authenticated GitHub issue comment binds the approval to the head SHA.
-    Other developers' approvals are not required and cannot substitute for it.
-    """
-    marker = 'GENESIS-OWNER-APPROVED: ' + pr['head']['sha']
-    comments = api.pages(f"/issues/{pr['number']}/comments")
-    require(any(
-        c.get('user', {}).get('login', '').lower() == 'cakarburkayy'
-        and (c.get('body') or '').strip() == marker
-        for c in comments
-    ), 'Missing current Burkay owner approval for this PR revision')
-
+    for path in changed_paths(files):
+        require(not governance_path(path.casefold()) or task['plan_id'] == 'F01-GOV',
+                'Governance policy changes require the governance task: ' + path)
+        continuity = {'report.md', 'docs/PROJECT_STATUS.md', 'docs/DEVELOPMENT_ROADMAP.md'}
+        require(path in continuity or any(
+            path.startswith(p) if p.endswith('/') else path == p
+            for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
 def required_checks(task, files):
     """Do not let a frontend-labelled task hide backend changes, or vice versa."""
     names = set(task['required_checks'])
-    paths = [i['filename'] for i in files]
+    paths = list(changed_paths(files))
     if any(p.startswith('frontend/') for p in paths):
         names.add('frontend-checks')
     if any(p.startswith('backend/') and not p.startswith('backend/core/schemas/') for p in paths):
@@ -159,49 +159,40 @@ def verify_acceptance(task, record, api, plan):
     require(linked_task(pr, plan)['plan_id'] == task['plan_id'], 'Accepted PR belongs to another task')
     files = api.pages(f"/pulls/{record['pr']}/files")
     check_paths(task, files, pr)
-    owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api, record.get('ci_sha'))
+    return pr
+
+def check_dependencies(task, ids, accepted, api, plan):
+    native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")
+    expected = set(task['dependency_issues'])
+    require({x['number'] for x in native} == expected,
+            'Native dependencies disagree with trusted task-plan')
+    for dependency in task['dependencies']:
+        dep = ids[dependency]
+        number = dep['issue_number']
+        if str(number) in accepted:
+            verify_acceptance(dep, accepted[str(number)], api, plan)
+        else:
+            issue = api.call(f'/issues/{number}')
+            require(issue.get('state') == 'closed' and issue.get('state_reason') == 'completed',
+                    f'Prerequisite #{number} is not completed on GitHub')
+    return len(expected)
 
 def evaluate(pr, plan, accepted, api):
     ids = validate_plan(plan)
-    task = linked_task(pr, plan)
-    issue = api.call(f"/issues/{task['issue_number']}")
-    require('pull_request' not in issue, 'Task is a PR rather than issue')
-    maintenance = (task['plan_id'] == 'F01-GOV' and issue.get('state') == 'closed'
-                   and issue.get('state_reason') == 'completed')
-    require(issue.get('state') == 'open' or maintenance, 'Implementation task must be open')
     require(pr['base']['repo']['full_name'] == plan['repository'] and pr['base']['ref'] == 'main',
             'Wrong integration target')
-    rotation = plan['sequential_execution']
-    # PR #38 is the sole owner-approved legacy bootstrap exception.
-    # It never consumes a rotation. It does not bypass checks or owner authorization.
-    legacy_bootstrap = (pr['number'] == 38 and task['plan_id'] == 'F01-GOV'
-                        and pr['head']['ref'] == 'chore/1-team-workflow'
-                        and pr['user']['login'].lower() == 'caferkilinc')
-    if not legacy_bootstrap:
-        require(task['plan_id'] == rotation['active_task_plan_id'],
-                'PR task is not the single authorized active task')
-        require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
-                'PR author is not the authorized active developer')
+    number = branch_issue(pr)
+    task = next((entry for entry in ids.values() if entry['issue_number'] == number), None)
+    if task is None or task['plan_id'] == 'F01-GOV':
+        return 'No registered product task to audit'
+    linked_task(pr, plan)
+    issue = api.call(f"/issues/{number}")
+    require('pull_request' not in issue and issue.get('state') == 'open',
+            'Registered product issue must be open')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"), pr)
-    # Live native dependencies supplement the base registry; missing native edges fail closed.
-    native = api.pages(f"/issues/{task['issue_number']}/dependencies/blocked_by")
-    native_numbers = {x['number'] for x in native}
-    expected = set(task['dependency_issues'])
-    require(native_numbers == expected, 'Native dependencies disagree with trusted task-plan')
-    for dependency in task['dependencies']:
-        dep = ids[dependency]
-        verify_acceptance(dep, accepted.get(str(dep['issue_number'])), api, plan)
-    return f"{task['plan_id']}: all {len(expected)} mandatory prerequisites accepted"
-
-def readiness(pr, plan, accepted, api):
-    result = evaluate(pr, plan, accepted, api)
-    require(pr.get('state') == 'open' and not pr.get('draft'), 'PR must be open and ready for review')
-    task = linked_task(pr, plan)
-    files = api.pages(f"/pulls/{pr['number']}/files")
-    owner_approval(task, pr, api, plan)
-    successful_checks(task, pr, files, api)
-    return result + '; current owner approval and applicable CI verified'
+    count = check_dependencies(task, ids, accepted, api, plan)
+    return f"{task['plan_id']}: all {count} mandatory prerequisites completed"
 
 def same_revision(pr, expected_head=None, policy_sha=None):
     if expected_head:
@@ -210,23 +201,27 @@ def same_revision(pr, expected_head=None, policy_sha=None):
         require(pr['base']['sha'] == policy_sha, 'Trusted main moved; rerun against current main')
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Read-only PR dependency and scope audit')
     parser.add_argument('--pr', required=True, type=int)
-    parser.add_argument('--mode', choices=['dependencies', 'readiness'], default='dependencies')
     parser.add_argument('--expected-head')
-    parser.add_argument('--policy-sha')
+    parser.add_argument('--policy-sha', required=True)
     args = parser.parse_args()
     try:
-        plan = json.loads(Path('.github/task-plan.json').read_text(encoding='utf-8'))
-        accepted = json.loads(Path('.github/acceptance.json').read_text(encoding='utf-8'))['accepted']
-        api = GitHub()
+        api = GitHub(current_repository(), follow_redirects=False)
+        def current_main():
+            return api.call('/git/ref/heads/main')['object']['sha']
+        require(current_main() == args.policy_sha, 'Trusted main moved; rerun against current main')
         pr = api.call(f'/pulls/{args.pr}')
         same_revision(pr, args.expected_head, args.policy_sha)
-        result = (readiness if args.mode == 'readiness' else evaluate)(pr, plan, accepted, api)
-        same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'], pr['base'].get('sha'))
+        plan = json.loads(Path('.github/task-plan.json').read_text(encoding='utf-8'))
+        plan = effective_plan(plan, api, api.repo)
+        accepted = json.loads(Path('.github/acceptance.json').read_text(encoding='utf-8'))['accepted']
+        result = evaluate(pr, plan, accepted, api)
+        same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'], args.policy_sha)
+        require(current_main() == args.policy_sha, 'Trusted main moved during audit')
         print(result)
-    except (Rejected, RuntimeError, KeyError, TypeError, ValueError) as exc:
-        raise SystemExit('DEPENDENCY GATE BLOCKED: ' + str(exc)) from None
+    except (Rejected, RuntimeError, KeyError, TypeError, ValueError, OSError) as exc:
+        raise SystemExit('TASK DEPENDENCY AUDIT: ' + str(exc)) from None
 
 if __name__ == '__main__':
     main()

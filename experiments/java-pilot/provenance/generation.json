@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task_id": "F00-V0",
+  "baseline_revision": "java-inventory-v0.1",
+  "generation_mode": "current AI coding agent, no separate inference API call",
+  "provider": "OpenAI",
+  "agent": "Codex",
+  "model_id": "UNKNOWN",
+  "model_revision": "UNKNOWN",
+  "generation_settings": "UNKNOWN",
+  "metadata_limitation": "Exact serving model identifier/revision, sampling settings, transport request ID, usage and cost are not exposed to this agent. No historical provider metadata is inferred.",
+  "owner": "caferkilinc",
+  "base_git_commit": "aa7d2c810a3c19dbc92bd6efa69c517a598dde7e",
+  "instruction_artifacts": [
+    "experiments/java-pilot/provenance/execution-contract-02.txt",
+    "experiments/java-pilot/provenance/generation-prompt.txt"
+  ],
+  "attempts": [
+    {
+      "attempt_id": "F00-V0-GEN-001",
+      "provider_request_id": "UNKNOWN (not exposed)",
+      "recorded_at_utc": "2026-11-03T16:42:02.984620+00:00",
+      "timestamp_semantics": "Time the first generated source was captured on disk; provider generation start/end timestamps are not exposed.",
+      "source_output": "experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java",
+      "source_sha256_at_capture": "64578428482fd874797fb56822b50690f30565afbc5c1a4bed2b27128a4d2e21",
+      "outcome": "SUCCESS: compiled with Java 21; all 10 external JUnit tests passed on the first build; no source corrections",
+      "source_corrections": [],
+      "validation_evidence": "experiments/java-pilot/evidence/initial-run.json",
+      "validation_recorded_at_utc": "2026-11-03T16:44:19.552805+00:00"
+    }
+  ],
+  "known_attempt_history": "One actual source-generation attempt in this task. No earlier pilot or attempts were found. No failed attempt is fabricated.",
+  "permissions": "Owner execution contract authorizes this self-contained synthetic pilot, local controlled verification and provenance capture. No third-party uploads, production data, secrets or external model requests are used. Public Git publication is still pending separate authorization.",
+  "retention": "Keep these synthetic research evidence artifacts with repository history; changes to retention/publication remain owner decisions.",
+  "limits": [
+    "This provenance is agent-authored evidence, not an independent provider attestation.",
+    "Full hidden conversation/transport payload and reasoning are not available or reproduced.",
+    "Exact model ID and revision are UNKNOWN; do not claim complete provider provenance.",
+    "Pilot sealing is local; owner acceptance and the >=12-task dataset freeze are pending."
+  ],
+  "harness_artifacts": {
+    "pom": "experiments/original-ai-code/java-inventory-v0/pom.xml",
+    "fixed_tests": "tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java",
+    "origin": "Current Codex agent, same authorized task; external tests are separate from original production source",
+    "test_design": "Observable normal, failure, boundary, state-preservation, input-validation and defensive-copy behavior; no reference implementation mock"
+  }
+}

@@ -1,16 +1,18 @@
 # Genesis v2.0 transition and mandatory release scope
 
+> **Live-state precedence:** This roadmap preserves dated historical planning snapshots. As of audited `main` `3d43a94fbf494360dfec1e7fb852cc99100d51eb`, the native graph is 34 tasks / 69 edges; F00-PLAN #8 and F00-V0 #9 were accepted, and Alperen Enes Yaman is the active owner for F02-CONTRACT #11 (implementation NOT_STARTED). Always re-fetch current `main`, registry, acceptance and Issue #11 before a new task. Approved SRS remains v0.4.0. Follow the [Codex-native protocol and activation conditions](governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) for execution governance. Dated approval and assignment statements below record their historical policy and state.
+
 Owner decision (2026-10-27): 31 existing technical issues and 54 original dependencies are retained, with three new unassigned P0 issues (#40–#42) and a staged 34-task / 69-edge dependency graph, but fixed implementation assignments are removed. Java, Python, JavaScript, TypeScript, Falcon-Mamba 7B, mixed projects and evidence-linked HTML/PDF are all first-delivery **P0**. Historical estimates below are not current staffing commitments; the single active developer follows Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran. PR #38 is pre-Genesis bootstrap and was merged to `main` on Burkay Çakar's explicit approval (`5754ed6eeaeef0cce9bc46264c8baeddfb62f88c`). Burkay is the sole required approval authority; other reviewers are optional. See [TR SRS](SRS.md) and [EN SRS](SRS_EN.md).
 
 # Development Roadmap — PROJECT GENESIS v2.0
 
-**Status:** owner-approved implementation plan; sequential application NOT_STARTED, native graph sync pending; no Genesis handoff accepted yet. **Last update:** 2026-10-27. **Due:** 2027-01-01; exact time UNKNOWN.
+**Status:** Owner-approved implementation roadmap; sequential execution IN_PROGRESS, native 34-task/69-edge graph VERIFIED, first two accepted rotation tasks F00-PLAN and F00-V0; current task F02-CONTRACT / #11 assigned to Alperen, implementation NOT_STARTED at inspected baseline. **Original planning date:** 2026-10-27. **Delivery target:** 2027-01-01, exact time UNKNOWN.
 
 ## Authority and ordering
 
-Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: PROJECT GENESIS v2.0. Original 31 task IDs and their 54 live native prerequisite edges are retained; the new 34-task plan has 69 intended edges, but new native relations are **PENDING_SAFE_SYNC** (not yet verified live). Old date windows are preliminary, NOT binding allocations and NOT proof that all mandatory scope fits before the deadline.
+Technical source: owner-supplied Master Architecture v2.0 and Step-by-Step Development Guide v2.0, [Turkish SRS](SRS.md), [English SRS](SRS_EN.md). Execution source: approved Genesis v2.0 and (after merge) v2.1 operational protocol. The 31 original tasks/54 native edges remain intact; the 34-task/69-edge live graph was independently verified. Historical date windows are nonbinding estimates, not proof of future feasibility.
 
-Only ONE active implementation developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. Do not treat issue assignee, epic historical role or model expertise as task authorization. Orchestrator selects one ready task from verified state and hard prerequisites; current execution state is in `.github/task-plan.json#sequential_execution` and [project status](PROJECT_STATUS.md). The canonical source for dependencies is the task registry and GitHub native issue edges.
+Only ONE active implementation developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. Use the currently effective policy to authorize the registered task and verify its hard prerequisites. Current execution state is in `.github/task-plan.json#sequential_execution` and [project status](PROJECT_STATUS.md). The task registry and GitHub native issue edges govern dependencies.
 
 **Scope elevation approved 2026-10-26:** Falcon-Mamba 7B (#19–#20), full PDF reports (#31), Python (#32), JavaScript/TypeScript (#33) and mixed language (#34) are first-delivery **P0** obligations. P1-only historical scheduling cannot defer them. C#, Go and C++ are mandatory first-delivery P0 under the 2026-10-27 owner decision. Each requires real adapter/source symbols, tests, coverage, safely validated patch E2E and release evidence. P0 may be implemented in dependency order, not concurrently. No unapproved scope change.
 
@@ -27,15 +29,15 @@ Only ONE active implementation developer at a time: Burkay → Cafer → Alperen
 
 ## Technical task registry and mandatory dependencies — revised 2026-10-27
 
-**34 P0 tasks = 31 existing + 3 added (#40–#42).** The original 54 live native issue edges are preserved. The new 69-edge directed task plan has been recorded in `.github/task-plan.json`, but GitHub native issue parent/dependency updates **remain pending**; no downstream task may claim prerequisites accepted until that graph is reconciled.
+**34 P0 tasks = 31 original + 3 additional (#40–#42).** The original 54 native dependency edges remain, with 15 added and the complete 69-edge native graph verified. Prerequisite acceptance is still checked separately for each next task; a dependency edge is not completion evidence.
 
 | Plan ID | Issue | P | Scope | Prerequisite Plan IDs | Registry status |
 |---|---:|---|---|---|---|
-| F00-PLAN | #8 | P0 | Freeze scope, evidence protocol and resource decisions | — | IN PROGRESS |
-| F00-V0 | #9 | P0 | Prepare working Java pilot and immutable experiment baseline | F00-PLAN | NOT STARTED |
+| F00-PLAN | #8 | P0 | Freeze scope, evidence protocol and resource decisions | — | VERIFIED_COMPLETE (PR #44 merged; #8 closed) |
+| F00-V0 | #9 | P0 | Prepare working Java pilot and immutable experiment baseline | F00-PLAN | VERIFIED_COMPLETE — PR #45 merged; accepted Cafer handoff |
 | F01-GOV | #1 | P0 | Establish team workflow, dependency gate and project controls | — | IN PROGRESS |
 | F01-ENV | #10 | P0 | Create reproducible development services and real application checks | F01-GOV | NOT STARTED |
-| F02-CONTRACT | #11 | P0 | Approve CIR, LanguageAdapter and API contracts for parallel development | F00-PLAN | NOT STARTED |
+| F02-CONTRACT | #11 | P0 | Approve CIR, LanguageAdapter and API contracts for parallel development | F00-PLAN | ASSIGNED — Alperen; implementation NOT_STARTED |
 | F02-STATE | #12 | P0 | Implement metadata, state machine, queue and idempotency | F02-CONTRACT, F01-ENV | NOT STARTED |
 | F03-INPUT | #13 | P0 | Implement safe upload, consent and immutable artefacts | F02-STATE | NOT STARTED |
 | F04-JAVA | #14 | P0 | Implement Language Router and Java symbol adapter | F02-CONTRACT, F03-INPUT | NOT STARTED |
@@ -82,19 +84,38 @@ Every milestone requires actual task output, focused and integration verificatio
 
 ## Current transition and release risks
 
-1. Bootstrap PR #38 remains open and must be independently reviewed and owner-authorized to merge.
+1. Historical transition: PR #38 and #39 have already been merged. Their former open/review requirements are no longer blockers. Current changes must satisfy current approval, CI and safe-merge policy.
 2. Fixed assignees in live GitHub issues are historic/transition metadata; removal must be coordinated only after compatible gate and review policy is accepted, without issue or dependency deletion.
 3. Both Turkish and English SRS v0.4 are explicitly approved by Burkay on 2026-10-27; do not confuse approval with verified software.
 4. Actual local Falcon-Mamba GPU/runtime, C#/.NET, Go and C++/Clang toolchains, and patch-provider API/consent/budget are not verified.
-5. New #40–#42 issues currently have no GitHub-native #7 parent or blocked_by edges; #34 and #35 still have their historical live predecessors. Sync safely after governance review; do not call the 69 planned edges live.
+5. New #40–#42 issues and all 69 native dependency edges have been synchronized and audited. Any new graph change must be separately authorized and verified; do not delete live dependencies merely to simplify planning.
 6. New mandatory P0 scope may exceed the remaining capacity; schedule feasibility must be reassessed, not disguised by inaccurate progress percentages.
 
-**Next eligible development rotation:** Burkay, starting from no Genesis handoff. The task selected in `sequential_execution` is `F00-PLAN` (issue #8), conditional on successful bootstrap governance migration and accepted owner/SRS requirements. Its acceptance cannot be implied by this draft roadmap.
+**Current authorized development (at audited `main` 3d43a94fbf494360dfec1e7fb852cc99100d51eb):** Alperen Enes Yaman / F02-CONTRACT / Issue #11, implementation NOT_STARTED; conditional next owner İsmail after accepted handoff. The accepted tasks F00-PLAN / #8 and F00-V0 / #9 remain historical evidence, not new assignments. Recheck GitHub on every resumed turn.
 
 ## Final planning acceptance (2026-10-27)
+> **Historical snapshot (2026-10-27):** The following acceptance paragraph records decisions at that date. Statements that the 69-edge graph is pending or Burkay remains active are superseded by the live-state note at the top and subsequent accepted handoffs.
 
 **Approved by:** Burkay Çakar. This roadmap defines all 34 mandatory implementation tasks across the existing six research work packages; every one is P0 and links to current functional/nonfunctional requirements. An audit of the task registry confirms **69 unique, valid directed prerequisite edges, zero missing task references, and no dependency cycle**. All 31 original issues and 54 original live edges are preserved. Exactly 15 new live prerequisite edges and three parent links remain subject to the gated graph synchronization and post-write audit. Start with active F00-PLAN (#8), owner Burkay. F01-GOV (#1) is pre-Genesis governance work, not a completed rotation or authorization to skip F00-PLAN. No second owner begins without accepted handoff.
 
 **Planning capacity warning:** Current registry estimates sum to **436–666 person-hours** for the 34 tasks. These are historical/rough planning figures, NOT actual executed hours and NOT a credible 2027-01-01 completion forecast without staffing and runtime evidence. The one-active-owner rule prohibits parallel implementation; prioritize mandatory prerequisites and reforecast after the real baseline. No mandatory adapter, Falcon-Mamba, negative-path validation or final report can be silently deferred. The next Codex prompt is intentionally NOT generated by this plan-acceptance phase.
 
 **Sole approval control:** Burkay posts `GENESIS-OWNER-APPROVED: <CURRENT_HEAD_SHA>` in the relevant PR conversation. Peer approvals are optional; checks, Git ancestry, immutable V0 and product acceptance still apply. Implementation readiness and release readiness remain `NOT_READY` until demonstrated.
+
+## Confirmed rotation transition — 2026-11-02
+
+Previous roadmap snapshots indicating F00-PLAN in progress or new native dependencies pending are historical. After successful full issue-graph audit, Burkay-approved PR #44 merged at `ac321cb43fdea3f6b64bb1631de8daca8cf1d229`; Issue #8 is completed, and `.github/acceptance.json` contains the verified exact-HEAD acceptance. **One rotation turn accepted**: Burkay → **Cafer**, now assigned **F00-V0 / #9**. Next owner Alperen is conditional, not authorized. No other task or requirement is thereby completed. Earlier estimated task dates do not establish executed work.
+
+## F00-V0 accepted handoff and next assignment — 2026-11-04
+
+Cafer explicitly accepted the bounded F00-V0 result and selected Alperen for
+F02-CONTRACT / #11 in this chat. PR #45 source
+`d923134da4f9f5a2ab55a5f51fbf9415ff717262` merged at
+`fdd573286834fe15c1ac1c0d51db4ed9b0015db7`; exact delegated approval and real
+PR/main checks are recorded in trusted acceptance #9. This consumes one Cafer
+turn, index 1 → 2, keyed by that task/source pair. Current task is Alperen /
+F02-CONTRACT; conditional successor is İsmail. The only hard prerequisite of
+#11 remains #8; no graph edge or historical estimate was changed.
+[Preparation-only handoff](handoffs/F00-V0-to-F02-CONTRACT.md) is supplied; no
+next-task code or execution contract has been implemented. Earlier Cafer-active
+notes are historical. Dataset NOT_FROZEN; research NOT_RUN; release NOT_READY.

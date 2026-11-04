@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-03T17:48:58.306915+00:00",
+  "pr": 45,
+  "pr_url": "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45",
+  "head_sha": "5ad4c27f591e86c6b81cc140214eff75c7d65922",
+  "runs": [
+    {
+      "id": 41687630454,
+      "name": "Governance CI",
+      "jobs": {
+        "governance-tests": "success",
+        "documentation-checks": "success",
+        "security-checks": "success",
+        "dependency-gate-preview": "skipped"
+      }
+    },
+    {
+      "id": 41687630473,
+      "name": "Dependency gate",
+      "jobs": {
+        "dependency-gate": "success",
+        "merge-readiness": "failure"
+      },
+      "readiness_error": "Missing current Burkay owner approval for this PR revision"
+    },
+    {
+      "id": 41687630491,
+      "name": "Java pilot checks",
+      "jobs": {
+        "pilot-checks": "failure"
+      },
+      "failed_step": "actions/setup-java",
+      "error": "No matching version found for SemVer '21.0.4+7'",
+      "listed_available_version": "21.0.4+7.0.LTS"
+    }
+  ],
+  "bounded_correction": {
+    "path": ".github/workflows/pilot-checks.yml",
+    "from": "21.0.4+7",
+    "to": "21.0.4+7.0.LTS",
+    "reason": "Use the exact vendor-normalized version listed by the failed action; same intended Temurin 21.0.4 build 7. No source/test/manifest edits.",
+    "verification": "Requires actual hosted rerun on the corrected commit; not counted as passing yet."
+  },
+  "approval": "No owner comment present at observation; no impersonation or gate bypass"
+}

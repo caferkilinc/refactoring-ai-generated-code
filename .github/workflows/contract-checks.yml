@@ -1,0 +1,39 @@
+name: Contract checks
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/core/schemas/**'
+      - 'tests/contracts/**'
+      - 'docs/contracts/**'
+      - '.github/workflows/contract-checks.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'backend/core/schemas/**'
+      - 'tests/contracts/**'
+      - 'docs/contracts/**'
+      - '.github/workflows/contract-checks.yml'
+permissions:
+  contents: read
+concurrency:
+  group: contracts-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  contract-checks:
+    name: contract-checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12.14'
+      - name: Install pinned contract dependencies
+        run: python -m pip install --disable-pip-version-check -r tests/contracts/requirements.txt
+      - name: Validate contracts, fixtures and OpenAPI; reject missing or skipped tests
+        run: python -B tests/contracts/run_checks.py
+      - name: Check deterministic schema exports
+        run: python -B -m backend.core.schemas.export --check

@@ -73,8 +73,25 @@ class BilingualRequirementsTests(unittest.TestCase):
             ["cakarburkayy", "caferkilinc", "Yaman-A-E", "ismail-cevik", "tahaugurtoyran"],
             state["team_sequence"],
         )
-        self.assertEqual("cakarburkayy", state["active_owner"])
-        self.assertFalse(state["handoff_confirmed"])
+        team = state["team_sequence"]
+        idx = state["rotation_index"]
+        self.assertIsInstance(idx, int)
+        self.assertIn(idx, range(len(team)))
+        self.assertEqual(team[idx], state["active_owner"])
+        self.assertEqual(team[(idx + 1) % len(team)], state["next_owner_if_accepted"])
+        self.assertFalse(state["handoff_confirmed"])  # active task has not handed off
+        accepted = json.loads((ROOT / ".github/acceptance.json").read_text(encoding="utf-8"))["accepted"]
+        last_id = state["last_confirmed_task_id"]
+        if last_id is None:
+            self.assertEqual(0, idx)
+            self.assertFalse(accepted)
+        else:
+            prev = next((t for t in self.plan["tasks"] if t["plan_id"] == last_id), None)
+            self.assertIsNotNone(prev)
+            evidence = accepted.get(str(prev["issue_number"]))
+            self.assertIsNotNone(evidence)
+            self.assertEqual(f"{last_id}:{evidence['head_sha']}", state["last_accepted_handoff_key"])
+            self.assertRegex(state["last_confirmed_commit"], r"^[0-9a-f]{40}$")
 
 
 if __name__ == "__main__":

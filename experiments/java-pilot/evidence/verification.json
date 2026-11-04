@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-03T16:50:27.699328+00:00",
+  "checks": [
+    {
+      "name": "governance-tests",
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/governance",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_apply_needs_owner_approval_even_when_all_issues_valid (test_assignment_migration.IssueAssignmentMigrationTests.test_apply_needs_owner_approval_even_when_all_issues_valid) ... ok\ntest_dry_run_preserves_all_issues_without_writes (test_assignment_migration.IssueAssignmentMigrationTests.test_dry_run_preserves_all_issues_without_writes) ... ok\ntest_forged_verified_registry_flag_cannot_bypass_live_graph_audit (test_assignment_migration.IssueAssignmentMigrationTests.test_forged_verified_registry_flag_cannot_bypass_live_graph_audit) ... ok\ntest_live_apply_requires_real_graph_even_before_registry_snapshot_updated (test_assignment_migration.IssueAssignmentMigrationTests.test_live_apply_requires_real_graph_even_before_registry_snapshot_updated) ... ok\ntest_missing_task_marker_aborts_without_mutation (test_assignment_migration.IssueAssignmentMigrationTests.test_missing_task_marker_aborts_without_mutation) ... ok\ntest_patch_preserves_objective_and_updates_promoted_priority (test_assignment_migration.IssueAssignmentMigrationTests.test_patch_preserves_objective_and_updates_promoted_priority) ... ok\ntest_repeated_dry_run_is_idempotent_after_exact_cleanup (test_assignment_migration.IssueAssignmentMigrationTests.test_repeated_dry_run_is_idempotent_after_exact_cleanup) ... ok\ntest_unknown_assignee_aborts_without_any_mutation (test_assignment_migration.IssueAssignmentMigrationTests.test_unknown_assignee_aborts_without_any_mutation) ... ok\ntest_accepted_pr_merge_revision_can_be_used (test_audit_regressions.AuditGateTests.test_accepted_pr_merge_revision_can_be_used) ... ok\ntest_actual_backend_path_adds_check_even_on_frontend_task (test_audit_regressions.AuditGateTests.test_actual_backend_path_adds_check_even_on_frontend_task) ... ok\ntest_boolean_pr_number_rejected (test_audit_regressions.AuditGateTests.test_boolean_pr_number_rejected) ... ok\ntest_case_insensitive_owner_login (test_audit_regressions.AuditGateTests.test_case_insensitive_owner_login) ... ok\ntest_credentials_in_evidence_url_rejected (test_audit_regressions.AuditGateTests.test_credentials_in_evidence_url_rejected) ... ok\ntest_current_main_policy_sha_passes (test_audit_regressions.AuditGateTests.test_current_main_policy_sha_passes) ... ok\ntest_current_pr_failed_ci_blocks (test_audit_regressions.AuditGateTests.test_current_pr_failed_ci_blocks) ... ok\ntest_current_pr_missing_ci_blocks (test_audit_regressions.AuditGateTests.test_current_pr_missing_ci_blocks) ... ok\ntest_current_pr_skipped_ci_blocks (test_audit_regressions.AuditGateTests.test_current_pr_skipped_ci_blocks) ... ok\ntest_current_pr_without_owner_approval_fails_readiness (test_audit_regressions.AuditGateTests.test_current_pr_without_owner_approval_fails_readiness) ... ok\ntest_draft_pr_blocks_readiness (test_audit_regressions.AuditGateTests.test_draft_pr_blocks_readiness) ... ok\ntest_duplicate_prerequisite_rejected (test_audit_regressions.AuditGateTests.test_duplicate_prerequisite_rejected) ... ok\ntest_invalid_calendar_date_rejected (test_audit_regressions.AuditGateTests.test_invalid_calendar_date_rejected) ... ok\ntest_mismatched_dependency_numbers_rejected (test_audit_regressions.AuditGateTests.test_mismatched_dependency_numbers_rejected) ... ok\ntest_missing_exact_sha_blocks (test_audit_regressions.AuditGateTests.test_missing_exact_sha_blocks) ... ok\ntest_nan_effort_rejected (test_audit_regressions.AuditGateTests.test_nan_effort_rejected) ... ok\ntest_no_approval_from_read_only_peer (test_audit_regressions.AuditGateTests.test_no_approval_from_read_only_peer) ... ok\ntest_old_head_event_rejected (test_audit_regressions.AuditGateTests.test_old_head_event_rejected) ... ok\ntest_old_policy_sha_rejected (test_audit_regressions.AuditGateTests.test_old_policy_sha_rejected) ... ok\ntest_other_developer_cannot_issue_owner_approval (test_audit_regressions.AuditGateTests.test_other_developer_cannot_issue_owner_approval) ... ok\ntest_other_team_member_cannot_steal_current_task (test_audit_regressions.AuditGateTests.test_other_team_member_cannot_steal_current_task) ... ok\ntest_outsider_cannot_claim_registered_task (test_audit_regressions.AuditGateTests.test_outsider_cannot_claim_registered_task) ... ok\ntest_owner_approval_and_real_checks_pass (test_audit_regressions.AuditGateTests.test_owner_approval_and_real_checks_pass) ... ok\ntest_owner_author_commit_does_not_invalidate_owner_approval (test_audit_regressions.AuditGateTests.test_owner_author_commit_does_not_invalidate_owner_approval) ... ok\ntest_owner_can_approve_own_pr (test_audit_regressions.AuditGateTests.test_owner_can_approve_own_pr) ... ok\ntest_peer_changes_request_is_not_a_required_approval (test_audit_regressions.AuditGateTests.test_peer_changes_request_is_not_a_required_approval) ... ok\ntest_pilot_requires_actual_java_pilot_check (test_audit_regressions.AuditGateTests.test_pilot_requires_actual_java_pilot_check) ... ok\ntest_rename_checks_both_paths (test_audit_regressions.AuditGateTests.test_rename_checks_both_paths) ... ok\ntest_schemas_require_contract_check (test_audit_regressions.AuditGateTests.test_schemas_require_contract_check) ... ok\ntest_string_evidence_rejected (test_audit_regressions.AuditGateTests.test_string_evidence_rejected) ... ok\ntest_task_modules_require_both_checks (test_audit_regressions.AuditGateTests.test_task_modules_require_both_checks) ... ok\ntest_truncated_file_list_fails_closed (test_audit_regressions.AuditGateTests.test_truncated_file_list_fails_closed) ... ok\ntest_unknown_team_member_rejected (test_audit_regressions.AuditGateTests.test_unknown_team_member_rejected) ... ok\ntest_unlinked_commit_identity_does_not_crash (test_audit_regressions.AuditGateTests.test_unlinked_commit_identity_does_not_crash) ... ok\ntest_unrelated_ci_commit_cannot_be_used (test_audit_regressions.AuditGateTests.test_unrelated_ci_commit_cannot_be_used) ... ok\ntest_wrong_base_rejected (test_audit_regressions.AuditGateTests.test_wrong_base_rejected) ... ok\ntest_wrong_parent_rejected (test_audit_regressions.AuditGateTests.test_wrong_parent_rejected) ... ok\ntest_directory_link_not_followed (test_audit_regressions.HygieneTests.test_directory_link_not_followed) ... ok\ntest_file_link_not_followed (test_audit_regressions.HygieneTests.test_file_link_not_followed) ... ok\ntest_invalid_utf8_does_not_hide_ascii_key (test_audit_regressions.HygieneTests.test_invalid_utf8_does_not_hide_ascii_key) ... ok\ntest_nested_environment_blocked (test_audit_regressions.HygieneTests.test_nested_environment_blocked) ... ok\ntest_nested_private_blocked (test_audit_regressions.HygieneTests.test_nested_private_blocked) ... ok\ntest_nested_upload_blocked (test_audit_regressions.HygieneTests.test_nested_upload_blocked) ... ok\ntest_placeholder_environment_example_allowed (test_audit_regressions.HygieneTests.test_placeholder_environment_example_allowed) ... ok\ntest_provider_project_key_detected (test_audit_regressions.HygieneTests.test_provider_project_key_detected) ... ok\ntest_completed_migration_rejects_static_assignees (test_audit_regressions.LivePlanAuditTests.test_completed_migration_rejects_static_assignees) ... ok\ntest_consistent_plan_has_no_errors (test_audit_regressions.LivePlanAuditTests.test_consistent_plan_has_no_errors) ... ok\ntest_date_drift_is_reported (test_audit_regressions.LivePlanAuditTests.test_date_drift_is_reported) ... ok\ntest_dependency_drift_is_reported (test_audit_regressions.LivePlanAuditTests.test_dependency_drift_is_reported) ... ok\ntest_application_task_cannot_replace_governance_tests (test_audit_regressions.PolicyBoundaryTests.test_application_task_cannot_replace_governance_tests) ... ok\ntest_environment_task_can_create_real_application_ci (test_audit_regressions.PolicyBoundaryTests.test_environment_task_can_create_real_application_ci) ... ok\ntest_environment_task_cannot_replace_dependency_workflow (test_audit_regressions.PolicyBoundaryTests.test_environment_task_cannot_replace_dependency_workflow) ... ok\ntest_late_graph_conflict_causes_no_earlier_writes (test_audit_regressions.SyncTests.test_late_graph_conflict_causes_no_earlier_writes) ... ok\ntest_valid_preflight_then_only_expected_additions (test_audit_regressions.SyncTests.test_valid_preflight_then_only_expected_additions) ... ok\ntest_wrong_live_task_identity_aborts_before_first_write (test_audit_regressions.SyncTests.test_wrong_live_task_identity_aborts_before_first_write) ... ok\ntest_accepted_evidence_passes (test_gate.GateTests.test_accepted_evidence_passes) ... ok\ntest_api_failure_cannot_pass (test_gate.GateTests.test_api_failure_cannot_pass) ... ok\ntest_bootstrap_needs_owner_approval_not_independent_review (test_gate.GateTests.test_bootstrap_needs_owner_approval_not_independent_review) ... ok\ntest_branch_body_disagreement_fails (test_gate.GateTests.test_branch_body_disagreement_fails) ... ok\ntest_closed_alone_fails (test_gate.GateTests.test_closed_alone_fails) ... ok\ntest_closed_governance_accepts_policy_maintenance (test_gate.GateTests.test_closed_governance_accepts_policy_maintenance) ... ok\ntest_closed_governance_cannot_change_app (test_gate.GateTests.test_closed_governance_cannot_change_app) ... ok\ntest_completed_dependency_reopens_gate (test_gate.GateTests.test_completed_dependency_reopens_gate) ... ok\ntest_current_live_rotation_requires_cafer_for_f00_v0 (test_gate.GateTests.test_current_live_rotation_requires_cafer_for_f00_v0) ... ok\ntest_cycle_fails (test_gate.GateTests.test_cycle_fails) ... ok\ntest_failed_ci_fails (test_gate.GateTests.test_failed_ci_fails) ... ok\ntest_independent_branch_allowed (test_gate.GateTests.test_independent_branch_allowed) ... ok\ntest_legacy_bootstrap_pr38_can_be_audited_without_advancing_rotation (test_gate.GateTests.test_legacy_bootstrap_pr38_can_be_audited_without_advancing_rotation) ... ok\ntest_legacy_bootstrap_wrong_author_is_denied (test_gate.GateTests.test_legacy_bootstrap_wrong_author_is_denied) ... ok\ntest_mandatory_dependency_blocks (test_gate.GateTests.test_mandatory_dependency_blocks) ... ok\ntest_missing_check_fails (test_gate.GateTests.test_missing_check_fails) ... ok\ntest_missing_evidence_fails (test_gate.GateTests.test_missing_evidence_fails) ... ok\ntest_native_mismatch_fails (test_gate.GateTests.test_native_mismatch_fails) ... ok\ntest_non_owner_cannot_submit (test_gate.GateTests.test_non_owner_cannot_submit) ... ok\ntest_other_task_cannot_start_before_handoff (test_gate.GateTests.test_other_task_cannot_start_before_handoff) ... ok\ntest_other_user_cannot_approve (test_gate.GateTests.test_other_user_cannot_approve) ... ok\ntest_owner_approved_first_delivery_is_all_p0 (test_gate.GateTests.test_owner_approved_first_delivery_is_all_p0) ... ok\ntest_owner_is_not_excluded_when_commit_author (test_gate.GateTests.test_owner_is_not_excluded_when_commit_author) ... ok\ntest_p1_cannot_block_p0 (test_gate.GateTests.test_p1_cannot_block_p0) ... ok\ntest_peer_review_not_required (test_gate.GateTests.test_peer_review_not_required) ... ok\ntest_project_owner_may_authorize_own_work (test_gate.GateTests.test_project_owner_may_authorize_own_work) ... ok\ntest_report_scope_is_allowed_without_bypassing_governance_policy (test_gate.GateTests.test_report_scope_is_allowed_without_bypassing_governance_policy) ... ok\ntest_research_scope_cannot_hide_app_code (test_gate.GateTests.test_research_scope_cannot_hide_app_code) ... ok\ntest_rotation_mismatch_fails_closed (test_gate.GateTests.test_rotation_mismatch_fails_closed) ... ok\ntest_stale_owner_approval_fails (test_gate.GateTests.test_stale_owner_approval_fails) ... ok\ntest_stale_sha_fails (test_gate.GateTests.test_stale_sha_fails) ... ok\ntest_unknown_issue_fails (test_gate.GateTests.test_unknown_issue_fails) ... ok\ntest_unknown_prerequisite_fails_closed (test_gate.GateTests.test_unknown_prerequisite_fails_closed) ... ok\ntest_unmerged_fails (test_gate.GateTests.test_unmerged_fails) ... ok\ntest_untrusted_check_fails (test_gate.GateTests.test_untrusted_check_fails) ... ok\ntest_bilingual_requirement_identity_and_priority (test_srs_parity.BilingualRequirementsTests.test_bilingual_requirement_identity_and_priority) ... ok\ntest_new_scope_preserves_original_graph_and_blocks_release_without_adapters (test_srs_parity.BilingualRequirementsTests.test_new_scope_preserves_original_graph_and_blocks_release_without_adapters) ... ok\ntest_no_immutable_person_assignments_in_technical_registry (test_srs_parity.BilingualRequirementsTests.test_no_immutable_person_assignments_in_technical_registry) ... ok\ntest_owner_promoted_mandatory_milestones (test_srs_parity.BilingualRequirementsTests.test_owner_promoted_mandatory_milestones) ... ok\n\n----------------------------------------------------------------------\nRan 102 tests in 0.067s\n\nOK\n",
+      "result": "PASS"
+    },
+    {
+      "name": "documentation-checks",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/governance/check_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Local documentation links and required artefacts verified\n",
+      "stderr": "",
+      "result": "PASS"
+    },
+    {
+      "name": "security-checks",
+      "command": [
+        "python3",
+        "-B",
+        "scripts/governance/security_check.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository hygiene checks passed; not a claim of full security analysis\n",
+      "stderr": "",
+      "result": "PASS"
+    },
+    {
+      "name": "integrity",
+      "command": [
+        "python3",
+        "-B",
+        "experiments/java-pilot/verify_integrity.py"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS v0-source: 5 files; manifest SHA-256 1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376\nPASS fixed-tests: 1 files; manifest SHA-256 d5f17c053d0e9d6f0e7e6a7b2a51c8039edbb42d8a0b025a46a9193740b63028\n",
+      "stderr": "",
+      "result": "PASS"
+    },
+    {
+      "name": "tracked-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "result": "PASS"
+    },
+    {
+      "name": "workflow-syntax",
+      "command": [
+        "ruby",
+        "-e",
+        "require \"yaml\"; d=YAML.load_file(ARGV[0]); abort \"wrong job\" unless d.fetch(\"jobs\").keys == [\"pilot-checks\"]; puts \"Workflow YAML parsed; pilot-checks job present\"",
+        ".github/workflows/pilot-checks.yml"
+      ],
+      "exit_code": 0,
+      "stdout": "Workflow YAML parsed; pilot-checks job present\n",
+      "stderr": "",
+      "result": "PASS"
+    },
+    {
+      "name": "trusted-task-path-policy",
+      "result": "PASS",
+      "files_checked": 28,
+      "method": "Existing gate.check_paths with complete tracked and untracked file inventory for F00-V0"
+    },
+    {
+      "name": "new-file-whitespace",
+      "result": "PASS",
+      "method": "git diff --no-index --check -- /dev/null <each new file>",
+      "errors": []
+    }
+  ],
+  "files_changed": [
+    ".github/workflows/pilot-checks.yml",
+    "docs/PROJECT_STATUS.md",
+    "experiments/README.md",
+    "experiments/java-pilot/README.md",
+    "experiments/java-pilot/evidence/environment.json",
+    "experiments/java-pilot/evidence/initial-run.json",
+    "experiments/java-pilot/evidence/integrity-negative-probes.json",
+    "experiments/java-pilot/evidence/maven-initial.log.json",
+    "experiments/java-pilot/evidence/publication-preflight.json",
+    "experiments/java-pilot/evidence/regression-rejection.json",
+    "experiments/java-pilot/evidence/regression-rejection.log.json",
+    "experiments/java-pilot/evidence/reproduction.json",
+    "experiments/java-pilot/evidence/reproduction.log.json",
+    "experiments/java-pilot/evidence/verification.json",
+    "experiments/java-pilot/manifests/fixed-tests.json",
+    "experiments/java-pilot/manifests/fixed-tests.json.sha256",
+    "experiments/java-pilot/manifests/v0-source.json",
+    "experiments/java-pilot/manifests/v0-source.json.sha256",
+    "experiments/java-pilot/provenance/execution-contract-02.txt",
+    "experiments/java-pilot/provenance/generation-prompt.txt",
+    "experiments/java-pilot/provenance/generation.json",
+    "experiments/java-pilot/reproduce.py",
+    "experiments/java-pilot/verify_integrity.py",
+    "experiments/original-ai-code/README.md",
+    "experiments/original-ai-code/java-inventory-v0/.gitignore",
+    "experiments/original-ai-code/java-inventory-v0/pom.xml",
+    "experiments/original-ai-code/java-inventory-v0/src/main/java/org/genesis/pilot/Inventory.java",
+    "report.md",
+    "tests/fixtures/java-inventory-v0/src/test/java/org/genesis/pilot/InventoryTest.java"
+  ],
+  "build_outputs_in_change_set": false,
+  "sealed_inputs": "verified original source, POM, provenance and fixed tests unchanged",
+  "review": "Production source, external test cases, manifest contents, reproduction helper, workflow permissions/actions/pinned runtime and complete new/modified text reviewed. No unrelated/protected files changed. Build output excluded. No credentials or private user data found by the limited repository hygiene checker and targeted review.",
+  "review_limits": "No full security audit, static analyzer, coverage or product E2E is claimed.",
+  "hosted_checks": {
+    "governance-tests": "NOT_RUN: uncommitted/unpublished task",
+    "documentation-checks": "NOT_RUN: uncommitted/unpublished task",
+    "security-checks": "NOT_RUN: uncommitted/unpublished task",
+    "pilot-checks": "NOT_RUN: uncommitted/unpublished task"
+  },
+  "runtime_harness_fingerprints": {
+    "experiments/java-pilot/verify_integrity.py": "215829fec6c676646d063ed515ea5dbe655593cef9ae9b40a04414fc676f43b4",
+    "experiments/java-pilot/reproduce.py": "6cc138de53cc00e9a5286195a9e71b715cf8c0539663b1ace502e129f5390a08",
+    ".github/workflows/pilot-checks.yml": "42bab7912d74d8e09f1a2cf962b7e7b590f1a6966904bbdaba422b4187d39e70"
+  },
+  "git_publication": {
+    "commits_created": "NONE",
+    "push_performed": false,
+    "pr_created": false,
+    "rotation_advanced": false
+  },
+  "status": "PASS",
+  "verification_history": [
+    {
+      "check": "new-file-whitespace",
+      "initial_result": "FAIL",
+      "root_cause": "Natural trailing spaces in three actual Maven output logs",
+      "resolution": "Store exact output losslessly in JSON strings with raw-byte digests and retain original raw logs user-locally; no source/test/manifest or check policy changed.",
+      "initial_errors": [
+        {
+          "file": "experiments/java-pilot/evidence/maven-initial.log",
+          "exit_code": 3,
+          "stdout": "experiments/java-pilot/evidence/maven-initial.log:2: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:7: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:9: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:12: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:16: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:19: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:23: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:26: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:32: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:34: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:36: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/maven-initial.log:37: trailing whitespace.\n+[INFO] \n",
+          "stderr": ""
+        },
+        {
+          "file": "experiments/java-pilot/evidence/regression-rejection.log",
+          "exit_code": 3,
+          "stdout": "experiments/java-pilot/evidence/regression-rejection.log:2: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:7: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:9: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:12: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:16: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:19: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:23: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:26: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:95: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:97: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:98: trailing whitespace.\n+[ERROR] Failures: \nexperiments/java-pilot/evidence/regression-rejection.log:104: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:106: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/regression-rejection.log:114: trailing whitespace.\n+[ERROR] \nexperiments/java-pilot/evidence/regression-rejection.log:118: trailing whitespace.\n+[ERROR] \nexperiments/java-pilot/evidence/regression-rejection.log:121: trailing whitespace.\n+[ERROR] \n",
+          "stderr": ""
+        },
+        {
+          "file": "experiments/java-pilot/evidence/reproduction.log",
+          "exit_code": 3,
+          "stdout": "experiments/java-pilot/evidence/reproduction.log:15: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:20: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:22: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:25: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:29: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:32: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:36: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:39: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:45: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:47: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:49: trailing whitespace.\n+[INFO] \nexperiments/java-pilot/evidence/reproduction.log:50: trailing whitespace.\n+[INFO] \n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "snapshot_note": "Original local-implementation verification. Later authorized publication preflight is recorded separately; no original source/test changes."
+}

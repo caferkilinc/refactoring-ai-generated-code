@@ -1,4 +1,33 @@
 {
   "schema_version": 1,
-  "accepted": {}
+  "accepted": {
+    "8": {
+      "pr": 44,
+      "head_sha": "a281caec295487b78371bac1e106cb378fa64bba",
+      "ci_sha": "a281caec295487b78371bac1e106cb378fa64bba",
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ac321cb43fdea3f6b64bb1631de8daca8cf1d229",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44#issuecomment-6587201791",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515819414",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515952397"
+      ]
+    },
+    "9": {
+      "pr": 45,
+      "head_sha": "d923134da4f9f5a2ab55a5f51fbf9415ff717262",
+      "ci_sha": "fdd573286834fe15c1ac1c0d51db4ed9b0015db7",
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/fdd573286834fe15c1ac1c0d51db4ed9b0015db7",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/d923134da4f9f5a2ab55a5f51fbf9415ff717262/report.md",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45#issuecomment-6617013699",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41688380131/attempts/3",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529368",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529429",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/2584fbd97c6bd5e28e09be4199d895db5ff6791c/docs/DECISIONS/0006-pr45-revision-bound-delegation.md"
+      ]
+    }
+  }
 }

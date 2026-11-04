@@ -1,31 +1,47 @@
 """Small stdlib GitHub client. No credential storage or shell interpolation."""
 import json
 import os
+import re
 import urllib.error
 import urllib.request
+from urllib.parse import unquote
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
 
 class GitHub:
-    def __init__(self, repo=None):
+    def __init__(self, repo=None, *, follow_redirects=True):
         self.repo = repo or os.environ['GITHUB_REPOSITORY']
         self.root = 'https://api.github.com/repos/' + self.repo
+        self.open = (urllib.request.urlopen if follow_redirects
+                     else urllib.request.build_opener(NoRedirect()).open)
 
     def call(self, path, method='GET', data=None, missing_ok=False):
-        if not path.startswith('/') or '..' in path:
+        decoded = unquote(path.split('?', 1)[0])
+        compare = re.fullmatch(r'/compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}', path)
+        if not compare and (not path.startswith('/') or decoded.startswith('//')
+                            or decoded == '/compare' or decoded.startswith('/compare/')
+                            or '..' in path or '..' in decoded or '\\' in decoded):
             raise ValueError('Invalid repository API path')
-        req = urllib.request.Request(self.root + path, method=method,
+        return self._request(self.root if path == '/' else self.root + path, method, data, missing_ok)
+
+    def _request(self, url, method='GET', data=None, missing_ok=False):
+        req = urllib.request.Request(url, method=method,
             data=None if data is None else json.dumps(data).encode(), headers={
                 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
                 'Accept': 'application/vnd.github+json',
                 'X-GitHub-Api-Version': '2022-11-28',
                 'Content-Type': 'application/json'})
         try:
-            with urllib.request.urlopen(req, timeout=30) as response:
+            with self.open(req, timeout=30) as response:
                 raw = response.read()
                 return json.loads(raw) if raw else None
         except urllib.error.HTTPError as exc:
             if exc.code == 404 and missing_ok:
                 return None
-            raise RuntimeError(f'GitHub API {method} {path}: HTTP {exc.code}') from None
+            raise RuntimeError(f'GitHub API {method} {url}: HTTP {exc.code}') from None
 
     def pages(self, path, key=None):
         rows = []

@@ -1,0 +1,19 @@
+{
+  "started_at_utc": "2026-11-03T16:46:47.810554+00:00",
+  "finished_at_utc": "2026-11-03T16:46:49.930778+00:00",
+  "command": [
+    "/Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn",
+    "-B",
+    "-ntp",
+    "-f",
+    "experiments/original-ai-code/java-inventory-v0/pom.xml",
+    "clean",
+    "verify"
+  ],
+  "exit_code": 1,
+  "expected": "Maven must fail when a business regression violates the fixed tests",
+  "result": "PASS: actual regression rejected",
+  "mutation": "Omit stock.put(itemId, remaining) in a disposable derivative only",
+  "log": "experiments/java-pilot/evidence/regression-rejection.log.json",
+  "scope": "Intentional harness negative probe, not a source-generation failure or a change to original V0/tests; canonical integrity checked separately"
+}

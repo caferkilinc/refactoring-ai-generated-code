@@ -24,7 +24,7 @@ FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components
 
 ## Working together
 
-Start with [CONTRIBUTING](CONTRIBUTING.md) and [team workflow](docs/TEAM_WORKFLOW.md). Exactly one orchestrator-authorized developer may implement the dependency-ready task. Numbered topic branches remain for scoped review, with `main` as integration branch. Burkay is the sole required final approver; peer reviews are optional. PR #38 and #39 are already merged. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
+Start with [CONTRIBUTING](CONTRIBUTING.md), [team workflow](docs/TEAM_WORKFLOW.md) and the [GitHub development workflow](docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md). One authorized developer implements the registered task on a numbered topic branch. `main` is the integration branch. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
 - [Project board](https://github.com/users/caferkilinc/projects/1)
 - [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (both owner-approved v0.4)
@@ -49,9 +49,9 @@ These checks validate development infrastructure. They do not demonstrate produc
 
 The owner-approved target is the v2.0 modular secure-refactoring pipeline, including immutable V0, per-language analysis, deterministic security + local Falcon-Mamba 7B, two user approval gates, bounded context/LLM patching, individual and combined validation, Python/JS/TS, and measured ZIP/HTML/PDF/history. **This repository has not yet proven these product capabilities are implemented.** See [TR SRS](docs/SRS.md), [EN SRS](docs/SRS_EN.md), [architecture](docs/ARCHITECTURE.md), and [roadmap](docs/DEVELOPMENT_ROADMAP.md).
 
-Implementation ownership rotates one at a time: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat**, after evidence-based handoff acceptance. PR #38 predates this policy and cannot be counted as a rotation. `main` is the accepted integration branch; topic PR review remains mandatory. Current open PR #38 needs a separate owner merge authorization. The first delivery scope includes Falcon-Mamba, Python/JS/TS and full reporting; model hardware/provider capability is not yet verified.
+Implementation ownership rotates one at a time: **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat**, after evidence-based handoff acceptance. PR #38 was merged as pre-Genesis work and consumed no rotation. `main` is the accepted integration branch and topic PR review remains mandatory. The first delivery scope includes Falcon-Mamba, Python/JS/TS and full reporting; model hardware/provider capability is not yet verified.
 
-**2026-10-27 change note:** See [TR SRS v0.4](docs/SRS.md), [EN SRS v0.4](docs/SRS_EN.md) and [roadmap](docs/DEVELOPMENT_ROADMAP.md). 34 planned tasks and 69 planned edges replace the old 31-task *planning total*, but the 31 original issues and 54 live native edges have been preserved. New GitHub native issue edges remain pending, not verified. No PR #38 merge authorization has been granted.
+**2026-10-27 change note:** See [TR SRS v0.4](docs/SRS.md), [EN SRS v0.4](docs/SRS_EN.md) and [roadmap](docs/DEVELOPMENT_ROADMAP.md). The plan expanded to 34 tasks and 69 edges while preserving the 31 original issues and 54 original edges.
 
-### Approval authority, 2026-10-27
-Project owner Burkay Çakar alone provides required final authorization across development phases and merge decisions. Peer reviewer approvals are not required. A current-HEAD owner approval comment and actual task-appropriate CI remain mandatory for future task acceptance. PR #38 was owner-approved and merged as pre-Genesis work; PR #39 prepares seven-language planning on top of that foundation.
+### Historical approval, 2026-10-27
+The owner-only v2 decision and pre-Genesis PR #38 approval remain part of the [decision history](docs/DECISIONS/0004-sole-owner-approval.md). Follow the currently effective protocol for new work.

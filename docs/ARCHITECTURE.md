@@ -1,5 +1,7 @@
 # Architecture and safety contracts
 
+> **Governance (separate from runtime architecture):** Follow the [GitHub development workflow](governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) for repository work. The approved SRS and this architecture govern product behavior.
+
 This is the intended architecture, not a list of delivered capabilities. Sources: master system architecture, step-by-step development guide and approved five-person work-package plan. The course deadline and account confirmations supersede the older relative 12-week schedule. Private source PDFs/DOCX are not republished.
 
 | Component | Responsible runtime module | Contract/output |
@@ -38,11 +40,11 @@ Real local Falcon-Mamba 7B is **mandatory P0**. Its exact model revision, runtim
 
 ## Development governance boundary (approved 2026-10-26)
 
-The component labels above are *technical runtime responsibilities*, never permanent human task assignments. PROJECT GENESIS v2.0 authorizes one active developer at a time: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. No implementation handoff is accepted without human-reviewed Git publication and orchestrator acceptance. [TR SRS](SRS.md) / [EN SRS](SRS_EN.md) are review drafts pending final owner approval. PR #38 is legacy pre-Genesis preparation, not a completed rotation turn.
+The component labels above are *technical runtime responsibilities*, not permanent personal assignments. Project Genesis operates a single implementation owner: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → repeat. Handoffs require verified publication and acceptance. [TR SRS](SRS.md) and [EN SRS](SRS_EN.md) v0.4.0 were APPROVED on 2026-10-27. PR #38 is merged pre-Genesis bootstrap and consumed no rotation turn.
 
 ## Developer rotation is distinct from module expertise
 
-2026-10-26 owner decision: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay. The expertise column does **not** preassign task ownership. The orchestrator selects one ready task and owner at a time. PR #38 predates the rotation and requires independent review plus separate owner merge authorization. Refer to [SRS Türkçe](SRS.md) and [SRS English](SRS_EN.md) review drafts.
+2026-10-26 owner decision: Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay. Expertise does not preassign ownership; the orchestrator chooses a ready task from verified prerequisites. PR #38/#39 were merged after the relevant approvals and checks; their historical review instructions are not current open-PR blockers.
 
 ## Seven mandatory language adapters — approved 2026-10-27
 
@@ -52,10 +54,10 @@ The first-delivery language set is **Java, Python, JavaScript, TypeScript, C#, G
 - Go F14-GO (#41): go/parser/go/types, modules/workspaces, go test/coverage, appropriate static rules and safe source patch evidence.
 - C++ F14-CPP (#42): Clang AST/clang-tidy, real compilation database and compiler flags, native build/test/coverage in restricted sandbox; absent headers/compile context must yield UNVERIFIED.
 
-The 34-task, 69-dependency *planned* graph contains required join gates F14-MIX (#34) and F15-P0 (#35). Only the original 54 native GitHub edges are currently established; new issue parent/dependency links are **PENDING_SAFE_SYNC**. The expanded scope does not change the fixed developer rotation, PR #38 reviewer independence or owner-controlled merge authorization. Burkay is technical lead/audit coordinator for PR #38; this does not rewrite Cafer's GitHub PR authorship or waive independent review.
+The 34-task / 69-dependency GitHub-native graph was subsequently verified; the original 31 tasks / 54 edges were preserved. Required F14-MIX (#34) and F15-P0 (#35) join gates remain subject to actual accepted prerequisites. No approval, CI check or historical transition is equivalent to product implementation. PR #38 approval and review are historical, not outstanding.
 
 ## Mandatory seven-language first-delivery architecture — 2026-10-27
 
 Owner-approved P0: Java, Python, JavaScript, TypeScript, C# (Roslyn/.NET), Go (module-aware parser/types) and C++ (Clang/compilation database) are **all required working adapters**, together with real Falcon-Mamba 7B, two user approval gates, isolated original/frozen-test patch validation and HTML/PDF/ZIP/history. Older language-extension text is superseded by this decision.
 
-F14-CS (#40), F14-GO (#41) and F14-CPP (#42) depend on F02-CONTRACT, F06-SANDBOX and F11-VALIDATE. Each must report real parse/symbol/quality/build/test/coverage and safe-patch validation evidence, plus a negative regression case; missing toolchains are UNVERIFIED, not passing. F14-MIX (#34) depends on all new adapters as well as Python and JS/TS; F15-P0 (#35) depends on F14-MIX, F07B-LOCAL and F13-ADV. Original 31 tasks/54 edges are retained; the 34-task/69-edge **planned** graph awaits native GitHub synchronization. See [SRS TR](SRS.md) and [SRS EN](SRS_EN.md).
+F14-CS (#40), F14-GO (#41) and F14-CPP (#42) depend on F02-CONTRACT, F06-SANDBOX and F11-VALIDATE. Each requires real parse/symbol/quality/build/test/coverage and safe-patch evidence, including failure/regression cases; missing toolchains remain UNVERIFIED. F14-MIX (#34) joins the language adapters; F15-P0 (#35) requires F14-MIX, F07B-LOCAL and F13-ADV. Use live accepted prerequisites rather than the older PENDING_SAFE_SYNC narrative. See [SRS TR](SRS.md) and [SRS EN](SRS_EN.md).

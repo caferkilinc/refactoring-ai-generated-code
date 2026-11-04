@@ -1,0 +1,59 @@
+{
+  "recorded_at_utc": "2026-11-03T16:43:32.262761+00:00",
+  "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "python": "3.14.3",
+  "runtime_checks": [
+    {
+      "command": [
+        "java",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "openjdk version \"21.0.4\" 2024-07-16 LTS\nOpenJDK Runtime Environment Temurin-21.0.4+7 (build 21.0.4+7-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.4+7 (build 21.0.4+7-LTS, mixed mode)\n"
+    },
+    {
+      "command": [
+        "/Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11/bin/mvn",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout": "Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)\nMaven home: /Users/caferkilinc/.local/share/project-genesis/apache-maven-3.9.11\nJava version: 21.0.4, vendor: Eclipse Adoptium, runtime: /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home\nDefault locale: tr_TR, platform encoding: UTF-8\nOS name: \"mac os x\", version: \"26.6.2\", arch: \"aarch64\", family: \"mac\"\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "git version 2.52.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sw_vers"
+      ],
+      "exit_code": 0,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uname",
+        "-srm"
+      ],
+      "exit_code": 0,
+      "stdout": "Darwin 25.6.0 arm64\n",
+      "stderr": ""
+    }
+  ],
+  "maven_install": {
+    "url": "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.11/apache-maven-3.9.11-bin.tar.gz",
+    "version": "3.9.11",
+    "sha512": "bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978",
+    "scope": "user-local; no global PATH or system package changes"
+  },
+  "execution_boundary": "Owner-authorized self-contained synthetic source and reviewed fixed tests; no user upload, private data, secrets, networking or third-party source in the business pilot. Maven resolves official pinned build/test artifacts. This is controlled local pilot execution, not a validated sandbox or permission to run future untrusted code."
+}
