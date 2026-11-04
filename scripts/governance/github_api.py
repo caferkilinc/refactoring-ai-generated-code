@@ -1,8 +1,10 @@
 """Small stdlib GitHub client. No credential storage or shell interpolation."""
 import json
 import os
+import re
 import urllib.error
 import urllib.request
+from urllib.parse import unquote
 
 class GitHub:
     def __init__(self, repo=None):
@@ -10,7 +12,11 @@ class GitHub:
         self.root = 'https://api.github.com/repos/' + self.repo
 
     def call(self, path, method='GET', data=None, missing_ok=False):
-        if not path.startswith('/') or '..' in path:
+        decoded = unquote(path.split('?', 1)[0])
+        compare = re.fullmatch(r'/compare/[0-9a-f]{40}\.\.\.[0-9a-f]{40}', path)
+        if not compare and (not path.startswith('/') or decoded.startswith('//')
+                            or decoded == '/compare' or decoded.startswith('/compare/')
+                            or '..' in path or '..' in decoded or '\\' in decoded):
             raise ValueError('Invalid repository API path')
         req = urllib.request.Request(self.root + path, method=method,
             data=None if data is None else json.dumps(data).encode(), headers={

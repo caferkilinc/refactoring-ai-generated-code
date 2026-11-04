@@ -4,9 +4,11 @@ import unittest
 from unittest.mock import patch
 
 import test_v3_activation as original
-from v3_activation import (BOOTSTRAP, BRANCH, CHECKOUT, HOTFIX_PATHS, INITIAL_BOOTSTRAP, OWNER,
+from github_api import GitHub
+from v3_activation import (API_COMPAT_PATHS, APPROVED_HOTFIX, BOOTSTRAP, BRANCH, CHECKOUT, HOTFIX_PATHS, INITIAL_BOOTSTRAP, OWNER,
                            REPAIR_BRANCH, REPAIR_MERGE, REPO, WORKFLOWS,
-                           CandidateChecks, checkout_sha, current_pr, hotfix_marker, verify, verify_hotfix)
+                           CandidateChecks, checkout_sha, compatibility_marker, current_pr, hotfix_marker,
+                           verify, verify_compatibility, verify_hotfix)
 import gate
 
 
@@ -59,7 +61,8 @@ class RecoveryTests(unittest.TestCase):
     def test_migration_requires_actual_exact_repair_merge_on_bootstrapped_base(self):
         migration = self.migration
         self.assertEqual(BRANCH, migration['head']['ref'])
-        hotfix = migration['base']['sha']
+        compatibility = migration['base']['sha']
+        hotfix = APPROVED_HOTFIX
         merged = REPAIR_MERGE
         repair = self.repair
         responses = {'/pulls/48': repair, f'/git/commits/{merged}': {'parents': [
@@ -72,6 +75,10 @@ class RecoveryTests(unittest.TestCase):
             f'/compare/{merged}...{hotfix}': {'status': 'ahead', 'ahead_by': 1,
                                            'merge_base_commit': {'sha': merged},
                                            'files': [{'filename': f, 'status': 'modified'} for f in HOTFIX_PATHS]},
+            f'/git/commits/{compatibility}': {'parents': [{'sha': hotfix}]},
+            f'/compare/{hotfix}...{compatibility}': {
+                'status': 'ahead', 'ahead_by': 1, 'merge_base_commit': {'sha': hotfix},
+                'files': [{'filename': f, 'status': 'modified'} for f in API_COMPAT_PATHS]},
             '/issues/1': {'state': 'open'}}
         self.fixture.comments.append({'user': {'login': OWNER},
                                       'body': 'GENESIS-OWNER-APPROVED: ' + repair['head']['sha']})
@@ -82,6 +89,9 @@ class RecoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(gate.Rejected, 'authenticated approval'):
                 verify(migration, self.fixture.plan, self.fixture.accepted, self.api, self.grant, False)
             self.fixture.comments.append({'user': {'login': OWNER}, 'body': hotfix_marker(merged, hotfix)})
+            with self.assertRaisesRegex(gate.Rejected, 'authenticated approval.*API compatibility fix'):
+                verify(migration, self.fixture.plan, self.fixture.accepted, self.api, self.grant, False)
+            self.fixture.comments.append({'user': {'login': OWNER}, 'body': compatibility_marker(compatibility)})
             pilot = next(run for run in self.fixture.runs if run['name'] == 'pilot-checks')
             self.fixture.runs.append(dict(pilot, head_sha=merged))
             before = copy.deepcopy((self.fixture.plan, self.fixture.accepted, self.migration, self.grant))
@@ -260,6 +270,48 @@ class CandidateEvidenceTests(unittest.TestCase):
         files.append(dict(filename='.github/acceptance.json', status='modified'))
         with self.assertRaisesRegex(gate.Rejected, 'exact protected path scope'):
             verify_hotfix(self.api, self.base, self.checkout, [comment])
+
+
+class GitHubComparePathTests(unittest.TestCase):
+    def test_exact_lowercase_sha_pair_and_ordinary_endpoint_reach_http_client(self):
+        comparison = f"/compare/{'a' * 40}...{'b' * 40}"
+        for path in (comparison, '/pulls/49/files?per_page=100'):
+            with self.subTest(path=path), patch.dict('os.environ', {'GH_TOKEN': 'fixture'}), patch(
+                    'github_api.urllib.request.urlopen') as open_url:
+                client = GitHub(REPO)
+                open_url.return_value.__enter__.return_value.read.return_value = b'{"verified":true}'
+                self.assertEqual({'verified': True}, client.call(path))
+                self.assertEqual(client.root + path, open_url.call_args.args[0].full_url)
+
+    def test_malformed_comparisons_and_traversal_never_reach_http_client(self):
+        head, base = 'a' * 40, 'b' * 40
+        for path in (f'/compare/{base}..{head}', f'/compare/{base}....{head}',
+                     f'/compare/{base.upper()}...{head}', f'/compare/{base[:-1]}...{head}',
+                     f'/compare/{base}...{head}?page=1', f'/compare/{base}...{head}/files',
+                     '/compare/main', '/compare%2Fmain', '/issues/../pulls',
+                     '/issues/%2e%2e/pulls', '/issues/%5c../pulls', '//example.org',
+                     'https://example.org/compare/a...b'):
+            with self.subTest(path=path), patch('github_api.urllib.request.urlopen') as open_url:
+                with self.assertRaisesRegex(ValueError, 'Invalid repository API path'):
+                    GitHub(REPO).call(path)
+                open_url.assert_not_called()
+
+    def test_compatibility_revision_cannot_be_replaced_by_another_child_or_extra_path(self):
+        revision = 'd' * 40
+        files = [{'filename': path, 'status': 'modified'} for path in API_COMPAT_PATHS]
+        comparison = {'status': 'ahead', 'ahead_by': 1, 'merge_base_commit': {'sha': APPROVED_HOTFIX},
+                      'files': files}
+        api = unittest.mock.Mock()
+        api.call.side_effect = {f'/git/commits/{revision}': {'parents': [{'sha': APPROVED_HOTFIX}]},
+                                f'/compare/{APPROVED_HOTFIX}...{revision}': comparison}.__getitem__
+        owner = {'user': {'login': OWNER}, 'body': compatibility_marker('e' * 40)}
+        with self.assertRaisesRegex(gate.Rejected, 'authenticated approval'):
+            verify_compatibility(api, revision, [owner])
+        owner['body'] = compatibility_marker(revision)
+        verify_compatibility(api, revision, [owner])
+        files[0] = {'filename': '.github/acceptance.json', 'status': 'modified'}
+        with self.assertRaisesRegex(gate.Rejected, 'exact protected path scope'):
+            verify_compatibility(api, revision, [owner])
 
 
 if __name__ == '__main__':

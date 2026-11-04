@@ -22,6 +22,12 @@ V3 = ROOT / 'docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md'
 REPAIR_MERGE = '07e5ac33e3040b14cdad078d24b85deb281e0e83'
 BOOTSTRAP = '45cc7dd0a67752f92614d0112ccbb65e8b45db11'
 INITIAL_BOOTSTRAP = 'c8d820e2d52485954873cda8f09f0c0ba0413678'
+APPROVED_HOTFIX = '9e5a248743bfaae29896c640991f3608aca3d3e7'
+API_COMPAT_PATHS = {
+    'scripts/governance/github_api.py',
+    'scripts/governance/v3_activation.py',
+    'tests/governance/test_v3_recovery.py',
+}
 HOTFIX_PATHS = {
     '.github/workflows/dependency-gate.yml',
     'scripts/governance/v3_activation.py',
@@ -39,19 +45,32 @@ def hotfix_marker(repair, revision):
     return f'GENESIS-HOTFIX-APPROVED: {REPO} #49 {repair} {revision}'
 
 
-def verify_hotfix(api, repair, revision, comments):
-    gate.require(revision != repair and parents(api, revision) == [repair],
-                 'Expected one protected hotfix immediately after the verified PR #48 merge')
-    comparison = api.call(f'/compare/{repair}...{revision}')
+def compatibility_marker(revision):
+    return f'GENESIS-API-COMPAT-APPROVED: {REPO} #49 {APPROVED_HOTFIX} {revision}'
+
+
+def verify_protected_revision(api, parent, revision, paths, comments, marker, label):
+    gate.require(revision != parent and parents(api, revision) == [parent],
+                 f'Expected one protected {label} immediately after {parent}')
+    comparison = api.call(f'/compare/{parent}...{revision}')
     files = comparison.get('files') or []
     gate.require(comparison['status'] == 'ahead' and comparison['ahead_by'] == 1
-                 and (comparison.get('merge_base_commit') or {}).get('sha') == repair
-                 and len(files) == len(HOTFIX_PATHS)
-                 and {f['filename'] for f in files} == HOTFIX_PATHS
+                 and (comparison.get('merge_base_commit') or {}).get('sha') == parent
+                 and len(files) == len(paths) and {f['filename'] for f in files} == paths
                  and all(f['status'] == 'modified' and not f.get('previous_filename') for f in files),
-                 'Hotfix revision exceeds the exact protected path scope')
-    gate.require(owner_marker(comments, hotfix_marker(repair, revision)),
-                 'Missing authenticated approval for this exact trusted hotfix revision')
+                 f'{label} revision exceeds the exact protected path scope')
+    gate.require(owner_marker(comments, marker),
+                 f'Missing authenticated approval for this exact trusted {label} revision')
+
+
+def verify_hotfix(api, repair, revision, comments):
+    verify_protected_revision(api, repair, revision, HOTFIX_PATHS, comments,
+                              hotfix_marker(repair, revision), 'hotfix')
+
+
+def verify_compatibility(api, revision, comments):
+    verify_protected_revision(api, APPROVED_HOTFIX, revision, API_COMPAT_PATHS, comments,
+                              compatibility_marker(revision), 'API compatibility fix')
 
 
 def owner_marker(comments, marker):
@@ -250,7 +269,8 @@ def verify(pr, plan, accepted, api, grant, readiness):
              and parents(api, expected_parent) == [INITIAL_BOOTSTRAP]
              and parents(api, INITIAL_BOOTSTRAP) == [grant['source_main']],
              'Pilot repair did not follow the trusted bootstrap')
-        verify_hotfix(api, repair_sha, base['sha'], comments)
+        verify_hotfix(api, repair_sha, APPROVED_HOTFIX, comments)
+        verify_compatibility(api, base['sha'], comments)
     else:
         need(parents(api, base['sha']) == [expected_parent],
              'Migration bootstrap no longer applies to this base')
