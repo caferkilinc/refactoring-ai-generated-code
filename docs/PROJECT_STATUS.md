@@ -4,8 +4,8 @@
 > project snapshots. Always use the current GitHub main commit,
 > `.github/task-plan.json`, `.github/acceptance.json` and
 > live issue/PR evidence to determine the current task and owner.
-> F00-PLAN, F00-V0 and F02-CONTRACT are accepted. F01-ENV is
-> pending its F01-GOV prerequisite. See the latest update below.
+> F00-PLAN, F00-V0, F02-CONTRACT and F01-GOV are accepted.
+> Ismail is assigned F01-ENV / #10. See the latest handoff below.
 > PR #38 and #39 were merged; the 34-task / 69-edge graph was
 > verified. The Turkish and English SRS v0.4.0 were approved.
 > Historical statements below do not override newer verified
@@ -213,7 +213,24 @@ on the [PR revision](https://github.com/refactoring-ai-code/refactoring-ai-gener
 The frozen pilot was verified. Runtime adapters and the API server are outside
 this acceptance.
 
-[F01-ENV / #10](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/10) remains pending because its hard prerequisite
-[F01-GOV / #1](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/1) is open. The task registry retains rotation
-index 2 and the last assignment entry for Alperen. The next assignment has not
-taken effect.
+At the time of F02-CONTRACT acceptance, [F01-ENV / #10](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/10)
+remained pending because its hard prerequisite
+[F01-GOV / #1](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/1) was open. The task registry retained rotation
+index 2 and the last assignment entry for Alperen until the handoff below.
+
+
+## 2026-11-05 — F01-GOV accepted and F01-ENV assigned
+
+The project owner, cakarburkayy, closed [F01-GOV / #1](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/1) as
+completed. [PR #38](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/38) is the primary acceptance evidence. Its
+technical CI passed and its merge is in main. The original eight files and
+their history were retained. The setup report documents Project access and
+limitations, and the governance suite covers success and rejection cases.
+[PR #51](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/51) documents the current GitHub workflow. Both PRs show
+review requests. GitHub records no submitted independent review on either PR.
+
+[F01-ENV / #10](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/10) is assigned to Ismail (@ismail-cevik) at
+rotation index 3. Its sole native prerequisite is the completed #1.
+[F02-CONTRACT acceptance](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/53) is already recorded. Its original
+merge and accepted PR head supply the handoff references. F01-ENV
+implementation begins under #10.
