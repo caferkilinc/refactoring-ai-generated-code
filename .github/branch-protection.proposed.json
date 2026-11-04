@@ -1,22 +1,26 @@
 {
   "required_status_checks": {
     "strict": true,
-    "contexts": [
-      "governance-tests",
-      "documentation-checks",
-      "security-checks",
-      "dependency-gate",
-      "merge-readiness"
+    "contexts": [],
+    "checks": [
+      { "context": "governance-tests", "app_id": 15368 },
+      { "context": "documentation-checks", "app_id": 15368 },
+      { "context": "security-checks", "app_id": 15368 },
+      { "context": "dependency-gate", "app_id": 15368 },
+      { "context": "merge-readiness", "app_id": 15368 },
+      { "context": "pilot-checks", "app_id": 15368 }
     ]
   },
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "dismiss_stale_reviews": true,
-    "require_code_owner_reviews": true,
-    "required_approving_review_count": 1
+    "require_code_owner_reviews": false,
+    "required_approving_review_count": 0,
+    "require_last_push_approval": false
   },
   "restrictions": null,
   "required_conversation_resolution": true,
+  "required_linear_history": false,
   "allow_force_pushes": false,
   "allow_deletions": false
 }

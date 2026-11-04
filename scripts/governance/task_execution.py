@@ -20,7 +20,8 @@ URLS.update({f'git@github.com:{REPO}.git', f'ssh://git@github.com/{REPO}.git'})
 REGISTRIES = ('.github/task-plan.json', '.github/acceptance.json')
 CONTEXT = ('AGENTS.md', *REGISTRIES)
 FROZEN = ('experiments/original-ai-code/', 'experiments/java-pilot/manifests/',
-          'experiments/java-pilot/provenance/', 'tests/fixtures/', *REGISTRIES)
+          'experiments/java-pilot/provenance/', 'tests/fixtures/',
+          'docs/history/genesis_events.jsonl', *REGISTRIES)
 MIGRATION_PATHS = (
     '.agents/skills/task-execution/', '.agents/skills/development-handoff/SKILL.md',
     'scripts/governance/task_execution.py', 'tests/governance/test_task_execution.py',

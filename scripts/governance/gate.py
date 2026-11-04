@@ -98,6 +98,7 @@ def governance_path(path):
         '.github/workflows/governance-ci.yml', '.github/workflows/dependency-gate.yml',
         '.github/workflows/issue-graph-sync.yml', '.github/workflows/live-plan-audit.yml',
         'agents.md', 'contributing.md', 'docs/team_workflow.md', 'docs/dependency_management.md',
+        'docs/history/genesis_events.jsonl',
     }
 
 def protected_path(path):

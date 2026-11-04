@@ -21,7 +21,7 @@ The 31 original technical issues and their 54 native dependencies were preserved
 2. Under active v3 the registered developer authorizes one bounded contract with TASK_ID, OWNER, expected baseline/branch, IN_SCOPE, OUT_OF_SCOPE, acceptance, verification and stop conditions.
 3. Developer confirms local root, HEAD, worktree, upstream and expected accepted commit. Fetch canonical refs and fast-forward clean `main` only when verified safe.
 4. Codex loads targeted SRS, architecture and source files; implements only the task; runs appropriate real checks; self-reviews diff and updates a concise `report.md`. No Codex commit/push without separate authorization.
-5. Developer reviews the diff and evidence, authorizes each publication step, and records exact-head merge approval as specified by the active policy. Protected changes require separate project-owner authorization.
+5. Developer reviews the diff and evidence. Under active v3, one explicit `PUSHLA` authorizes the eligible sequence for that review, with exact-head merge approval recorded under the active policy. Protected changes require separate project-owner authorization.
 6. Verify hosted CI, required GitHub reviews and merge evidence. Deliver `report.md`, task, owner, source SHA and publication evidence.
 7. Independently verify and record acceptance before proposing the next prompt. Advance **once only** per accepted task and source SHA.
 

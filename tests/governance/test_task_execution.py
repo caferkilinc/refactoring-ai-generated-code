@@ -12,8 +12,6 @@ from gate import Rejected
 from task_execution import REPO, Repository, decide, record_decision, review, start
 
 
-# Historical F02 assignment fixture, independent of future rotations on live main.
-LIVE = '2f4eabd71b533519098dfee0817d933dbc23d148'
 BRANCH = 'feature/11-contract-fixture'
 FILE = 'docs/contracts/mig03-fixture.md'
 FROZEN_FILE = 'experiments/java-pilot/manifests/v0-source.json'
@@ -21,7 +19,7 @@ FROZEN_FILE = 'experiments/java-pilot/manifests/v0-source.json'
 
 class FixtureRepository(Repository):
     def live_main(self):
-        return LIVE
+        return self.fixture_main
 
 
 class ReadOnlyAPI:
@@ -66,21 +64,33 @@ class ExecutionTests(unittest.TestCase):
         directory = Path(temp.name).resolve(strict=True)
         self.assertEqual(directory.parent, temp_parent)
         self.addCleanup(temp.cleanup)
-        self.repo = FixtureRepository(directory / 'checkout')
-        subprocess.run(['git', 'clone', '-q', '--shared', '--no-checkout', '--branch', 'main',
-                        '--config', 'core.autocrlf=input', str(ROOT), str(self.repo.root)],
-                       capture_output=True, check=True)
-        self.repo.git('switch', '-q', '-c', BRANCH, LIVE)
-        # A no-checkout clone requires explicit population in the disposable fixture.
-        self.repo.git('checkout', 'HEAD', '--', '.')
-        accepted = json.loads(self.repo.blob(LIVE, '.github/acceptance.json'))['accepted']
-        plan = json.loads(self.repo.blob(LIVE, '.github/task-plan.json'))
+        checkout = directory / 'checkout'
+        checkout.mkdir()
+        self.repo = FixtureRepository(checkout)
+        self.repo.git('init', '-q')
+        self.repo.git('remote', 'add', 'origin', 'https://github.com/example/not-genesis.git')
+        self.repo.git('switch', '-q', '-c', BRANCH)
+        plan = json.loads((ROOT / '.github/task-plan.json').read_bytes())
+        plan['sequential_execution'].update(active_owner='Yaman-A-E', active_task_plan_id='F02-CONTRACT',
+                                            rotation_index=2, next_owner_if_accepted='ismail-cevik',
+                                            handoff_confirmed=False)
+        accepted = {'8': {'pr': 44, 'head_sha': 'a' * 40, 'ci_sha': 'a' * 40,
+                          'evidence': ['https://github.com/' + REPO + '/pull/44']}}
+        self.write('.github/task-plan.json', json.dumps(plan).encode())
+        self.write('.github/acceptance.json', json.dumps({'accepted': accepted}).encode())
+        for path in ('AGENTS.md', 'docs/SRS.md', '.agents/skills/development-handoff/SKILL.md', FROZEN_FILE):
+            self.write(path, b'fixture source\n')
+        self.repo.git('add', '--', '.')
+        self.repo.git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                      '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Disposable fixture')
+        self.repo.fixture_main = self.repo.text('rev-parse', 'HEAD')
         self.api = ReadOnlyAPI(accepted, plan)
         task = next(t for t in plan['tasks'] if t['plan_id'] == 'F02-CONTRACT')
         command = [sys.executable, '-B', '-c', 'raise SystemExit(0)']
         self.contract = dict(repository=REPO, task_id='F02-CONTRACT', task_title=task['title'],
                              task_type='product', authorized_developer='Yaman-A-E', branch=BRANCH,
-                             base_revision=LIVE, source_main_sha=LIVE, objective='Fixture only',
+                             base_revision=self.repo.fixture_main, source_main_sha=self.repo.fixture_main,
+                             objective='Fixture only',
                              authorization_reference='fixture human authorization',
                              prerequisites=['F00-PLAN'], required_context=['docs/SRS.md'],
                              allowed_paths=['docs/contracts/'], protected_paths=[],
@@ -118,7 +128,7 @@ class ExecutionTests(unittest.TestCase):
         self.assertFalse(result['publication_authorized'])
         self.assertTrue(all(check['exit_code'] == 0 for check in result['results'].values()))
         self.assertEqual(b'keep these bytes', (self.repo.root / 'user-notes.txt').read_bytes())
-        self.assertEqual(LIVE, self.repo.text('rev-parse', 'HEAD'))
+        self.assertEqual(self.repo.fixture_main, self.repo.text('rev-parse', 'HEAD'))
 
     def test_wrong_developer_and_unknown_task_rejected(self):
         self.contract['authorized_developer'] = 'caferkilinc'
@@ -142,7 +152,7 @@ class ExecutionTests(unittest.TestCase):
         self.contract['source_main_sha'] = '0' * 40
         with self.assertRaisesRegex(Rejected, 'Stale canonical main'):
             self.start()
-        self.contract.update(source_main_sha=LIVE, base_revision='0' * 40)
+        self.contract.update(source_main_sha=self.repo.fixture_main, base_revision='0' * 40)
         with self.assertRaisesRegex(Rejected, 'Wrong working branch or base'):
             self.start()
 
@@ -232,7 +242,7 @@ class ExecutionTests(unittest.TestCase):
             paths=['docs/contracts/mig03-fixture.md'], reference='fixture owner evidence')
         with self.assertRaisesRegex(Rejected, 'Unauthorized migration scope'):
             self.start()
-        self.assertEqual(LIVE, self.repo.text('rev-parse', 'HEAD'))
+        self.assertEqual(self.repo.fixture_main, self.repo.text('rev-parse', 'HEAD'))
         self.assertEqual('', self.repo.text('status', '--porcelain=v1'))
         self.assertFalse((self.repo.root / 'docs/history/GENESIS_EVENTS.jsonl').exists())
 
@@ -258,7 +268,7 @@ class ExecutionTests(unittest.TestCase):
         result = self.review(session)
         self.assertEqual('HUMAN_APPROVAL_PENDING', result['status'])
         self.assertEqual([], self.api.calls)
-        self.assertEqual(LIVE, self.repo.text('rev-parse', 'HEAD'))
+        self.assertEqual(self.repo.fixture_main, self.repo.text('rev-parse', 'HEAD'))
         self.assertEqual('', self.repo.text('diff', '--', '.github'))
         self.assertFalse((self.repo.root / 'docs/history/GENESIS_EVENTS.jsonl').exists())
 

@@ -33,3 +33,5 @@ python -B scripts/governance/task_execution.py decision --contract CONTRACT.json
 ```
 
 Use `decision` only after receiving the actual human decision on that exact review. It writes one receipt per review alongside the private session file. It cannot authenticate an off-platform message or defend against deliberate editing of local records. Supply the review ID in the human approval evidence and carry the approved contract, snapshot ID, results, reviewer and approval reference to any future MIG-04 process. MIG-04 must revalidate identity, source and content against that evidence. MIG-03 records no publication authorization, task acceptance, event-log update, phase lock or rotation and produces no next task.
+
+When trusted publication policy is active and the developer explicitly says `PUSHLA` for this exact review, transfer the existing contract, session and review to [safe-publish](../safe-publish/SKILL.md). One publication command covers the eligible sequence. An additional local `ONAYLA` receipt is unnecessary.
