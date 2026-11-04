@@ -14,6 +14,7 @@ import gate
 from gate import Rejected, require
 from github_api import GitHub
 from task_execution import REPO, URLS, Repository, decide, digest, path_list
+from repository_identity import effective_plan
 
 
 OWNER = 'cakarburkayy'
@@ -64,7 +65,7 @@ def active_protection(api):
 
 
 def trusted_activation(repo, main):
-    for name in ('safe_publish.py', 'gate.py', 'github_api.py', 'task_execution.py'):
+    for name in ('safe_publish.py', 'gate.py', 'github_api.py', 'task_execution.py', 'repository_identity.py'):
         relative = 'scripts/governance/' + name
         require(repo.blob(main, relative) == (repo.root / relative).read_bytes(),
                 f'Publisher policy differs from trusted main: {relative}')
@@ -267,7 +268,7 @@ def post_merge(api, pr, task, plan, expected_head, expected_base, *, attempts, p
     if pending:
         return dict(outcome, pending_checks=pending)
     accepted = gate.policy_at(api, '.github/acceptance.json', main)['accepted']
-    live_plan = gate.policy_at(api, '.github/task-plan.json', main)
+    live_plan = effective_plan(gate.policy_at(api, '.github/task-plan.json', main), api, REPO)
     require(live_plan['repository'] == plan['repository'], 'Post-merge policy repository changed')
     try:
         proposal = gate.propose_handoff(merged, live_plan, accepted, record, api, main)
@@ -332,7 +333,7 @@ def publish(repo, api, contract, session, reviewed, approval, review_id, referen
     branch, base_main = contract['branch'], contract['source_main_sha']
     require(re.fullmatch(r'[0-9a-f]{40}', base_main) and contract['base_revision'] == base_main,
             'Ordinary publication requires a reviewed base equal to verified main')
-    plan = json.loads(repo.blob(base_main, '.github/task-plan.json'))
+    plan = effective_plan(json.loads(repo.blob(base_main, '.github/task-plan.json')), api, REPO)
     task = gate.validate_plan(plan).get(contract['task_id'])
     require(task and task['plan_id'] != 'F01-GOV'
             and re.fullmatch(rf"(feature|fix|docs|test|chore)/{task['issue_number']}-[a-z0-9][a-z0-9-]*", branch),

@@ -8,6 +8,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 from github_api import GitHub
+from repository_identity import ALIASES, DESTINATION, effective_plan, verify_destination
 
 class Rejected(Exception):
     pass
@@ -133,9 +134,9 @@ def has_comment(comments, login, marker):
 def delegated_revision(task, pr, plan):
     # ADR 0006 is a historical grant tied to exactly this PR and head.
     delegated_revision = 'd923134da4f9f5a2ab55a5f51fbf9415ff717262'
-    repository = 'caferkilinc/refactoring-ai-generated-code'
+    repository = plan['repository']
     return (
-        plan['repository'] == repository
+        repository in ALIASES
         and task['plan_id'] == 'F00-V0' and task['issue_number'] == 9
         and pr['number'] == 45
         and pr['head']['sha'] == delegated_revision
@@ -149,6 +150,8 @@ def delegated_revision(task, pr, plan):
 def owner_approval(task, pr, api, plan):
     """Verify the v2 owner marker or the narrowly scoped ADR 0006 grant."""
     sha = pr['head']['sha']
+    if plan['repository'] == DESTINATION:
+        verify_destination(api)
     comments = api.pages(f"/issues/{pr['number']}/comments")
     require(has_comment(comments, 'cakarburkayy', 'GENESIS-OWNER-APPROVED: ' + sha)
             or (delegated_revision(task, pr, plan)
@@ -334,6 +337,7 @@ def main():
             require(api.call('/git/ref/heads/main')['object']['sha'] == args.policy_sha,
                     'Trusted main moved; reread policy and evidence')
             plan = policy_at(api, '.github/task-plan.json', args.policy_sha)
+            plan = effective_plan(plan, api, api.repo)
             accepted = policy_at(api, '.github/acceptance.json', args.policy_sha)['accepted']
             same_revision(pr, args.expected_head)
             record = json.loads(args.handoff_record.read_text(encoding='utf-8'))
@@ -344,6 +348,7 @@ def main():
             same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'])
         else:
             plan = json.loads(Path('.github/task-plan.json').read_text(encoding='utf-8'))
+            plan = effective_plan(plan, api, api.repo)
             accepted = json.loads(Path('.github/acceptance.json').read_text(encoding='utf-8'))['accepted']
             same_revision(pr, args.expected_head, args.policy_sha)
             result = (readiness if args.mode == 'readiness' else evaluate)(pr, plan, accepted, api)

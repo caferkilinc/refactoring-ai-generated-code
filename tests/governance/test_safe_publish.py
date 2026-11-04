@@ -9,6 +9,7 @@ import test_task_execution as execution
 from gate import Rejected
 from safe_publish import (GITHUB_ACTIONS_APP, HOSTED, REPO, active_protection, publish,
                           push_commit, trusted_activation)
+from repository_identity import REPOSITORY_ID
 
 
 class FakeGitHub:
@@ -45,7 +46,7 @@ class FakeGitHub:
         if method != 'GET':
             self.mutations.append((path, method, data))
         if path == '/':
-            return dict(full_name=REPO, default_branch='main', permissions={'push': True},
+            return dict(full_name=REPO, id=REPOSITORY_ID, default_branch='main', permissions={'push': True},
                         allow_merge_commit=True)
         if path == '/branches/main/protection':
             return dict(required_status_checks={'strict': self.strict, 'checks': [

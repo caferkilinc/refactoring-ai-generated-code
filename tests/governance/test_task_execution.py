@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts/governance'))
 from gate import Rejected
 from task_execution import REPO, Repository, decide, record_decision, review, start
+from repository_identity import DESTINATION, REPOSITORY_ID
 
 
 BRANCH = 'feature/11-contract-fixture'
@@ -31,6 +32,8 @@ class ReadOnlyAPI:
 
     def call(self, path):
         self.calls.append(path)
+        if path == '/':
+            return {'full_name': REPO, 'id': REPOSITORY_ID}
         if path == '/issues/11':
             return {'state': 'open'}
         if path == '/issues/8':
@@ -267,7 +270,8 @@ class ExecutionTests(unittest.TestCase):
         self.write(report)
         result = self.review(session)
         self.assertEqual('HUMAN_APPROVAL_PENDING', result['status'])
-        self.assertEqual([], self.api.calls)
+        # The destination requires identity verification, never product-acceptance API calls.
+        self.assertEqual(['/'] * 3 if REPO == DESTINATION else [], self.api.calls)
         self.assertEqual(self.repo.fixture_main, self.repo.text('rev-parse', 'HEAD'))
         self.assertEqual('', self.repo.text('diff', '--', '.github'))
         self.assertFalse((self.repo.root / 'docs/history/GENESIS_EVENTS.jsonl').exists())
