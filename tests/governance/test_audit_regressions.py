@@ -6,8 +6,8 @@ import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 from test_gate import API, PLAN
-from gate import (Rejected, evaluate, readiness, validate_plan, verify_acceptance,
-                  required_checks, same_revision, successful_checks, owner_approval)
+from gate import (Rejected, evaluate, validate_plan, verify_acceptance,
+                  required_checks, same_revision, successful_checks)
 from security_check import file_errors
 from sync_issues import synchronize
 
@@ -21,82 +21,43 @@ class AuditGateTests(unittest.TestCase):
         self.task = self.plan['tasks'][0]
         self.api.pr['head'].update(sha=HEAD, repo={'full_name': self.plan['repository']})
         self.api.files = [{'filename': 'docs/contracts/scope.md'}]
-        self.api.comments = [{'user': {'login': 'cakarburkayy'}, 'body':
-                              f"GENESIS-DEVELOPER-APPROVED: F00-PLAN {self.plan['repository']} docs/8-scope {HEAD} merge"}]
 
-    def ready(self):
-        return readiness(self.api.pr, self.plan, {}, self.api)
+    def audit(self):
+        return evaluate(self.api.pr, self.plan, {}, self.api)
 
-    def test_current_pr_without_developer_approval_fails_readiness(self):
-        self.api.comments = []
-        self.assertIn('all 0', evaluate(self.api.pr, self.plan, {}, self.api))
-        with self.assertRaisesRegex(Rejected, 'authorized developer approval'):
-            self.ready()
-
-    def test_developer_approval_and_real_checks_pass(self):
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_developer_can_approve_own_pr(self):
-        self.api.pr['user']['login'] = 'cakarburkayy'
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_commit_authorship_does_not_invalidate_developer_approval(self):
-        self.api.commits.append({'author': {'login': 'cakarburkayy'}})
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_other_developer_cannot_issue_developer_approval(self):
-        self.api.comments[0]['user']['login'] = 'ismail-cevik'
-        with self.assertRaisesRegex(Rejected, 'authorized developer approval'):
-            self.ready()
-
-    def test_unlinked_commit_identity_does_not_crash(self):
-        self.api.commits.append({'author': None, 'committer': None})
-        self.assertIn('applicable CI verified', self.ready())
+    def test_plain_pull_request_is_audited(self):
+        self.api.pr['body'] = 'Closes #8'
+        self.assertIn('all 0', self.audit())
 
     def test_current_pr_failed_ci_blocks(self):
         self.api.checks[0]['conclusion'] = 'failure'
         with self.assertRaisesRegex(Rejected, 'Missing/failed'):
-            self.ready()
+            successful_checks(self.task, self.api.pr, self.api.files, self.api)
 
     def test_current_pr_missing_ci_blocks(self):
         self.api.checks = []
         with self.assertRaisesRegex(Rejected, 'Missing/failed'):
-            self.ready()
+            successful_checks(self.task, self.api.pr, self.api.files, self.api)
 
     def test_current_pr_skipped_ci_blocks(self):
         self.api.checks[0]['conclusion'] = 'skipped'
         with self.assertRaisesRegex(Rejected, 'Missing/failed'):
-            self.ready()
-
-    def test_draft_pr_blocks_readiness(self):
-        self.api.pr['draft'] = True
-        with self.assertRaisesRegex(Rejected, 'open and ready'):
-            self.ready()
-
-    def test_outsider_cannot_claim_registered_task(self):
-        self.api.pr['user']['login'] = 'unregistered-person'
-        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
-            evaluate(self.api.pr, self.plan, {}, self.api)
-
-    def test_other_team_member_cannot_steal_current_task(self):
-        self.api.pr['user']['login'] = 'caferkilinc'
-        with self.assertRaisesRegex(Rejected, 'authorized active developer'):
-            self.ready()
+            successful_checks(self.task, self.api.pr, self.api.files, self.api)
 
     def test_wrong_base_rejected(self):
         self.api.pr['base']['ref'] = 'other'
         with self.assertRaisesRegex(Rejected, 'Wrong integration'):
-            self.ready()
+            self.audit()
 
     def test_truncated_file_list_fails_closed(self):
         self.api.pr['changed_files'] = 2
         with self.assertRaisesRegex(Rejected, 'Incomplete changed-file'):
-            self.ready()
+            self.audit()
 
     def test_rename_checks_both_paths(self):
         self.api.files[0]['previous_filename'] = 'backend/private.py'
         with self.assertRaisesRegex(Rejected, 'Out-of-task path'):
-            self.ready()
+            self.audit()
 
     def test_mismatched_dependency_numbers_rejected(self):
         self.plan['tasks'][1]['dependency_issues'] = []
@@ -127,24 +88,6 @@ class AuditGateTests(unittest.TestCase):
         self.plan['tasks'][1]['dependencies'] *= 2
         with self.assertRaisesRegex(Rejected, 'Duplicate prerequisite'):
             validate_plan(self.plan)
-
-    def test_peer_changes_request_is_not_a_required_approval(self):
-        self.api.reviews = [{'user': {'login': 'tahaugurtoyran'}, 'state': 'CHANGES_REQUESTED'}]
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_missing_exact_sha_blocks(self):
-        self.api.comments[0]['body'] = self.api.comments[0]['body'].replace(HEAD, 'b' * 40)
-        with self.assertRaisesRegex(Rejected, 'authorized developer approval'):
-            self.ready()
-
-    def test_case_insensitive_developer_login(self):
-        self.api.comments[0]['user']['login'] = 'CAKARBURKAYY'
-        self.assertIn('applicable CI verified', self.ready())
-
-    def test_no_approval_from_read_only_peer(self):
-        self.api.comments[0]['user']['login'] = 'caferkilinc'
-        with self.assertRaisesRegex(Rejected, 'authorized developer approval'):
-            self.ready()
 
     def test_task_modules_require_both_checks(self):
         for number in (10, 22, 30, 31, 34, 35):

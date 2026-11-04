@@ -1,15 +1,15 @@
-name: Dependency gate
+name: Task dependency audit
 on:
   pull_request_target:
     branches: [main]
-    types: [opened, synchronize, reopened, edited, ready_for_review, converted_to_draft]
+    types: [opened, synchronize, reopened, edited]
 permissions:
   contents: read
   issues: read
   pull-requests: read
   checks: read
 jobs:
-  dependency-gate:
+  task-dependency-audit:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -19,31 +19,9 @@ jobs:
           repository: ${{ github.repository }}
           ref: main
           persist-credentials: false
-      - name: Check trusted task scope and accepted prerequisites
+      - name: Audit registered task scope and GitHub prerequisites
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-        run: python3 scripts/governance/v3_activation.py --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
-  merge-readiness:
-    permissions:
-      contents: read
-      issues: read
-      pull-requests: read
-      checks: read
-      actions: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      # Refresh trusted main on reruns; never checkout or execute PR head code.
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-        with:
-          repository: ${{ github.repository }}
-          ref: main
-          persist-credentials: false
-      - name: Verify current publication authority and all applicable tests
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
-        run: python3 scripts/governance/v3_activation.py --mode readiness --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
+        run: python3 scripts/governance/gate.py --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"

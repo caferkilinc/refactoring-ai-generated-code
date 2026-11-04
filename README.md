@@ -24,7 +24,7 @@ FastAPI/Redis/workers/storage and React/TypeScript/Monaco are planned components
 
 ## Working together
 
-Start with [CONTRIBUTING](CONTRIBUTING.md), [team workflow](docs/TEAM_WORKFLOW.md) and the [Codex-native protocol and activation conditions](docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md). One authorized developer implements the registered task on a numbered topic branch. `main` is the integration branch. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
+Start with [CONTRIBUTING](CONTRIBUTING.md), [team workflow](docs/TEAM_WORKFLOW.md) and the [GitHub development workflow](docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md). One authorized developer implements the registered task on a numbered topic branch. `main` is the integration branch. Private academic DOCX, raw user uploads and credentials stay outside this public repository.
 
 - [Project board](https://github.com/users/caferkilinc/projects/1)
 - [SRS Türkçe](docs/SRS.md) and [SRS English](docs/SRS_EN.md) (both owner-approved v0.4)

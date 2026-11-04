@@ -1,5 +1,7 @@
 # PROJECT GENESIS — Orchestrator Protocol v2.1 (Canonical Runtime Specification)
 
+> Historical record. The [GitHub development workflow](PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) governs current repository work.
+
 **Status:** PUBLISHED_ON_MAIN — approval evidence has not yet been independently verified. Canonical activation remains pending verification.
 **Repository:** `caferkilinc/refactoring-ai-generated-code`  
 **Target file:** `docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md`  

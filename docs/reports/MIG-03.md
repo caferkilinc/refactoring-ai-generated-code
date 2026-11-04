@@ -11,7 +11,7 @@
 | `LOCAL_HEAD` | `cb2165f51edcc55176a124f3af8448bef0b0964e` |
 | `MIG02_PREREQUISITES` | `MIG03_PREREQUISITES_READY` |
 | `IMPLEMENTATION_STATUS` | Tek görev yürütme becerisi, yerel denetim yardımcısı ve testler hazır |
-| `FILES_CREATED` | [task-execution](../../.agents/skills/task-execution/SKILL.md), [task_execution.py](../../scripts/governance/task_execution.py), [test_task_execution.py](../../tests/governance/test_task_execution.py), [ilk deneme arşivi](MIG-03-ATTEMPT-1-BLOCKED.md) |
+| `FILES_CREATED` | [task-execution](../../.agents/skills/task-execution/SKILL.md), [task_execution.py](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/2f9e05e0df886b250a690122b3369a45fee3fe96/scripts/governance/task_execution.py), [test_task_execution.py](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/2f9e05e0df886b250a690122b3369a45fee3fe96/tests/governance/test_task_execution.py), [ilk deneme arşivi](MIG-03-ATTEMPT-1-BLOCKED.md) |
 | `FILES_MODIFIED` | [development-handoff](../../.agents/skills/development-handoff/SKILL.md) ve bu rapor |
 | `AUTHORIZATION_TESTS` | `PASS` · doğru görev ve geliştirici, yanlış depo/kimlik/görev/taban, eksik önkoşul ve korumalı kapsam |
 | `EXECUTION_TESTS` | `PASS` · incelemeye geçiş, eksik bağlam, kapsam dışı fark, mevcut kullanıcı dosyasının korunması |

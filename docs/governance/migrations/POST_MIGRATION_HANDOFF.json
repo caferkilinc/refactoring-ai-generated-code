@@ -1,8 +1,0 @@
-{
-  "schema_version": 1,
-  "intent": "FROZEN_RELATED_WORK",
-  "intended_developer": "Yaman-A-E",
-  "owner_intent_reference": "MIG-05 Context Recovery and Resume, section 11",
-  "reconciled_task_id": null,
-  "reconciliation_evidence": null
-}

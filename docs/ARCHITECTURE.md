@@ -1,6 +1,6 @@
 # Architecture and safety contracts
 
-> **Governance (separate from runtime architecture):** After owner approval and merge, [`Project Genesis Orchestrator Protocol v2.1`](governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md) defines the evidence-driven next-task process. The approved SRS and this architecture remain product authorities; the operational protocol does not rewrite them.
+> **Governance (separate from runtime architecture):** Follow the [GitHub development workflow](governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) for repository work. The approved SRS and this architecture govern product behavior.
 
 This is the intended architecture, not a list of delivered capabilities. Sources: master system architecture, step-by-step development guide and approved five-person work-package plan. The course deadline and account confirmations supersede the older relative 12-week schedule. Private source PDFs/DOCX are not republished.
 

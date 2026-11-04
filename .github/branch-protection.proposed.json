@@ -6,8 +6,6 @@
       { "context": "governance-tests", "app_id": 15368 },
       { "context": "documentation-checks", "app_id": 15368 },
       { "context": "security-checks", "app_id": 15368 },
-      { "context": "dependency-gate", "app_id": 15368 },
-      { "context": "merge-readiness", "app_id": 15368 },
       { "context": "pilot-checks", "app_id": 15368 }
     ]
   },

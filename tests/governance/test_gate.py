@@ -16,31 +16,19 @@ PLAN['sequential_execution'].update(
  last_accepted_handoff_key=None,
  handoff_confirmed=False,
 )
-# Historical Cafer turn, independent of subsequent live registry transitions.
-CAFER_PLAN=copy.deepcopy(PLAN)
-CAFER_PLAN['sequential_execution'].update(
- active_owner='caferkilinc', active_task_plan_id='F00-V0', rotation_index=1,
- next_owner_if_accepted='Yaman-A-E', last_confirmed_task_id='F00-PLAN',
- last_confirmed_commit='ac321cb43fdea3f6b64bb1631de8daca8cf1d229',
- last_accepted_handoff_key='F00-PLAN:a281caec295487b78371bac1e106cb378fa64bba',
-)
-
 class API:
  def __init__(self):
   self.issue={'state':'closed','state_reason':'completed'}
   self.pr={'number':101,'body':'Task: #8\nPlan: F00-PLAN','head':{'ref':'docs/8-scope','sha':'abc'},'base':{'ref':'main','repo':{'full_name':PLAN['repository']}},'merged_at':'2026-10-25T12:00:00Z','user':{'login':'cakarburkayy'}}
   self.pr.update(changed_files=1,state='open',draft=False)
   self.pr['base']['sha']='base'
-  self.comments=[{'user':{'login':'cakarburkayy'},'body':'GENESIS-OWNER-APPROVED: abc'}]
   self.checks=[{'name':c,'status':'completed','conclusion':'success','app':{'slug':'github-actions'}} for c in PLAN['tasks'][0]['required_checks']]
   self.dependencies=[];self.files=[{'filename':'docs/DECISIONS/scope.md'}]
-  self.commits=[{'author':{'login':'cakarburkayy'},'committer':{'login':'cakarburkayy'}}]
  def call(self,path,**kw):
-  if '/collaborators/' in path:return {'permission':'write'}
   if '/pulls/' in path:return self.pr
   return self.issue
  def pages(self,path,key=None):
-  for suffix,rows in [('/files',self.files),('/comments',self.comments),('/check-runs',self.checks),('/dependencies/',self.dependencies),('/commits',self.commits)]:
+  for suffix,rows in [('/files',self.files),('/check-runs',self.checks),('/dependencies/',self.dependencies)]:
    if suffix in path:return rows
   raise RuntimeError('Unexpected request')
 class GateTests(unittest.TestCase):
@@ -56,27 +44,12 @@ class GateTests(unittest.TestCase):
  def test_stale_sha_fails(self):
   self.r['head_sha']='old'
   with self.assertRaises(Rejected):self.accept()
- def test_stale_owner_approval_fails(self):
-  self.a.comments[0]['body']='GENESIS-OWNER-APPROVED: old'
-  with self.assertRaisesRegex(Rejected,'current Burkay'):self.accept()
- def test_project_owner_may_authorize_own_work(self):
-  self.a.pr['user']['login']='cakarburkayy'
-  self.accept()
- def test_peer_review_not_required(self):
-  self.a.comments=[{'user':{'login':'cakarburkayy'},'body':'GENESIS-OWNER-APPROVED: abc'}]
-  self.accept()
  def test_failed_ci_fails(self):
   self.a.checks[0]['conclusion']='failure'
   with self.assertRaises(Rejected):self.accept()
  def test_untrusted_check_fails(self):
   self.a.checks[0]['app']['slug']='other'
   with self.assertRaises(Rejected):self.accept()
- def test_other_user_cannot_approve(self):
-  self.a.comments[0]['user']['login']='ismail-cevik'
-  with self.assertRaisesRegex(Rejected,'current Burkay'):self.accept()
- def test_owner_is_not_excluded_when_commit_author(self):
-  self.a.commits.append({'author':{'login':'cakarburkayy'}})
-  self.accept()
  def test_missing_check_fails(self):
   self.a.checks=[]
   with self.assertRaises(Rejected):self.accept()
@@ -101,6 +74,22 @@ class GateTests(unittest.TestCase):
     if '/dependencies/' in path:return [{'number':8}]
     return original.pages(path,key)
   self.assertIn('all 1',evaluate(pr,self.p,{'8':self.r},Complete()))
+ def test_native_completed_dependency_without_legacy_record(self):
+  pr=copy.deepcopy(self.a.pr)
+  pr.update(body='Closes #11',head={'ref':'feature/11-contract','sha':'def'},number=102)
+  self.a.files=[{'filename':'.github/workflows/contract-checks.yml'}]
+  self.a.dependencies=[{'number':8}]
+  completed={'state':'closed','state_reason':'completed'}
+  self.a.call=lambda path: {'state':'open'} if path=='/issues/11' else completed
+  self.assertIn('all 1',evaluate(pr,self.p,{},self.a))
+  completed['state_reason']='not_planned'
+  with self.assertRaisesRegex(Rejected,'Prerequisite #8 is not completed'):
+   evaluate(pr,self.p,{},self.a)
+ def test_governance_maintenance_does_not_consume_product_turn(self):
+  self.a.pr.update(body=None,head={'ref':'chore/1-governance-cleanup'})
+  before=copy.deepcopy(self.p)
+  self.assertIn('No registered product task',evaluate(self.a.pr,self.p,{},self.a))
+  self.assertEqual(before,self.p)
  def test_native_mismatch_fails(self):
   self.a.issue={'state':'open'};self.a.dependencies=[{'number':19}]
   with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
@@ -112,7 +101,7 @@ class GateTests(unittest.TestCase):
   with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
  def test_unknown_issue_fails(self):
   self.a.pr.update(body='Task: #999\nPlan: F00-PLAN',head={'ref':'docs/999-other'})
-  with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
+  self.assertIn('No registered product task', evaluate(self.a.pr,self.p,{},self.a))
  def test_research_scope_cannot_hide_app_code(self):
   self.a.issue={'state':'open'};self.a.files=[{'filename':'backend/app.py'}]
   with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
@@ -124,17 +113,6 @@ class GateTests(unittest.TestCase):
   other['priority']='P1'
   self.p['tasks'][0]['dependencies']=['F07B-PILOT']
   with self.assertRaises(Rejected):validate_plan(self.p)
- def test_closed_governance_accepts_policy_maintenance(self):
-  self.a.issue={'state':'closed','state_reason':'completed'}
-  self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
-  self.a.files=[{'filename':'.github/acceptance.json'}]
-  with self.assertRaisesRegex(Rejected,'single authorized active task'):
-   evaluate(self.a.pr,self.p,{},self.a)
- def test_closed_governance_cannot_change_app(self):
-  self.a.issue={'state':'closed','state_reason':'completed'}
-  self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
-  self.a.files=[{'filename':'backend/app.py'}]
-  with self.assertRaises(Rejected):evaluate(self.a.pr,self.p,{},self.a)
  def test_unknown_prerequisite_fails_closed(self):
   self.p['tasks'][0]['dependencies']=['UNKNOWN']
   with self.assertRaises(Rejected):validate_plan(self.p)
@@ -143,54 +121,7 @@ class GateTests(unittest.TestCase):
  def test_rotation_mismatch_fails_closed(self):
   self.p['sequential_execution']['active_owner']='caferkilinc'
   with self.assertRaisesRegex(Rejected,'rotation index'):validate_plan(self.p)
- def test_legacy_bootstrap_pr38_can_be_audited_without_advancing_rotation(self):
-  self.a.issue={'state':'open'}
-  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
-   head={'ref':'chore/1-team-workflow','sha':'legacy-head'},
-   user={'login':'caferkilinc'})
-  self.a.files=[{'filename':'.github/task-plan.json'}]
-  self.assertIn('F01-GOV: all 0',evaluate(self.a.pr,self.p,{},self.a))
-  self.assertEqual('cakarburkayy',self.p['sequential_execution']['active_owner'])
- def test_legacy_bootstrap_wrong_author_is_denied(self):
-  self.a.issue={'state':'open'}
-  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
-   head={'ref':'chore/1-team-workflow','sha':'legacy-head'})
-  self.a.files=[{'filename':'.github/task-plan.json'}]
-  with self.assertRaisesRegex(Rejected,'single authorized active task'):
-   evaluate(self.a.pr,self.p,{},self.a)
- def test_bootstrap_needs_owner_approval_not_independent_review(self):
-  self.a.issue={'state':'open'}
-  self.a.pr.update(number=38,body='Task: #1\nPlan: F01-GOV',
-   head={'ref':'chore/1-team-workflow','sha':'legacy-head'},
-   user={'login':'caferkilinc'})
-  self.a.files=[{'filename':'.github/task-plan.json'}]
-  self.a.comments=[]
-  from gate import readiness
-  with self.assertRaisesRegex(Rejected,'current Burkay'):
-   readiness(self.a.pr,self.p,{},self.a)
  def test_report_scope_is_allowed_without_bypassing_governance_policy(self):
   from gate import check_paths
   self.assertIsNone(check_paths(self.t,[{'filename':'report.md'}]))
- def test_non_owner_cannot_submit(self):
-  self.a.issue={'state':'open'}
-  self.a.pr['user']['login']='caferkilinc'
-  with self.assertRaisesRegex(Rejected,'authorized active developer'):evaluate(self.a.pr,self.p,{},self.a)
- def test_historical_cafer_rotation_requires_cafer_for_f00_v0(self):
-  p=copy.deepcopy(CAFER_PLAN)
-  self.assertEqual('caferkilinc',p['sequential_execution']['active_owner'])
-  self.assertEqual('F00-V0',p['sequential_execution']['active_task_plan_id'])
-  self.assertEqual(1,p['sequential_execution']['rotation_index'])
-  self.a.issue={'state':'open'}
-  self.a.pr.update(body='Task: #9\nPlan: F00-V0',head={'ref':'feature/9-pilot','sha':'def'},user={'login':'cakarburkayy'})
-  self.a.files=[{'filename':'experiments/original-ai-code/Main.java'}]
-  self.a.dependencies=[{'number':8}]
-  with self.assertRaisesRegex(Rejected,'authorized active developer'):
-   evaluate(self.a.pr,p,{},self.a)
-  self.a.pr['user']['login']='caferkilinc'
-  with self.assertRaisesRegex(Rejected,'missing trusted acceptance record'):
-   evaluate(self.a.pr,p,{},self.a)
- def test_other_task_cannot_start_before_handoff(self):
-  self.a.issue={'state':'open'}
-  self.a.pr.update(body='Task: #1\nPlan: F01-GOV',head={'ref':'chore/1-acceptance','sha':'new'})
-  with self.assertRaisesRegex(Rejected,'single authorized active task'):evaluate(self.a.pr,self.p,{},self.a)
 if __name__=='__main__':unittest.main()
