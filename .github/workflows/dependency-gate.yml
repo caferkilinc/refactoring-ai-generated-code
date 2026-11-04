@@ -26,6 +26,12 @@ jobs:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: python3 scripts/governance/v3_activation.py --pr "$PR_NUMBER" --expected-head "$EXPECTED_HEAD" --policy-sha "$(git rev-parse HEAD)"
   merge-readiness:
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+      checks: read
+      actions: read
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
