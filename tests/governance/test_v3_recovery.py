@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 import test_v3_activation as original
-from v3_activation import BRANCH, OWNER, REPAIR_BRANCH, verify
+from v3_activation import BRANCH, OWNER, REPAIR_BRANCH, current_pr, verify
 import gate
 
 
@@ -23,6 +23,17 @@ class RecoveryTests(unittest.TestCase):
                            user={'login': 'Yaman-A-E'})
         self.repair['head'].update(ref=REPAIR_BRANCH, sha=self.grant['repair']['head'])
         self.api = original.API(self.fixture)
+
+    def test_base_snapshot_does_not_override_independently_verified_main(self):
+        expected = 'e' * 40
+        ref = {'ref': 'refs/heads/main', 'object': {'type': 'commit', 'sha': expected}}
+        responses = {'/git/ref/heads/main': ref, '/pulls/49': self.migration}
+        with patch.object(self.api, 'call', side_effect=responses.__getitem__):
+            pr = current_pr(self.api, 49, self.migration['head']['sha'], expected)
+            self.assertEqual(expected, pr['base']['sha'])
+            self.assertNotEqual(expected, self.migration['base']['sha'])
+            with self.assertRaisesRegex(gate.Rejected, 'Trusted main moved'):
+                current_pr(self.api, 49, self.migration['head']['sha'], '0' * 40)
 
     def test_repair_requires_its_own_current_owner_approval_and_original_acceptance(self):
         self.fixture.files = [{'filename': 'repair-file'}]

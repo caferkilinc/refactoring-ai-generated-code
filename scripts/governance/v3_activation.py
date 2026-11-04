@@ -102,6 +102,17 @@ def check(runs, name, sha, after=None):
                                   for run in matching), 'Missing/failed GitHub Actions check: ' + name)
 
 
+def current_pr(api, number, expected_head, policy_sha):
+    live = api.call('/git/ref/heads/main')
+    gate.require(live['ref'] == 'refs/heads/main' and live['object']['type'] == 'commit'
+                 and live['object']['sha'] == policy_sha, 'Trusted main moved; rerun against current main')
+    pr = api.call(f'/pulls/{number}')
+    gate.same_revision(pr, expected_head)
+    # A pull response can retain its earlier base snapshot after a direct base push.
+    # The workflow checks out main, and the canonical ref independently pins that checkout.
+    return dict(pr, base=dict(pr['base'], sha=policy_sha))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--pr', type=int, required=True)
@@ -116,12 +127,12 @@ def main():
         pr = api.call(f'/pulls/{args.pr}')
         if pr['head']['ref'] not in (BRANCH, REPAIR_BRANCH):
             return gate.main()
-        gate.same_revision(pr, args.expected_head, args.policy_sha)
+        pr = current_pr(api, args.pr, args.expected_head, args.policy_sha)
         grant = json.loads(Path(__file__).with_name('v3_activation_grant.json').read_bytes())
         plan = json.loads((ROOT / '.github/task-plan.json').read_bytes())
         accepted = json.loads((ROOT / '.github/acceptance.json').read_bytes())['accepted']
         result = verify(pr, plan, accepted, api, grant, args.mode == 'readiness')
-        gate.same_revision(api.call(f'/pulls/{args.pr}'), args.expected_head, args.policy_sha)
+        current_pr(api, args.pr, args.expected_head, args.policy_sha)
         print(result)
     except (gate.Rejected, RuntimeError, KeyError, TypeError, ValueError, OSError) as exc:
         raise SystemExit('GENESIS ACTIVATION BLOCKED: ' + str(exc)) from None

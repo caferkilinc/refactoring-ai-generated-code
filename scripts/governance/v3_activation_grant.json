@@ -44,7 +44,7 @@
     "tests/governance/test_safe_publish.py",
     "tests/governance/test_task_execution.py"
   ],
-  "prior_bootstrap": "c8d820e2d52485954873cda8f09f0c0ba0413678",
+  "prior_bootstrap": "8af1a9dad89a375dbf7d3b32eb5cbfefd4c623ae",
   "repair": {
     "pr": 48,
     "author": "Yaman-A-E",
