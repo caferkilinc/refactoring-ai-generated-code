@@ -1,102 +1,60 @@
-# Project Genesis — F00-V0 accepted closeout and Alperen assignment
+# Project Genesis v3.0 — Faz 1 yönetişim geçişi
 
-REPORT_SCHEMA_VERSION: 1<br>
-TASK_ID: F01-GOV / #1 — F00-V0 administrative acceptance<br>
-ACCEPTED_TASK: F00-V0 / Issue #9<br>
-OWNER: Cafer Kılınç (@caferkilinc)<br>
-DATE: 2026-11-04 (Europe/Istanbul)<br>
-BASE_COMMIT: fdd573286834fe15c1ac1c0d51db4ed9b0015db7<br>
-BRANCH: chore/1-accept-f00-v0<br>
-STATUS: REVIEW_REQUIRED — administrative record publication<br>
-HANDOFF_KEY: F00-V0:d923134da4f9f5a2ab55a5f51fbf9415ff717262<br>
-NEXT_OWNER: Alperen Enes Yaman (@Yaman-A-E)<br>
-NEXT_TASK: F02-CONTRACT / Issue #11 — ASSIGNED, implementation NOT_STARTED
-
-## User decision and scope
-
-Cafer asked this chat to continue the remaining formal closeout after the
-verified merge, and explicitly selected Alperen / F02-CONTRACT #11 in response
-to the next-task question. This authorizes the administrative acceptance,
-completed Issue #9, one registry rotation, next assignment and preparation-only
-handoff. It does not authorize implementing the next task. Burkay's
-message/delegation remains REPORTED off-platform evidence; authenticated
-Cafer's PR45 marker is separately permitted by the merged ADR 0006 policy.
-
-This is a bounded governance record transition. It does not broaden the
-revision-bound approval grant, remove any check or change the developer order.
-The administrative record needs trusted-main publication; the old gate's
-implementation-task check does not authorize governance maintenance merely
-from a proposed head. Its bootstrap/administrative integration is recorded
-transparently, not as a fabricated green dependency/readiness result.
-
-## Acceptance evidence
-
-[PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
-merged source `d923134da4f9f5a2ab55a5f51fbf9415ff717262` to main at
-`fdd573286834fe15c1ac1c0d51db4ed9b0015db7`. Its parent relationship and
-all frozen-input Git blob hashes were verified after merge. The
-[source-pinned development report](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/d923134da4f9f5a2ab55a5f51fbf9415ff717262/report.md)
-contains detailed AC-01–AC-16 evidence and earlier publication snapshots.
-
-| Evidence | Actual result |
+| Alan | Kayıt |
 |---|---|
-| [Cafer delegated approval](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45#issuecomment-6617013699) | Exact PR45 source SHA, recognized through ADR 0006 / PR #46 |
-| [PR dependency/readiness](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41688380131/attempts/3) | Both SUCCESS on actual trusted policy and real approval |
-| [Merged-main pilot](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529368) | SUCCESS, 10 JUnit tests, no failures/errors/skips, original/test integrity preserved |
-| [Merged-main governance](https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529429) | SUCCESS, 111 tests and documentation/security checks; preview SKIPPED, not PASS |
-| Issue #9 | Closed as completed under Cafer's explicit closeout instruction |
-| Proposed trusted acceptance #9 checked with real API | verify_acceptance passed for #8 and #9, including matching merged PR/source/CI/paths/approval |
+| Görev | GENESIS-V3-PHASE1 / F01-GOV (#1), korumalı yönetişim hazırlığı |
+| Durum | `LOCAL_VERIFIED` (yönetişim) · `PENDING_PUSH_CONFIRMATION` · GitHub etkinleştirmesi `BLOCKED` |
+| Kaynak | Kanonik `main` · `2f4eabd71b533519098dfee0817d933dbc23d148` |
+| Yerel dal | `chore/1-genesis-v3-phase1` |
+| Geliştirici | Burkay Çakar, yerel Windows kullanıcısı `laptop-1ebli599\burkay`. Bu işlemde GitHub hesabıyla kimlik doğrulanmadı. |
+| Ortam | Windows 11 26H2, derleme 26300.9711 · PowerShell 7.6.5 · Git for Windows 2.56.0.windows.4 · Python 3.14.5 |
+| Aktif ürün görevi | Alperen Enes Yaman (`Yaman-A-E`) / F02-CONTRACT / #11. Faz 1 bir rotasyon turu kullanmaz. |
 
-The exact model ID/revision/settings limitation remains UNKNOWN and disclosed,
-as permitted by the task provenance contract; no new metadata is invented.
+Temiz, tek worktree'deki `main`, `origin/main` ve doğrudan GitHub sorguları aynı SHA'yı verdi. Bu tabandan ayrı yerel dal açıldı. Eski kabul raporu kaynak commit'te korunur. [Kaynak commit](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/2f4eabd71b533519098dfee0817d933dbc23d148) · [Önceki rapor](https://github.com/caferkilinc/refactoring-ai-generated-code/blob/2f4eabd71b533519098dfee0817d933dbc23d148/report.md)
 
-## Files changed
+## Yetki ve kontrol değişiklikleri
 
-- .github/acceptance.json: add #9 with exact source, actual merge CI SHA and HTTPS evidence; preserve #8.
-- .github/task-plan.json: F00-V0 VERIFIED_COMPLETE, F02-CONTRACT ASSIGNED;
-  one index transition 1 → 2 and exact accepted-handoff key.
-- docs/PROJECT_STATUS.md and docs/DEVELOPMENT_ROADMAP.md: append bounded
-  accepted state/assignment and retain historical snapshots.
-- docs/handoffs/F00-V0-to-F02-CONTRACT.md: predecessor evidence, next-task
-  boundary and copyable preparation-only startup prompt for Alperen.
-- tests/governance/test_gate.py and test_pr45_delegation.py: isolate the
-  historical Cafer fixture from the live registry, as the old Burkay fixture
-  already was. Keep actor/SHA/CI/prerequisite rejection assertions unchanged.
-- report.md: this latest closeout snapshot; source development report remains
-  immutable in its accepted commit.
+| Tür ve konum | Eski kural → Faz 1 | Güvenlik, test ve uyumluluk |
+|---|---|---|
+| İnsan iş akışı · `AGENTS.md`, el değiştirme becerisi, katkı ve ekip kılavuzları, PR/issue şablonları | Dış orkestratör yetkilendirir ve her olağan PR Burkay'ın onayını ister → güvenilen kayıt tek aktif görev/sahibi belirler, aktif geliştirici sınırlandırılmış yürütmeyi ve gözden geçirdiği revizyonun yayımlanmasını açıkça yetkilendirir. | Sınırlı görev sözleşmesi, tek uygulama sahibi, bağımsız kabul ve korumalı işlerde ayrı sahip kararı sürer. Yerel belge bağlantıları denetlendi. |
+| İnsan iş akışı · v2.1 protokolü, ADR 0004/0006, SRS §9 ve son onay, mimarinin rotasyon bölümü, tarihli durum/yol haritası | Dış orkestrasyon, tek onay yetkisi ve sonraki prompt derleme kilidi → etkinleştirmeden sonra kanonik v3 protokolü. Codex, bağımsız kabulden sonra doğrulanmış kaynaklarla hazırlık promptu taslağı üretebilir. | Tarihsel kayıtlar ile ürün SRS/mimari metinleri korundu. Sahip, etkinleştirmede bu metinlerdeki eski yürütme hükümlerinin v3 ile uzlaştırılmasını açıkça onaylamalı. Faz 1 prompt üretmedi. |
+| Makine · `gate.py`, `dependency-gate.yml` | Her olağan PR için SHA'ya bağlı sahip yorumu → doğrulanmış GitHub yorum yazarı, aktif geliştirici ve PR yazarı eşleşir. Onay tam görev, kanonik repo, dal, kaynak SHA ve `merge` kapsamına bağlıdır. | Fork, yanlış geliştirici/görev/revizyon/kapsam ve eksik onay reddedilir. Korunan yollar, yeniden adlandırmanın iki tarafı ve iş akışı değişiklikleri ayrı sahip onayı gerektirir. Görev kapsamı, yerel bağımlılık kayıtları, canlı bağımlılık grafı, güvenilen taban ve zorunlu CI kontrolleri sürer. Kodla ifade edilmeyen korumalı niyeti insan incelemesi değerlendirir. |
+| Makine · kabul kaydı ve `gate.py --mode handoff` | Operasyonel kabul dış orkestratöre bağlı → birleştirme kaydını, CI/bağımlılıkları ve `main` soyunu denetleyen salt okunur öneri. | Kabul/rotasyon yazımı yok. `plan_id:head_sha` tekrarında ikinci ilerleme yok. #44'ün sahip onayı ve #45'in ADR 0006 istisnası tarihsel doğrulamada korunuyor. |
+| GitHub · `main` koruma ayarları, CODEOWNERS, gerekli iş adları | PR yazarının yorumu, GitHub bağımsız PR incelemesinden ayrı kanıt. | GitHub izinleri, CODEOWNERS ve önerilen kural dosyası değişmedi. Uygulanan kurallar ve gerçek hosted koşular yerel testten bağımsız denetlenmeli. |
 
-No source, fixed test, manifest, workflow, requirement, architecture, scope,
-deadline or dependency edge changes. #11's only hard predecessor remains #8;
-#9 is handoff continuity evidence, not a newly invented dependency.
+Durumlar ayrı değerlendirilir. `DEVELOPER_APPROVED` onay kanıtını, `LOCAL_VERIFIED` yerel sonuçları, `HOSTED_VERIFIED` zorunlu GitHub kontrolleri ve incelemelerini, `MERGED` GitHub birleştirmesi ve Git soyunu, `HANDOFF_ACCEPTED` ise bağımsız incelemeden sonra güvenilen `main` üzerindeki kabul kaydını ifade eder.
 
-## Verification and idempotency
+## Canlı durum ve açık PR uyumluluğu
 
-- Full governance suite: 111 tests PASS after the proposed rotation; live
-  roster/rotation/last-acceptance invariants remain tested dynamically.
-- Documentation, limited security hygiene, complete registered F01-GOV file
-  scope and whitespace checks PASS.
-- Read-only actual verify_acceptance checks passed for both trusted predecessor
-  records after #9 completed; no simulated approval was used.
-- The expected old state is asserted before mutation: Cafer/F00-V0/index 1
-  and no existing #9 record. Replaying the identical acceptance key is a no-op;
-  index stays 2. An existing conflicting acceptance or unexpected state stops
-  rather than advancing a second time. #8 acceptance is preserved.
+- F00-PLAN (#8, PR #44) ve F00-V0 (#9, PR #45) tamamlandı. Kabul kayıtları ve özgün CI/onay kanıtları salt okunur GitHub API sorgularıyla yeniden doğrulandı. Her iki merge commit'i kaynak `main`in atası. #9 yeniden işlendiğinde `ALREADY_ACCEPTED`, `advance: false` döndü. [PR #44](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44) · [PR #45](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45)
+- #11 açık. Güvenilen kayıt Alperen'i aktif geliştirici olarak belirliyor. Canlı önkoşul #8. Rotasyon sırası Burkay → Cafer → Alperen → İsmail → Taha ve güncel indeks 2. [Issue #11](https://github.com/caferkilinc/refactoring-ai-generated-code/issues/11)
+- #43, `22fc78218fd3c43b727e7f051117646af70f3916`, açık ve iki UML görselleştirme dosyasını değiştiriyor. #48, `2f0d21e9c289abd783855c6d4687b38c388bcc8b`, açık ve korunan SRS, v2.1 protokolü ve dondurulmuş pilot dosyalarını da değiştiriyor. İncelenen dosya listeleri Faz 1 dosyalarıyla kesişmiyor. Yeni politika bu açık PR'lara görev, rotasyon veya kapsam istisnası vermez. [PR #43](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/43) · [PR #48](https://github.com/caferkilinc/refactoring-ai-generated-code/pull/48)
 
-New state: active_owner Yaman-A-E; active_task_plan_id F02-CONTRACT;
-rotation_index 2; last_confirmed_task_id F00-V0; last_confirmed_commit the actual
-pilot merge; next_owner_if_accepted ismail-cevik. handoff_confirmed=false
-belongs to the new unexecuted Alperen task. No additional rotation is consumed.
+## Doğrulama
 
-## Publication and next developer
+| Komut / kanıt | Sonuç |
+|---|---|
+| `git status --porcelain=v1 --branch --ignored=matching -uall`, `git rev-parse`, `git remote -v`, `git worktree list --porcelain`, `git config --show-origin`, `git ls-remote --exit-code origin refs/heads/main`, GitHub ref API | PASS · Kimlik, başlangıç temizliği, upstream, tek worktree, yerel `core.autocrlf=input` ve canlı kaynak SHA doğrulandı. Ek fetch veya entegrasyon gerekmiyordu. |
+| `python -B -m unittest discover -s tests/governance -v` | PASS · 123 test. Geçerli olağan onay, eksik/yabancı/eski/yanlış görev onayı, eksik/başarısız CI, izinsiz korumalı değişiklik, eski kabul ve tekrar devri kapsandı. |
+| `python -B scripts/governance/check_docs.py`, `python -B scripts/governance/security_check.py`, `git diff --check` | PASS · Belge bağlantıları, depo hijyeni ve diff. |
+| Beceri frontmatter ve yeni dosyalarda satır sonu/boşluk kontrolü | PASS · Yerel Python kontrolleri. Standart beceri doğrulayıcısı, PyYAML bulunmadığı için NOT_RUN. |
+| `git ls-tree`, `git hash-object --no-filters`, `git ls-files --eol` ve korunan yollarda `git status` | PASS · 45 korunan dosya kaynak Git blob'uyla byte düzeyinde aynı. SRS, mimari, güvenlik, tarihsel kararlar, görev planı, kabul, CODEOWNERS, önerilen koruma ve araştırma dosyaları dahil. |
+| Canlı salt okunur `verify_acceptance` / `propose_handoff`, `git merge-base --is-ancestor` | PASS · #8/#9 tarihsel kabul ve kaynak soy doğrulaması. #9 tekrarında ilerleme yok. |
+| `python -B experiments/java-pilot/verify_integrity.py` | FAIL · Faz 1 düzenlemelerinden önce de `v0-source.json` SHA-256 uyuşmazlığı vardı. Manifest yan dosyası `1650a915ea6516e52ac27c1a4c98a11d0ddd62155f41ec6a21835b0195311376`, dosyanın gerçek özeti `0ca386a2a438162a5c6ce9d63100411e303016f674787be7a462da9d18d079c9`. Korunan dosyalar değişmedi. |
+| Faz 1 GitHub Actions ve yeni kural denemeleri | NOT_RUN · Yerel dala ait hosted koşu yok. |
 
-Publication containing SHA and real hosted check results are delivered after
-observed publication in the final chat receipt; no self-referential SHA is
-invented here. The issue bodies are updated with the final trusted record
-links after integration. New task source code and its execution contract are
-not produced in this closeout. Alperen first uses the preparation prompt in
-[the handoff document](docs/handoffs/F00-V0-to-F02-CONTRACT.md), then waits for
-his separate bounded execution contract.
+## GitHub etkinleştirme ve yayın kapısı
 
-Pilot integrity remains fixed. Dataset NOT_FROZEN, study NOT_RUN and release
-NOT_READY; this acceptance does not complete the entire F00 research milestone
-or deliver the seven-language platform.
+Herkese açık `GET /branches/main` yanıtı `protected: false` ve durum kontrolü listesini boş gösterdi. `GET /rules/branches/main` ve `GET /rulesets` boş döndü. Ayrıntılı klasik koruma uç noktası HTTP 401 verdi. Bu oturumda GitHub yönetici yetkisi doğrulanmadı ve hiçbir ayar değiştirilmedi. [Dal API kaydı](https://api.github.com/repos/caferkilinc/refactoring-ai-generated-code/branches/main)
+
+Yetkili yönetici, `main` için etkin bir PR koruma kuralı oluşturmalı. [Önerilen koruma dosyasındaki](.github/branch-protection.proposed.json) beş kontrolü zorunlu yapmalı (`governance-tests`, `documentation-checks`, `security-checks`, `dependency-gate`, `merge-readiness`). GitHub Actions kaynağını doğrulamalı, dalın güncel olmasını, bir bağımsız CODEOWNER incelemesini, eski incelemelerin düşmesini, görüşmelerin çözülmesini ve yönetici dahil kuralların uygulanmasını zorunlu tutmalı. Force push ve dal silme kapalı olmalı. Uygulanabilir ek iş kontrolleri görev kapısında zorunlu kalır. [GitHub koruma ayarları](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+
+Korumalı geçiş için Burkay'ın açık ve kayda alınmış sahip kararı, ayrıca yayın kapsamına ilişkin geliştirici onayı gerekir. Canlı v2 kapısı Faz 1 dalını yetkilendirmez. #1 aktif ürün görevi değildir ve `AGENTS.md` ile beceri mevcut #1 yol listesinde yoktur. Güvenilen tabanda, ayrı onaylı geçiş yolu repo, #1, dal, geliştirici, kesin revizyon ve bu iki yol dahil değişiklik kapsamını sınırlamalı. Faz 1 PR'ının kendi kodu yetki kaynağı olamaz. Uygun güvenilen geçiş yolu yoksa birleşme bloke kalır. Etkinleştirmeden sonra yöneticinin gerçek PR'da olumlu/olumsuz onay ve zorunlu CI denemelerini doğrulaması gerekir.
+
+## Dosyalar, geri dönüş ve sonraki faz
+
+- Yetki ve testler · `scripts/governance/gate.py`, `tests/governance/test_codex_authority.py`, `tests/governance/test_audit_regressions.py`
+- GitHub şablonları ve kapı · `.github/ISSUE_TEMPLATE/task.yml`, `.github/PULL_REQUEST_TEMPLATE.md`, `.github/workflows/dependency-gate.yml`
+- Protokol ve çalışma talimatları · `docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md`, `AGENTS.md`, `.agents/skills/development-handoff/SKILL.md`, `CONTRIBUTING.md`, `README.md`, `docs/TEAM_WORKFLOW.md`, `docs/DEPENDENCY_MANAGEMENT.md`, `docs/DEVELOPMENT_ROADMAP.md`, `report.md`
+
+Yerel değişiklikleri inceleme dalında tutarak önceki güvenilen `main` kullanılabilir. Yayımlanmış bir geçişin geri alınması ayrı sahip yetkili, incelenmiş bir revert PR'ı ve aynı CI kontrollerini gerektirir. Kabul kayıtları ve rotasyon geçmişi korunur. Faz 2, ayrıca yetkilendirildiğinde görev sözleşmesi ile doğrulama kanıtı akışını tamamlamalı. Otomatik yayımlama, kabul yazımı veya sonraki görev promptu bu fazda çalıştırılmadı.

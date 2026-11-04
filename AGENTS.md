@@ -1,6 +1,6 @@
-# Repository Codex instructions — Project Genesis v2.0
+# Repository Codex instructions — Project Genesis
 
-> **For the ChatGPT orchestrator:** After owner approval and merge, [`docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md`](docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md) is the canonical operational reference. This file provides instructions for Codex; ChatGPT does not automatically read GitHub files. The orchestrator must not generate a new development task prompt without verifying the live `main` SHA and producing a source audit certificate. If the referenced protocol is not yet present on `main`, report `SOURCE_BLOCKED`.
+> **Execution policy:** [Codex-native protocol v3.0](docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) applies after protected owner authorization, integration and hosted verification. Until activation, follow the effective [v2.1 policy](docs/governance/PROJECT_GENESIS_ORCHESTRATOR_PROTOCOL_V2_1.md). Verify live `main` and pin policy and task state before authorizing execution or preparing a handoff.
 
 Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, TypeScript, C#, Go, C++ and local Falcon-Mamba 7B**, all P0 first-delivery); preserve owner-approved Master Architecture v2.0 and Step-by-Step Development Guide v2.0.
 
@@ -12,17 +12,18 @@ Project: secure refactoring of AI-generated code (**Java, Python, JavaScript, Ty
 5. See approved scope record `docs/DECISIONS/0003-mandatory-seven-language-delivery.md`; see `docs/TEAM_WORKFLOW.md`, `SECURITY.md`, `CONTRIBUTING.md`, `docs/DEPENDENCY_MANAGEMENT.md` for applicable detailed practice.
 
 ## Stable execution invariants
-- Exactly one active implementation developer, cyclic order **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay**. The orchestrator authorizes each task, accepts each evidence-backed handoff and advances at most once. Remaining legacy issue assignments are transitional metadata, not valid owner authority.
+- Exactly one active implementation developer, cyclic order **Burkay → Cafer → Alperen Enes Yaman → İsmail → Taha Uğur Toyran → Burkay**. In v3 the trusted registry identifies the active task and developer, who explicitly authorizes execution. Independent acceptance of a verified handoff advances the rotation at most once. Legacy issue assignees are transitional metadata.
 - Do not modify source unless a bounded authorized task specifies its owner, ID, scope, dependencies, approved baseline, acceptance, verification and stop conditions. No next-task implementation after reporting.
 - Before edits: identify root, clean/dirty worktree, HEAD, branch, remote/upstream and last accepted commit; stop on unsafe divergence or unexpected changes. Do not force push, reset --hard, clean, discard existing work or assume a PR is already merged.
 - No unapproved architecture changes, extra infrastructure, speculative dependencies, unrelated refactors, test inflation, credentials, production secrets or unattended deployment.
 - Honor immutable V0 and frozen test hashes. A successful build is not proof of behavioral preservation. Validate candidates individually and final combination, retaining separate behavioral and quality results. Do not weaken tests or leak secrets to models, logs or reports.
 - Use actual repository-supported commands, record PASS/FAIL/NOT_RUN honestly; after two unproductive repair guesses without new evidence, stop and escalate.
-- Prepare `report.md` as an active authorized task snapshot (no self-referential final commit SHA) and stop; human developer reviews/commits/pushes, then submits final SHA and report. Never claim publication before observed evidence.
+- Prepare `report.md` as an active authorized task snapshot without a self-referential final commit SHA. Stop for explicit human publication approval. Record the actual SHA and publication evidence after authorized publication.
 - For authorized implementation or repair use `.agents/skills/development-handoff/SKILL.md` when installed/supported; otherwise follow an equivalent concise contract. Load only task-relevant context.
 
-## PR #38 transition lock
-PR #38 was merged into `main` on the owner's 2026-10-27 explicit authorization; it does not consume a rotation. Project owner Burkay alone approves each later PR and handoff; record `GENESIS-OWNER-APPROVED: <head SHA>` as an authenticated GitHub PR comment. Peer approvals are OPTIONAL, but real CI, task acceptance, safe publication and Git graph verification remain mandatory. Both governance PRs are merged, and the full 69-edge native graph was verified in Actions run 40518968864. Legacy issue assignment removal is PARTIAL: never infer task ownership from remaining assignees.
+## Publication authority
+
+Under v3 the active developer approves an ordinary PR's reviewed head through the authenticated, task-bound marker in the protocol. Protected changes additionally require explicit owner authorization. Preserve required GitHub reviews, CI, scope and native dependency checks. PR #38 remains an owner-approved historical bootstrap that consumed no rotation. ADR 0006 remains specific to PR #45's accepted revision.
 
 ## First-delivery language acceptance
 All seven language adapters require real symbol/quality/build/test/coverage and bounded validated patch evidence where applicable. F14-MIX depends on #32/#33/#40/#41/#42; F15-P0 also requires real local security AI and full PDF reporting. The 34-task/69-edge GitHub-native issue graph is VERIFIED (Actions run 40518968864, attempt 2); 31 original tasks and 54 original edges are preserved. Dependencies are prerequisites, not completion evidence. Do not state release READY if a mandatory language, model, negative-path, or combined-test gate is unverified.

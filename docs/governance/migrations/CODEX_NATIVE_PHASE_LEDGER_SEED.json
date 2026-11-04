@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "status": "HISTORICAL_SNAPSHOT",
+  "source_repo": "https://github.com/caferkilinc/refactoring-ai-generated-code",
+  "snapshot_main_sha": "2f4eabd71b533519098dfee0817d933dbc23d148",
+  "snapshot_date": "2026-11-04",
+  "snapshot_timezone": "Europe/Istanbul",
+  "authoritative_sources": {
+    "task_registry": ".github/task-plan.json",
+    "acceptance_registry": ".github/acceptance.json",
+    "requirements": [
+      "docs/SRS.md",
+      "docs/SRS_EN.md"
+    ],
+    "architecture": "docs/ARCHITECTURE.md",
+    "source_revision": "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/2f4eabd71b533519098dfee0817d933dbc23d148",
+    "live_evidence_root": "https://github.com/caferkilinc/refactoring-ai-generated-code/issues"
+  },
+  "migration_phases": {
+    "MIG-01": {
+      "title": "Governance Migration",
+      "status": "REVIEW",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/3421531b530abde42e7d04bfcddcbc87b3993b9c",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/3421531b530abde42e7d04bfcddcbc87b3993b9c/report.md"
+      ],
+      "contributors": {
+        "assigned_owner": null,
+        "actual_implementer": null,
+        "pr_author": null,
+        "commit_authors": [
+          "cakarburkayy"
+        ],
+        "reviewer": null,
+        "human_approver": null
+      }
+    },
+    "MIG-02": {
+      "title": "Skills & Context Engineering",
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "evidence": [],
+      "contributors": {
+        "assigned_owner": null,
+        "actual_implementer": null,
+        "pr_author": null,
+        "commit_authors": [],
+        "reviewer": null,
+        "human_approver": null
+      }
+    },
+    "MIG-03": {
+      "title": "Task Execution & Verification",
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "evidence": [],
+      "contributors": {
+        "assigned_owner": null,
+        "actual_implementer": null,
+        "pr_author": null,
+        "commit_authors": [],
+        "reviewer": null,
+        "human_approver": null
+      }
+    },
+    "MIG-04": {
+      "title": "Safe Publication & Acceptance",
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "evidence": [],
+      "contributors": {
+        "assigned_owner": null,
+        "actual_implementer": null,
+        "pr_author": null,
+        "commit_authors": [],
+        "reviewer": null,
+        "human_approver": null
+      }
+    },
+    "MIG-05": {
+      "title": "Next-Step Prompt Generation & E2E",
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "evidence": [],
+      "contributors": {
+        "assigned_owner": null,
+        "actual_implementer": null,
+        "pr_author": null,
+        "commit_authors": [],
+        "reviewer": null,
+        "human_approver": null
+      }
+    }
+  },
+  "product_phases": {
+    "F00": {
+      "status": "BLOCKED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F00-PLAN",
+        "F00-V0"
+      ],
+      "status_basis": "Two historical task acceptances remain valid. Snapshot main fails frozen pilot integrity, and phase acceptance was not verified."
+    },
+    "F01": {
+      "status": "IN_PROGRESS",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F01-GOV",
+        "F01-ENV"
+      ]
+    },
+    "F02": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F02-CONTRACT",
+        "F02-STATE"
+      ],
+      "status_basis": "F02-CONTRACT is assigned, with implementation recorded as not started."
+    },
+    "F03": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F03-INPUT"
+      ]
+    },
+    "F04": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F04-JAVA"
+      ]
+    },
+    "F05": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F05-QUALITY"
+      ]
+    },
+    "F06": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F06-SANDBOX",
+        "F06-TESTS"
+      ]
+    },
+    "F07A": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F07A-SCAN"
+      ]
+    },
+    "F07B": {
+      "status": "BLOCKED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F07B-PILOT",
+        "F07B-LOCAL"
+      ]
+    },
+    "F08": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F08-UI",
+        "F08-INTEGRATE"
+      ]
+    },
+    "F09": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F09-CONTEXT",
+        "F09-SCHED"
+      ]
+    },
+    "F10": {
+      "status": "BLOCKED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F10-PATCH"
+      ]
+    },
+    "F11": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F11-VALIDATE",
+        "F11-RETRY"
+      ]
+    },
+    "F12": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F12-REVIEW",
+        "F12-FINAL"
+      ]
+    },
+    "F13": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F13-BASIC",
+        "F13-ADV"
+      ]
+    },
+    "F14": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F14-PY",
+        "F14-JSTS",
+        "F14-MIX",
+        "F14-CS",
+        "F14-GO",
+        "F14-CPP"
+      ]
+    },
+    "F15": {
+      "status": "PLANNED",
+      "lock_state": "UNLOCKED",
+      "lock_commit_sha": null,
+      "task_ids": [
+        "F15-P0",
+        "F15-EXPERIMENT",
+        "F15-HANDIN"
+      ]
+    }
+  },
+  "accepted_tasks": [
+    {
+      "task_id": "F00-PLAN",
+      "issue": 8,
+      "historical_status": "VERIFIED_COMPLETE",
+      "pr": 44,
+      "head_sha": "a281caec295487b78371bac1e106cb378fa64bba",
+      "merge_sha": "ac321cb43fdea3f6b64bb1631de8daca8cf1d229",
+      "ci_sha": "a281caec295487b78371bac1e106cb378fa64bba",
+      "approval_kind": "OWNER_EXACT_HEAD",
+      "contributors": {
+        "assigned_owner": "cakarburkayy",
+        "actual_implementer": "cakarburkayy",
+        "pr_author": "cakarburkayy",
+        "commit_authors": [
+          "cakarburkayy"
+        ],
+        "reviewer": null,
+        "human_approver": "cakarburkayy"
+      },
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/ac321cb43fdea3f6b64bb1631de8daca8cf1d229",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/a281caec295487b78371bac1e106cb378fa64bba/report.md",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/44#issuecomment-6587201791",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515819414",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41515952397"
+      ]
+    },
+    {
+      "task_id": "F00-V0",
+      "issue": 9,
+      "historical_status": "VERIFIED_COMPLETE",
+      "pr": 45,
+      "head_sha": "d923134da4f9f5a2ab55a5f51fbf9415ff717262",
+      "merge_sha": "fdd573286834fe15c1ac1c0d51db4ed9b0015db7",
+      "ci_sha": "fdd573286834fe15c1ac1c0d51db4ed9b0015db7",
+      "approval_kind": "ADR_0006_REVISION_BOUND_DELEGATION",
+      "contributors": {
+        "assigned_owner": "caferkilinc",
+        "actual_implementer": "caferkilinc",
+        "pr_author": "caferkilinc",
+        "commit_authors": [
+          "caferkilinc"
+        ],
+        "reviewer": null,
+        "human_approver": "caferkilinc"
+      },
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/commit/fdd573286834fe15c1ac1c0d51db4ed9b0015db7",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/d923134da4f9f5a2ab55a5f51fbf9415ff717262/report.md",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/45#issuecomment-6617013699",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41688380131/attempts/3",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529368",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529429",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/2584fbd97c6bd5e28e09be4199d895db5ff6791c/docs/DECISIONS/0006-pr45-revision-bound-delegation.md"
+      ]
+    }
+  ],
+  "active_assignment": {
+    "status": "HISTORICAL_SNAPSHOT",
+    "task_id": "F02-CONTRACT",
+    "issue": 11,
+    "issue_state": "OPEN",
+    "registry_status": "ASSIGNED",
+    "implementation_status": "NOT_STARTED",
+    "assigned_owner": "Yaman-A-E",
+    "rotation_index": 2,
+    "conditional_next_owner": "ismail-cevik",
+    "handoff_confirmed": false,
+    "last_accepted_handoff_key": "F00-V0:d923134da4f9f5a2ab55a5f51fbf9415ff717262",
+    "evidence": [
+      "https://github.com/caferkilinc/refactoring-ai-generated-code/issues/11",
+      "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/47",
+      "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/2f4eabd71b533519098dfee0817d933dbc23d148/.github/task-plan.json"
+    ]
+  },
+  "developer_rotation": [
+    {
+      "index": 0,
+      "github_login": "cakarburkayy",
+      "name": "Burkay Çakar"
+    },
+    {
+      "index": 1,
+      "github_login": "caferkilinc",
+      "name": "Cafer Tayyar Kılınç"
+    },
+    {
+      "index": 2,
+      "github_login": "Yaman-A-E",
+      "name": "Alperen Enes Yaman"
+    },
+    {
+      "index": 3,
+      "github_login": "ismail-cevik",
+      "name": "İsmail Çevik"
+    },
+    {
+      "index": 4,
+      "github_login": "tahaugurtoyran",
+      "name": "Taha Uğur Toyran"
+    }
+  ],
+  "open_prs_at_snapshot": [
+    {
+      "pr": 43,
+      "state": "OPEN",
+      "head_sha": "22fc78218fd3c43b727e7f051117646af70f3916",
+      "pr_author": "cakarburkayy",
+      "subject": "Interactive UML visualizations",
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/43",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/40593283213"
+      ]
+    },
+    {
+      "pr": 48,
+      "state": "OPEN",
+      "head_sha": "2f0d21e9c289abd783855c6d4687b38c388bcc8b",
+      "pr_author": "Yaman-A-E",
+      "subject": "Frozen pilot restoration and status reconciliation",
+      "evidence": [
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/pull/48",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41771278729",
+        "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41771613366"
+      ]
+    }
+  ]
+}

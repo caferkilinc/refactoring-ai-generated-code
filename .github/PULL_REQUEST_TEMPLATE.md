@@ -4,7 +4,7 @@ Plan: <!-- exact existing plan ID -->
 ## Task authorization
 Authorized active developer: @
 Approved baseline SHA:
-Orchestrator task contract / link:
+Bounded task authorization / link:
 In scope:
 Out of scope:
 
@@ -16,8 +16,10 @@ Changed behavior, files, acceptance criteria, actual test commands/results, scop
 - [ ] Applicable real checks and negative cases executed or honestly marked NOT_RUN
 - [ ] Source/V0/frozen tests and secrets/allowed paths preserved
 - [ ] No unapproved new dependency, deployment or architecture change
-- [ ] Burkay (@cakarburkayy) posted an authenticated GitHub comment `GENESIS-OWNER-APPROVED: <CURRENT_HEAD_SHA>` for this exact HEAD; other reviewers are optional
-- [ ] Human commit/push evidence supplied; handoff remains pending until orchestrator accepts
+- [ ] The active developer reviewed the exact HEAD and recorded approval under the currently effective governance policy
+- [ ] Under active v3, the developer posted `GENESIS-DEVELOPER-APPROVED: <PLAN_ID> <OWNER/REPO> <BRANCH> <FULL_HEAD_SHA> merge` as a PR conversation comment
+- [ ] Applicable protected owner authorization and hosted reviews are recorded separately
+- [ ] Human publication evidence supplied and handoff awaiting independent verification
 
 **Review ≠ product approval 1/2 ≠ successful handoff.**
-**Do not assume PR #38 may merge without separate owner authorization.**
+See the [activation and approval rules](../docs/governance/PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md).
