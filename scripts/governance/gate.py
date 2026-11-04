@@ -1,6 +1,5 @@
 """Fail-closed prerequisite verification using policy checked out from trusted base."""
 import argparse
-import base64
 import json
 import re
 import math
@@ -8,7 +7,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 from github_api import GitHub
-from repository_identity import ALIASES, DESTINATION, effective_plan, verify_destination
+from repository_identity import current_repository, effective_plan
 
 class Rejected(Exception):
     pass
@@ -74,15 +73,19 @@ def validate_plan(plan):
                     for e in plan['epics']), 'Wrong parent work package')
     return ids
 
-def linked_task(pr, plan):
+def branch_issue(pr):
     match = re.fullmatch(r'(?:feature|fix|docs|test|chore)/(\d+)-[a-z0-9][a-z0-9-]*', pr['head']['ref'])
-    require(match, 'Use a numbered topic branch')
-    numbers = re.findall(r'^Task: #([0-9]+)\s*$', pr.get('body') or '', re.M)
-    require(len(numbers) == 1 and numbers[0] == match[1], 'Task line and branch disagree')
-    task = next((t for t in plan['tasks'] if t['issue_number'] == int(match[1])), None)
+    return int(match[1]) if match else None
+
+def linked_task(pr, plan):
+    number = branch_issue(pr)
+    task = next((entry for entry in plan['tasks'] if entry['issue_number'] == number), None)
     require(task, 'Issue is not registered in trusted base task-plan')
-    plans = re.findall(r'^Plan: ([A-Z0-9-]+)\s*$', pr.get('body') or '', re.M)
-    require(plans == [task['plan_id']], 'Plan line disagrees with trusted registry')
+    # Historical PR metadata remains usable. Ordinary GitHub PRs need no special lines.
+    numbers = re.findall(r'^Task: #([0-9]+)[ \t]*$', pr.get('body') or '', re.M)
+    plans = re.findall(r'^Plan: ([A-Z0-9-]+)[ \t]*$', pr.get('body') or '', re.M)
+    require(not numbers or numbers == [str(number)], 'Task line and branch disagree')
+    require(not plans or plans == [task['plan_id']], 'Plan line disagrees with trusted registry')
     return task
 
 def changed_paths(files):
@@ -102,14 +105,6 @@ def governance_path(path):
         'docs/history/genesis_events.jsonl',
     }
 
-def protected_path(path):
-    path = path.casefold()
-    return governance_path(path) or path.startswith((
-        '.github/workflows/', '.github/actions/', 'docs/decisions/', 'experiments/original-ai-code/',
-        'experiments/java-pilot/manifests/', 'experiments/java-pilot/provenance/', 'tests/fixtures/',
-    )) or path in {'.gitattributes', '.gitignore', 'docs/srs.md', 'docs/srs_en.md',
-                  'docs/architecture.md', 'security.md'}
-
 def check_paths(task, files, pr=None):
     require(files, 'Changed files unavailable')
     if pr is not None:
@@ -124,64 +119,10 @@ def check_paths(task, files, pr=None):
             path.startswith(p) if p.endswith('/') else path == p
             for p in task['allowed_paths']), 'Out-of-task path: ' + path)
 
-def has_comment(comments, login, marker):
-    return any(
-        (c.get('user') or {}).get('login', '').lower() == login.lower()
-        and (c.get('body') or '').strip() == marker
-        for c in comments
-    )
-
-def delegated_revision(task, pr, plan):
-    # ADR 0006 is a historical grant tied to exactly this PR and head.
-    delegated_revision = 'd923134da4f9f5a2ab55a5f51fbf9415ff717262'
-    repository = plan['repository']
-    return (
-        repository in ALIASES
-        and task['plan_id'] == 'F00-V0' and task['issue_number'] == 9
-        and pr['number'] == 45
-        and pr['head']['sha'] == delegated_revision
-        and pr['head']['ref'] == 'feature/9-java-v0-pilot'
-        and (pr['head'].get('repo') or {}).get('full_name') == repository
-        and pr['base']['ref'] == 'main'
-        and pr['base']['repo']['full_name'] == repository
-        and pr['user']['login'].lower() == 'caferkilinc'
-    )
-
-def owner_approval(task, pr, api, plan):
-    """Verify the v2 owner marker or the narrowly scoped ADR 0006 grant."""
-    sha = pr['head']['sha']
-    if plan['repository'] == DESTINATION:
-        verify_destination(api)
-    comments = api.pages(f"/issues/{pr['number']}/comments")
-    require(has_comment(comments, 'cakarburkayy', 'GENESIS-OWNER-APPROVED: ' + sha)
-            or (delegated_revision(task, pr, plan)
-                and has_comment(comments, 'caferkilinc', 'GENESIS-DELEGATE-APPROVED: ' + sha)),
-            'Missing current Burkay owner approval for this PR revision; '
-            'ADR 0006 delegated approval is limited to PR #45 at its recorded SHA')
-
-def publication_approval(task, pr, files, api, plan, developer):
-    head = pr['head']
-    repository = plan['repository']
-    require(developer in plan['sequential_execution']['team_sequence']
-            and pr['user']['login'].lower() == developer.lower(),
-            'Publication must belong to the authorized developer')
-    require((head.get('repo') or {}).get('full_name') == repository,
-            'Developer approval requires a branch in the canonical repository')
-    require(re.fullmatch(r'[0-9a-f]{40}', head['sha']), 'Invalid PR head revision')
-    comments = api.pages(f"/issues/{pr['number']}/comments")
-    marker = (f"GENESIS-DEVELOPER-APPROVED: {task['plan_id']} {repository} "
-              f"{head['ref']} {head['sha']} merge")
-    require(has_comment(comments, developer, marker),
-            'Missing authorized developer approval for this task, repository, branch, revision and merge scope')
-    if task['plan_id'] == 'F01-GOV' or any(protected_path(p) for p in changed_paths(files)):
-        require(has_comment(comments, 'cakarburkayy', 'GENESIS-OWNER-APPROVED: ' + head['sha']),
-                'Protected changes require separate current Burkay owner approval')
-
-
 def required_checks(task, files):
     """Do not let a frontend-labelled task hide backend changes, or vice versa."""
     names = set(task['required_checks'])
-    paths = [i['filename'] for i in files]
+    paths = list(changed_paths(files))
     if any(p.startswith('frontend/') for p in paths):
         names.add('frontend-checks')
     if any(p.startswith('backend/') and not p.startswith('backend/core/schemas/') for p in paths):
@@ -218,11 +159,6 @@ def verify_acceptance(task, record, api, plan):
     require(linked_task(pr, plan)['plan_id'] == task['plan_id'], 'Accepted PR belongs to another task')
     files = api.pages(f"/pulls/{record['pr']}/files")
     check_paths(task, files, pr)
-    if 'developer' in record:
-        publication_approval(task, pr, files, api, plan, record['developer'])
-    else:
-        # Existing trusted v2 records keep their original approval evidence.
-        owner_approval(task, pr, api, plan)
     successful_checks(task, pr, files, api, record.get('ci_sha'))
     return pr
 
@@ -233,80 +169,30 @@ def check_dependencies(task, ids, accepted, api, plan):
             'Native dependencies disagree with trusted task-plan')
     for dependency in task['dependencies']:
         dep = ids[dependency]
-        verify_acceptance(dep, accepted.get(str(dep['issue_number'])), api, plan)
+        number = dep['issue_number']
+        if str(number) in accepted:
+            verify_acceptance(dep, accepted[str(number)], api, plan)
+        else:
+            issue = api.call(f'/issues/{number}')
+            require(issue.get('state') == 'closed' and issue.get('state_reason') == 'completed',
+                    f'Prerequisite #{number} is not completed on GitHub')
     return len(expected)
-
-def bootstrap_pr(task, pr):
-    # Historical PR #38 remains auditable and never consumes a rotation turn.
-    return (pr['number'] == 38 and task['plan_id'] == 'F01-GOV'
-            and pr['head']['ref'] == 'chore/1-team-workflow'
-            and pr['user']['login'].lower() == 'caferkilinc')
 
 def evaluate(pr, plan, accepted, api):
     ids = validate_plan(plan)
-    task = linked_task(pr, plan)
-    issue = api.call(f"/issues/{task['issue_number']}")
-    require('pull_request' not in issue, 'Task is a PR rather than issue')
-    maintenance = (task['plan_id'] == 'F01-GOV' and issue.get('state') == 'closed'
-                   and issue.get('state_reason') == 'completed')
-    require(issue.get('state') == 'open' or maintenance, 'Implementation task must be open')
     require(pr['base']['repo']['full_name'] == plan['repository'] and pr['base']['ref'] == 'main',
             'Wrong integration target')
-    rotation = plan['sequential_execution']
-    if not bootstrap_pr(task, pr):
-        require(task['plan_id'] == rotation['active_task_plan_id'],
-                'PR task is not the single authorized active task')
-        require(pr['user']['login'].lower() == rotation['active_owner'].lower(),
-                'PR author is not the authorized active developer')
+    number = branch_issue(pr)
+    task = next((entry for entry in ids.values() if entry['issue_number'] == number), None)
+    if task is None or task['plan_id'] == 'F01-GOV':
+        return 'No registered product task to audit'
+    linked_task(pr, plan)
+    issue = api.call(f"/issues/{number}")
+    require('pull_request' not in issue and issue.get('state') == 'open',
+            'Registered product issue must be open')
     check_paths(task, api.pages(f"/pulls/{pr['number']}/files"), pr)
     count = check_dependencies(task, ids, accepted, api, plan)
-    return f"{task['plan_id']}: all {count} mandatory prerequisites accepted"
-
-def readiness(pr, plan, accepted, api):
-    result = evaluate(pr, plan, accepted, api)
-    require(pr.get('state') == 'open' and not pr.get('draft'), 'PR must be open and ready for review')
-    task = linked_task(pr, plan)
-    files = api.pages(f"/pulls/{pr['number']}/files")
-    check_paths(task, files, pr)
-    if bootstrap_pr(task, pr) or delegated_revision(task, pr, plan):
-        owner_approval(task, pr, api, plan)
-    else:
-        publication_approval(task, pr, files, api, plan, plan['sequential_execution']['active_owner'])
-    successful_checks(task, pr, files, api)
-    return result + '; current revision approval and applicable CI verified'
-
-def propose_handoff(pr, plan, accepted, record, api, policy_sha):
-    """Validate a handoff and return a read-only rotation proposal."""
-    ids = validate_plan(plan)
-    task = linked_task(pr, plan)
-    rotation = plan['sequential_execution']
-    sha = pr['head']['sha']
-    key = f"{task['plan_id']}:{sha}"
-    require(record.get('pr') == pr['number'] and record.get('head_sha') == sha,
-            'Handoff record does not match PR and revision')
-    existing = accepted.get(str(task['issue_number']))
-    if existing is not None:
-        require(existing.get('head_sha') == sha and existing.get('pr') == pr['number'],
-                'Task already accepted at another revision; requires protected reconciliation')
-        verify_acceptance(task, existing, api, plan)
-        return {'status': 'ALREADY_ACCEPTED', 'handoff_key': key, 'advance': False}
-    require(key != rotation.get('last_accepted_handoff_key'),
-            'Handoff key already used but acceptance record is missing')
-    require(task['plan_id'] != 'F01-GOV' and task['plan_id'] == rotation['active_task_plan_id']
-            and record.get('developer') == rotation['active_owner'],
-            'Only the active ordinary task and developer may propose a new handoff')
-    merged = verify_acceptance(task, record, api, plan)
-    merge_sha = merged.get('merge_commit_sha') or ''
-    require(re.fullmatch(r'[0-9a-f]{40}', merge_sha), 'Missing merged revision')
-    ancestry = api.call(f'/compare/{merge_sha}...{policy_sha}')
-    require(ancestry.get('status') in ('ahead', 'identical')
-            and (ancestry.get('merge_base_commit') or {}).get('sha') == merge_sha,
-            'Merged revision is not reachable from verified main')
-    check_dependencies(task, ids, accepted, api, plan)
-    sequence = rotation['team_sequence']
-    next_index = (rotation['rotation_index'] + 1) % len(sequence)
-    return {'status': 'REVIEW_REQUIRED', 'handoff_key': key, 'advance': False,
-            'proposed_index': next_index, 'proposed_owner': sequence[next_index]}
+    return f"{task['plan_id']}: all {count} mandatory prerequisites completed"
 
 def same_revision(pr, expected_head=None, policy_sha=None):
     if expected_head:
@@ -314,48 +200,28 @@ def same_revision(pr, expected_head=None, policy_sha=None):
     if policy_sha:
         require(pr['base']['sha'] == policy_sha, 'Trusted main moved; rerun against current main')
 
-def policy_at(api, path, sha):
-    content = api.call(f'/contents/{path}?ref={sha}')
-    require(content.get('encoding') == 'base64', 'Trusted policy content unavailable: ' + path)
-    return json.loads(base64.b64decode(content['content']))
-
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Read-only PR dependency and scope audit')
     parser.add_argument('--pr', required=True, type=int)
-    parser.add_argument('--mode', choices=['dependencies', 'readiness', 'handoff'], default='dependencies')
     parser.add_argument('--expected-head')
-    parser.add_argument('--policy-sha')
-    parser.add_argument('--handoff-record', type=Path)
+    parser.add_argument('--policy-sha', required=True)
     args = parser.parse_args()
     try:
-        api = GitHub()
+        api = GitHub(current_repository(), follow_redirects=False)
+        def current_main():
+            return api.call('/git/ref/heads/main')['object']['sha']
+        require(current_main() == args.policy_sha, 'Trusted main moved; rerun against current main')
         pr = api.call(f'/pulls/{args.pr}')
-        if args.mode == 'handoff':
-            require(args.handoff_record and args.policy_sha
-                    and re.fullmatch(r'[0-9a-f]{40}', args.policy_sha),
-                    'Handoff requires --handoff-record and verified --policy-sha')
-            require(api.call('/git/ref/heads/main')['object']['sha'] == args.policy_sha,
-                    'Trusted main moved; reread policy and evidence')
-            plan = policy_at(api, '.github/task-plan.json', args.policy_sha)
-            plan = effective_plan(plan, api, api.repo)
-            accepted = policy_at(api, '.github/acceptance.json', args.policy_sha)['accepted']
-            same_revision(pr, args.expected_head)
-            record = json.loads(args.handoff_record.read_text(encoding='utf-8'))
-            require(isinstance(record, dict), 'Invalid handoff record')
-            result = json.dumps(propose_handoff(pr, plan, accepted, record, api, args.policy_sha))
-            require(api.call('/git/ref/heads/main')['object']['sha'] == args.policy_sha,
-                    'Trusted main moved during handoff verification')
-            same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'])
-        else:
-            plan = json.loads(Path('.github/task-plan.json').read_text(encoding='utf-8'))
-            plan = effective_plan(plan, api, api.repo)
-            accepted = json.loads(Path('.github/acceptance.json').read_text(encoding='utf-8'))['accepted']
-            same_revision(pr, args.expected_head, args.policy_sha)
-            result = (readiness if args.mode == 'readiness' else evaluate)(pr, plan, accepted, api)
-            same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'], pr['base'].get('sha'))
+        same_revision(pr, args.expected_head, args.policy_sha)
+        plan = json.loads(Path('.github/task-plan.json').read_text(encoding='utf-8'))
+        plan = effective_plan(plan, api, api.repo)
+        accepted = json.loads(Path('.github/acceptance.json').read_text(encoding='utf-8'))['accepted']
+        result = evaluate(pr, plan, accepted, api)
+        same_revision(api.call(f'/pulls/{args.pr}'), pr['head']['sha'], args.policy_sha)
+        require(current_main() == args.policy_sha, 'Trusted main moved during audit')
         print(result)
     except (Rejected, RuntimeError, KeyError, TypeError, ValueError, OSError) as exc:
-        raise SystemExit('DEPENDENCY GATE BLOCKED: ' + str(exc)) from None
+        raise SystemExit('TASK DEPENDENCY AUDIT: ' + str(exc)) from None
 
 if __name__ == '__main__':
     main()

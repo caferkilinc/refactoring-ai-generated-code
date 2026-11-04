@@ -27,20 +27,6 @@ class GitHub:
             raise ValueError('Invalid repository API path')
         return self._request(self.root if path == '/' else self.root + path, method, data, missing_ok)
 
-    def identity(self):
-        return self._request('https://api.github.com/user')
-
-    def review_decision(self, number):
-        owner, name = self.repo.split('/')
-        query = ('query($owner:String!,$name:String!,$number:Int!){repository(owner:$owner,name:$name)'
-                 '{pullRequest(number:$number){reviewDecision}}}')
-        result = self._request('https://api.github.com/graphql', 'POST', {
-            'query': query, 'variables': dict(owner=owner, name=name, number=number),
-        })
-        if result.get('errors'):
-            raise RuntimeError('GitHub could not verify the pull request review decision')
-        return result['data']['repository']['pullRequest']['reviewDecision']
-
     def _request(self, url, method='GET', data=None, missing_ok=False):
         req = urllib.request.Request(url, method=method,
             data=None if data is None else json.dumps(data).encode(), headers={

@@ -1,5 +1,7 @@
 # Project Genesis v3.0 — Faz 1 geçmiş ve kilitleme eki
 
+> Historical record. The [GitHub development workflow](../PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) governs current repository work.
+
 **MIG-01B · İnceleme için gereksinim eki**
 
 Bu ek, MIG-01 sonrasında belirlenen kalıcı geçmiş, katkı atfı ve faz kilidi gereksinimlerini kayda geçirir. [Proje hafızası](../../history/PROJECT_GENESIS_PROJECT_MEMORY_2026-11-04.md) ve [faz tohumu](CODEX_NATIVE_PHASE_LEDGER_SEED.json) tarihsel başlangıç verisidir. Görev ve kabul otoritesi, doğrulanan `main` üzerindeki [görev planı](../../../.github/task-plan.json), [kabul kaydı](../../../.github/acceptance.json) ve bunların bağlı GitHub kanıtlarıdır.
@@ -68,6 +70,6 @@ Bir hesabın birden fazla rolü olabilir. Her rol ayrı kanıtla doldurulur. Ör
 
 ## MIG-01 uyumluluğu ve kalan iş
 
-[MIG-01 dalında](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/3421531b530abde42e7d04bfcddcbc87b3993b9c) [v3 protokolü](../PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) ve [gate.py](../../../scripts/governance/gate.py) mevcut. Kod, yetkili geliştirici yorumunu tam revizyon ve kapsama bağlar. Korumalı yol, önkoşul ve CI kontrollerini uygular. `--mode handoff` salt okunur öneri üretir ve mevcut kabulde `ALREADY_ACCEPTED` ile ilerlemeyi kapatır. [Yerel testler](../../../tests/governance/test_codex_authority.py) bu davranışları kapsar.
+[MIG-01 dalında](https://github.com/caferkilinc/refactoring-ai-generated-code/commit/3421531b530abde42e7d04bfcddcbc87b3993b9c) [v3 protokolü](../PROJECT_GENESIS_CODEX_NATIVE_PROTOCOL_V3.md) ve [gate.py](../../../scripts/governance/gate.py) mevcut. Kod, yetkili geliştirici yorumunu tam revizyon ve kapsama bağlar. Korumalı yol, önkoşul ve CI kontrollerini uygular. `--mode handoff` salt okunur öneri üretir ve mevcut kabulde `ALREADY_ACCEPTED` ile ilerlemeyi kapatır. [Yerel testler](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/2f9e05e0df886b250a690122b3369a45fee3fe96/tests/governance/test_codex_authority.py) bu davranışları kapsar.
 
 Olay yazıcısı, faz kilitleme/yeniden açma, rol bazlı olay kaydı, atomik kabul ve rotasyon yazımı, otomatik sonraki prompt ve uçtan uca hosted doğrulama eksiktir. Bu ek, söz konusu davranışların uygulandığı veya geçişin kabul edildiği anlamına gelmez. MIG-01 yayımlanmış çalışma dalında inceleme aşamasındadır. Güvenilen `main` entegrasyonu, yetkili kabul ve GitHub etkinleştirme kanıtı ayrı gerekliliklerdir. Bu ek bir sonraki fazı başlatmaz.
