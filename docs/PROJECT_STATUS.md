@@ -4,8 +4,8 @@
 > project snapshots. Always use the current GitHub main commit,
 > `.github/task-plan.json`, `.github/acceptance.json` and
 > live issue/PR evidence to determine the current task and owner.
-> At the last verified state, F00-PLAN and F00-V0 were accepted;
-> F02-CONTRACT / Issue #11 was assigned and not yet accepted.
+> F00-PLAN, F00-V0 and F02-CONTRACT are accepted. F01-ENV is
+> pending its F01-GOV prerequisite. See the latest update below.
 > PR #38 and #39 were merged; the 34-task / 69-edge graph was
 > verified. The Turkish and English SRS v0.4.0 were approved.
 > Historical statements below do not override newer verified
@@ -198,3 +198,22 @@ No next-task code, contract-check workflow, adapter or environment was built.
 F02-CONTRACT's sole hard prerequisite remains accepted #8; #9 is continuity
 evidence, not a new dependency. Research NOT_RUN and release NOT_READY.
 Older pending/owner-only/current-Cafer snapshots above remain historical.
+
+
+## 2026-11-05 — F02-CONTRACT accepted
+
+F02-CONTRACT is **VERIFIED_COMPLETE** and [Issue #11](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/11)
+is closed as completed. [PR #52](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/52) merged at
+[176de7ed5d77cc2571a73ce55c32b4121e70bf7e](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/commit/176de7ed5d77cc2571a73ce55c32b4121e70bf7e).
+The accepted revision delivers the versioned CIR and LanguageAdapter contracts,
+JSON Schema and OpenAPI, separate behavior and quality outcomes, selection and
+patch models, and documented consumer expectations. The contract checks passed
+on the [PR revision](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41915990128) and
+[merge revision](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41916594761).
+The frozen pilot was verified. Runtime adapters and the API server are outside
+this acceptance.
+
+[F01-ENV / #10](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/10) remains pending because its hard prerequisite
+[F01-GOV / #1](https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/1) is open. The task registry retains rotation
+index 2 and the last assignment entry for Alperen. The next assignment has not
+taken effect.

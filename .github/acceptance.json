@@ -28,6 +28,22 @@
         "https://github.com/caferkilinc/refactoring-ai-generated-code/actions/runs/41731529429",
         "https://github.com/caferkilinc/refactoring-ai-generated-code/blob/2584fbd97c6bd5e28e09be4199d895db5ff6791c/docs/DECISIONS/0006-pr45-revision-bound-delegation.md"
       ]
+    },
+    "11": {
+      "pr": 52,
+      "head_sha": "123e809d6fd892f9a8630cb51e87fcfe68152dc2",
+      "ci_sha": "123e809d6fd892f9a8630cb51e87fcfe68152dc2",
+      "evidence": [
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/52",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/11",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/commit/176de7ed5d77cc2571a73ce55c32b4121e70bf7e",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/123e809d6fd892f9a8630cb51e87fcfe68152dc2/docs/contracts/F02-REPORT.md",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41915990046",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41915990128",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41915989993",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41915987831",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41916594761"
+      ]
     }
   }
 }
