@@ -1,0 +1,8 @@
+# Contract models use the architecture's Pydantic stack. Pin the complete tree.
+pydantic==2.11.7
+pydantic-core==2.33.2
+annotated-types==0.7.0
+typing-extensions==4.14.1
+typing-inspection==0.4.1
+# Standard cross-language snapshot hashing, including JSON number normalization.
+rfc8785==0.1.4

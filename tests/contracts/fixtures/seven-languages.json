@@ -1,0 +1,2118 @@
+{
+  "artifacts": [],
+  "attempts": [],
+  "files": [],
+  "mode": "FIXTURE",
+  "records": [
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-parse",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-symbol",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-quality",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-dependency",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-build",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-test",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-coverage",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-safe_patch",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:java-security",
+      "kind": "Capability",
+      "language": "JAVA",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:java",
+      "capability_ids": [
+        "capability:java-parse",
+        "capability:java-symbol",
+        "capability:java-quality",
+        "capability:java-dependency",
+        "capability:java-build",
+        "capability:java-test",
+        "capability:java-coverage",
+        "capability:java-safe_patch",
+        "capability:java-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:java",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "JAVA",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-parse",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-symbol",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-quality",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-dependency",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-build",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-test",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-coverage",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-safe_patch",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:python-security",
+      "kind": "Capability",
+      "language": "PYTHON",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:python",
+      "capability_ids": [
+        "capability:python-parse",
+        "capability:python-symbol",
+        "capability:python-quality",
+        "capability:python-dependency",
+        "capability:python-build",
+        "capability:python-test",
+        "capability:python-coverage",
+        "capability:python-safe_patch",
+        "capability:python-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:python",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "PYTHON",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-parse",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-symbol",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-quality",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-dependency",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-build",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-test",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-coverage",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-safe_patch",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:javascript-security",
+      "kind": "Capability",
+      "language": "JAVASCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:javascript",
+      "capability_ids": [
+        "capability:javascript-parse",
+        "capability:javascript-symbol",
+        "capability:javascript-quality",
+        "capability:javascript-dependency",
+        "capability:javascript-build",
+        "capability:javascript-test",
+        "capability:javascript-coverage",
+        "capability:javascript-safe_patch",
+        "capability:javascript-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:javascript",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "JAVASCRIPT",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-parse",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-symbol",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-quality",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-dependency",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-build",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-test",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-coverage",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-safe_patch",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:typescript-security",
+      "kind": "Capability",
+      "language": "TYPESCRIPT",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:typescript",
+      "capability_ids": [
+        "capability:typescript-parse",
+        "capability:typescript-symbol",
+        "capability:typescript-quality",
+        "capability:typescript-dependency",
+        "capability:typescript-build",
+        "capability:typescript-test",
+        "capability:typescript-coverage",
+        "capability:typescript-safe_patch",
+        "capability:typescript-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:typescript",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "TYPESCRIPT",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-parse",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-symbol",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-quality",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-dependency",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-build",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-test",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-coverage",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-safe_patch",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:csharp-security",
+      "kind": "Capability",
+      "language": "CSHARP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:csharp",
+      "capability_ids": [
+        "capability:csharp-parse",
+        "capability:csharp-symbol",
+        "capability:csharp-quality",
+        "capability:csharp-dependency",
+        "capability:csharp-build",
+        "capability:csharp-test",
+        "capability:csharp-coverage",
+        "capability:csharp-safe_patch",
+        "capability:csharp-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:csharp",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "CSHARP",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-parse",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-symbol",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-quality",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-dependency",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-build",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-test",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-coverage",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-safe_patch",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:go-security",
+      "kind": "Capability",
+      "language": "GO",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:go",
+      "capability_ids": [
+        "capability:go-parse",
+        "capability:go-symbol",
+        "capability:go-quality",
+        "capability:go-dependency",
+        "capability:go-build",
+        "capability:go-test",
+        "capability:go-coverage",
+        "capability:go-safe_patch",
+        "capability:go-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:go",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "GO",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    },
+    {
+      "capability": "parse",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-parse",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "symbol",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-symbol",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "quality",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-quality",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "dependency",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-dependency",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "build",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-build",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "test",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-test",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "coverage",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-coverage",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "safe_patch",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-safe_patch",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "capability": "security",
+      "component_id": "component:fixture",
+      "confidence": {
+        "reason": "Interface fixture only.",
+        "value": null
+      },
+      "evidence_ids": [],
+      "id": "capability:cpp-security",
+      "kind": "Capability",
+      "language": "CPP",
+      "limitations": [
+        "No runtime adapter is implemented by F02."
+      ],
+      "reason": "Contract declaration only; real evidence belongs to the adapter tasks.",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "status": "NOT_IMPLEMENTED",
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+      "tool": null,
+      "toolchain": []
+    },
+    {
+      "adapter_id": "adapter:cpp",
+      "capability_ids": [
+        "capability:cpp-parse",
+        "capability:cpp-symbol",
+        "capability:cpp-quality",
+        "capability:cpp-dependency",
+        "capability:cpp-build",
+        "capability:cpp-test",
+        "capability:cpp-coverage",
+        "capability:cpp-safe_patch",
+        "capability:cpp-security"
+      ],
+      "component_id": "component:fixture",
+      "id": "adaptercaps:cpp",
+      "implementation_state": "CONTRACT_DEFINED",
+      "kind": "LanguageAdapterCapabilities",
+      "language": "CPP",
+      "recorded_at": "2026-11-04T00:00:00Z",
+      "schema_version": "1.0.0",
+      "scope": {
+        "analysis_id": "analysis:initial",
+        "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+        "project_id": "project:fixture",
+        "run_id": "run:initial",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version_id": "version:v0"
+      },
+      "subject_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "scope": {
+    "analysis_id": "analysis:initial",
+    "baseline_sha256": "35c53b7986dfb2897e7e2e9cdf56c69a49d2c1bcccaea7c310d60b11b59c9397",
+    "project_id": "project:fixture",
+    "run_id": "run:initial",
+    "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "version_id": "version:v0"
+  },
+  "test_suites": []
+}
