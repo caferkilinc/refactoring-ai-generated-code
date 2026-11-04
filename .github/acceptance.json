@@ -1,6 +1,22 @@
 {
   "schema_version": 1,
   "accepted": {
+    "1": {
+      "pr": 38,
+      "head_sha": "5dbb46bb13a2fbff52a6ef5579165596a09a6a84",
+      "ci_sha": "5dbb46bb13a2fbff52a6ef5579165596a09a6a84",
+      "evidence": [
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/issues/1",
+        "https://api.github.com/repos/refactoring-ai-code/refactoring-ai-generated-code/issues/events/35179098727",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/38",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/commit/5754ed6eeaeef0cce9bc46264c8baeddfb62f88c",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/40336395262",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/5dbb46bb13a2fbff52a6ef5579165596a09a6a84/docs/SETUP_REPORT.md",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/blob/5dbb46bb13a2fbff52a6ef5579165596a09a6a84/docs/OPERATIONAL_AUDIT.md",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/pull/51",
+        "https://github.com/refactoring-ai-code/refactoring-ai-generated-code/actions/runs/41913098031"
+      ]
+    },
     "8": {
       "pr": 44,
       "head_sha": "a281caec295487b78371bac1e106cb378fa64bba",
